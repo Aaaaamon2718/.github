@@ -1,16 +1,22 @@
-## Hi there 👋
+# Hi, I'm Amon 👋
 
-<!--
-**Aaaaamon2718/.github** is a ✨ _special_ ✨ repository because its `profile/README.md` (this file) appears on your GitHub profile.
+## 🚀 AI Engineer & Automation Developer
 
-Here are some ideas to get you started:
+Building intelligent systems that bridge humans and AI.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+### 🔭 Currently Working On
+- AI Chatbot Development
+- Automation & Workflow Systems
+- Exploring NVIDIA AI Blueprints
+
+### 🛠️ Tech Stack
+![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![Claude](https://img.shields.io/badge/-Claude_AI-6B4FBB?style=flat-square&logo=anthropic&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/-GitHub_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white)
+
+### 🎵 Beyond Code
+EDM Producer & DJ | Photography | Philosophy
+
+---
+
+*"The task of humans is to become more human, not less."* — Erich Fromm
