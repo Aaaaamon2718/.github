@@ -1,22 +1,16 @@
-# Hi, I'm Amon 👋
+# .github
 
-## 🚀 AI Engineer & Automation Developer
+This repository contains GitHub configuration files and profile settings for [@Aaaaamon2718](https://github.com/Aaaaamon2718).
 
-Building intelligent systems that bridge humans and AI.
+## Structure
 
-### 🔭 Currently Working On
-- AI Chatbot Development
-- Automation & Workflow Systems
-- Exploring NVIDIA AI Blueprints
+```
+.github/
+├── README.md          # This file (repository description)
+└── profile/
+    └── README.md      # GitHub organization profile
+```
 
-### 🛠️ Tech Stack
-![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![Claude](https://img.shields.io/badge/-Claude_AI-6B4FBB?style=flat-square&logo=anthropic&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/-GitHub_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white)
+## Contents
 
-### 🎵 Beyond Code
-EDM Producer & DJ | Photography | Philosophy
-
----
-
-*"The task of humans is to become more human, not less."* — Erich Fromm
+- **profile/** - Organization profile README displayed on the GitHub profile page
