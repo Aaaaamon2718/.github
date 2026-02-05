@@ -81,3 +81,26 @@ ui:
 
   # Auto-open Finder after processing
   open_finder: true
+
+# GitHub Sync Settings
+github:
+  # Enable auto-sync after processing
+  auto_sync: false
+
+  # Repository path (local clone)
+  repo_path: "~/.github"
+
+  # Subdirectory for analysis results
+  results_subdir: "stem-separator/analysis-results"
+
+  # Branch for analysis results
+  branch: "analysis-results"
+
+  # Items to sync
+  sync_items:
+    - "analysis/*.json"
+    - "advice/*.md"
+    - "metadata.json"
+
+  # Auto-push after commit
+  auto_push: true
