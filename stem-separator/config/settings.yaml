@@ -1,0 +1,83 @@
+# Stem Separator Configuration
+# ============================
+
+# Output Settings
+output:
+  # Base directory for separated stems
+  base_dir: "~/Music/Stems"
+
+  # Output format: wav, mp3, flac
+  format: "wav"
+
+  # Naming convention: date_title, title, flat
+  # date_title: 2024-02-04_TrackName/
+  # title: TrackName/
+  # flat: TrackName_vocals.wav (no folder)
+  naming: "date_title"
+
+  # Sample rate for output files
+  sample_rate: 44100
+
+# Separation Settings
+separation:
+  # Model: htdemucs_6s (6-stem) or htdemucs (4-stem)
+  model: "htdemucs_6s"
+
+  # Device: auto, mps (Apple Silicon), cuda (NVIDIA), cpu
+  device: "auto"
+
+  # Number of parallel jobs
+  jobs: 2
+
+  # Overlap for better quality (0.0-0.5)
+  overlap: 0.25
+
+  # Number of random shifts for better quality (1-10)
+  shifts: 1
+
+# Analysis Settings
+analysis:
+  # Extract MIDI from stems
+  extract_midi: true
+
+  # Detect chord progressions
+  detect_chords: true
+
+  # Detect drum fills
+  detect_fills: true
+
+  # Generate detailed reports
+  generate_reports: true
+
+# Claude API Settings
+claude:
+  # API key (or use ANTHROPIC_API_KEY environment variable)
+  api_key: "${ANTHROPIC_API_KEY}"
+
+  # Model to use
+  model: "claude-sonnet-4-20250514"
+
+  # Enable offline mode (template-based advice)
+  offline_mode: false
+
+# Logic Pro Integration
+logic_pro:
+  # Auto-open Logic Pro after import
+  auto_open: true
+
+  # Logic Pro sound library path
+  library_path: "/Library/Application Support/Logic/Sounds"
+
+  # Catalog cache file
+  catalog_cache: "~/.stem-separator/logic_catalog.json"
+
+# UI Settings
+ui:
+  # Theme: dark, light
+  theme: "dark"
+
+  # Show progress bars
+  show_progress: true
+
+  # Auto-open Finder after processing
+  open_finder: true

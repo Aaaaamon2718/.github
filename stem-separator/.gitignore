@@ -1,0 +1,77 @@
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Audio Files (too large for git)
+*.wav
+*.mp3
+*.m4a
+*.flac
+*.aiff
+*.ogg
+
+# MIDI Files
+*.mid
+*.midi
+
+# Model Files
+*.pt
+*.pth
+*.onnx
+pretrained/
+
+# Output
+Stems/
+output/
+*.json
+!config/*.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.local
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Temporary
+tmp/
+temp/
+*.tmp
