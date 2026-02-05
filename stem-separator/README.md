@@ -1,45 +1,81 @@
-# Stem Separator
+# Stem Separator Pro
 
 AI-Powered Stem Separation & Sound Analysis for Logic Pro
 
 ## Overview
 
-Logic ProとAIを連携させた音響分析システム。Demucs v4による高精度な音源分離と、Claude AIによる音作りアドバイスを提供。
+Logic ProとAIを連携させた精密音響分析システム。**2段階分離アーキテクチャ**により、ドラムをKick/Snare/HiHat等に精密分離。Audio Spectrogram Transformerベースの音色マッチングでLogic Pro音源を自動提案。
 
 ## Features
 
-- **6ステム分離**: ボーカル、ドラム、ベース、ギター、ピアノ、その他に高精度分離（Demucs v4）
-- **音響分析**: BPM、キー、スペクトル特徴量の自動検出
-- **ノート検出**: MIDI変換、コード進行検出、フィルイン検出
-- **Logic Pro連携**: 類似音源マッチング、自動インポート
-- **AIアドバイス**: Claude APIによる音作りアドバイス生成
-- **Apple Silicon最適化**: MPS（GPU）による高速処理
+### 音源分離（2段階アーキテクチャ）
+- **Stage 1 - 粗分離**: Demucs v4で6ステム（vocals, drums, bass, guitar, piano, other）
+- **Stage 2 - 精密分離**: ドラムをKick, Snare, HiHat, Toms, Ride, Crashに分離
+
+### 音響分析
+- **BPM/キー検出**: テンポ・調の自動判定
+- **Timbre Embedding**: Audio Spectrogram Transformerで768次元の音色特徴量
+- **スペクトル分析**: MFCC、Spectral Centroid等
+
+### Logic Pro音色マッチング
+- **プリセットカタログ**: Logic Pro全音源の特徴量DB
+- **コサイン類似度検索**: 分離ステムに最も近いプリセットをTop-N提案
+- **ドラム専用マッチャー**: Drum Kit Designer/Drum Machine Designerに特化
+
+### MIDI変換 & AIアドバイス
+- **ポリフォニック対応**: 和音も正確に検出
+- **Claude AI連携**: 音作りガイド、推奨エフェクト設定
 
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    Your Mac                             │
-├─────────────────────────────────────────────────────────┤
-│                                                         │
-│  ┌─────────────┐    ┌──────────────┐    ┌───────────┐  │
-│  │ Input Audio │───▶│  Demucs v4   │───▶│ 6 Stems   │  │
-│  │ (WAV/MP3)   │    │  Separator   │    │ (WAV)     │  │
-│  └─────────────┘    └──────────────┘    └───────────┘  │
-│                            │                     │      │
-│                            ▼                     ▼      │
-│                     ┌──────────────┐    ┌───────────┐  │
-│                     │ Audio        │    │ Logic Pro │  │
-│                     │ Analyzer     │    │ Import    │  │
-│                     └──────────────┘    └───────────┘  │
-│                            │                           │
-│                            ▼                           │
-│                     ┌──────────────┐                   │
-│                     │ Claude API   │                   │
-│                     │ Advisor      │                   │
-│                     └──────────────┘                   │
-│                                                         │
-└─────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    STEM SEPARATOR PRO v2                                │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│  [入力: 楽曲ファイル]                                                    │
+│         │                                                               │
+│         ▼                                                               │
+│  ┌──────────────────┐                                                   │
+│  │ STAGE 1: 粗分離  │  Demucs v4 / htdemucs_6s                         │
+│  │ 6ステム出力      │  vocals, drums, bass, guitar, piano, other       │
+│  └────────┬─────────┘                                                   │
+│           │                                                             │
+│     ┌─────┴─────┬─────────┬──────────┬──────────┬──────────┐           │
+│     ▼           ▼         ▼          ▼          ▼          ▼           │
+│  [vocals]   [drums]    [bass]    [guitar]   [piano]    [other]         │
+│                 │                                                       │
+│                 ▼                                                       │
+│  ┌──────────────────────────────────────────────────────────┐          │
+│  │ STAGE 2: ドラム精密分離                                   │          │
+│  │ → Kick, Snare, HiHat, Toms, Ride, Crash                  │          │
+│  └──────────────────────────────────────────────────────────┘          │
+│                    │                                                    │
+│                    ▼                                                    │
+│  ┌──────────────────────────────────────────────────────────┐          │
+│  │ STAGE 3: 音響分析 + MIDI変換                             │          │
+│  │ • Timbre Embedding (AST 768次元)                         │          │
+│  │ • BPM/Key検出、MFCC、スペクトル分析                       │          │
+│  │ • ポリフォニックMIDI変換                                  │          │
+│  └──────────────────────────────────────────────────────────┘          │
+│                    │                                                    │
+│                    ▼                                                    │
+│  ┌──────────────────────────────────────────────────────────┐          │
+│  │ STAGE 4: Logic Pro音色マッチング                         │          │
+│  │ • プリセットカタログDBとコサイン類似度計算                │          │
+│  │ • Top-N類似プリセット提案                                 │          │
+│  │ • EQ/エフェクト調整ヒント生成                             │          │
+│  └──────────────────────────────────────────────────────────┘          │
+│                    │                                                    │
+│                    ▼                                                    │
+│  ┌──────────────────────────────────────────────────────────┐          │
+│  │ STAGE 5: 出力                                            │          │
+│  │ • 分離WAV (各ステム + ドラムパーツ)                       │          │
+│  │ • MIDIファイル                                           │          │
+│  │ • Claude AIアドバイス                                     │          │
+│  └──────────────────────────────────────────────────────────┘          │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
 ```
 
 ## Requirements
@@ -108,16 +144,36 @@ python logic_import.py ~/Music/Stems/2024-02-04_Track/
 
 ```
 ~/Music/Stems/
-└── 2024-02-04_Track Name/
-    ├── vocals.wav      # Vocals
-    ├── drums.wav       # Drums
-    ├── bass.wav        # Bass
-    ├── guitar.wav      # Guitar
-    ├── piano.wav       # Piano
-    ├── other.wav       # Other (synths, etc.)
-    ├── bass.mid        # MIDI files
-    ├── piano.mid
-    └── *_analysis.json # Analysis reports
+└── 2024-02-04_Track_Name/
+    ├── stage1/                 # Stage 1: 粗分離
+    │   ├── vocals.wav
+    │   ├── drums.wav
+    │   ├── bass.wav
+    │   ├── guitar.wav
+    │   ├── piano.wav
+    │   └── other.wav
+    │
+    ├── stage2/                 # Stage 2: ドラム精密分離
+    │   └── drums/
+    │       ├── kick.wav
+    │       ├── snare.wav
+    │       ├── hihat.wav
+    │       ├── toms.wav
+    │       ├── ride.wav
+    │       └── crash.wav
+    │
+    ├── midi/                   # MIDI変換結果
+    │   ├── bass.mid
+    │   ├── piano.mid
+    │   ├── kick.mid
+    │   └── ...
+    │
+    ├── analysis/               # 分析レポート
+    │   ├── combined.json
+    │   └── *_analysis.json
+    │
+    └── advice/                 # AIアドバイス
+        └── production_guide.md
 ```
 
 ## Project Structure
