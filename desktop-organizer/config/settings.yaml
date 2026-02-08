@@ -1,0 +1,45 @@
+# デスクトップ整理ツール設定ファイル
+
+# デスクトップのパス（~ はホームディレクトリに展開される）
+desktop_path: "~/Desktop"
+
+# 整理済みファイルの移動先フォルダ名
+organized_folder: "Screenshots"
+
+# スクリーンショットの分類ルール
+screenshot_patterns:
+  - "スクリーンショット *"
+  - "Screenshot *"
+  - "Screen Shot *"
+  - "Capture *"
+
+# 日付ごとにサブフォルダを作成するか
+group_by_date: true
+
+# 日付フォルダのフォーマット（strftime形式）
+date_folder_format: "%Y-%m"
+
+# 整理対象の拡張子
+target_extensions:
+  - ".png"
+  - ".jpg"
+  - ".jpeg"
+  - ".gif"
+  - ".bmp"
+  - ".tiff"
+  - ".webp"
+  - ".heic"
+
+# 除外するフォルダ・ファイル（これらは移動しない）
+exclude_patterns:
+  - ".DS_Store"
+  - ".localized"
+  - "*.app"
+
+# ドライランモード（trueの場合、実際には移動せず計画のみ表示）
+dry_run: false
+
+# ログ出力
+logging:
+  enabled: true
+  file: "~/Desktop/Screenshots/.organize_log.txt"
