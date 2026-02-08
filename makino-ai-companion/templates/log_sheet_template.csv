@@ -1,0 +1,5 @@
+timestamp,user_id,bot_pattern,question,answer,source_used,confidence,user_rating,escalated,category,review_status,action_taken
+2025-01-15T10:30:00Z,USR_A001,pattern_1,決算書の見方を教えてください,（AI生成回答）,牧野生保塾 Vol.3,0.85,good,false,法人保険,済,
+2025-01-15T11:00:00Z,USR_B002,pattern_2,開業医への営業で最初に何を話すべき？,（AI生成回答）,開業医攻略研修 第1回,0.72,good,false,ドクターマーケット,済,
+2025-01-15T14:20:00Z,USR_C003,pattern_4,最近契約が取れなくて落ち込んでいます,（AI生成回答）,人格定義書・言い回し辞書,0.90,,false,営業マインド,未,
+2025-01-15T16:45:00Z,USR_A001,pattern_3,医療法人の節税スキームについて詳しく教えて,（エスカレーションメッセージ）,,0.35,,true,税務,要対応,牧野氏に確認依頼済み

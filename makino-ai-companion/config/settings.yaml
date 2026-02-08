@@ -1,0 +1,192 @@
+# =============================================================================
+# 牧野生保塾 AI伴走システム - プロジェクト設定
+# =============================================================================
+# 本ファイルにプロジェクト全体の設定を集約する。
+# 環境変数は ${ENV_VAR} 形式で参照可能。
+# =============================================================================
+
+# --- プロジェクト基本情報 ---
+project:
+  name: "牧野生保塾 AI伴走システム"
+  version: "0.1.0"
+  duration_months: 12
+  start_date: null  # プロジェクト開始日を設定
+  confidential: true
+
+# --- Dify Platform 設定 ---
+dify:
+  base_url: ${DIFY_BASE_URL}
+  api_key: ${DIFY_API_KEY}
+  # エージェントアプリケーションID（Pattern別）
+  apps:
+    pattern_1_general_qa: null      # Pattern 1: 質問対応エージェント
+    pattern_2_doctor_market: null   # Pattern 2: ドクターマーケット特化
+    pattern_3_corporate: null       # Pattern 3: 法人保険特化
+    pattern_4_personality: null     # Pattern 4: 人格エージェント
+
+# --- LLM 設定 ---
+llm:
+  provider: "openai"  # openai / anthropic / azure_openai
+  model: "gpt-4"
+  temperature: 0.7
+  max_tokens: 2048
+  # Pattern別のtemperature調整
+  pattern_overrides:
+    pattern_1:
+      temperature: 0.5  # 正確性重視
+    pattern_2:
+      temperature: 0.5  # 専門性重視
+    pattern_3:
+      temperature: 0.3  # 数値の正確性を最大限重視
+    pattern_4:
+      temperature: 0.8  # 自然な会話重視
+
+# --- RAG（検索拡張生成）設定 ---
+rag:
+  embedding_model: "text-embedding-3-small"
+  chunk_size: 500
+  chunk_overlap: 50
+  top_k: 5  # 検索時の上位取得件数
+  similarity_threshold: 0.7  # 類似度の下限
+
+# --- ナレッジベース設定 ---
+knowledge_base:
+  # データソース種別
+  sources:
+    - type: "seminar_video"
+      description: "牧野生保塾 過去講義録画"
+      priority: "high"
+    - type: "training_video"
+      description: "各種研修の録画・音声"
+      priority: "high"
+    - type: "qa_log"
+      description: "過去の質問・回答ログ"
+      priority: "high"
+    - type: "newsletter"
+      description: "メルマガ・ニュースレター"
+      priority: "medium"
+    - type: "book"
+      description: "書籍・執筆原稿"
+      priority: "medium"
+    - type: "sales_tool"
+      description: "営業トーク集・プレゼン資料"
+      priority: "medium"
+
+  # カテゴリ定義
+  categories:
+    - "法人保険"
+    - "ドクターマーケット"
+    - "相続"
+    - "営業マインド"
+    - "決算書分析"
+    - "退職金設計"
+    - "事業承継"
+    - "医療法人"
+    - "個人開業医"
+    - "アプローチ手法"
+    - "クロージング"
+
+# --- ログ蓄積設定 ---
+logging:
+  # Google Sheets 連携
+  google_sheets:
+    spreadsheet_id: ${GOOGLE_SPREADSHEET_ID}
+    credentials_path: ${GOOGLE_CREDENTIALS_PATH}
+    log_sheet_name: "質問回答ログ"
+    analytics_sheet_name: "分析データ"
+
+  # Webhook 設定
+  webhook:
+    enabled: true
+    endpoint: ${WEBHOOK_ENDPOINT}
+    retry_count: 3
+    retry_delay_seconds: 5
+
+# --- エスカレーション設定 ---
+escalation:
+  confidence_threshold: 0.5  # この値以下でエスカレーション
+  notification:
+    method: "email"  # email / slack / line
+    recipients:
+      - ${ESCALATION_EMAIL_PRIMARY}
+  # エスカレーション対象カテゴリ
+  mandatory_categories:
+    - "コンプライアンス関連"
+    - "個別顧客の契約内容"
+    - "具体的な保険料試算"
+    - "税務の最終判断"
+
+# --- 人格トレース設定 ---
+persona:
+  name: "牧野 克彦"
+  role: "生命保険営業のカリスマ"
+  # 基本性格パラメータ
+  traits:
+    warmth: 0.7        # 温かさ（0: 事務的 〜 1: 非常に温かい）
+    strictness: 0.6    # 厳しさ（0: 甘い 〜 1: 非常に厳しい）
+    professionalism: 0.9  # プロ意識（0: カジュアル 〜 1: 非常にプロフェッショナル）
+    empathy: 0.8       # 共感力（0: 論理のみ 〜 1: 感情重視）
+
+  # NGワード（AI伴走システムが絶対に使用しない表現）
+  ng_words:
+    - "ネットスラング全般"
+    - "他社批判"
+    - "不確実な断定表現"
+    - "コンプライアンス違反となる発言"
+
+  # 象徴的フレーズ
+  signature_phrases:
+    - "誰にでもできることを、だれにも負けないほどやる"
+    - "過去と他人は変えられないが、未来と自分は変えられる"
+
+# --- KPI目標値 ---
+kpi:
+  answer_accuracy: 0.80       # 回答正確性: 80%以上
+  user_satisfaction: 0.85     # ユーザー満足度: 85%以上
+  average_confidence: 0.70    # 平均確信度: 0.7以上
+  new_question_rate: 0.20     # 新規質問率: 20%以下
+  answer_success_rate: 0.80   # 回答成功率: 80%以上
+  unanswerable_rate: 0.20     # 回答不能率: 20%以下
+
+# --- モニタリング設定 ---
+monitoring:
+  daily:
+    - "質問総数"
+    - "パターン別利用頻度"
+    - "回答成功率"
+    - "エスカレーション発生件数"
+  weekly:
+    - "ユーザー満足度集計"
+    - "新規質問パターン抽出"
+    - "確信度低下回答の精査"
+  monthly:
+    - "ナレッジベース更新要否判断"
+    - "プロンプトチューニング"
+    - "運用コスト予実管理"
+
+# --- 開発フェーズ管理 ---
+phases:
+  phase_1:
+    name: "ヒアリング・要件定義"
+    months: [1, 2]
+    status: "pending"  # pending / in_progress / completed
+  phase_2:
+    name: "データ収集・整理・ラベリング"
+    months: [3, 4]
+    status: "pending"
+  phase_3:
+    name: "PoC開発・技術検証"
+    months: [5, 6]
+    status: "pending"
+  phase_4:
+    name: "MVP開発 (Pattern 1)"
+    months: [7, 8]
+    status: "pending"
+  phase_5:
+    name: "パターン展開 (Pattern 2-4)"
+    months: [9, 10]
+    status: "pending"
+  phase_6:
+    name: "本番運用・保守体制構築"
+    months: [11, 12]
+    status: "pending"
