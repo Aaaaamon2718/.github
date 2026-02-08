@@ -43,3 +43,4 @@ last_updated: 2025-02-08
 | stoicism | 1 | 0 | 0 | 0 | 未着手 |
 | fromm | 1 | 0 | 0 | 0 | 未着手 |
 | creativity | 0 | 0 | 0 | 0 | 未着手 |
+| _emerging | 0 | 0 | 0 | 3 | 未着手 |
