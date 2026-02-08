@@ -1,0 +1,13 @@
+# PDF Upload System 設定
+server:
+  name: "pdf-reader"
+  version: "1.0.0"
+  transport: "stdio"
+
+pdf:
+  # read_pdf で全ページ自動読み取りする最大ページ数
+  auto_read_max_pages: 50
+  # search_pdf のデフォルト最大結果数
+  default_max_search_results: 20
+  # 検索スニペットの前後文字数
+  snippet_context_chars: 80

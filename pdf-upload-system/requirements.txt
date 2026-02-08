@@ -1,0 +1,6 @@
+# Core
+PyMuPDF>=1.24.0
+mcp>=1.0.0
+
+# Development
+pytest>=7.0.0
