@@ -1,0 +1,10 @@
+title: ""
+title_ja: ""        # 日本語タイトル
+author: ""
+translator: ""      # 翻訳者（該当する場合）
+isbn: ""
+year: null
+language: ""
+themes: []           # 関連テーマ
+status: reading      # reading → completed → integrated
+key_concepts: []     # この書籍の核心的概念
