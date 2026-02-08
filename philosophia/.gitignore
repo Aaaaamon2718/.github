@@ -1,0 +1,23 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+
+# Large binary files (manage with Git LFS if needed)
+# *.psd
+# *.ai
