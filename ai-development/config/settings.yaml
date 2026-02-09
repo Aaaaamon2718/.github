@@ -1,0 +1,57 @@
+# AI開発 ナレッジベース設定
+# このファイルでプロジェクト全体の設定を管理する
+
+project:
+  name: "AI開発"
+  description: "AI開発に関するナレッジベース - テキストと画像を構造的に管理"
+  version: "1.0.0"
+
+content:
+  # テキストコンテンツ設定
+  text:
+    directory: "content/text"
+    file_extension: ".md"
+    # カテゴリ定義（必要に応じて追加可能）
+    categories:
+      - "conversation"    # 会話記録・すり合わせ内容
+      - "decision"        # 意思決定・合意事項
+      - "insight"         # 知見・学び
+      - "specification"   # 仕様・設計
+      - "reference"       # 参考資料
+
+  # 画像コンテンツ設定
+  images:
+    directory: "content/images"
+    allowed_extensions:
+      - ".png"
+      - ".jpg"
+      - ".jpeg"
+      - ".gif"
+      - ".svg"
+      - ".webp"
+    # 画像カテゴリ定義
+    categories:
+      - "diagram"         # 設計図・フロー図
+      - "screenshot"      # スクリーンショット
+      - "generated"       # AI生成画像
+      - "reference"       # 参考画像
+      - "architecture"    # アーキテクチャ図
+
+# メタデータ設定
+metadata:
+  # 各エントリに付与するメタデータフィールド
+  required_fields:
+    - "title"
+    - "category"
+    - "created_at"
+  optional_fields:
+    - "tags"
+    - "source"           # 情報源（会話セッション、URL等）
+    - "related_entries"  # 関連エントリへの参照
+    - "status"           # draft / confirmed / archived
+
+# 出力設定
+output:
+  index_file: "content/INDEX.md"
+  date_format: "%Y-%m-%d"
+  datetime_format: "%Y-%m-%d %H:%M:%S"
