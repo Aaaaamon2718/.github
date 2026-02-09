@@ -78,6 +78,7 @@ class ChatEngine:
         pattern: int = 1,
         conversation_history: Optional[list[dict]] = None,
         temperature: Optional[float] = None,
+        user_profile_context: Optional[str] = None,
     ) -> ChatResponse:
         """質問に対して回答を生成する。
 
@@ -86,6 +87,7 @@ class ChatEngine:
             pattern: エージェントパターン番号 (1-4)
             conversation_history: 過去の会話履歴
             temperature: 生成温度（省略時はパターンのデフォルト）
+            user_profile_context: ユーザープロファイルのプロンプト注入テキスト
 
         Returns:
             ChatResponse
@@ -117,6 +119,10 @@ class ChatEngine:
         # システムプロンプト構築
         system_prompt = build_system_prompt(pattern, self.persona)
         system_prompt += f"\n\n## 参照ナレッジ\n{context}"
+
+        # ユーザープロファイル注入（パーソナライズ）
+        if user_profile_context:
+            system_prompt += f"\n\n{user_profile_context}"
 
         # メッセージ構築
         messages: list[dict] = []

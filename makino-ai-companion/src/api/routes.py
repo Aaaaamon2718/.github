@@ -1,9 +1,10 @@
 """FastAPIのルーティング定義。
 
-チャットAPI、フィードバックAPI、管理APIを提供する。
+チャットAPI、フィードバックAPI、操作ログAPI、管理APIを提供する。
 フロントエンドのチャットUIおよび将来のウィジェット埋め込みから呼び出される。
 """
 
+import json
 import logging
 from typing import Optional
 
@@ -18,7 +19,9 @@ from src.database.operations import (
     save_conversation,
     save_escalation,
     save_feedback,
+    save_interaction_log,
 )
+from src.memory.profile_manager import load_profile_context
 
 logger = logging.getLogger(__name__)
 
@@ -27,6 +30,22 @@ router = APIRouter()
 
 # --- リクエスト/レスポンスモデル ---
 
+class InteractionData(BaseModel):
+    """操作シグナルデータ（フロントエンドから送信される）。"""
+
+    input_method: str = Field(default="free_text")
+    guide_category: str = ""
+    guide_sub_topic: str = ""
+    guide_steps_taken: int = 0
+    guide_backtrack: int = 0
+    guide_ai_used: bool = False
+    guide_freetext_len: int = 0
+    question_length: int = 0
+    question_has_number: bool = False
+    response_time_ms: int = 0
+    session_position: int = 1
+
+
 class ChatRequest(BaseModel):
     """チャットリクエスト。"""
 
@@ -34,6 +53,7 @@ class ChatRequest(BaseModel):
     pattern: int = Field(default=1, ge=1, le=4)
     session_id: Optional[str] = None
     user_id: str = Field(default="anonymous")
+    interaction: Optional[InteractionData] = None
 
 
 class ChatResponseModel(BaseModel):
@@ -101,11 +121,15 @@ def create_routes(engine: ChatEngine, db_conn) -> APIRouter:
         # 会話履歴取得
         history = get_conversation_history(db_conn, session_id)
 
+        # ユーザープロファイルをロード（anonymous以外）
+        profile_context = load_profile_context(db_conn, request.user_id)
+
         # 回答生成
         response = engine.chat(
             question=request.question,
             pattern=request.pattern,
             conversation_history=history,
+            user_profile_context=profile_context,
         )
 
         # DB保存
@@ -122,6 +146,29 @@ def create_routes(engine: ChatEngine, db_conn) -> APIRouter:
             category=response.category,
             tokens_used=response.tokens_used,
         )
+
+        # 操作ログ保存
+        if request.interaction:
+            ix = request.interaction
+            try:
+                save_interaction_log(
+                    conn=db_conn,
+                    conversation_id=conv_id,
+                    user_id=request.user_id,
+                    input_method=ix.input_method,
+                    question_length=ix.question_length,
+                    session_position=ix.session_position,
+                    guide_category=ix.guide_category,
+                    guide_sub_topic=ix.guide_sub_topic,
+                    guide_steps_taken=ix.guide_steps_taken,
+                    guide_backtrack=ix.guide_backtrack,
+                    guide_ai_used=ix.guide_ai_used,
+                    guide_freetext_len=ix.guide_freetext_len,
+                    question_has_number=ix.question_has_number,
+                    response_time_ms=ix.response_time_ms,
+                )
+            except Exception as e:
+                logger.warning(f"操作ログ保存失敗: {e}")
 
         # エスカレーション保存
         if response.should_escalate:
@@ -166,11 +213,7 @@ def create_routes(engine: ChatEngine, db_conn) -> APIRouter:
 
     @router.post("/api/guide/suggestions", response_model=GuideSuggestionsResponse)
     async def guide_suggestions(request: GuideSuggestionsRequest) -> GuideSuggestionsResponse:
-        """質問ナビ用のAI生成サブトピックを返す。
-
-        選択されたパターンとカテゴリに基づき、
-        ユーザーが質問しやすいサブトピックの選択肢をAIで生成する。
-        """
+        """質問ナビ用のAI生成サブトピックを返す。"""
         pattern_names = {
             1: "生命保険全般の質問対応",
             2: "ドクターマーケット特化",
@@ -196,7 +239,6 @@ def create_routes(engine: ChatEngine, db_conn) -> APIRouter:
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.7,
             )
-            import json
             text = response.content[0].text.strip()
             suggestions = json.loads(text)
             if isinstance(suggestions, list) and all(isinstance(s, str) for s in suggestions):

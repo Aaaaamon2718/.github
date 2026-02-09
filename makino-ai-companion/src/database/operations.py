@@ -1,6 +1,7 @@
 """データベースの読み書き操作。
 
-会話ログの保存、フィードバックの記録、分析用クエリを提供する。
+会話ログの保存、フィードバックの記録、操作ログ、
+ユーザープロファイル、集合知の管理、分析用クエリを提供する。
 """
 
 import csv
@@ -78,6 +79,202 @@ def save_escalation(
     )
     conn.commit()
     return cursor.lastrowid
+
+
+def save_interaction_log(
+    conn: sqlite3.Connection,
+    conversation_id: int,
+    user_id: str,
+    input_method: str,
+    question_length: int,
+    session_position: int,
+    guide_category: str = "",
+    guide_sub_topic: str = "",
+    guide_steps_taken: int = 0,
+    guide_backtrack: int = 0,
+    guide_ai_used: bool = False,
+    guide_freetext_len: int = 0,
+    question_has_number: bool = False,
+    response_time_ms: int = 0,
+) -> int:
+    """操作ログを保存する。ユーザーの行動シグナルを構造化して記録。"""
+    cursor = conn.execute(
+        """INSERT INTO interaction_logs
+           (conversation_id, user_id, input_method,
+            guide_category, guide_sub_topic, guide_steps_taken,
+            guide_backtrack, guide_ai_used, guide_freetext_len,
+            question_length, question_has_number,
+            response_time_ms, session_position)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+        (
+            conversation_id,
+            user_id,
+            input_method,
+            guide_category,
+            guide_sub_topic,
+            guide_steps_taken,
+            guide_backtrack,
+            1 if guide_ai_used else 0,
+            guide_freetext_len,
+            question_length,
+            1 if question_has_number else 0,
+            response_time_ms,
+            session_position,
+        ),
+    )
+    conn.commit()
+    return cursor.lastrowid
+
+
+def get_or_create_profile(
+    conn: sqlite3.Connection,
+    user_id: str,
+    display_name: str = "",
+) -> dict:
+    """ユーザープロファイルを取得する。存在しなければ新規作成。"""
+    row = conn.execute(
+        "SELECT * FROM user_profiles WHERE user_id = ?",
+        (user_id,),
+    ).fetchone()
+    if row:
+        return dict(row)
+
+    conn.execute(
+        """INSERT INTO user_profiles (user_id, display_name)
+           VALUES (?, ?)""",
+        (user_id, display_name),
+    )
+    conn.commit()
+    return {
+        "user_id": user_id,
+        "display_name": display_name,
+        "profile_json": "{}",
+        "total_sessions": 0,
+        "total_questions": 0,
+        "primary_pattern": "pattern_1",
+        "last_active": None,
+        "updated_at": datetime.now().isoformat(),
+    }
+
+
+def update_profile(
+    conn: sqlite3.Connection,
+    user_id: str,
+    profile_json: str,
+) -> None:
+    """ユーザープロファイルのJSON部分を更新する（バッチ分析後に呼ばれる）。"""
+    conn.execute(
+        """UPDATE user_profiles
+           SET profile_json = ?, updated_at = datetime('now')
+           WHERE user_id = ?""",
+        (profile_json, user_id),
+    )
+    conn.commit()
+
+
+def update_profile_stats(
+    conn: sqlite3.Connection,
+    user_id: str,
+) -> None:
+    """ユーザーの統計情報を会話データから再計算して更新する。"""
+    row = conn.execute(
+        """SELECT
+            COUNT(*) as total_questions,
+            COUNT(DISTINCT session_id) as total_sessions,
+            MAX(timestamp) as last_active
+           FROM conversations WHERE user_id = ?""",
+        (user_id,),
+    ).fetchone()
+
+    pattern_row = conn.execute(
+        """SELECT bot_pattern, COUNT(*) as cnt
+           FROM conversations WHERE user_id = ?
+           GROUP BY bot_pattern ORDER BY cnt DESC LIMIT 1""",
+        (user_id,),
+    ).fetchone()
+
+    primary_pattern = pattern_row["bot_pattern"] if pattern_row else "pattern_1"
+
+    conn.execute(
+        """UPDATE user_profiles
+           SET total_questions = ?, total_sessions = ?,
+               primary_pattern = ?, last_active = ?,
+               updated_at = datetime('now')
+           WHERE user_id = ?""",
+        (
+            row["total_questions"] or 0,
+            row["total_sessions"] or 0,
+            primary_pattern,
+            row["last_active"],
+            user_id,
+        ),
+    )
+    conn.commit()
+
+
+def save_collective_insight(
+    conn: sqlite3.Connection,
+    period: str,
+    insight_type: str,
+    insight_json: str,
+) -> int:
+    """集合知の分析結果を保存する。"""
+    cursor = conn.execute(
+        """INSERT INTO collective_insights (period, insight_type, insight_json)
+           VALUES (?, ?, ?)""",
+        (period, insight_type, insight_json),
+    )
+    conn.commit()
+    return cursor.lastrowid
+
+
+def get_users_for_batch(
+    conn: sqlite3.Connection,
+    since: Optional[str] = None,
+) -> list[str]:
+    """バッチ処理対象のユーザーIDリストを返す。"""
+    if since:
+        rows = conn.execute(
+            """SELECT DISTINCT user_id FROM conversations
+               WHERE timestamp >= ? AND user_id != 'anonymous'""",
+            (since,),
+        ).fetchall()
+    else:
+        rows = conn.execute(
+            "SELECT DISTINCT user_id FROM conversations WHERE user_id != 'anonymous'"
+        ).fetchall()
+    return [row["user_id"] for row in rows]
+
+
+def get_user_conversations_with_logs(
+    conn: sqlite3.Connection,
+    user_id: str,
+    since: Optional[str] = None,
+) -> list[dict]:
+    """ユーザーの会話ログ + 操作ログを結合して取得する（バッチ分析用）。"""
+    where = "WHERE c.user_id = ?"
+    params: list = [user_id]
+    if since:
+        where += " AND c.timestamp >= ?"
+        params.append(since)
+
+    rows = conn.execute(
+        f"""SELECT
+            c.id, c.timestamp, c.session_id, c.bot_pattern,
+            c.question, c.answer, c.confidence, c.escalated, c.category,
+            f.rating as feedback_rating,
+            il.input_method, il.guide_category, il.guide_sub_topic,
+            il.guide_steps_taken, il.guide_backtrack, il.guide_ai_used,
+            il.guide_freetext_len, il.question_length,
+            il.question_has_number, il.response_time_ms, il.session_position
+           FROM conversations c
+           LEFT JOIN feedback f ON c.id = f.conversation_id
+           LEFT JOIN interaction_logs il ON c.id = il.conversation_id
+           {where}
+           ORDER BY c.timestamp""",
+        params,
+    ).fetchall()
+    return [dict(row) for row in rows]
 
 
 def get_conversation_history(

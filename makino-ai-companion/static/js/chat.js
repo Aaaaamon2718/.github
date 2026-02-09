@@ -24,6 +24,31 @@ const guideTitle = document.getElementById("guideTitle");
 
 let sessionId = null;
 let isLoading = false;
+let sessionPosition = 0;     // セッション内の質問番号
+let inputStartTime = 0;      // 入力開始時刻（操作時間計測用）
+
+// --- 操作シグナル追跡 ---
+let interactionSignals = {
+    inputMethod: "free_text",
+    guideCategory: "",
+    guideSubTopic: "",
+    guideStepsTaken: 0,
+    guideBacktrack: 0,
+    guideAiUsed: false,
+    guideFreetextLen: 0,
+};
+
+function resetInteractionSignals() {
+    interactionSignals = {
+        inputMethod: "free_text",
+        guideCategory: "",
+        guideSubTopic: "",
+        guideStepsTaken: 0,
+        guideBacktrack: 0,
+        guideAiUsed: false,
+        guideFreetextLen: 0,
+    };
+}
 
 // --- 質問ナビ: Pattern別カテゴリ定義（静的）---
 
@@ -65,6 +90,10 @@ let guideState = {
 questionInput.addEventListener("input", () => {
     sendButton.disabled = questionInput.value.trim() === "" || isLoading;
     autoResize(questionInput);
+    // 入力開始時刻を記録（最初のキー入力時のみ）
+    if (inputStartTime === 0 && questionInput.value.trim() !== "") {
+        inputStartTime = Date.now();
+    }
 });
 
 questionInput.addEventListener("keydown", (e) => {
@@ -101,6 +130,11 @@ async function sendMessage(overrideQuestion) {
     const loadingEl = showLoading();
     isLoading = true;
 
+    // 操作シグナルを計算
+    sessionPosition++;
+    const responseTimeMs = inputStartTime > 0 ? Date.now() - inputStartTime : 0;
+    const hasNumber = /\d/.test(question);
+
     try {
         const response = await fetch("/api/chat", {
             method: "POST",
@@ -109,6 +143,19 @@ async function sendMessage(overrideQuestion) {
                 question: question,
                 pattern: parseInt(patternSelect.value),
                 session_id: sessionId,
+                interaction: {
+                    input_method: interactionSignals.inputMethod,
+                    guide_category: interactionSignals.guideCategory,
+                    guide_sub_topic: interactionSignals.guideSubTopic,
+                    guide_steps_taken: interactionSignals.guideStepsTaken,
+                    guide_backtrack: interactionSignals.guideBacktrack,
+                    guide_ai_used: interactionSignals.guideAiUsed,
+                    guide_freetext_len: interactionSignals.guideFreetextLen,
+                    question_length: question.length,
+                    question_has_number: hasNumber,
+                    response_time_ms: responseTimeMs,
+                    session_position: sessionPosition,
+                },
             }),
         });
 
@@ -135,6 +182,8 @@ async function sendMessage(overrideQuestion) {
     } finally {
         isLoading = false;
         sendButton.disabled = questionInput.value.trim() === "";
+        resetInteractionSignals();
+        inputStartTime = 0;
     }
 }
 
@@ -237,6 +286,11 @@ function openGuide() {
     guideState = { isOpen: true, step: 0, category: null, subCategory: null, aiSuggestions: [], freeText: "" };
     guidePanel.classList.add("guide-panel--open");
     guideButton.classList.add("guide-toggle--active");
+    // 質問ナビ利用を記録
+    interactionSignals.inputMethod = "guided_nav";
+    interactionSignals.guideStepsTaken = 0;
+    interactionSignals.guideBacktrack = 0;
+    inputStartTime = Date.now();
     renderGuideStep();
 }
 
@@ -290,6 +344,8 @@ function renderGuideStep() {
                 const cat = categories.find(c => c.id === catId);
                 guideState.category = { id: catId, label: catLabel, subs: cat.subs };
                 guideState.step = 1;
+                interactionSignals.guideCategory = catLabel;
+                interactionSignals.guideStepsTaken++;
                 renderGuideStep();
             });
         });
@@ -328,6 +384,7 @@ function renderGuideStep() {
                 guideState.step = 0;
                 guideState.category = null;
                 guideState.aiSuggestions = [];
+                interactionSignals.guideBacktrack++;
                 renderGuideStep();
             });
         }
@@ -337,6 +394,8 @@ function renderGuideStep() {
             btn.addEventListener("click", () => {
                 guideState.subCategory = btn.dataset.suggestion;
                 guideState.step = 2;
+                interactionSignals.guideSubTopic = btn.dataset.suggestion;
+                interactionSignals.guideStepsTaken++;
                 renderGuideStep();
             });
         });
@@ -369,12 +428,15 @@ function renderGuideStep() {
         // 戻るボタン
         guideBody.querySelector("#guideBack").addEventListener("click", () => {
             guideState.step = 1;
+            interactionSignals.guideBacktrack++;
             renderGuideStep();
         });
 
         // 送信ボタン
         guideBody.querySelector("#guideSubmit").addEventListener("click", () => {
             const freetext = guideBody.querySelector("#guideFreetext").value.trim();
+            interactionSignals.guideFreetextLen = freetext.length;
+            interactionSignals.guideStepsTaken++;
             const question = buildGuideQuestion(guideState.category.label, guideState.subCategory, freetext);
             sendMessage(question);
         });
@@ -397,6 +459,7 @@ async function fetchAiSuggestions(pattern, category) {
         const data = await response.json();
         if (data.suggestions && data.suggestions.length > 0) {
             guideState.aiSuggestions = data.suggestions;
+            interactionSignals.guideAiUsed = true;
             // 現在Step 1にいる場合のみ再描画
             if (guideState.step === 1) {
                 renderGuideStep();
