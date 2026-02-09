@@ -35,9 +35,29 @@
             </div>
         </main>
 
+        <!-- 質問ナビ パネル（非表示デフォルト）-->
+        <div class="guide-panel" id="guidePanel">
+            <div class="guide-header">
+                <span class="guide-title" id="guideTitle">質問ナビ</span>
+                <button class="guide-close" id="guideClose">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18"></path><path d="M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="guide-body" id="guideBody"></div>
+        </div>
+
         <footer class="input-area">
             <div class="input-wrapper">
                 <textarea id="questionInput" placeholder="質問を入力..." rows="1" maxlength="5000"></textarea>
+                <button id="guideButton" class="guide-toggle" title="質問ナビ">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                </button>
                 <button id="sendButton" class="send-button" disabled>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M22 2L11 13"></path>

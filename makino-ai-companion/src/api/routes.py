@@ -55,6 +55,19 @@ class FeedbackRequest(BaseModel):
     comment: str = ""
 
 
+class GuideSuggestionsRequest(BaseModel):
+    """質問ナビのAI生成サブトピックリクエスト。"""
+
+    pattern: int = Field(..., ge=1, le=4)
+    category: str = Field(..., min_length=1, max_length=200)
+
+
+class GuideSuggestionsResponse(BaseModel):
+    """質問ナビのAI生成サブトピックレスポンス。"""
+
+    suggestions: list[str]
+
+
 class MetricsResponse(BaseModel):
     """KPIメトリクスレスポンス。"""
 
@@ -150,6 +163,48 @@ def create_routes(engine: ChatEngine, db_conn) -> APIRouter:
     ) -> dict:
         """パターン別メトリクスエンドポイント。"""
         return get_pattern_breakdown(db_conn, date_from, date_to)
+
+    @router.post("/api/guide/suggestions", response_model=GuideSuggestionsResponse)
+    async def guide_suggestions(request: GuideSuggestionsRequest) -> GuideSuggestionsResponse:
+        """質問ナビ用のAI生成サブトピックを返す。
+
+        選択されたパターンとカテゴリに基づき、
+        ユーザーが質問しやすいサブトピックの選択肢をAIで生成する。
+        """
+        pattern_names = {
+            1: "生命保険全般の質問対応",
+            2: "ドクターマーケット特化",
+            3: "法人保険特化",
+            4: "励まし・メンタリング",
+        }
+        pattern_name = pattern_names.get(request.pattern, "汎用")
+
+        prompt = (
+            f"あなたは生命保険営業のコンサルタントです。\n"
+            f"エージェントパターン「{pattern_name}」で、"
+            f"カテゴリ「{request.category}」に関して、\n"
+            f"営業担当者がよく質問するサブトピックを6つ、短いフレーズで列挙してください。\n"
+            f"各項目は簡潔に（10文字〜20文字程度）。\n"
+            f"JSON配列形式で出力してください。例: [\"項目1\", \"項目2\", ...]\n"
+            f"JSON配列のみを出力し、他のテキストは含めないでください。"
+        )
+
+        try:
+            response = engine.client.messages.create(
+                model=engine.model,
+                max_tokens=256,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.7,
+            )
+            import json
+            text = response.content[0].text.strip()
+            suggestions = json.loads(text)
+            if isinstance(suggestions, list) and all(isinstance(s, str) for s in suggestions):
+                return GuideSuggestionsResponse(suggestions=suggestions[:8])
+        except Exception as e:
+            logger.warning(f"質問ナビAI生成エラー: {e}")
+
+        return GuideSuggestionsResponse(suggestions=[])
 
     @router.get("/api/health")
     async def health() -> dict:
