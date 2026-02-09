@@ -4,8 +4,7 @@
 
 - Python 3.10+
 - Git
-- Google Cloud Platform アカウント（Sheets API用）
-- Dify Platform アカウント
+- Anthropic API キー（Claude API用）
 
 ## 1. リポジトリのクローン
 
@@ -26,50 +25,82 @@ bash setup.sh
 `.env` ファイルを作成し、以下の変数を設定する:
 
 ```bash
-# Dify Platform
-DIFY_BASE_URL=https://api.dify.ai/v1
-DIFY_API_KEY=your-dify-api-key
+# Claude API (Anthropic)
+ANTHROPIC_API_KEY=your-anthropic-api-key
 
-# Google Sheets
-GOOGLE_SPREADSHEET_ID=your-spreadsheet-id
-GOOGLE_CREDENTIALS_PATH=./credentials.json
+# サーバー設定（オプション）
+ALLOWED_ORIGIN=https://your-client-site.com
 
-# Webhook
-WEBHOOK_ENDPOINT=https://script.google.com/macros/s/your-gas-endpoint/exec
-
-# Escalation
+# エスカレーション通知（オプション）
 ESCALATION_EMAIL_PRIMARY=admin@example.com
 ```
 
-## 4. Google Sheets API の設定
+## 4. 設定ファイルの確認
 
-1. [Google Cloud Console](https://console.cloud.google.com/) でプロジェクトを作成
-2. Google Sheets API を有効化
-3. サービスアカウントを作成し、認証情報（JSON）をダウンロード
-4. ダウンロードしたJSONを `credentials.json` としてプロジェクトルートに配置
-5. 対象のスプレッドシートにサービスアカウントのメールアドレスを共有設定で追加
+`config/settings.yaml` の主要設定:
 
-## 5. Dify Platform の設定
+```yaml
+claude:
+  model: "claude-sonnet-4-5-20250929"  # 使用モデル
+  max_tokens: 4096                      # 最大トークン数
 
-1. [Dify](https://dify.ai/) にログイン
-2. 新しいアプリケーションを作成（Pattern数分）
-3. 各アプリケーションのAPIキーを取得
-4. `config/settings.yaml` にアプリケーションIDを記入
+database:
+  sqlite:
+    path: "data/conversations.db"       # SQLiteファイルの保存先
 
-## 6. ナレッジベースの準備
+server:
+  host: "0.0.0.0"
+  port: 8000
+```
+
+必要に応じて `config/settings.yaml` を環境に合わせて編集する。
+
+## 5. ナレッジベースの準備
+
+ナレッジデータは `knowledge/` ディレクトリにMarkdown形式で格納する:
 
 ```bash
-# テンプレートを確認
-cat templates/knowledge_base_template.csv
+# ディレクトリ構成の確認
+ls knowledge/
 
-# データを準備（templates/ のテンプレートを参考に作成）
-# data/knowledge_base.csv にデータファイルを配置
+# サンプルデータの確認
+cat knowledge/qa/sample.md
 
-# バリデーション実行
-python scripts/setup_knowledge_base.py --input data/knowledge_base.csv --validate-only
+# バリデーション
+python cli.py knowledge validate
 
-# セットアップ実行
-python scripts/setup_knowledge_base.py --input data/knowledge_base.csv
+# 統計情報の確認
+python cli.py knowledge stats
+```
+
+各Markdownファイルの先頭にYAMLフロントマターでメタデータを記述:
+
+```markdown
+---
+category: 法人保険
+sub_category: 決算書分析
+source: 牧野生保塾 Vol.5 (2024/05)
+priority: high
+tags: [断定, 論理的解説]
+---
+
+# タイトル
+
+本文...
+```
+
+## 6. サーバー起動
+
+```bash
+# 仮想環境の有効化
+source venv/bin/activate
+
+# サーバー起動
+python app.py
+# → http://localhost:8000 でチャットUIにアクセス
+
+# 開発モード（自動リロード）
+python cli.py server start --reload
 ```
 
 ## 7. テストの実行
@@ -86,11 +117,11 @@ pytest tests/ -v
 ```
 makino-ai-companion/
 ├── venv/           # 仮想環境（gitignore対象）
-├── data/           # 実データ格納（gitignore対象）
+├── data/           # SQLiteデータベース格納（gitignore対象）
 ├── output/         # 出力ファイル（gitignore対象）
 ├── reports/        # レポート出力（gitignore対象）
 ├── cache/          # キャッシュ（gitignore対象）
-├── credentials.json # Google認証情報（gitignore対象）
+├── logs/exports/   # ログエクスポート（GitHub監査用）
 └── .env            # 環境変数（gitignore対象）
 ```
 
@@ -103,12 +134,23 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### Google Sheets API 認証エラー
+### Claude API 接続エラー
 
-- `credentials.json` のパスが正しいか確認
-- サービスアカウントにスプレッドシートの編集権限があるか確認
+- `ANTHROPIC_API_KEY` 環境変数が正しく設定されているか確認
+- APIキーの有効性を [Anthropic Console](https://console.anthropic.com/) で確認
 
-### Dify API 接続エラー
+### サーバーが起動しない
 
-- APIキーが正しいか確認
-- Difyのサーバーステータスを確認
+- `python -m pip install -r requirements.txt` を再実行
+- ポート8000が他のプロセスで使用されていないか確認
+
+### ナレッジ検索精度が低い
+
+- `knowledge/` 内のMarkdownファイルを拡充
+- YAMLフロントマターのカテゴリ・タグが正しいか確認
+- `python cli.py knowledge validate` でバリデーション
+
+### 人格再現度が低い
+
+- `src/prompts/persona_config.py` のプロンプトを調整
+- `src/prompts/system_prompts.py` のPattern別プロンプトを確認

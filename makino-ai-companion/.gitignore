@@ -26,6 +26,11 @@ cache/
 data/
 reports/
 
+# Database
+*.db
+*.db-journal
+*.db-wal
+
 # Secrets
 credentials.json
 token.json

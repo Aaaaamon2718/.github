@@ -1,15 +1,15 @@
 """ログデータのエクスポート・分析スクリプト。
 
-蓄積されたログデータからKPI指標を算出し、
-改善に必要なレポートを生成する。
+SQLiteデータベースからログデータをエクスポートし、
+KPI指標を算出してレポートを生成する。
 
 Usage:
-    python scripts/export_logs.py --input data/logs.csv
-    python scripts/export_logs.py --input data/logs.csv --output reports/monthly_report.json
+    python scripts/export_logs.py
+    python scripts/export_logs.py --output reports/monthly_report.json
+    python scripts/export_logs.py --date-from 2025-01-01 --date-to 2025-01-31
 """
 
 import argparse
-import csv
 import json
 import logging
 import sys
@@ -18,7 +18,12 @@ from pathlib import Path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from src.logging.log_handler import ConversationLog, calculate_metrics
+from src.database.models import get_connection
+from src.database.operations import (
+    calculate_metrics,
+    export_to_csv,
+    get_pattern_breakdown,
+)
 
 logging.basicConfig(
     level=logging.INFO,
@@ -27,105 +32,53 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-def load_logs_from_csv(file_path: Path) -> list[ConversationLog]:
-    """CSVファイルからログデータを読み込む。
-
-    Args:
-        file_path: CSVファイルのパス
-
-    Returns:
-        ConversationLogのリスト
-    """
-    logs: list[ConversationLog] = []
-
-    with open(file_path, encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            log = ConversationLog(
-                timestamp=row["timestamp"],
-                user_id=row["user_id"],
-                bot_pattern=row["bot_pattern"],
-                question=row["question"],
-                answer=row["answer"],
-                source_used=row.get("source_used", ""),
-                confidence=float(row.get("confidence", 0.0)),
-                user_rating=row.get("user_rating") or None,
-                escalated=row.get("escalated", "false").lower() == "true",
-                category=row.get("category", "未分類"),
-                review_status=row.get("review_status", "未"),
-                action_taken=row.get("action_taken", ""),
-            )
-            logs.append(log)
-
-    return logs
-
-
-def generate_pattern_breakdown(logs: list[ConversationLog]) -> dict:
-    """パターン別の内訳を生成する。
-
-    Args:
-        logs: ログリスト
-
-    Returns:
-        パターン別の統計辞書
-    """
-    patterns = {}
-    for log in logs:
-        if log.bot_pattern not in patterns:
-            patterns[log.bot_pattern] = []
-        patterns[log.bot_pattern].append(log)
-
-    breakdown = {}
-    for pattern, pattern_logs in patterns.items():
-        breakdown[pattern] = {
-            "count": len(pattern_logs),
-            "metrics": calculate_metrics(pattern_logs),
-        }
-
-    return breakdown
-
-
 def main() -> None:
     """メイン処理。"""
     parser = argparse.ArgumentParser(
-        description="ログデータのエクスポートと分析"
-    )
-    parser.add_argument(
-        "--input",
-        type=str,
-        required=True,
-        help="入力CSVファイルのパス",
+        description="SQLiteログデータのエクスポートと分析"
     )
     parser.add_argument(
         "--output",
         type=str,
         help="出力JSONファイルのパス（省略時は標準出力）",
     )
+    parser.add_argument(
+        "--csv-export",
+        action="store_true",
+        help="CSVエクスポートも実施する（logs/exports/に出力）",
+    )
+    parser.add_argument(
+        "--date-from",
+        type=str,
+        help="集計開始日（YYYY-MM-DD形式）",
+    )
+    parser.add_argument(
+        "--date-to",
+        type=str,
+        help="集計終了日（YYYY-MM-DD形式）",
+    )
     args = parser.parse_args()
 
-    input_path = Path(args.input)
-    if not input_path.exists():
-        logger.error(f"ファイルが見つかりません: {input_path}")
+    # データベース接続
+    try:
+        conn = get_connection()
+    except Exception as e:
+        logger.error(f"データベース接続エラー: {e}")
         sys.exit(1)
 
-    logger.info(f"ログファイルを読み込みます: {input_path}")
-    logs = load_logs_from_csv(input_path)
-    logger.info(f"読み込み完了: {len(logs)}件のログ")
-
     # 全体のKPI算出
-    overall_metrics = calculate_metrics(logs)
+    logger.info("KPI指標を算出中...")
+    overall_metrics = calculate_metrics(conn, args.date_from, args.date_to)
 
     # パターン別の内訳
-    pattern_breakdown = generate_pattern_breakdown(logs)
+    logger.info("パターン別統計を算出中...")
+    pattern_breakdown = get_pattern_breakdown(conn, args.date_from, args.date_to)
 
     # レポート生成
     report = {
         "summary": {
-            "total_logs": len(logs),
-            "period": {
-                "from": logs[0].timestamp if logs else None,
-                "to": logs[-1].timestamp if logs else None,
-            },
+            "date_from": args.date_from,
+            "date_to": args.date_to,
         },
         "overall_metrics": overall_metrics,
         "pattern_breakdown": pattern_breakdown,
@@ -139,6 +92,14 @@ def main() -> None:
         logger.info(f"レポートを出力しました: {output_path}")
     else:
         print(json.dumps(report, ensure_ascii=False, indent=2))
+
+    # CSVエクスポート
+    if args.csv_export:
+        logger.info("CSVエクスポートを実行中...")
+        csv_path = export_to_csv(conn)
+        logger.info(f"CSVエクスポート完了: {csv_path}")
+
+    conn.close()
 
 
 if __name__ == "__main__":

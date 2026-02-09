@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>牧野生保塾 AI伴走システム</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- ヘッダー -->
+        <header class="app-header">
+            <h1 class="app-title">牧野生保塾 AI伴走システム</h1>
+            <div class="pattern-selector">
+                <select id="patternSelect">
+                    <option value="1">質問対応（汎用）</option>
+                    <option value="2">ドクターマーケット特化</option>
+                    <option value="3">法人保険特化</option>
+                    <option value="4">励まし・メンタリング</option>
+                </select>
+            </div>
+        </header>
+
+        <!-- チャットエリア -->
+        <main class="chat-area" id="chatArea">
+            <div class="welcome-message">
+                <div class="welcome-icon">&#x1F4AC;</div>
+                <p class="welcome-text">こんにちは。牧野生保塾 AI伴走システムです。</p>
+                <p class="welcome-sub">何かお困りのことがあれば、お気軽にご質問ください。</p>
+            </div>
+        </main>
+
+        <!-- 入力エリア -->
+        <footer class="input-area">
+            <div class="input-wrapper">
+                <textarea
+                    id="questionInput"
+                    placeholder="質問を入力してください..."
+                    rows="1"
+                    maxlength="5000"
+                ></textarea>
+                <button id="sendButton" class="send-button" disabled>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 2L11 13"></path>
+                        <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+                    </svg>
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="/static/js/chat.js"></script>
+</body>
+</html>
