@@ -33,11 +33,12 @@ Month:  M1   M2   M3   M4   M5   M6   M7   M8   M9   M10  M11  M12
 
 ## 技術構成
 
-- **基盤**: Dify Platform（ノーコードAIエージェント構築）
-- **AI**: LLM (GPT-4等) + RAG (Retrieval-Augmented Generation)
-- **データ蓄積**: Google Sheets + Google Apps Script
-- **連携**: Webhook API
-- **文字起こし**: AI文字起こしサービス
+- **LLM**: Claude API (Anthropic SDK) + RAG (Retrieval-Augmented Generation)
+- **バックエンド**: FastAPI (Python)
+- **フロントエンド**: チャットUI (HTML/CSS/JS) → チャットウィジェット化対応
+- **データベース**: SQLite（会話ログ蓄積）→ 定期CSV出力（GitHub監査用）
+- **ナレッジ管理**: GitHub (Markdown, バージョン管理)
+- **開発ツール**: Claude Code + GitHub連携 + CLI
 
 ## リスク一覧
 
@@ -47,4 +48,4 @@ Month:  M1   M2   M3   M4   M5   M6   M7   M8   M9   M10  M11  M12
 | 過去データの品質不足 | 中 | 追加インタビュー収録で補完 |
 | 人格トレースの精度不足 | 高 | 2週間サイクルのフィードバックループ |
 | 受講生の期待値ギャップ | 中 | β版として限定公開、「共に育てるAI」の位置づけ |
-| Dify等のPF仕様変更 | 低 | 定期的な最新情報キャッチアップ |
+| Claude API仕様変更 | 低 | Anthropic公式ドキュメントの定期キャッチアップ |

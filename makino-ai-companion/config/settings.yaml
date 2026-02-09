@@ -8,29 +8,17 @@
 # --- プロジェクト基本情報 ---
 project:
   name: "牧野生保塾 AI伴走システム"
-  version: "0.1.0"
+  version: "0.2.0"
   duration_months: 12
   start_date: null  # プロジェクト開始日を設定
   confidential: true
 
-# --- Dify Platform 設定 ---
-dify:
-  base_url: ${DIFY_BASE_URL}
-  api_key: ${DIFY_API_KEY}
-  # エージェントアプリケーションID（Pattern別）
-  apps:
-    pattern_1_general_qa: null      # Pattern 1: 質問対応エージェント
-    pattern_2_doctor_market: null   # Pattern 2: ドクターマーケット特化
-    pattern_3_corporate: null       # Pattern 3: 法人保険特化
-    pattern_4_personality: null     # Pattern 4: 人格エージェント
-
-# --- LLM 設定 ---
-llm:
-  provider: "openai"  # openai / anthropic / azure_openai
-  model: "gpt-4"
-  temperature: 0.7
-  max_tokens: 2048
-  # Pattern別のtemperature調整
+# --- Claude API 設定（メインLLM）---
+claude:
+  api_key: ${ANTHROPIC_API_KEY}
+  model: "claude-sonnet-4-5-20250929"
+  max_tokens: 4096
+  # Pattern別のパラメータ調整
   pattern_overrides:
     pattern_1:
       temperature: 0.5  # 正確性重視
@@ -43,33 +31,44 @@ llm:
 
 # --- RAG（検索拡張生成）設定 ---
 rag:
-  embedding_model: "text-embedding-3-small"
+  # GitHub上のナレッジベースディレクトリ
+  knowledge_dir: "knowledge"
+  # チャンク分割設定
   chunk_size: 500
   chunk_overlap: 50
   top_k: 5  # 検索時の上位取得件数
   similarity_threshold: 0.7  # 類似度の下限
+  # ベクトルストア（ローカルFAISS）
+  vector_store:
+    type: "faiss"
+    index_path: "data/vector_index"
+    rebuild_on_start: false
 
-# --- ナレッジベース設定 ---
+# --- ナレッジベース設定（GitHub管理）---
 knowledge_base:
-  # データソース種別
+  # GitHubリポジトリ内のナレッジ格納パス
+  base_path: "knowledge"
+  # データソース種別ごとのサブディレクトリ
   sources:
-    - type: "seminar_video"
-      description: "牧野生保塾 過去講義録画"
+    - dir: "seminars"
+      description: "牧野生保塾 過去講義の文字起こし"
+      format: "markdown"
       priority: "high"
-    - type: "training_video"
-      description: "各種研修の録画・音声"
+    - dir: "trainings"
+      description: "各種研修データ"
+      format: "markdown"
       priority: "high"
-    - type: "qa_log"
-      description: "過去の質問・回答ログ"
+    - dir: "qa"
+      description: "過去の質問・回答ペア"
+      format: "markdown"
       priority: "high"
-    - type: "newsletter"
-      description: "メルマガ・ニュースレター"
+    - dir: "articles"
+      description: "メルマガ・ニュースレター・書籍"
+      format: "markdown"
       priority: "medium"
-    - type: "book"
-      description: "書籍・執筆原稿"
-      priority: "medium"
-    - type: "sales_tool"
+    - dir: "sales_tools"
       description: "営業トーク集・プレゼン資料"
+      format: "markdown"
       priority: "medium"
 
   # カテゴリ定義
@@ -86,21 +85,30 @@ knowledge_base:
     - "アプローチ手法"
     - "クロージング"
 
-# --- ログ蓄積設定 ---
-logging:
-  # Google Sheets 連携
-  google_sheets:
-    spreadsheet_id: ${GOOGLE_SPREADSHEET_ID}
-    credentials_path: ${GOOGLE_CREDENTIALS_PATH}
-    log_sheet_name: "質問回答ログ"
-    analytics_sheet_name: "分析データ"
+# --- データベース設定（会話ログ蓄積）---
+database:
+  # SQLite（リアルタイム蓄積）
+  sqlite:
+    path: "data/conversations.db"
+    # 定期エクスポート設定（GitHub監査用）
+    export:
+      enabled: true
+      schedule: "weekly"  # daily / weekly / monthly
+      export_dir: "logs/exports"
+      format: "csv"  # csv / json
 
-  # Webhook 設定
-  webhook:
-    enabled: true
-    endpoint: ${WEBHOOK_ENDPOINT}
-    retry_count: 3
-    retry_delay_seconds: 5
+# --- FastAPI サーバー設定 ---
+server:
+  host: "0.0.0.0"
+  port: 8000
+  debug: false
+  # CORS設定（チャットウィジェット埋め込み用）
+  cors:
+    allow_origins:
+      - "http://localhost:3000"
+      - ${ALLOWED_ORIGIN}  # 本番ドメインを設定
+    allow_methods: ["GET", "POST"]
+    allow_headers: ["*"]
 
 # --- エスカレーション設定 ---
 escalation:
@@ -127,7 +135,7 @@ persona:
     professionalism: 0.9  # プロ意識（0: カジュアル 〜 1: 非常にプロフェッショナル）
     empathy: 0.8       # 共感力（0: 論理のみ 〜 1: 感情重視）
 
-  # NGワード（AI伴走システムが絶対に使用しない表現）
+  # NGワード
   ng_words:
     - "ネットスラング全般"
     - "他社批判"
@@ -141,12 +149,12 @@ persona:
 
 # --- KPI目標値 ---
 kpi:
-  answer_accuracy: 0.80       # 回答正確性: 80%以上
-  user_satisfaction: 0.85     # ユーザー満足度: 85%以上
-  average_confidence: 0.70    # 平均確信度: 0.7以上
-  new_question_rate: 0.20     # 新規質問率: 20%以下
-  answer_success_rate: 0.80   # 回答成功率: 80%以上
-  unanswerable_rate: 0.20     # 回答不能率: 20%以下
+  answer_accuracy: 0.80
+  user_satisfaction: 0.85
+  average_confidence: 0.70
+  new_question_rate: 0.20
+  answer_success_rate: 0.80
+  unanswerable_rate: 0.20
 
 # --- モニタリング設定 ---
 monitoring:
@@ -169,7 +177,7 @@ phases:
   phase_1:
     name: "ヒアリング・要件定義"
     months: [1, 2]
-    status: "pending"  # pending / in_progress / completed
+    status: "pending"
   phase_2:
     name: "データ収集・整理・ラベリング"
     months: [3, 4]
