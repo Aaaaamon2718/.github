@@ -3,68 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>管理ダッシュボード - 牧野生保塾 AI伴走システム - UIプレビュー</title>
+    <title>管理ダッシュボード - 牧野生保塾 AI伴走システム</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #2563eb;
+            --surface: #ffffff;
+            --bg: #f8fafc;
+            --bg-alt: #f1f5f9;
+            --text: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --success: #059669;
+            --warning: #d97706;
+            --danger: #dc2626;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif; background: #f0f2f5; color: #333; }
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--bg); color: var(--text); line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
         .header {
-            background: linear-gradient(135deg, #1a237e, #283593); color: white;
-            padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white; padding: 16px 32px;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .header h1 { font-size: 1.25rem; font-weight: 600; }
-        .header .user-info { display: flex; align-items: center; gap: 0.75rem; font-size: 0.875rem; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
+        .header h1 { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
+        .header .user-info {
+            display: flex; align-items: center; gap: 12px; font-size: 13px; color: #94a3b8;
+        }
+        .header .user-info .name { color: #e2e8f0; font-weight: 500; }
+        .header .user-info a { color: #60a5fa; text-decoration: none; font-size: 12px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
         .filters {
-            display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: center; flex-wrap: wrap;
+            display: flex; gap: 12px; margin-bottom: 24px; align-items: center; flex-wrap: wrap;
         }
-        .filters label { font-size: 0.875rem; font-weight: 500; }
+        .filters label { font-size: 13px; font-weight: 500; color: var(--text-secondary); }
         .filters input[type="date"] {
-            padding: 0.375rem 0.75rem; border: 1px solid #ccc; border-radius: 6px; font-size: 0.875rem;
+            padding: 7px 12px; border: 1px solid var(--border); border-radius: 8px;
+            font-size: 13px; font-family: inherit; color: var(--text); background: var(--surface);
         }
         .filters button {
-            padding: 0.375rem 1rem; background: #1a237e; color: white;
-            border: none; border-radius: 6px; cursor: pointer; font-size: 0.875rem;
+            padding: 7px 20px; background: var(--primary); color: white;
+            border: none; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 500;
+            font-family: inherit; transition: background 0.2s;
         }
-        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
-        .kpi-card { background: white; border-radius: 12px; padding: 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .kpi-card .label { font-size: 0.75rem; color: #666; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
-        .kpi-card .value { font-size: 2rem; font-weight: 700; color: #1a237e; }
-        .kpi-card .sub { font-size: 0.75rem; color: #999; margin-top: 0.25rem; }
-        .kpi-card.warn .value { color: #e65100; }
-        .kpi-card.good .value { color: #2e7d32; }
-        .panel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .filters button:hover { background: #1d4ed8; }
+        .kpi-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px; margin-bottom: 24px;
+        }
+        .kpi-card {
+            background: var(--surface); border-radius: 14px; padding: 20px 22px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+            border: 1px solid var(--border);
+            transition: box-shadow 0.2s;
+        }
+        .kpi-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+        .kpi-card .label {
+            font-size: 11px; font-weight: 600; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px;
+        }
+        .kpi-card .value { font-size: 28px; font-weight: 700; color: var(--text); }
+        .kpi-card .sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+        .kpi-card.good .value { color: var(--success); }
+        .kpi-card.warn .value { color: var(--warning); }
+        .kpi-card .indicator {
+            display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+            margin-right: 6px; vertical-align: middle;
+        }
+        .kpi-card.good .indicator { background: var(--success); }
+        .kpi-card.warn .indicator { background: var(--warning); }
+        .panel-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px;
+        }
         @media (max-width: 768px) { .panel-grid { grid-template-columns: 1fr; } }
-        .panel { background: white; border-radius: 12px; padding: 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .panel h2 { font-size: 1rem; font-weight: 600; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e8eaf6; }
-        .pattern-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
-        .pattern-table th, .pattern-table td { padding: 0.625rem 0.75rem; text-align: left; border-bottom: 1px solid #eee; }
-        .pattern-table th { font-weight: 600; color: #666; font-size: 0.75rem; text-transform: uppercase; }
-        .bar-chart { display: flex; flex-direction: column; gap: 0.75rem; }
-        .bar-row { display: flex; align-items: center; gap: 0.75rem; }
-        .bar-label { width: 100px; font-size: 0.8rem; text-align: right; color: #666; flex-shrink: 0; }
-        .bar-track { flex: 1; height: 24px; background: #e8eaf6; border-radius: 12px; overflow: hidden; }
-        .bar-fill {
-            height: 100%; border-radius: 12px; background: linear-gradient(90deg, #3949ab, #1a237e);
-            display: flex; align-items: center; justify-content: flex-end;
-            padding-right: 8px; font-size: 0.7rem; color: white; font-weight: 600;
+        .panel {
+            background: var(--surface); border-radius: 14px; padding: 22px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04); border: 1px solid var(--border);
         }
-        .gauge-list { display: flex; flex-direction: column; gap: 1rem; }
-        .gauge-item { display: flex; align-items: center; gap: 1rem; }
-        .gauge-label { width: 120px; font-size: 0.8rem; color: #666; }
-        .gauge-track { flex: 1; height: 12px; background: #e0e0e0; border-radius: 6px; overflow: hidden; }
-        .gauge-fill { height: 100%; border-radius: 6px; }
-        .gauge-fill.ok { background: #4caf50; }
-        .gauge-fill.warn { background: #ff9800; }
-        .gauge-fill.bad { background: #f44336; }
-        .gauge-value { width: 80px; font-size: 0.875rem; font-weight: 600; text-align: right; }
+        .panel h2 {
+            font-size: 14px; font-weight: 600; margin-bottom: 18px;
+            padding-bottom: 12px; border-bottom: 1px solid var(--bg-alt);
+            color: var(--text);
+        }
+        .bar-chart { display: flex; flex-direction: column; gap: 14px; }
+        .bar-row { display: flex; align-items: center; gap: 12px; }
+        .bar-label { width: 110px; font-size: 13px; text-align: right; color: var(--text-secondary); flex-shrink: 0; font-weight: 500; }
+        .bar-track { flex: 1; height: 28px; background: var(--bg-alt); border-radius: 8px; overflow: hidden; }
+        .bar-fill {
+            height: 100%; border-radius: 8px;
+            background: linear-gradient(90deg, var(--primary), #3b82f6);
+            display: flex; align-items: center; justify-content: flex-end;
+            padding-right: 10px; font-size: 12px; color: white; font-weight: 600;
+            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            min-width: 30px;
+        }
+        .pattern-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .pattern-table th, .pattern-table td {
+            padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--bg-alt);
+        }
+        .pattern-table th {
+            font-weight: 600; color: var(--text-muted); font-size: 11px;
+            text-transform: uppercase; letter-spacing: 0.04em;
+        }
+        .pattern-table td { color: var(--text-secondary); }
+        .pattern-table tbody tr:hover { background: var(--bg); }
+        .gauge-list { display: flex; flex-direction: column; gap: 18px; }
+        .gauge-item { display: flex; align-items: center; gap: 16px; }
+        .gauge-label { width: 130px; font-size: 13px; color: var(--text-secondary); font-weight: 500; }
+        .gauge-track {
+            flex: 1; height: 10px; background: var(--bg-alt); border-radius: 5px;
+            overflow: hidden; position: relative;
+        }
+        .gauge-fill {
+            height: 100%; border-radius: 5px;
+            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .gauge-fill.ok { background: linear-gradient(90deg, #34d399, var(--success)); }
+        .gauge-fill.warn { background: linear-gradient(90deg, #fbbf24, var(--warning)); }
+        .gauge-fill.bad { background: linear-gradient(90deg, #f87171, var(--danger)); }
+        .gauge-value {
+            width: 100px; font-size: 13px; font-weight: 600; text-align: right;
+            color: var(--text-secondary);
+        }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>牧野生保塾 AI伴走システム - 管理ダッシュボード</h1>
         <div class="user-info">
-            <span>牧野 管理者</span>
-            <a href="#" style="color:#bbdefb;text-decoration:none;">ログアウト</a>
+            <span class="name">牧野 管理者</span>
+            <a href="#">ログアウト</a>
         </div>
     </div>
 
@@ -72,39 +145,39 @@
         <div class="filters">
             <label>期間:</label>
             <input type="date" value="2026-02-01">
-            <span>〜</span>
+            <span style="color:var(--text-muted);">〜</span>
             <input type="date" value="2026-02-10">
             <button>更新</button>
         </div>
 
-        <!-- KPIカード -->
         <div class="kpi-grid">
             <div class="kpi-card">
                 <div class="label">総質問数</div>
                 <div class="value">10</div>
             </div>
             <div class="kpi-card good">
-                <div class="label">回答成功率</div>
+                <div class="label"><span class="indicator"></span>回答成功率</div>
                 <div class="value">90.0%</div>
+                <div class="sub">目標: 80%</div>
             </div>
             <div class="kpi-card good">
-                <div class="label">平均確信度</div>
+                <div class="label"><span class="indicator"></span>平均確信度</div>
                 <div class="value">74.0%</div>
+                <div class="sub">目標: 70%</div>
             </div>
             <div class="kpi-card good">
-                <div class="label">エスカレーション</div>
+                <div class="label"><span class="indicator"></span>エスカレーション</div>
                 <div class="value">1</div>
                 <div class="sub">(10.0%)</div>
             </div>
             <div class="kpi-card warn">
-                <div class="label">ユーザー満足度</div>
+                <div class="label"><span class="indicator"></span>ユーザー満足度</div>
                 <div class="value">77.8%</div>
-                <div class="sub">9件の評価</div>
+                <div class="sub">目標: 85% / 9件の評価</div>
             </div>
         </div>
 
         <div class="panel-grid">
-            <!-- パターン別バーチャート -->
             <div class="panel">
                 <h2>パターン別利用状況</h2>
                 <div class="bar-chart">
@@ -127,12 +200,11 @@
                 </div>
             </div>
 
-            <!-- パターン別テーブル -->
             <div class="panel">
                 <h2>パターン別詳細</h2>
                 <table class="pattern-table">
                     <thead>
-                        <tr><th>パターン</th><th>質問数</th><th>平均確信度</th><th>エスカレーション</th></tr>
+                        <tr><th>パターン</th><th>質問数</th><th>平均確信度</th><th>エスカレ</th></tr>
                     </thead>
                     <tbody>
                         <tr><td>P1: 生保全般</td><td>3</td><td>79.7%</td><td>0</td></tr>
@@ -144,7 +216,6 @@
             </div>
         </div>
 
-        <!-- KPI目標達成ゲージ -->
         <div class="panel">
             <h2>KPI目標達成状況</h2>
             <div class="gauge-list">

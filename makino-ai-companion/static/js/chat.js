@@ -193,17 +193,32 @@ function appendMessage(role, text, options = {}) {
     const messageDiv = document.createElement("div");
     messageDiv.className = `message message--${role}`;
 
+    // アバター + バブル行
+    const rowDiv = document.createElement("div");
+    rowDiv.className = "message-row";
+
+    const avatarDiv = document.createElement("div");
+    avatarDiv.className = "message-avatar";
+    if (role === "assistant") {
+        avatarDiv.textContent = "M";
+    } else {
+        avatarDiv.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+    }
+    rowDiv.appendChild(avatarDiv);
+
     const bubbleDiv = document.createElement("div");
     bubbleDiv.className = "message-bubble";
     bubbleDiv.textContent = text;
-    messageDiv.appendChild(bubbleDiv);
+    rowDiv.appendChild(bubbleDiv);
+
+    messageDiv.appendChild(rowDiv);
 
     // 出典表示（アシスタントのみ）
     if (role === "assistant" && options.sources && options.sources.length > 0) {
         const sourcesDiv = document.createElement("details");
         sourcesDiv.className = "message-sources";
         sourcesDiv.innerHTML = `
-            <summary>出典 (${options.sources.length}件)</summary>
+            <summary>参考資料 (${options.sources.length}件)</summary>
             <ul>${options.sources.map(s => `<li>${escapeHtml(s)}</li>`).join("")}</ul>
         `;
         messageDiv.appendChild(sourcesDiv);
@@ -214,8 +229,8 @@ function appendMessage(role, text, options = {}) {
         const feedbackDiv = document.createElement("div");
         feedbackDiv.className = "message-feedback";
         feedbackDiv.innerHTML = `
-            <button class="feedback-btn" data-rating="good" data-conv-id="${options.conversationId}">&#x1F44D; 役に立った</button>
-            <button class="feedback-btn" data-rating="bad" data-conv-id="${options.conversationId}">&#x1F44E; 改善が必要</button>
+            <button class="feedback-btn" data-rating="good" data-conv-id="${options.conversationId}">役に立った</button>
+            <button class="feedback-btn" data-rating="bad" data-conv-id="${options.conversationId}">改善が必要</button>
         `;
         feedbackDiv.querySelectorAll(".feedback-btn").forEach(btn => {
             btn.addEventListener("click", () => sendFeedback(btn));
@@ -231,10 +246,13 @@ function showLoading() {
     const loadingDiv = document.createElement("div");
     loadingDiv.className = "message message--assistant message--loading";
     loadingDiv.innerHTML = `
-        <div class="message-bubble">
-            <span class="loading-dot"></span>
-            <span class="loading-dot"></span>
-            <span class="loading-dot"></span>
+        <div class="message-row">
+            <div class="message-avatar">M</div>
+            <div class="message-bubble">
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+            </div>
         </div>
     `;
     chatArea.appendChild(loadingDiv);
