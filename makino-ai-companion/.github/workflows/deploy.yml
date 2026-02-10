@@ -1,0 +1,46 @@
+name: CD - デプロイ
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "makino-ai-companion/**"
+
+defaults:
+  run:
+    working-directory: makino-ai-companion
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: []
+
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python セットアップ
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 依存関係インストール
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: テスト実行（デプロイ前確認）
+        run: python -m pytest tests/ -v --tb=short
+
+      - name: Docker イメージビルド
+        run: |
+          echo "Docker ビルドステップ（Dockerfile作成後に有効化）"
+          # docker build -t makino-ai-companion:${{ github.sha }} .
+
+      - name: デプロイ通知
+        if: success()
+        run: |
+          echo "デプロイ成功: ${{ github.sha }}"
+          echo "コミットメッセージ: ${{ github.event.head_commit.message }}"
