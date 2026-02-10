@@ -118,6 +118,11 @@ def create_app() -> FastAPI:
         """埋め込み用チャットウィジェット。"""
         return templates.TemplateResponse("widget.html", {"request": request})
 
+    @app.get("/dashboard", response_class=HTMLResponse)
+    async def dashboard(request: Request) -> HTMLResponse:
+        """管理ダッシュボード（管理者用KPI表示）。"""
+        return templates.TemplateResponse("dashboard.html", {"request": request})
+
     logger.info("アプリケーション初期化完了")
     return app
 
