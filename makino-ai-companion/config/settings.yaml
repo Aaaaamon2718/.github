@@ -110,6 +110,14 @@ server:
     allow_methods: ["GET", "POST"]
     allow_headers: ["*"]
 
+# --- 認証設定（Google OAuth2）---
+auth:
+  google_client_id: ${GOOGLE_CLIENT_ID}
+  google_client_secret: ${GOOGLE_CLIENT_SECRET}
+  # 管理者メールアドレス（KPIダッシュボード等へのアクセス許可）
+  admin_emails:
+    - ${ADMIN_EMAIL}
+
 # --- エスカレーション設定 ---
 escalation:
   confidence_threshold: 0.5  # この値以下でエスカレーション

@@ -17,7 +17,10 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.requests import Request
 
+from starlette.middleware.sessions import SessionMiddleware
+
 from src.api.routes import create_routes, router
+from src.auth.oauth import create_auth_routes
 from src.chat.engine import ChatEngine
 from src.database.models import init_db
 
@@ -53,6 +56,10 @@ def create_app() -> FastAPI:
         version=config["project"]["version"],
     )
 
+    # セッションミドルウェア（OAuth2コールバックに必要）
+    session_secret = os.environ.get("SESSION_SECRET", "dev-session-secret")
+    app.add_middleware(SessionMiddleware, secret_key=session_secret)
+
     # CORS設定（チャットウィジェット埋め込み対応）
     server_config = config.get("server", {})
     cors_config = server_config.get("cors", {})
@@ -85,7 +92,12 @@ def create_app() -> FastAPI:
         max_tokens=claude_config.get("max_tokens", 4096),
     )
 
-    # ルーティング設定
+    # 認証ルーティング
+    auth_config = config.get("auth", {})
+    auth_router = create_auth_routes(auth_config)
+    app.include_router(auth_router)
+
+    # APIルーティング設定
     create_routes(engine, db_conn)
     app.include_router(router)
 

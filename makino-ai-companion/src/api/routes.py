@@ -8,9 +8,10 @@ import json
 import logging
 from typing import Optional
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel, Field
 
+from src.auth.dependencies import AuthUser, get_current_user, require_admin
 from src.chat.engine import ChatEngine
 from src.database.operations import (
     calculate_metrics,
@@ -114,15 +115,19 @@ def create_routes(engine: ChatEngine, db_conn) -> APIRouter:
     """
 
     @router.post("/api/chat", response_model=ChatResponseModel)
-    async def chat(request: ChatRequest) -> ChatResponseModel:
+    async def chat(
+        request: ChatRequest,
+        user: AuthUser = Depends(get_current_user),
+    ) -> ChatResponseModel:
         """チャットエンドポイント。質問を受け取り回答を返す。"""
         session_id = request.session_id or engine.generate_session_id()
+        user_id = user.user_id
 
         # 会話履歴取得
         history = get_conversation_history(db_conn, session_id)
 
-        # ユーザープロファイルをロード（anonymous以外）
-        profile_context = load_profile_context(db_conn, request.user_id)
+        # ユーザープロファイルをロード
+        profile_context = load_profile_context(db_conn, user_id)
 
         # 回答生成
         response = engine.chat(
@@ -136,7 +141,7 @@ def create_routes(engine: ChatEngine, db_conn) -> APIRouter:
         conv_id = save_conversation(
             conn=db_conn,
             session_id=session_id,
-            user_id=request.user_id,
+            user_id=user_id,
             bot_pattern=f"pattern_{request.pattern}",
             question=request.question,
             answer=response.answer,
@@ -154,7 +159,7 @@ def create_routes(engine: ChatEngine, db_conn) -> APIRouter:
                 save_interaction_log(
                     conn=db_conn,
                     conversation_id=conv_id,
-                    user_id=request.user_id,
+                    user_id=user_id,
                     input_method=ix.input_method,
                     question_length=ix.question_length,
                     session_position=ix.session_position,
@@ -184,7 +189,10 @@ def create_routes(engine: ChatEngine, db_conn) -> APIRouter:
         )
 
     @router.post("/api/feedback")
-    async def feedback(request: FeedbackRequest) -> dict:
+    async def feedback(
+        request: FeedbackRequest,
+        user: AuthUser = Depends(get_current_user),
+    ) -> dict:
         """フィードバックエンドポイント。ユーザー評価を記録する。"""
         fb_id = save_feedback(
             conn=db_conn,
@@ -198,6 +206,7 @@ def create_routes(engine: ChatEngine, db_conn) -> APIRouter:
     async def metrics(
         date_from: Optional[str] = None,
         date_to: Optional[str] = None,
+        admin: AuthUser = Depends(require_admin),
     ) -> MetricsResponse:
         """KPIメトリクスエンドポイント。"""
         data = calculate_metrics(db_conn, date_from, date_to)
@@ -207,12 +216,16 @@ def create_routes(engine: ChatEngine, db_conn) -> APIRouter:
     async def pattern_metrics(
         date_from: Optional[str] = None,
         date_to: Optional[str] = None,
+        admin: AuthUser = Depends(require_admin),
     ) -> dict:
         """パターン別メトリクスエンドポイント。"""
         return get_pattern_breakdown(db_conn, date_from, date_to)
 
     @router.post("/api/guide/suggestions", response_model=GuideSuggestionsResponse)
-    async def guide_suggestions(request: GuideSuggestionsRequest) -> GuideSuggestionsResponse:
+    async def guide_suggestions(
+        request: GuideSuggestionsRequest,
+        user: AuthUser = Depends(get_current_user),
+    ) -> GuideSuggestionsResponse:
         """質問ナビ用のAI生成サブトピックを返す。"""
         pattern_names = {
             1: "生命保険全般の質問対応",
