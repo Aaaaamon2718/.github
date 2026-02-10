@@ -165,39 +165,204 @@ body {
     border-radius: 3px;
 }
 
-/* ウェルカム */
+/* ウェルカム画面 (Claude.ai風 ミニマルデザイン) */
 
-.welcome-message {
-    text-align: center;
-    padding: 48px 20px;
+.welcome-screen {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
-}
-
-.welcome-icon {
-    width: 64px;
-    height: 64px;
-    background: linear-gradient(135deg, var(--primary-bg), var(--primary-soft));
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 28px;
-    margin-bottom: 4px;
+    flex: 1;
+    padding: 48px 24px 32px;
+    gap: 28px;
+    animation: welcomeFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.welcome-text {
-    font-size: 17px;
-    font-weight: 600;
+@keyframes welcomeFadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.welcome-screen.--leaving {
+    animation: welcomeFadeOut 0.35s ease forwards;
+    pointer-events: none;
+}
+
+@keyframes welcomeFadeOut {
+    to { opacity: 0; transform: translateY(-12px) scale(0.97); }
+}
+
+/* ヒーロー（アバター + 挨拶テキスト） */
+
+.welcome-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+}
+
+.welcome-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 16px rgba(37, 99, 235, 0.12);
+    animation: avatarBounceIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+}
+
+@keyframes avatarBounceIn {
+    from { opacity: 0; transform: scale(0.6); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.welcome-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.welcome-heading {
+    font-size: 24px;
+    font-weight: 700;
     color: var(--text);
+    letter-spacing: -0.02em;
+    animation: textFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
 }
 
 .welcome-sub {
-    font-size: 14px;
-    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-secondary);
     line-height: 1.6;
+    animation: textFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+.welcome-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    animation: textFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+}
+
+@keyframes textFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* パターン選択チップ (横並び) */
+
+.welcome-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    animation: chipsSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+}
+
+@keyframes chipsSlideUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.welcome-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.welcome-chip svg {
+    flex-shrink: 0;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.welcome-chip:hover {
+    border-color: var(--primary);
+    background: var(--primary-bg);
+    color: var(--primary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
+}
+
+.welcome-chip:hover svg {
+    opacity: 1;
+}
+
+.welcome-chip:active {
+    transform: translateY(0);
+}
+
+.welcome-chip.--active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+.welcome-chip.--active svg {
+    opacity: 1;
+    stroke: white;
+}
+
+/* クイック質問サジェスト */
+
+.welcome-suggestions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 440px;
+    animation: suggestionsSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both;
+}
+
+@keyframes suggestionsSlideUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.welcome-suggestion-btn {
+    padding: 12px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    font-family: inherit;
+    line-height: 1.5;
+}
+
+.welcome-suggestion-btn:hover {
+    background: var(--primary-bg);
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+}
+
+.welcome-suggestion-btn:active {
+    transform: translateY(0);
+}
+
+/* 旧welcome互換（非表示用） */
+
+.welcome-message {
+    display: none;
 }
 
 /* ==========================================================================
@@ -253,9 +418,15 @@ body {
 }
 
 .message--assistant .message-avatar {
-    background: linear-gradient(135deg, var(--primary), #3b82f6);
-    color: white;
-    font-weight: 600;
+    background: linear-gradient(135deg, var(--primary-bg), var(--primary-soft));
+    overflow: hidden;
+    padding: 0;
+}
+
+.message--assistant .message-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .message--user .message-avatar {
@@ -554,12 +725,20 @@ body {
 
 .guide-panel--open {
     display: block;
-    animation: panelSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: panelSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes panelSlideUp {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; max-height: 0; transform: translateY(8px); }
+    to { opacity: 1; max-height: 400px; transform: translateY(0); }
+}
+
+.guide-panel--closing {
+    animation: panelSlideDown 0.25s ease forwards;
+}
+
+@keyframes panelSlideDown {
+    to { opacity: 0; max-height: 0; transform: translateY(8px); }
 }
 
 .guide-header {
@@ -631,6 +810,26 @@ body {
 
 .guide-step-arrow {
     color: var(--border);
+}
+
+/* ステップ切替アニメーション */
+
+.guide-body--transitioning {
+    animation: guideStepTransition 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes guideStepTransition {
+    from { opacity: 0; transform: translateX(16px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.guide-body--back {
+    animation: guideStepBack 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes guideStepBack {
+    from { opacity: 0; transform: translateX(-16px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
 /* 選択肢ボタン */

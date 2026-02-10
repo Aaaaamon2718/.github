@@ -21,6 +21,7 @@ const guidePanel = document.getElementById("guidePanel");
 const guideClose = document.getElementById("guideClose");
 const guideBody = document.getElementById("guideBody");
 const guideTitle = document.getElementById("guideTitle");
+const welcomeScreen = document.getElementById("welcomeScreen");
 
 let sessionId = null;
 let isLoading = false;
@@ -107,6 +108,43 @@ sendButton.addEventListener("click", sendMessage);
 guideButton.addEventListener("click", toggleGuide);
 guideClose.addEventListener("click", closeGuide);
 
+// --- ウェルカム画面 ---
+
+if (welcomeScreen) {
+    // パターンチップクリック → パターン切替 + ハイライト
+    welcomeScreen.querySelectorAll(".welcome-chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+            const pattern = chip.dataset.pattern;
+            patternSelect.value = pattern;
+            // チップのアクティブ状態を切替
+            welcomeScreen.querySelectorAll(".welcome-chip").forEach(c => c.classList.remove("--active"));
+            chip.classList.add("--active");
+        });
+    });
+
+    // サジェスト質問クリック → 質問送信 + ウェルカム画面消去
+    welcomeScreen.querySelectorAll(".welcome-suggestion-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const question = btn.dataset.question;
+            if (question) {
+                dismissWelcome(() => sendMessage(question));
+            }
+        });
+    });
+}
+
+/**
+ * ウェルカム画面をアニメーション付きで消去する
+ */
+function dismissWelcome(callback) {
+    if (!welcomeScreen || welcomeScreen.classList.contains("--leaving")) return;
+    welcomeScreen.classList.add("--leaving");
+    welcomeScreen.addEventListener("animationend", () => {
+        welcomeScreen.remove();
+        if (callback) callback();
+    }, { once: true });
+}
+
 // --- メッセージ送信 ---
 
 async function sendMessage(overrideQuestion) {
@@ -116,9 +154,10 @@ async function sendMessage(overrideQuestion) {
     // ガイドパネルを閉じる
     closeGuide();
 
-    // ウェルカムメッセージを削除
-    const welcome = chatArea.querySelector(".welcome-message");
-    if (welcome) welcome.remove();
+    // ウェルカム画面を消去
+    if (welcomeScreen && welcomeScreen.parentNode) {
+        welcomeScreen.remove();
+    }
 
     // ユーザーメッセージ表示
     appendMessage("user", question);
@@ -200,7 +239,7 @@ function appendMessage(role, text, options = {}) {
     const avatarDiv = document.createElement("div");
     avatarDiv.className = "message-avatar";
     if (role === "assistant") {
-        avatarDiv.textContent = "M";
+        avatarDiv.innerHTML = '<img src="/static/img/makino-avatar.svg" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">';
     } else {
         avatarDiv.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
     }
@@ -247,7 +286,7 @@ function showLoading() {
     loadingDiv.className = "message message--assistant message--loading";
     loadingDiv.innerHTML = `
         <div class="message-row">
-            <div class="message-avatar">M</div>
+            <div class="message-avatar"><img src="/static/img/makino-avatar.svg" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div>
             <div class="message-bubble">
                 <span class="loading-dot"></span>
                 <span class="loading-dot"></span>
@@ -313,9 +352,21 @@ function openGuide() {
 }
 
 function closeGuide() {
+    if (!guideState.isOpen) return;
     guideState.isOpen = false;
-    guidePanel.classList.remove("guide-panel--open");
+    guidePanel.classList.add("guide-panel--closing");
+    guidePanel.addEventListener("animationend", () => {
+        guidePanel.classList.remove("guide-panel--open", "guide-panel--closing");
+    }, { once: true });
     guideButton.classList.remove("guide-toggle--active");
+}
+
+/** ステップ切替アニメーション（前進/後退） */
+function animateGuideStep(direction) {
+    guideBody.classList.remove("guide-body--transitioning", "guide-body--back");
+    // reflow trick to restart animation
+    void guideBody.offsetWidth;
+    guideBody.classList.add(direction === "back" ? "guide-body--back" : "guide-body--transitioning");
 }
 
 function renderGuideStep() {
@@ -364,6 +415,7 @@ function renderGuideStep() {
                 guideState.step = 1;
                 interactionSignals.guideCategory = catLabel;
                 interactionSignals.guideStepsTaken++;
+                animateGuideStep("forward");
                 renderGuideStep();
             });
         });
@@ -403,6 +455,7 @@ function renderGuideStep() {
                 guideState.category = null;
                 guideState.aiSuggestions = [];
                 interactionSignals.guideBacktrack++;
+                animateGuideStep("back");
                 renderGuideStep();
             });
         }
@@ -414,6 +467,7 @@ function renderGuideStep() {
                 guideState.step = 2;
                 interactionSignals.guideSubTopic = btn.dataset.suggestion;
                 interactionSignals.guideStepsTaken++;
+                animateGuideStep("forward");
                 renderGuideStep();
             });
         });
@@ -447,6 +501,7 @@ function renderGuideStep() {
         guideBody.querySelector("#guideBack").addEventListener("click", () => {
             guideState.step = 1;
             interactionSignals.guideBacktrack++;
+            animateGuideStep("back");
             renderGuideStep();
         });
 
