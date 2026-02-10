@@ -59,6 +59,12 @@ PATTERN_2_SYSTEM_PROMPT = """
 ## 人格パラメータ
 {persona_section}
 
+## NGワード
+{ng_words_section}
+
+## 象徴的フレーズ
+{signature_phrases_section}
+
 ## 専門知識領域
 - 医療法人の組織形態と運営
 - 開業医の事業承継
@@ -90,6 +96,12 @@ PATTERN_3_SYSTEM_PROMPT = """
 ## 人格パラメータ
 {persona_section}
 
+## NGワード
+{ng_words_section}
+
+## 象徴的フレーズ
+{signature_phrases_section}
+
 ## 専門知識領域
 - 損益計算書（P/L）の読み解き
 - 貸借対照表（B/S）の分析
@@ -120,7 +132,7 @@ PATTERN_4_SYSTEM_PROMPT = """
 4. 状況に応じて厳しさと優しさを使い分けること
 
 ## 象徴的フレーズ（口癖）
-「誰にでもできることを、だれにも負けないほどやる」
+{signature_phrases_section}
 → 会話の節目や励ましのメッセージで効果的に使用すること
 
 ## 対応パターン
@@ -166,15 +178,13 @@ def build_system_prompt(
 
     template = templates[pattern]
 
-    # ペルソナ設定のプレースホルダーを置換
-    persona_section = "（人格定義書完成後に設定）"
-    ng_words_section = "（NGワードリスト完成後に設定）"
-    signature_phrases_section = "（象徴的フレーズ確定後に設定）"
+    # ペルソナ設定（Noneの場合はデフォルト値で初期化）
+    if persona_config is None:
+        persona_config = PersonaConfig()
 
-    if persona_config:
-        persona_section = persona_config.format_persona_section()
-        ng_words_section = persona_config.format_ng_words()
-        signature_phrases_section = persona_config.format_signature_phrases()
+    persona_section = persona_config.format_persona_section()
+    ng_words_section = persona_config.format_ng_words()
+    signature_phrases_section = persona_config.format_signature_phrases()
 
     prompt = template.format(
         persona_section=persona_section,
