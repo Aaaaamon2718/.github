@@ -23,6 +23,7 @@ from src.api.routes import create_routes, router
 from src.auth.oauth import create_auth_routes
 from src.chat.engine import ChatEngine
 from src.database.models import init_db
+from src.notifications.escalation_notifier import EscalationNotifier
 
 logging.basicConfig(
     level=logging.INFO,
@@ -97,8 +98,12 @@ def create_app() -> FastAPI:
     auth_router = create_auth_routes(auth_config)
     app.include_router(auth_router)
 
+    # エスカレーション通知サービス
+    escalation_config = config.get("escalation", {})
+    notifier = EscalationNotifier(escalation_config)
+
     # APIルーティング設定
-    create_routes(engine, db_conn)
+    create_routes(engine, db_conn, notifier=notifier)
     app.include_router(router)
 
     # --- ページルーティング ---

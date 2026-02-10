@@ -40,24 +40,29 @@ def sample_chunks() -> list[KnowledgeChunk]:
 
 @pytest.fixture
 def mock_embedding():
-    """EmbeddingModelのモック。768次元のランダムベクトルを返す。"""
+    """EmbeddingModelのモック。768次元の決定的ベクトルを返す。
+
+    全ベクトルが正のコサイン類似度を持つように基底ベクトルに
+    小さな差分を加える方式。
+    """
     model = MagicMock()
     model.dimension = 768
 
-    def _encode_query(query: str) -> np.ndarray:
-        rng = np.random.RandomState(hash(query) % (2**31))
-        vec = rng.randn(768).astype(np.float32)
+    _counter = [0]
+
+    def _make_vec() -> np.ndarray:
+        vec = np.ones(768, dtype=np.float32)
+        idx = _counter[0] % 768
+        vec[idx] += 1.0
         vec /= np.linalg.norm(vec)
+        _counter[0] += 1
         return vec
 
+    def _encode_query(query: str) -> np.ndarray:
+        return _make_vec()
+
     def _encode_passages(passages: list[str]) -> np.ndarray:
-        vecs = []
-        for p in passages:
-            rng = np.random.RandomState(hash(p) % (2**31))
-            vec = rng.randn(768).astype(np.float32)
-            vec /= np.linalg.norm(vec)
-            vecs.append(vec)
-        return np.array(vecs, dtype=np.float32)
+        return np.array([_make_vec() for _ in passages], dtype=np.float32)
 
     model.encode_query = _encode_query
     model.encode_passages = _encode_passages
@@ -134,7 +139,7 @@ class TestVectorRAG:
         rag = VectorRAG(
             chunks=sample_chunks,
             embedding_model=mock_embedding,
-            similarity_threshold=0.99,
+            similarity_threshold=1.0,
         )
         results = rag.search("全く関係ないクエリ12345")
         assert len(results) == 0

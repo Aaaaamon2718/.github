@@ -13,6 +13,7 @@ from pydantic import BaseModel, Field
 
 from src.auth.dependencies import AuthUser, get_current_user, require_admin
 from src.chat.engine import ChatEngine
+from src.notifications.escalation_notifier import EscalationEvent, EscalationNotifier
 from src.database.operations import (
     calculate_metrics,
     get_conversation_history,
@@ -103,12 +104,17 @@ class MetricsResponse(BaseModel):
 
 # --- エンドポイント ---
 
-def create_routes(engine: ChatEngine, db_conn) -> APIRouter:
+def create_routes(
+    engine: ChatEngine,
+    db_conn,
+    notifier: Optional[EscalationNotifier] = None,
+) -> APIRouter:
     """ルーターを生成する。
 
     Args:
         engine: チャットエンジンインスタンス
         db_conn: データベース接続
+        notifier: エスカレーション通知サービス（任意）
 
     Returns:
         設定済みAPIRouter
@@ -175,9 +181,22 @@ def create_routes(engine: ChatEngine, db_conn) -> APIRouter:
             except Exception as e:
                 logger.warning(f"操作ログ保存失敗: {e}")
 
-        # エスカレーション保存
+        # エスカレーション保存 + 通知
         if response.should_escalate:
             save_escalation(db_conn, conv_id, response.escalation_reason)
+            if notifier:
+                try:
+                    notifier.notify(EscalationEvent(
+                        conversation_id=conv_id,
+                        session_id=session_id,
+                        user_id=user_id,
+                        question=request.question,
+                        reason=response.escalation_reason,
+                        confidence=response.confidence,
+                        category=response.category,
+                    ))
+                except Exception as e:
+                    logger.warning(f"エスカレーション通知失敗: {e}")
 
         return ChatResponseModel(
             answer=response.answer,
