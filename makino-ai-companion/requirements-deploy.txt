@@ -1,0 +1,23 @@
+# Core - Claude API & Web Framework
+anthropic>=0.39.0
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pyyaml>=6.0.1
+jinja2>=3.1.0
+
+# Knowledge Pipeline - ドキュメント処理
+PyMuPDF>=1.24.0
+python-docx>=1.1.0
+Pillow>=10.0.0
+
+# Auth - Google OAuth2 + JWT
+authlib>=1.3.0
+python-jose[cryptography]>=3.3.0
+itsdangerous>=2.1.0
+
+# numpy (VectorRAGフォールバック判定に必要)
+numpy>=1.24.0
+
+# Note: faiss-cpu, sentence-transformers は除外
+# → SimpleRAG (キーワード検索) にフォールバック
+# 本番でベクトル検索を有効にする場合は requirements.txt を使用

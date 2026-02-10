@@ -10,7 +10,12 @@
     <div class="app-container">
         <!-- ヘッダー -->
         <header class="app-header">
-            <h1 class="app-title">牧野生保塾 AI伴走システム</h1>
+            <div class="header-left">
+                <div class="header-logo">
+                    <img src="/static/img/makino-avatar.svg" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                </div>
+                <h1 class="app-title">牧野生保塾 AI伴走</h1>
+            </div>
             <div class="pattern-selector">
                 <select id="patternSelect">
                     <option value="1">質問対応（汎用）</option>
@@ -23,14 +28,47 @@
 
         <!-- チャットエリア -->
         <main class="chat-area" id="chatArea">
-            <div class="welcome-message">
-                <div class="welcome-icon">&#x1F4AC;</div>
-                <p class="welcome-text">こんにちは。牧野生保塾 AI伴走システムです。</p>
-                <p class="welcome-sub">何かお困りのことがあれば、お気軽にご質問ください。</p>
+            <!-- ウェルカム画面 -->
+            <div class="welcome-screen" id="welcomeScreen">
+                <div class="welcome-hero">
+                    <div class="welcome-avatar">
+                        <img src="/static/img/makino-avatar.svg" alt="牧野先生">
+                    </div>
+                    <h2 class="welcome-heading">こんにちは</h2>
+                    <p class="welcome-sub">保険営業のお悩み、一緒に解決しましょう。</p>
+                    <p class="welcome-note">牧野先生の知見をもとにAIがお答えします</p>
+                </div>
+
+                <!-- パターン選択チップ -->
+                <div class="welcome-chips">
+                    <button class="welcome-chip" data-pattern="1">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        <span>生保全般 Q&A</span>
+                    </button>
+                    <button class="welcome-chip" data-pattern="2">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                        <span>ドクター特化</span>
+                    </button>
+                    <button class="welcome-chip" data-pattern="3">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+                        <span>法人保険特化</span>
+                    </button>
+                    <button class="welcome-chip" data-pattern="4">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg>
+                        <span>励まし</span>
+                    </button>
+                </div>
+
+                <!-- クイック質問 -->
+                <div class="welcome-suggestions">
+                    <button class="welcome-suggestion-btn" data-question="契約が取れなくて辛いです。どうすればいいですか？">契約が取れなくて辛いです。どうすればいいですか？</button>
+                    <button class="welcome-suggestion-btn" data-question="ドクターマーケットの開拓方法を教えてください">ドクターマーケットの開拓方法を教えてください</button>
+                    <button class="welcome-suggestion-btn" data-question="法人保険の決算書分析のコツを教えてください">法人保険の決算書分析のコツを教えてください</button>
+                </div>
             </div>
         </main>
 
-        <!-- 質問ナビ パネル（非表示デフォルト）-->
+        <!-- 質問ナビ パネル -->
         <div class="guide-panel" id="guidePanel">
             <div class="guide-header">
                 <span class="guide-title" id="guideTitle">質問ナビ</span>
@@ -40,9 +78,7 @@
                     </svg>
                 </button>
             </div>
-            <div class="guide-body" id="guideBody">
-                <!-- 動的に生成される -->
-            </div>
+            <div class="guide-body" id="guideBody"></div>
         </div>
 
         <!-- 入力エリア -->
@@ -62,9 +98,8 @@
                     </svg>
                 </button>
                 <button id="sendButton" class="send-button" disabled>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 2L11 13"></path>
-                        <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
                 </button>
             </div>
