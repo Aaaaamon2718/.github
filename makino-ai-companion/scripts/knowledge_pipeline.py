@@ -8,10 +8,12 @@ Usage:
     python scripts/knowledge_pipeline.py --dry-run
     python scripts/knowledge_pipeline.py
     python scripts/knowledge_pipeline.py --input intake/raw/specific.txt
+    python scripts/knowledge_pipeline.py --report latest
 """
 
 import argparse
 import logging
+import os
 import re
 import sys
 from datetime import datetime
@@ -249,6 +251,101 @@ def process_file(file_path: Path, dry_run: bool = False) -> dict:
     return result
 
 
+def report_knowledge_base(mode: str) -> None:
+    """ナレッジベースの現状レポートを表示する。
+
+    Args:
+        mode: "latest" で最新ファイル順、"all" で全体統計
+    """
+    knowledge_dir = project_root / "knowledge"
+    intake_raw = project_root / "intake" / "raw"
+
+    logger.info("=" * 60)
+    logger.info("ナレッジベース レポート")
+    logger.info("=" * 60)
+
+    if not knowledge_dir.exists():
+        logger.error(f"ナレッジディレクトリが見つかりません: {knowledge_dir}")
+        return
+
+    # knowledge/ 内のMarkdownファイル収集
+    md_files = sorted(
+        [f for f in knowledge_dir.rglob("*.md") if f.name.lower() != "readme.md"],
+        key=lambda f: os.path.getmtime(f),
+        reverse=True,
+    )
+
+    # intake/raw/ 内の未処理ファイル
+    raw_files = sorted(intake_raw.glob("*.txt")) if intake_raw.exists() else []
+
+    # --- 全体統計 ---
+    logger.info("")
+    logger.info("【全体統計】")
+    logger.info(f"  ナレッジファイル数: {len(md_files)}")
+    logger.info(f"  未処理ファイル数  : {len(raw_files)}")
+
+    # サブディレクトリ別
+    subdirs = ["seminars", "trainings", "qa", "articles", "sales_tools"]
+    logger.info("")
+    logger.info("【ディレクトリ別】")
+    for subdir in subdirs:
+        subdir_path = knowledge_dir / subdir
+        if subdir_path.exists():
+            count = len([f for f in subdir_path.rglob("*.md") if f.name.lower() != "readme.md"])
+            logger.info(f"  {subdir}/: {count} ファイル")
+        else:
+            logger.info(f"  {subdir}/: (未作成)")
+
+    # カテゴリ別集計
+    category_counts: dict[str, int] = {}
+    total_chars = 0
+    for md_file in md_files:
+        content = md_file.read_text(encoding="utf-8")
+        total_chars += len(content)
+        match = re.search(r'^category:\s*(.+)$', content, re.MULTILINE)
+        if match:
+            cat = match.group(1).strip()
+            category_counts[cat] = category_counts.get(cat, 0) + 1
+
+    if category_counts:
+        logger.info("")
+        logger.info("【カテゴリ別】")
+        for cat, count in sorted(category_counts.items(), key=lambda x: x[1], reverse=True):
+            logger.info(f"  {cat}: {count} ファイル")
+
+    logger.info("")
+    logger.info(f"  合計文字数: {total_chars:,}")
+
+    # --- 最新ファイル ---
+    if mode == "latest" and md_files:
+        show_count = min(10, len(md_files))
+        logger.info("")
+        logger.info(f"【最新 {show_count} ファイル】")
+        for md_file in md_files[:show_count]:
+            mtime = datetime.fromtimestamp(os.path.getmtime(md_file)).strftime("%Y-%m-%d %H:%M")
+            rel_path = md_file.relative_to(knowledge_dir)
+            content = md_file.read_text(encoding="utf-8")
+
+            # フロントマターからカテゴリ取得
+            cat_match = re.search(r'^category:\s*(.+)$', content, re.MULTILINE)
+            category = cat_match.group(1).strip() if cat_match else "不明"
+
+            logger.info(f"  [{mtime}] {rel_path}  ({category}, {len(content)}字)")
+
+    # --- 未処理ファイル ---
+    if raw_files:
+        logger.info("")
+        logger.info("【未処理ファイル（intake/raw/）】")
+        for raw_file in raw_files:
+            size = raw_file.stat().st_size
+            logger.info(f"  {raw_file.name}  ({size:,} bytes)")
+        logger.info("")
+        logger.info("  → python scripts/knowledge_pipeline.py --dry-run で変換プレビュー")
+
+    logger.info("")
+    logger.info("レポート完了")
+
+
 def main() -> None:
     """メイン処理。"""
     parser = argparse.ArgumentParser(
@@ -271,7 +368,19 @@ def main() -> None:
         default="intake/raw",
         help="入力ディレクトリ（デフォルト: intake/raw/）",
     )
+    parser.add_argument(
+        "--report",
+        type=str,
+        choices=["latest", "all"],
+        default=None,
+        help="ナレッジベースのレポート表示（latest: 最新順, all: 全体統計）",
+    )
     args = parser.parse_args()
+
+    # レポートモード
+    if args.report:
+        report_knowledge_base(args.report)
+        return
 
     logger.info("=" * 60)
     logger.info("ナレッジパイプライン 開始")
