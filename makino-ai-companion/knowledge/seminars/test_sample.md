@@ -4,7 +4,7 @@ sub_category: メンタリング
 source: test_sample.txt
 priority: high
 tags: [励まし, 叱咤, 論理的解説, 情熱]
-created: 2026-02-09
+created: 2026-02-10
 ---
 
 # 牧野生保塾 テストデータ
