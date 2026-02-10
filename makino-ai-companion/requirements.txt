@@ -14,8 +14,9 @@ Pillow>=10.0.0         # 画像処理
 # openai-whisper>=20231117  # 音声→テキスト文字起こし（要ffmpeg）
 # ffmpeg-python>=0.2.0     # 動画→音声抽出
 
-# RAG
-# faiss-cpu>=1.7.4  # PoC後にベクトル検索を導入する際に有効化
+# RAG - ベクトル検索
+faiss-cpu>=1.7.4
+sentence-transformers>=3.0.0
 
 # Development
 pytest>=7.0.0
