@@ -12,11 +12,15 @@ Usage:
 import argparse
 import json
 import logging
+import os
 import sys
+from datetime import datetime
 from pathlib import Path
 
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
+
+import yaml
 
 from src.database.models import get_connection
 from src.database.operations import (
@@ -59,9 +63,19 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    # 設定読み込み
+    config_path = project_root / "config" / "settings.yaml"
+    with open(config_path, encoding="utf-8") as f:
+        content = f.read()
+    for key, value in os.environ.items():
+        content = content.replace(f"${{{key}}}", value)
+    config = yaml.safe_load(content)
+
+    db_path = config.get("database", {}).get("sqlite", {}).get("path", "data/conversations.db")
+
     # データベース接続
     try:
-        conn = get_connection()
+        conn = get_connection(project_root / db_path)
     except Exception as e:
         logger.error(f"データベース接続エラー: {e}")
         sys.exit(1)
@@ -96,8 +110,14 @@ def main() -> None:
     # CSVエクスポート
     if args.csv_export:
         logger.info("CSVエクスポートを実行中...")
-        csv_path = export_to_csv(conn)
-        logger.info(f"CSVエクスポート完了: {csv_path}")
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        csv_output = project_root / "logs" / "exports" / f"conversations_{timestamp}.csv"
+        count = export_to_csv(
+            conn, csv_output,
+            date_from=args.date_from,
+            date_to=args.date_to,
+        )
+        logger.info(f"CSVエクスポート完了: {csv_output} ({count}件)")
 
     conn.close()
 

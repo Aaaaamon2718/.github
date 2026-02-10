@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理ダッシュボード - 牧野生保塾 AI伴走システム</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Hiragino Sans', sans-serif;
+            background: #f0f2f5;
+            color: #333;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a237e, #283593);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { font-size: 1.25rem; font-weight: 600; }
+        .header .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+        }
+        .header .user-info img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
+
+        /* Date filter */
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .filters label { font-size: 0.875rem; font-weight: 500; }
+        .filters input[type="date"] {
+            padding: 0.375rem 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 0.875rem;
+        }
+        .filters button {
+            padding: 0.375rem 1rem;
+            background: #1a237e;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+        .filters button:hover { background: #283593; }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .kpi-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .kpi-card .label {
+            font-size: 0.75rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        .kpi-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a237e;
+        }
+        .kpi-card .sub {
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 0.25rem;
+        }
+        .kpi-card.warn .value { color: #e65100; }
+        .kpi-card.good .value { color: #2e7d32; }
+
+        /* Panels */
+        .panel-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .panel-grid { grid-template-columns: 1fr; }
+        }
+        .panel {
+            background: white;
+            border-radius: 12px;
+            padding: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .panel h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e8eaf6;
+        }
+
+        /* Pattern table */
+        .pattern-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        .pattern-table th, .pattern-table td {
+            padding: 0.625rem 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .pattern-table th {
+            font-weight: 600;
+            color: #666;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        /* Bar chart (CSS only) */
+        .bar-chart { display: flex; flex-direction: column; gap: 0.75rem; }
+        .bar-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .bar-label {
+            width: 100px;
+            font-size: 0.8rem;
+            text-align: right;
+            color: #666;
+            flex-shrink: 0;
+        }
+        .bar-track {
+            flex: 1;
+            height: 24px;
+            background: #e8eaf6;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .bar-fill {
+            height: 100%;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #3949ab, #1a237e);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 8px;
+            font-size: 0.7rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* KPI target gauge */
+        .gauge-list { display: flex; flex-direction: column; gap: 1rem; }
+        .gauge-item { display: flex; align-items: center; gap: 1rem; }
+        .gauge-label { width: 120px; font-size: 0.8rem; color: #666; }
+        .gauge-track {
+            flex: 1; height: 12px; background: #e0e0e0; border-radius: 6px; overflow: hidden;
+            position: relative;
+        }
+        .gauge-fill {
+            height: 100%; border-radius: 6px; transition: width 0.5s ease;
+        }
+        .gauge-fill.ok { background: #4caf50; }
+        .gauge-fill.warn { background: #ff9800; }
+        .gauge-fill.bad { background: #f44336; }
+        .gauge-value { width: 60px; font-size: 0.875rem; font-weight: 600; text-align: right; }
+
+        .loading { text-align: center; padding: 2rem; color: #999; }
+        .error { text-align: center; padding: 2rem; color: #e65100; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>牧野生保塾 AI伴走システム - 管理ダッシュボード</h1>
+        <div class="user-info" id="user-info"></div>
+    </div>
+
+    <div class="container">
+        <div class="filters">
+            <label>期間:</label>
+            <input type="date" id="date-from">
+            <span>〜</span>
+            <input type="date" id="date-to">
+            <button onclick="loadDashboard()">更新</button>
+        </div>
+
+        <div class="kpi-grid" id="kpi-grid">
+            <div class="loading">読み込み中...</div>
+        </div>
+
+        <div class="panel-grid">
+            <div class="panel">
+                <h2>パターン別利用状況</h2>
+                <div id="pattern-chart" class="bar-chart">
+                    <div class="loading">読み込み中...</div>
+                </div>
+            </div>
+            <div class="panel">
+                <h2>パターン別詳細</h2>
+                <div id="pattern-table">
+                    <div class="loading">読み込み中...</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2>KPI目標達成状況</h2>
+            <div id="kpi-gauges" class="gauge-list">
+                <div class="loading">読み込み中...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const KPI_TARGETS = {
+            answer_success_rate: { label: '回答成功率', target: 0.80 },
+            user_satisfaction: { label: 'ユーザー満足度', target: 0.85 },
+            average_confidence: { label: '平均確信度', target: 0.70 },
+        };
+
+        const PATTERN_NAMES = {
+            'pattern_1': 'P1: 生保全般',
+            'pattern_2': 'P2: ドクター',
+            'pattern_3': 'P3: 法人保険',
+            'pattern_4': 'P4: メンタリング',
+        };
+
+        async function fetchWithAuth(url) {
+            const res = await fetch(url, { credentials: 'include' });
+            if (res.status === 401) {
+                window.location.href = '/auth/login';
+                return null;
+            }
+            if (res.status === 403) {
+                document.querySelector('.container').innerHTML =
+                    '<div class="error">管理者権限が必要です。</div>';
+                return null;
+            }
+            return res.json();
+        }
+
+        async function loadUserInfo() {
+            const data = await fetchWithAuth('/auth/me');
+            if (!data || !data.authenticated) return;
+            const el = document.getElementById('user-info');
+            el.innerHTML = `
+                ${data.picture ? `<img src="${data.picture}" alt="">` : ''}
+                <span>${data.name || data.email}</span>
+                <a href="/auth/logout" style="color:#bbdefb;text-decoration:none;">ログアウト</a>
+            `;
+        }
+
+        function getDateParams() {
+            const from = document.getElementById('date-from').value;
+            const to = document.getElementById('date-to').value;
+            const params = new URLSearchParams();
+            if (from) params.set('date_from', from);
+            if (to) params.set('date_to', to);
+            return params.toString() ? '?' + params.toString() : '';
+        }
+
+        async function loadDashboard() {
+            const qs = getDateParams();
+
+            const [metrics, patterns] = await Promise.all([
+                fetchWithAuth('/api/metrics' + qs),
+                fetchWithAuth('/api/metrics/patterns' + qs),
+            ]);
+
+            if (metrics) renderKPICards(metrics);
+            if (metrics) renderKPIGauges(metrics);
+            if (patterns) renderPatternChart(patterns);
+            if (patterns) renderPatternTable(patterns);
+        }
+
+        function renderKPICards(m) {
+            const grid = document.getElementById('kpi-grid');
+            const cards = [
+                { label: '総質問数', value: m.total_questions, cls: '' },
+                { label: '回答成功率', value: (m.answer_success_rate * 100).toFixed(1) + '%',
+                  cls: m.answer_success_rate >= 0.8 ? 'good' : 'warn' },
+                { label: '平均確信度', value: (m.average_confidence * 100).toFixed(1) + '%',
+                  cls: m.average_confidence >= 0.7 ? 'good' : 'warn' },
+                { label: 'エスカレーション', value: m.escalation_count,
+                  sub: '(' + (m.escalation_rate * 100).toFixed(1) + '%)',
+                  cls: m.escalation_rate <= 0.2 ? 'good' : 'warn' },
+                { label: 'ユーザー満足度', value: (m.user_satisfaction * 100).toFixed(1) + '%',
+                  cls: m.user_satisfaction >= 0.85 ? 'good' : 'warn',
+                  sub: m.feedback_count + '件の評価' },
+            ];
+
+            grid.innerHTML = cards.map(c => `
+                <div class="kpi-card ${c.cls}">
+                    <div class="label">${c.label}</div>
+                    <div class="value">${c.value}</div>
+                    ${c.sub ? `<div class="sub">${c.sub}</div>` : ''}
+                </div>
+            `).join('');
+        }
+
+        function renderPatternChart(patterns) {
+            const el = document.getElementById('pattern-chart');
+            const entries = Object.entries(patterns);
+            if (entries.length === 0) {
+                el.innerHTML = '<div class="loading">データなし</div>';
+                return;
+            }
+            const maxCount = Math.max(...entries.map(([,v]) => v.count || 0), 1);
+
+            el.innerHTML = entries.map(([key, val]) => {
+                const pct = ((val.count || 0) / maxCount * 100).toFixed(0);
+                const name = PATTERN_NAMES[key] || key;
+                return `
+                    <div class="bar-row">
+                        <div class="bar-label">${name}</div>
+                        <div class="bar-track">
+                            <div class="bar-fill" style="width:${pct}%">${val.count}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderPatternTable(patterns) {
+            const el = document.getElementById('pattern-table');
+            const entries = Object.entries(patterns);
+            if (entries.length === 0) {
+                el.innerHTML = '<div class="loading">データなし</div>';
+                return;
+            }
+
+            el.innerHTML = `
+                <table class="pattern-table">
+                    <thead>
+                        <tr>
+                            <th>パターン</th>
+                            <th>質問数</th>
+                            <th>平均確信度</th>
+                            <th>エスカレーション</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${entries.map(([key, val]) => `
+                            <tr>
+                                <td>${PATTERN_NAMES[key] || key}</td>
+                                <td>${val.count || 0}</td>
+                                <td>${((val.avg_confidence || 0) * 100).toFixed(1)}%</td>
+                                <td>${val.escalated || 0}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        function renderKPIGauges(m) {
+            const el = document.getElementById('kpi-gauges');
+            const gauges = Object.entries(KPI_TARGETS).map(([key, cfg]) => {
+                const actual = m[key] || 0;
+                const pct = Math.min(actual / cfg.target * 100, 100);
+                const cls = actual >= cfg.target ? 'ok' : actual >= cfg.target * 0.8 ? 'warn' : 'bad';
+                return `
+                    <div class="gauge-item">
+                        <div class="gauge-label">${cfg.label}</div>
+                        <div class="gauge-track">
+                            <div class="gauge-fill ${cls}" style="width:${pct.toFixed(0)}%"></div>
+                        </div>
+                        <div class="gauge-value">${(actual * 100).toFixed(1)}% / ${(cfg.target * 100).toFixed(0)}%</div>
+                    </div>
+                `;
+            });
+            el.innerHTML = gauges.join('');
+        }
+
+        // Init
+        loadUserInfo();
+        loadDashboard();
+    </script>
+</body>
+</html>

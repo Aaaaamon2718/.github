@@ -17,9 +17,13 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.requests import Request
 
+from starlette.middleware.sessions import SessionMiddleware
+
 from src.api.routes import create_routes, router
+from src.auth.oauth import create_auth_routes
 from src.chat.engine import ChatEngine
 from src.database.models import init_db
+from src.notifications.escalation_notifier import EscalationNotifier
 
 logging.basicConfig(
     level=logging.INFO,
@@ -53,6 +57,10 @@ def create_app() -> FastAPI:
         version=config["project"]["version"],
     )
 
+    # セッションミドルウェア（OAuth2コールバックに必要）
+    session_secret = os.environ.get("SESSION_SECRET", "dev-session-secret")
+    app.add_middleware(SessionMiddleware, secret_key=session_secret)
+
     # CORS設定（チャットウィジェット埋め込み対応）
     server_config = config.get("server", {})
     cors_config = server_config.get("cors", {})
@@ -85,8 +93,17 @@ def create_app() -> FastAPI:
         max_tokens=claude_config.get("max_tokens", 4096),
     )
 
-    # ルーティング設定
-    create_routes(engine, db_conn)
+    # 認証ルーティング
+    auth_config = config.get("auth", {})
+    auth_router = create_auth_routes(auth_config)
+    app.include_router(auth_router)
+
+    # エスカレーション通知サービス
+    escalation_config = config.get("escalation", {})
+    notifier = EscalationNotifier(escalation_config)
+
+    # APIルーティング設定
+    create_routes(engine, db_conn, notifier=notifier)
     app.include_router(router)
 
     # --- ページルーティング ---
@@ -100,6 +117,11 @@ def create_app() -> FastAPI:
     async def widget(request: Request) -> HTMLResponse:
         """埋め込み用チャットウィジェット。"""
         return templates.TemplateResponse("widget.html", {"request": request})
+
+    @app.get("/dashboard", response_class=HTMLResponse)
+    async def dashboard(request: Request) -> HTMLResponse:
+        """管理ダッシュボード（管理者用KPI表示）。"""
+        return templates.TemplateResponse("dashboard.html", {"request": request})
 
     logger.info("アプリケーション初期化完了")
     return app

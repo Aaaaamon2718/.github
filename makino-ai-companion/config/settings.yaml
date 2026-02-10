@@ -110,6 +110,14 @@ server:
     allow_methods: ["GET", "POST"]
     allow_headers: ["*"]
 
+# --- 認証設定（Google OAuth2）---
+auth:
+  google_client_id: ${GOOGLE_CLIENT_ID}
+  google_client_secret: ${GOOGLE_CLIENT_SECRET}
+  # 管理者メールアドレス（KPIダッシュボード等へのアクセス許可）
+  admin_emails:
+    - ${ADMIN_EMAIL}
+
 # --- エスカレーション設定 ---
 escalation:
   confidence_threshold: 0.5  # この値以下でエスカレーション
@@ -171,6 +179,23 @@ monitoring:
     - "ナレッジベース更新要否判断"
     - "プロンプトチューニング"
     - "運用コスト予実管理"
+
+# --- ナレッジパイプライン設定 ---
+pipeline:
+  # 入力ディレクトリ
+  intake_dir: "intake"
+  # 並列実行数（Claude API同時呼び出し数）
+  max_concurrent: 5
+  # Whisperモデルサイズ (tiny/base/small/medium/large)
+  whisper_model: "base"
+  # Pass3 品質検証を有効にする
+  verification_enabled: true
+  # 手動レビュー判定の閾値
+  review_thresholds:
+    confidence_min: 0.6   # これ未満は手動レビュー対象
+    quality_min: 0.6      # これ未満は手動レビュー対象
+  # レポート出力先
+  report_dir: "logs/pipeline"
 
 # --- 開発フェーズ管理 ---
 phases:

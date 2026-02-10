@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>牧野生保塾 AI伴走システム - プロセスフロー図</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+            background: #f5f7fa;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+        .page-header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            padding: 32px 40px;
+        }
+        .page-header h1 { font-size: 24px; font-weight: 700; }
+        .page-header p { font-size: 14px; color: #a0aec0; margin-top: 4px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+
+        .section {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            margin-bottom: 32px;
+            overflow: hidden;
+        }
+        .section-header {
+            padding: 20px 28px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-number {
+            width: 32px; height: 32px;
+            background: #1a1a2e;
+            color: #fff;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; font-weight: 700;
+            flex-shrink: 0;
+        }
+        .section-header h2 { font-size: 18px; font-weight: 600; }
+        .section-desc {
+            font-size: 13px; color: #718096;
+            padding: 12px 28px 0;
+        }
+        .section-body { padding: 20px 28px 28px; }
+
+        .mermaid { display: flex; justify-content: center; }
+        .mermaid svg { max-width: 100%; height: auto; }
+
+        .legend {
+            display: flex; flex-wrap: wrap; gap: 16px;
+            padding: 16px 28px;
+            background: #f7fafc;
+            border-top: 1px solid #e2e8f0;
+            font-size: 13px;
+        }
+        .legend-item { display: flex; align-items: center; gap: 6px; }
+        .legend-color {
+            width: 14px; height: 14px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .file-ref {
+            font-size: 12px;
+            color: #a0aec0;
+            padding: 8px 28px 16px;
+        }
+        .file-ref code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+        }
+
+        .table-section { overflow-x: auto; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        th {
+            background: #f7fafc;
+            text-align: left;
+            padding: 10px 16px;
+            border-bottom: 2px solid #e2e8f0;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #edf2f7;
+        }
+        td code {
+            background: #edf2f7;
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 16px 12px; }
+            .section-body { padding: 12px 16px 20px; }
+            .section-header { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-header">
+    <h1>牧野生保塾 AI伴走システム - プロセスフロー図</h1>
+    <p>入力 → 処理 → 出力 → データ格納の全体フロー</p>
+</div>
+
+<div class="container">
+
+    <!-- ===== 1. 全体アーキテクチャ ===== -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-number">1</span>
+            <h2>全体アーキテクチャ概観</h2>
+        </div>
+        <p class="section-desc">システムを構成する全レイヤーと、データの流れ方向を示す。</p>
+        <div class="section-body">
+            <pre class="mermaid">
+graph TB
+    subgraph USER["👤 ユーザー（ブラウザ）"]
+        UI_MAIN["index.html<br/>スタンドアロンUI"]
+        UI_WIDGET["widget.html<br/>埋め込みウィジェット"]
+    end
+
+    subgraph FRONTEND["📱 フロントエンド（static/js/chat.js）"]
+        FREE_INPUT["自由入力<br/>（テキストエリア）"]
+        GUIDE_NAV["質問ナビ<br/>（多段階選択）"]
+        DISPLAY["チャット表示<br/>＋ フィードバックUI"]
+    end
+
+    subgraph API["⚡ FastAPI（app.py + src/api/routes.py）"]
+        EP_CHAT["POST /api/chat"]
+        EP_GUIDE["POST /api/guide/suggestions"]
+        EP_FEEDBACK["POST /api/feedback"]
+        EP_METRICS["GET /api/metrics"]
+    end
+
+    subgraph ENGINE["🧠 チャットエンジン（src/chat/engine.py）"]
+        RAG["RAG検索<br/>（src/chat/rag.py）"]
+        ESCALATION["エスカレーション判定"]
+        PROMPT_BUILD["システムプロンプト構築<br/>（src/prompts/）"]
+        CLAUDE_CALL["Claude API 呼び出し"]
+    end
+
+    subgraph DATA["💾 データ層"]
+        KNOWLEDGE[("knowledge/<br/>Markdown + YAML<br/>（ナレッジベース）")]
+        SQLITE[("SQLite<br/>conversations.db")]
+        CSV_EXPORT["CSV エクスポート<br/>（scripts/export_logs.py）"]
+    end
+
+    subgraph EXTERNAL["☁️ 外部サービス"]
+        CLAUDE_API["Anthropic Claude API"]
+    end
+
+    UI_MAIN --> FREE_INPUT
+    UI_MAIN --> GUIDE_NAV
+    UI_WIDGET --> FREE_INPUT
+    UI_WIDGET --> GUIDE_NAV
+
+    FREE_INPUT -->|"質問テキスト"| EP_CHAT
+    GUIDE_NAV -->|"構築された質問"| EP_CHAT
+    GUIDE_NAV -->|"カテゴリ情報"| EP_GUIDE
+    DISPLAY -->|"👍👎 評価"| EP_FEEDBACK
+
+    EP_CHAT --> RAG
+    EP_GUIDE -->|"軽量プロンプト"| CLAUDE_API
+
+    RAG -->|"キーワード検索"| KNOWLEDGE
+    RAG -->|"関連チャンク"| ESCALATION
+    ESCALATION -->|"OK"| PROMPT_BUILD
+    PROMPT_BUILD -->|"system + messages"| CLAUDE_CALL
+    CLAUDE_CALL -->|"API リクエスト"| CLAUDE_API
+    CLAUDE_API -->|"回答テキスト"| CLAUDE_CALL
+
+    EP_CHAT -->|"会話ログ保存"| SQLITE
+    EP_FEEDBACK -->|"フィードバック保存"| SQLITE
+    ESCALATION -->|"エスカレーション保存"| SQLITE
+
+    SQLITE -->|"定期エクスポート"| CSV_EXPORT
+
+    EP_CHAT -->|"JSON レスポンス"| DISPLAY
+    EP_GUIDE -->|"サブトピック候補"| GUIDE_NAV
+
+    style USER fill:#e8f4fd,stroke:#3182ce
+    style FRONTEND fill:#ebf8ff,stroke:#63b3ed
+    style API fill:#fefcbf,stroke:#d69e2e
+    style ENGINE fill:#fed7e2,stroke:#e53e6e
+    style DATA fill:#c6f6d5,stroke:#38a169
+    style EXTERNAL fill:#e9d8fd,stroke:#805ad5
+            </pre>
+        </div>
+        <div class="legend">
+            <div class="legend-item"><div class="legend-color" style="background:#e8f4fd;border:1px solid #3182ce"></div>ユーザー</div>
+            <div class="legend-item"><div class="legend-color" style="background:#ebf8ff;border:1px solid #63b3ed"></div>フロントエンド</div>
+            <div class="legend-item"><div class="legend-color" style="background:#fefcbf;border:1px solid #d69e2e"></div>API層</div>
+            <div class="legend-item"><div class="legend-color" style="background:#fed7e2;border:1px solid #e53e6e"></div>エンジン層</div>
+            <div class="legend-item"><div class="legend-color" style="background:#c6f6d5;border:1px solid #38a169"></div>データ層</div>
+            <div class="legend-item"><div class="legend-color" style="background:#e9d8fd;border:1px solid #805ad5"></div>外部サービス</div>
+        </div>
+    </div>
+
+    <!-- ===== 2. メインチャットフロー ===== -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-number">2</span>
+            <h2>メインチャットフロー（自由入力 → 回答表示）</h2>
+        </div>
+        <p class="section-desc">ユーザーが質問を入力してから回答が画面に表示されるまでの詳細な処理ステップ。</p>
+        <div class="section-body">
+            <pre class="mermaid">
+flowchart TD
+    A["👤 ユーザーが質問を入力"] --> B["📤 sendMessage()"]
+    B --> B1["ウェルカムメッセージ削除"]
+    B1 --> B2["ユーザーメッセージをチャットに表示"]
+    B2 --> B3["ローディングアニメーション表示"]
+    B3 --> C["POST /api/chat<br/>{ question, pattern, session_id }"]
+
+    C --> D["routes.py: chat()"]
+    D --> D1["session_id 生成<br/>（未指定時: uuid4[:8]）"]
+    D1 --> D2["get_conversation_history()<br/>SQLite から会話履歴取得"]
+    D2 --> E["engine.chat() 呼び出し"]
+
+    E --> F["RAG検索<br/>rag.search(question)"]
+    F --> F1["SimpleRAG: キーワードマッチング<br/>全チャンクをスコアリング"]
+    F1 --> F2["上位5件の SearchResult を返却"]
+
+    F2 --> G{"エスカレーション<br/>判定"}
+    G -->|"強制カテゴリ該当<br/>（コンプライアンス等）"| H["エスカレーション応答を返却"]
+    G -->|"検索結果なし"| H
+    G -->|"確信度 < 0.3"| H
+    G -->|"通常"| I["システムプロンプト構築"]
+
+    H --> H1["save_conversation()<br/>escalated=True"]
+    H1 --> H2["save_escalation()<br/>reason を記録"]
+    H2 --> H3["エスカレーションメッセージを返却"]
+
+    I --> I1["build_system_prompt(pattern, persona)"]
+    I1 --> I2["パターン別テンプレート選択<br/>（PATTERN_1〜4_SYSTEM_PROMPT）"]
+    I2 --> I3["人格パラメータ挿入<br/>（persona_config.yaml）"]
+    I3 --> I4["RAGコンテキスト追記<br/>（参照ナレッジ セクション）"]
+
+    I4 --> J["メッセージ配列構築"]
+    J --> J1["会話履歴（直近10件）を<br/>user/assistant交互に追加"]
+    J1 --> J2["今回の質問を末尾に追加"]
+
+    J2 --> K["☁️ Claude API 呼び出し<br/>client.messages.create()"]
+    K --> K1["model: claude-sonnet-4-5<br/>max_tokens: 4096<br/>system: システムプロンプト<br/>messages: メッセージ配列"]
+
+    K1 --> L["レスポンス処理"]
+    L --> L1["answer = response.content[0].text"]
+    L1 --> L2["tokens_used = input + output tokens"]
+    L2 --> L3["confidence = RAGスコア平均値"]
+    L3 --> L4["category = キーワード簡易分類"]
+
+    L4 --> M["save_conversation()<br/>SQLite conversations テーブル"]
+    M --> N["ChatResponse を返却"]
+
+    N --> O["JSON レスポンス → フロントエンド"]
+    O --> P["ローディング除去"]
+    P --> Q["appendMessage('assistant', answer)"]
+    Q --> Q1["回答バブル表示"]
+    Q1 --> Q2["出典表示（details/summary）"]
+    Q2 --> Q3["フィードバックボタン表示<br/>（👍👎）"]
+
+    H3 --> O
+
+    style A fill:#e8f4fd,stroke:#3182ce
+    style K fill:#e9d8fd,stroke:#805ad5
+    style K1 fill:#e9d8fd,stroke:#805ad5
+    style M fill:#c6f6d5,stroke:#38a169
+    style H1 fill:#c6f6d5,stroke:#38a169
+    style H2 fill:#c6f6d5,stroke:#38a169
+    style G fill:#fefcbf,stroke:#d69e2e
+    style Q1 fill:#ebf8ff,stroke:#63b3ed
+    style Q2 fill:#ebf8ff,stroke:#63b3ed
+    style Q3 fill:#ebf8ff,stroke:#63b3ed
+            </pre>
+        </div>
+        <div class="file-ref">
+            関連ファイル:
+            <code>static/js/chat.js</code>
+            <code>src/api/routes.py</code>
+            <code>src/chat/engine.py</code>
+            <code>src/chat/rag.py</code>
+            <code>src/prompts/system_prompts.py</code>
+            <code>src/database/operations.py</code>
+        </div>
+    </div>
+
+    <!-- ===== 3. 質問ナビフロー ===== -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-number">3</span>
+            <h2>質問ナビフロー（ガイド付き入力 → 質問生成）</h2>
+        </div>
+        <p class="section-desc">質問ナビの3ステップで質問が組み立てられ、最終的にメインチャットフローに合流する流れ。</p>
+        <div class="section-body">
+            <pre class="mermaid">
+flowchart TD
+    START["👤 ユーザーが<br/>? ボタンをクリック"] --> OPEN["toggleGuide() → openGuide()"]
+    OPEN --> CHECK{"patternSelect<br/>の値は？"}
+
+    CHECK -->|"Pattern 4<br/>（励まし）"| P4MSG["「自由にお気持ちを<br/>お聞かせください」表示"]
+
+    CHECK -->|"Pattern 1〜3"| STEP0
+
+    subgraph STEP0_BOX["Step 0: カテゴリ選択（静的）"]
+        STEP0["GUIDE_CATEGORIES[pattern]<br/>からカテゴリ一覧表示"]
+        STEP0 --> CAT_BTN["ユーザーがカテゴリを<br/>ボタンで選択"]
+    end
+
+    CAT_BTN --> STEP1
+
+    subgraph STEP1_BOX["Step 1: サブトピック選択（ハイブリッド）"]
+        STEP1["静的サブカテゴリ<br/>を即時表示"]
+        STEP1 --> AI_FETCH["fetchAiSuggestions()<br/>非同期で実行"]
+        AI_FETCH --> API_CALL["POST /api/guide/suggestions<br/>{ pattern, category }"]
+        API_CALL --> CLAUDE_GUIDE["☁️ Claude API<br/>サブトピック6件生成"]
+        CLAUDE_GUIDE --> AI_OK{"AI生成<br/>成功？"}
+        AI_OK -->|"成功"| REPLACE["AI生成の選択肢で<br/>パネルを再描画"]
+        AI_OK -->|"失敗"| FALLBACK["静的サブカテゴリ<br/>のまま維持"]
+        REPLACE --> SUB_SELECT["ユーザーがサブトピック選択"]
+        FALLBACK --> SUB_SELECT
+    end
+
+    SUB_SELECT --> STEP2
+
+    subgraph STEP2_BOX["Step 2: 確認 + 補足 + 送信"]
+        STEP2["サマリー表示<br/>テーマ › サブトピック"]
+        STEP2 --> FREE["補足テキスト入力<br/>（任意）"]
+        FREE --> SUBMIT["「この内容で質問する」<br/>ボタンをクリック"]
+    end
+
+    SUBMIT --> BUILD["buildGuideQuestion()"]
+    BUILD --> BUILD_Q{"補足テキスト<br/>あり？"}
+    BUILD_Q -->|"あり"| Q_WITH["「{カテゴリ}の{サブ}に<br/>ついて質問です。{補足}」"]
+    BUILD_Q -->|"なし"| Q_WITHOUT["「{カテゴリ}の{サブ}に<br/>ついて教えてください。」"]
+
+    Q_WITH --> SEND["sendMessage(question)<br/>→ メインチャットフローへ合流"]
+    Q_WITHOUT --> SEND
+
+    SEND --> CLOSE["closeGuide()<br/>ガイドパネルを閉じる"]
+
+    style START fill:#e8f4fd,stroke:#3182ce
+    style STEP0_BOX fill:#fff5f5,stroke:#fc8181,stroke-width:2px
+    style STEP1_BOX fill:#fffff0,stroke:#ecc94b,stroke-width:2px
+    style STEP2_BOX fill:#f0fff4,stroke:#68d391,stroke-width:2px
+    style CLAUDE_GUIDE fill:#e9d8fd,stroke:#805ad5
+    style SEND fill:#fefcbf,stroke:#d69e2e
+            </pre>
+        </div>
+        <div class="file-ref">
+            関連ファイル:
+            <code>static/js/chat.js</code>（GUIDE_CATEGORIES, renderGuideStep, fetchAiSuggestions, buildGuideQuestion）
+            <code>src/api/routes.py</code>（guide_suggestions エンドポイント）
+        </div>
+    </div>
+
+    <!-- ===== 4. データフロー ===== -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-number">4</span>
+            <h2>データフロー（SQLite 書き込み・読み取り）</h2>
+        </div>
+        <p class="section-desc">どのアクションがどのテーブルにデータを書き込み、どこから読み取るかの全体像。</p>
+        <div class="section-body">
+            <pre class="mermaid">
+flowchart LR
+    subgraph WRITE["✏️ 書き込み"]
+        W1["POST /api/chat"]
+        W2["POST /api/feedback"]
+        W3["エスカレーション判定"]
+    end
+
+    subgraph SQLITE["💾 SQLite（conversations.db）"]
+        T1[("conversations<br/>───────────<br/>id, timestamp<br/>session_id, user_id<br/>bot_pattern<br/>question, answer<br/>sources_used<br/>confidence<br/>escalated, category<br/>tokens_used")]
+        T2[("feedback<br/>───────────<br/>id, conversation_id<br/>timestamp<br/>rating (good/bad)<br/>comment")]
+        T3[("escalations<br/>───────────<br/>id, conversation_id<br/>timestamp, reason<br/>status, assigned_to<br/>resolution<br/>resolved_at")]
+        T4[("knowledge_updates<br/>───────────<br/>id, timestamp<br/>file_path, action<br/>commit_hash<br/>description")]
+    end
+
+    subgraph READ["📖 読み取り"]
+        R1["GET /api/metrics"]
+        R2["GET /api/metrics/patterns"]
+        R3["会話履歴取得<br/>（セッション継続時）"]
+        R4["scripts/export_logs.py<br/>→ CSV エクスポート"]
+    end
+
+    W1 -->|"save_conversation()"| T1
+    W2 -->|"save_feedback()"| T2
+    W3 -->|"save_escalation()"| T3
+
+    T1 --> R1
+    T2 --> R1
+    T1 --> R2
+    T1 --> R3
+    T1 --> R4
+    T2 --> R4
+
+    style WRITE fill:#fed7e2,stroke:#e53e6e
+    style SQLITE fill:#c6f6d5,stroke:#38a169
+    style READ fill:#ebf8ff,stroke:#63b3ed
+            </pre>
+        </div>
+    </div>
+
+    <!-- ===== 5. RAG処理の詳細 ===== -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-number">5</span>
+            <h2>RAG処理（ナレッジベース → コンテキスト生成）</h2>
+        </div>
+        <p class="section-desc">MarkdownナレッジベースがRAG検索でどう処理され、Claude APIに渡されるまで。</p>
+        <div class="section-body">
+            <pre class="mermaid">
+flowchart TD
+    subgraph INIT["🔄 起動時（1回のみ）"]
+        KB["knowledge/ ディレクトリ<br/>（Markdown + YAML frontmatter）"]
+        KB --> LOAD["KnowledgeLoader.load_all()"]
+        LOAD --> SCAN["*.md を再帰スキャン"]
+        SCAN --> PARSE["各ファイルを処理"]
+        PARSE --> META["フロントマター抽出<br/>（YAML メタデータ）"]
+        META --> SPLIT["セクション分割<br/>（## 見出し単位）"]
+        SPLIT --> CHUNK["チャンク分割<br/>（500文字、50文字オーバーラップ）"]
+        CHUNK --> STORE["KnowledgeChunk リスト<br/>をメモリに保持"]
+        STORE --> RAG_INIT["SimpleRAG(chunks)<br/>初期化完了"]
+    end
+
+    subgraph SEARCH["🔍 質問ごと（毎回）"]
+        QUERY["ユーザーの質問テキスト"]
+        QUERY --> TERMS["クエリをトークン分割<br/>（スペース区切り lowercase）"]
+        TERMS --> SCORE["全チャンクに対して<br/>キーワードマッチングスコア算出"]
+        SCORE --> SORT["スコア降順ソート"]
+        SORT --> TOP5["上位5件を SearchResult として返却"]
+    end
+
+    subgraph FORMAT["📝 コンテキスト整形"]
+        TOP5 --> FMT["format_context()"]
+        FMT --> CTX["【参照1】出典: xxx.md<br/>（チャンク内容）<br/>───<br/>【参照2】出典: yyy.md<br/>（チャンク内容）"]
+        CTX --> INJECT["システムプロンプトの<br/>「## 参照ナレッジ」<br/>セクションに追記"]
+    end
+
+    TOP5 --> SRC["get_sources()"]
+    SRC --> SRC_LIST["出典ファイル名リスト<br/>（重複除去済み）"]
+    SRC_LIST --> RESP["ChatResponse.sources<br/>→ フロントエンドの出典表示"]
+
+    TOP5 --> CONF["_estimate_confidence()"]
+    CONF --> CONF_VAL["平均スコア<br/>= 確信度（0.0〜1.0）"]
+
+    style INIT fill:#f0fff4,stroke:#38a169,stroke-width:2px
+    style SEARCH fill:#fffff0,stroke:#ecc94b,stroke-width:2px
+    style FORMAT fill:#ebf8ff,stroke:#63b3ed,stroke-width:2px
+            </pre>
+        </div>
+        <div class="file-ref">
+            関連ファイル:
+            <code>src/chat/rag.py</code>（KnowledgeLoader, SimpleRAG）
+            <code>knowledge/</code>（ナレッジMarkdownファイル群）
+        </div>
+    </div>
+
+    <!-- ===== 6. フィードバック＆メトリクス ===== -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-number">6</span>
+            <h2>フィードバック → KPI メトリクス → CSV エクスポート</h2>
+        </div>
+        <p class="section-desc">ユーザー評価の記録から、KPI集計、定期エクスポートまでのデータ活用フロー。</p>
+        <div class="section-body">
+            <pre class="mermaid">
+flowchart LR
+    FB_BTN["👍 / 👎<br/>フィードバックボタン"] --> FB_POST["POST /api/feedback<br/>{ conversation_id, rating }"]
+    FB_POST --> FB_SAVE["save_feedback()<br/>→ feedback テーブル"]
+
+    FB_SAVE --> METRICS
+    CONV_SAVE["conversations テーブル<br/>（チャット時に自動保存）"] --> METRICS
+
+    subgraph METRICS["📊 KPI集計（GET /api/metrics）"]
+        M1["total_questions<br/>総質問数"]
+        M2["answer_success_rate<br/>自力回答率"]
+        M3["average_confidence<br/>平均確信度"]
+        M4["escalation_count / rate<br/>エスカレーション数・率"]
+        M5["user_satisfaction<br/>ユーザー満足度"]
+    end
+
+    CONV_SAVE --> PATTERN_M
+    subgraph PATTERN_M["📊 パターン別集計"]
+        PM1["GET /api/metrics/patterns"]
+        PM1 --> PM2["Pattern 1〜4 ごとの<br/>件数・確信度・エスカレ率"]
+    end
+
+    CONV_SAVE --> EXPORT
+    FB_SAVE --> EXPORT
+    subgraph EXPORT["📤 CSV エクスポート"]
+        EX1["scripts/export_logs.py"]
+        EX1 --> EX2["conversations + feedback<br/>を LEFT JOIN"]
+        EX2 --> EX3["logs/exports/<br/>conversations_YYYYMMDD.csv"]
+    end
+
+    style FB_BTN fill:#e8f4fd,stroke:#3182ce
+    style METRICS fill:#fefcbf,stroke:#d69e2e,stroke-width:2px
+    style PATTERN_M fill:#fefcbf,stroke:#d69e2e,stroke-width:2px
+    style EXPORT fill:#c6f6d5,stroke:#38a169,stroke-width:2px
+            </pre>
+        </div>
+    </div>
+
+    <!-- ===== 7. ファイル対応表 ===== -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-number">7</span>
+            <h2>ファイル × 処理ステップ 対応表</h2>
+        </div>
+        <div class="section-body table-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>処理ステップ</th>
+                        <th>担当ファイル</th>
+                        <th>主要関数 / クラス</th>
+                        <th>入力</th>
+                        <th>出力</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>UI表示・入力受付</td>
+                        <td><code>templates/index.html</code><br/><code>static/js/chat.js</code></td>
+                        <td><code>sendMessage()</code></td>
+                        <td>ユーザー入力テキスト</td>
+                        <td>POST /api/chat リクエスト</td>
+                    </tr>
+                    <tr>
+                        <td>質問ナビ（フロント）</td>
+                        <td><code>static/js/chat.js</code></td>
+                        <td><code>renderGuideStep()</code><br/><code>buildGuideQuestion()</code></td>
+                        <td>カテゴリ・サブトピック選択</td>
+                        <td>構築された質問テキスト</td>
+                    </tr>
+                    <tr>
+                        <td>質問ナビ（AI生成）</td>
+                        <td><code>src/api/routes.py</code></td>
+                        <td><code>guide_suggestions()</code></td>
+                        <td>pattern, category</td>
+                        <td>suggestions[]（サブトピック候補）</td>
+                    </tr>
+                    <tr>
+                        <td>API受付・バリデーション</td>
+                        <td><code>src/api/routes.py</code></td>
+                        <td><code>chat()</code></td>
+                        <td>ChatRequest（question, pattern, session_id）</td>
+                        <td>ChatResponseModel</td>
+                    </tr>
+                    <tr>
+                        <td>会話履歴取得</td>
+                        <td><code>src/database/operations.py</code></td>
+                        <td><code>get_conversation_history()</code></td>
+                        <td>session_id</td>
+                        <td>直近20件の Q&A リスト</td>
+                    </tr>
+                    <tr>
+                        <td>RAG検索</td>
+                        <td><code>src/chat/rag.py</code></td>
+                        <td><code>SimpleRAG.search()</code></td>
+                        <td>質問テキスト</td>
+                        <td>SearchResult × 5（スコア付き）</td>
+                    </tr>
+                    <tr>
+                        <td>エスカレーション判定</td>
+                        <td><code>src/chat/engine.py</code></td>
+                        <td><code>_check_escalation()</code></td>
+                        <td>質問 + 検索結果</td>
+                        <td>(should_escalate, reason)</td>
+                    </tr>
+                    <tr>
+                        <td>プロンプト構築</td>
+                        <td><code>src/prompts/system_prompts.py</code></td>
+                        <td><code>build_system_prompt()</code></td>
+                        <td>pattern, persona_config</td>
+                        <td>完成したシステムプロンプト文字列</td>
+                    </tr>
+                    <tr>
+                        <td>Claude API呼び出し</td>
+                        <td><code>src/chat/engine.py</code></td>
+                        <td><code>client.messages.create()</code></td>
+                        <td>system + messages + model + max_tokens</td>
+                        <td>回答テキスト + トークン使用量</td>
+                    </tr>
+                    <tr>
+                        <td>DB保存</td>
+                        <td><code>src/database/operations.py</code></td>
+                        <td><code>save_conversation()</code><br/><code>save_feedback()</code><br/><code>save_escalation()</code></td>
+                        <td>各種データ</td>
+                        <td>レコードID</td>
+                    </tr>
+                    <tr>
+                        <td>KPI集計</td>
+                        <td><code>src/database/operations.py</code></td>
+                        <td><code>calculate_metrics()</code></td>
+                        <td>日付範囲（任意）</td>
+                        <td>回答率・確信度・エスカレ率・満足度</td>
+                    </tr>
+                    <tr>
+                        <td>CSVエクスポート</td>
+                        <td><code>scripts/export_logs.py</code></td>
+                        <td><code>export_to_csv()</code></td>
+                        <td>SQLiteデータ</td>
+                        <td>logs/exports/xxx.csv</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+        startOnLoad: true,
+        theme: 'default',
+        flowchart: {
+            useMaxWidth: true,
+            htmlLabels: true,
+            curve: 'basis',
+            padding: 16,
+            nodeSpacing: 30,
+            rankSpacing: 40,
+        },
+        themeVariables: {
+            fontFamily: '"Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif',
+            fontSize: '13px',
+        },
+    });
+</script>
+
+</body>
+</html>

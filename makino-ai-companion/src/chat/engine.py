@@ -13,6 +13,7 @@ from typing import Optional
 import anthropic
 
 from src.chat.rag import KnowledgeLoader, SearchResult, SimpleRAG
+from src.chat.vector_rag import create_rag
 from src.prompts.system_prompts import build_system_prompt
 from src.prompts.persona_config import PersonaConfig, load_persona_config
 
@@ -46,6 +47,8 @@ class ChatEngine:
         knowledge_dir: str = "knowledge",
         config_path: Optional[str] = None,
         max_tokens: int = 4096,
+        vector_index_path: Optional[str] = None,
+        use_vector_rag: bool = True,
     ) -> None:
         self.client = anthropic.Anthropic(api_key=api_key)
         self.model = model
@@ -57,11 +60,16 @@ class ChatEngine:
         # ナレッジベース読み込み & RAGセットアップ
         loader = KnowledgeLoader(knowledge_dir)
         chunks = loader.load_all()
-        self.rag = SimpleRAG(chunks)
+        self.rag = create_rag(
+            chunks=chunks,
+            index_path=vector_index_path,
+            use_vector=use_vector_rag,
+        )
 
+        rag_type = type(self.rag).__name__
         logger.info(
             f"ChatEngine初期化完了: model={model}, "
-            f"ナレッジ={len(chunks)}チャンク"
+            f"RAG={rag_type}, ナレッジ={len(chunks)}チャンク"
         )
 
     # エスカレーション必須カテゴリ
@@ -78,6 +86,7 @@ class ChatEngine:
         pattern: int = 1,
         conversation_history: Optional[list[dict]] = None,
         temperature: Optional[float] = None,
+        user_profile_context: Optional[str] = None,
     ) -> ChatResponse:
         """質問に対して回答を生成する。
 
@@ -86,6 +95,7 @@ class ChatEngine:
             pattern: エージェントパターン番号 (1-4)
             conversation_history: 過去の会話履歴
             temperature: 生成温度（省略時はパターンのデフォルト）
+            user_profile_context: ユーザープロファイルのプロンプト注入テキスト
 
         Returns:
             ChatResponse
@@ -117,6 +127,10 @@ class ChatEngine:
         # システムプロンプト構築
         system_prompt = build_system_prompt(pattern, self.persona)
         system_prompt += f"\n\n## 参照ナレッジ\n{context}"
+
+        # ユーザープロファイル注入（パーソナライズ）
+        if user_profile_context:
+            system_prompt += f"\n\n{user_profile_context}"
 
         # メッセージ構築
         messages: list[dict] = []

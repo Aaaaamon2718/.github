@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>牧野生保塾 AI伴走システム - UIプレビュー</title>
+    <style>
+        :root {
+            --primary: #1a56db;
+            --primary-light: #e8eefb;
+            --primary-dark: #0f3a8e;
+            --bg: #f8f9fb;
+            --bg-white: #ffffff;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --radius: 12px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .app-container {
+            display: flex; flex-direction: column; height: 100vh;
+            max-width: 800px; margin: 0 auto; background: var(--bg-white);
+        }
+        .app-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 24px; background: var(--primary); color: white; flex-shrink: 0;
+        }
+        .app-title { font-size: 18px; font-weight: 600; letter-spacing: 0.02em; }
+        .pattern-selector select {
+            padding: 6px 12px; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px;
+            background: rgba(255,255,255,0.15); color: white; font-size: 13px; cursor: pointer;
+        }
+        .pattern-selector select option { color: #1f2937; background: white; }
+        .chat-area {
+            flex: 1; overflow-y: auto; padding: 24px;
+            display: flex; flex-direction: column; gap: 16px;
+        }
+        .welcome-message { text-align: center; padding: 40px 20px; color: var(--text-light); }
+        .welcome-icon { font-size: 48px; margin-bottom: 16px; }
+        .welcome-text { font-size: 16px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+        .welcome-sub { font-size: 14px; color: var(--text-light); }
+        .message { max-width: 85%; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .message--user { align-self: flex-end; }
+        .message--assistant { align-self: flex-start; }
+        .message-bubble {
+            padding: 12px 16px; border-radius: var(--radius);
+            font-size: 14px; line-height: 1.7; word-break: break-word;
+        }
+        .message--user .message-bubble {
+            background: var(--primary); color: white; border-bottom-right-radius: 4px;
+        }
+        .message--assistant .message-bubble {
+            background: var(--primary-light); color: var(--text); border-bottom-left-radius: 4px;
+        }
+        .message-sources {
+            margin-top: 8px; padding: 8px 12px; background: var(--bg);
+            border-radius: 8px; font-size: 12px; color: var(--text-light);
+        }
+        .message-sources summary { cursor: pointer; font-weight: 500; }
+        .message-sources ul { margin-top: 4px; padding-left: 16px; }
+        .message-feedback { display: flex; gap: 8px; margin-top: 8px; }
+        .feedback-btn {
+            padding: 4px 12px; border: 1px solid var(--border); border-radius: 16px;
+            background: var(--bg-white); font-size: 12px; cursor: pointer; transition: all 0.2s;
+        }
+        .feedback-btn:hover { background: var(--primary-light); border-color: var(--primary); }
+        .feedback-btn--active { background: var(--primary); color: white; border-color: var(--primary); }
+        .input-area {
+            padding: 16px 24px; border-top: 1px solid var(--border);
+            background: var(--bg-white); flex-shrink: 0;
+        }
+        .input-wrapper {
+            display: flex; align-items: flex-end; gap: 8px;
+            background: var(--bg); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 8px 12px; transition: border-color 0.2s;
+        }
+        .input-wrapper:focus-within { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26,86,219,0.1); }
+        #questionInput {
+            flex: 1; border: none; outline: none; background: transparent;
+            font-size: 14px; line-height: 1.5; resize: none; max-height: 120px;
+            font-family: inherit; color: var(--text);
+        }
+        #questionInput::placeholder { color: var(--text-light); }
+        .send-button {
+            width: 36px; height: 36px; border: none; border-radius: 8px;
+            background: var(--primary); color: white; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s; flex-shrink: 0;
+        }
+        .send-button:disabled { background: var(--border); cursor: not-allowed; }
+        .send-button:not(:disabled):hover { background: var(--primary-dark); }
+        .guide-toggle {
+            width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 8px;
+            background: var(--bg-white); color: var(--text-light); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s; flex-shrink: 0;
+        }
+        .guide-toggle:hover { background: var(--primary-light); border-color: var(--primary); color: var(--primary); }
+        @media (max-width: 640px) {
+            .app-header { padding: 12px 16px; }
+            .chat-area { padding: 16px; }
+            .input-area { padding: 12px 16px; }
+            .message { max-width: 92%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1 class="app-title">牧野生保塾 AI伴走システム</h1>
+            <div class="pattern-selector">
+                <select id="patternSelect">
+                    <option value="1">質問対応（汎用）</option>
+                    <option value="2">ドクターマーケット特化</option>
+                    <option value="3">法人保険特化</option>
+                    <option value="4" selected>励まし・メンタリング</option>
+                </select>
+            </div>
+        </header>
+
+        <main class="chat-area" id="chatArea">
+            <!-- デモ会話 -->
+            <div class="message message--user">
+                <div class="message-bubble">契約が取れなくて辛いです。どうすればいいですか？</div>
+            </div>
+
+            <div class="message message--assistant">
+                <div class="message-bubble">
+                    その気持ち、よく分かります。私も全く売れない時期がありました。ソニー生命に入社した当初、契約ゼロが続き、退職を考えるほど追い込まれた経験があります。<br><br>
+                    大切なのは<strong>「誰にでもできることを、だれにも負けないほどやる」</strong>ことです。<br><br>
+                    今は種まきの時期です。必ず芽が出ると信じて、目の前のお客様に全力で向き合いましょう。<br><br>
+                    具体的には：<br>
+                    ・毎日3件のアポイントを取る習慣をつける<br>
+                    ・既存のお客様への定期フォローを欠かさない<br>
+                    ・成功している先輩のやり方を徹底的に真似る<br><br>
+                    過去と他人は変えられないが、<strong>未来と自分は変えられる</strong>。今日からできることに集中しましょう。
+                </div>
+                <details class="message-sources">
+                    <summary>参考資料 (1件)</summary>
+                    <ul><li>営業マインド - 契約が取れない時期の乗り越え方</li></ul>
+                </details>
+                <div class="message-feedback">
+                    <button class="feedback-btn feedback-btn--active">&#x1F44D; 役に立った</button>
+                    <button class="feedback-btn">&#x1F44E; 改善希望</button>
+                </div>
+            </div>
+
+            <div class="message message--user">
+                <div class="message-bubble">ドクターマーケットの開拓方法を教えてください</div>
+            </div>
+
+            <div class="message message--assistant">
+                <div class="message-bubble">
+                    ドクターマーケットは非常に有望な市場です。医師は高収入であり、節税ニーズも高いため、適切なアプローチができれば大きな成果につながります。<br><br>
+                    <strong>開拓の3つのポイント：</strong><br><br>
+                    1. <strong>信頼構築から始める</strong><br>
+                    いきなり保険の話をしない。まず医師の課題（経営、相続、資産運用）に関心を持ち、情報提供者としての信頼を得る。<br><br>
+                    2. <strong>専門知識を武装する</strong><br>
+                    医療法人の税制、MS法人の活用、退職金準備など、医師特有のニーズを深く理解する。<br><br>
+                    3. <strong>紹介の連鎖を作る</strong><br>
+                    一人の医師との関係が深まれば、同僚・知人の紹介につながる。医師会やゴルフコンペなどのコミュニティも活用する。
+                </div>
+                <details class="message-sources">
+                    <summary>参考資料 (2件)</summary>
+                    <ul>
+                        <li>ドクターマーケット - 開業医向け営業戦略</li>
+                        <li>法人保険 - 医療法人の節税スキーム</li>
+                    </ul>
+                </details>
+                <div class="message-feedback">
+                    <button class="feedback-btn">&#x1F44D; 役に立った</button>
+                    <button class="feedback-btn">&#x1F44E; 改善希望</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="input-area">
+            <div class="input-wrapper">
+                <textarea id="questionInput" placeholder="質問を入力してください..." rows="1" maxlength="5000"></textarea>
+                <button class="guide-toggle" title="質問ナビ">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                </button>
+                <button class="send-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 2L11 13"></path>
+                        <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+                    </svg>
+                </button>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
