@@ -1,16 +1,42 @@
 """RAG（Retrieval-Augmented Generation）エンジン。
 
 GitHubリポジトリ内のナレッジベース（Markdownファイル）を読み込み、
-ベクトル検索で関連情報を取得する。
+パターン別フィルタリング付きで関連情報を検索する。
+
+ナレッジディレクトリ構造:
+    knowledge/
+    ├── general/      パターン1: 生保全般 Q&A
+    ├── doctor/       パターン2: ドクターマーケット特化
+    ├── corporate/    パターン3: 法人保険特化
+    ├── mentoring/    パターン4: 励まし・メンタリング
+    └── shared/       全パターン共通
 """
 
 import logging
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
 
 logger = logging.getLogger(__name__)
+
+# ディレクトリ名 → パターンID のマッピング
+PATTERN_DIR_MAP: dict[str, list[int]] = {
+    "general": [1],
+    "doctor": [2],
+    "corporate": [3],
+    "mentoring": [4],
+    "shared": [1, 2, 3, 4],
+}
+
+# ディレクトリ名 → カテゴリ表示名
+DIR_TO_CATEGORY: dict[str, str] = {
+    "general": "生保全般",
+    "doctor": "ドクターマーケット",
+    "corporate": "法人保険",
+    "mentoring": "メンタリング",
+    "shared": "共通",
+}
 
 
 @dataclass
@@ -21,6 +47,7 @@ class KnowledgeChunk:
     source_file: str
     category: str
     metadata: dict
+    pattern_ids: list[int] = field(default_factory=list)
 
 
 @dataclass
@@ -69,6 +96,7 @@ class KnowledgeLoader:
 
         metadata = self._extract_metadata(content)
         category = self._infer_category(file_path)
+        pattern_ids = self._infer_pattern_ids(file_path)
 
         sections = self._split_by_sections(content)
         chunks: list[KnowledgeChunk] = []
@@ -82,6 +110,7 @@ class KnowledgeLoader:
                         source_file=str(file_path.relative_to(self.knowledge_dir)),
                         category=category,
                         metadata=metadata,
+                        pattern_ids=pattern_ids,
                     ))
 
         return chunks
@@ -101,7 +130,6 @@ class KnowledgeLoader:
         while start < len(text):
             end = start + self.chunk_size
             if end < len(text):
-                # 文の途中で切れないよう、最後の句読点で区切る
                 last_period = text.rfind("。", start, end)
                 if last_period > start:
                     end = last_period + 1
@@ -124,36 +152,51 @@ class KnowledgeLoader:
         """ファイルパスからカテゴリを推定する。"""
         parts = file_path.relative_to(self.knowledge_dir).parts
         if parts:
-            dir_to_category = {
-                "seminars": "牧野生保塾",
-                "trainings": "研修",
-                "qa": "Q&A",
-                "articles": "記事",
-                "sales_tools": "営業ツール",
-            }
-            return dir_to_category.get(parts[0], parts[0])
+            return DIR_TO_CATEGORY.get(parts[0], parts[0])
         return "未分類"
+
+    def _infer_pattern_ids(self, file_path: Path) -> list[int]:
+        """ファイルパスから対応するパターンIDリストを推定する。
+
+        未知のディレクトリ配下のファイルは全パターンから参照可能とする。
+        """
+        parts = file_path.relative_to(self.knowledge_dir).parts
+        if parts:
+            return PATTERN_DIR_MAP.get(parts[0], [1, 2, 3, 4])
+        return [1, 2, 3, 4]
 
 
 class SimpleRAG:
-    """シンプルなキーワードベースRAG。
-
-    本番ではFAISSベクトル検索に置き換えるが、
-    PoC段階ではキーワードマッチングで動作させる。
-    """
+    """シンプルなキーワードベースRAG。"""
 
     def __init__(self, chunks: list[KnowledgeChunk]) -> None:
         self.chunks = chunks
 
-    def search(self, query: str, top_k: int = 5) -> list[SearchResult]:
-        """クエリに関連するチャンクを検索する。"""
-        scored: list[tuple[float, KnowledgeChunk]] = []
+    def search(
+        self,
+        query: str,
+        top_k: int = 5,
+        pattern: Optional[int] = None,
+    ) -> list[SearchResult]:
+        """クエリに関連するチャンクを検索する。
 
+        Args:
+            query: 検索クエリ文字列
+            top_k: 返却する最大件数
+            pattern: パターン番号でフィルタ（Noneなら全検索）
+        """
+        if pattern is not None:
+            search_chunks = [
+                c for c in self.chunks if pattern in c.pattern_ids
+            ]
+        else:
+            search_chunks = self.chunks
+
+        scored: list[tuple[float, KnowledgeChunk]] = []
         query_terms = set(query.lower().split())
 
-        for chunk in self.chunks:
+        for chunk in search_chunks:
             content_lower = chunk.content.lower()
-            # 単純なキーワードマッチングスコア
             score = sum(1 for term in query_terms if term in content_lower)
             if score > 0:
                 scored.append((score / len(query_terms), chunk))
