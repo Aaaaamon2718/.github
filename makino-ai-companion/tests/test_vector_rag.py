@@ -19,21 +19,24 @@ def sample_chunks() -> list[KnowledgeChunk]:
     return [
         KnowledgeChunk(
             content="赤字決算の社長へのアプローチ。赤字の会社こそ保障が必要です。",
-            source_file="qa/sample.md",
-            category="Q&A",
+            source_file="corporate/financial.md",
+            category="法人保険",
             metadata={"category": "法人保険"},
+            pattern_ids=[3],
         ),
         KnowledgeChunk(
             content="ドクターマーケットの開拓方法。医師には信頼関係が何より大事。",
-            source_file="qa/doctor.md",
-            category="Q&A",
+            source_file="doctor/approach.md",
+            category="ドクターマーケット",
             metadata={"category": "ドクターマーケット"},
+            pattern_ids=[2],
         ),
         KnowledgeChunk(
             content="営業の心構え。誰にでもできることを、だれにも負けないほどやる。",
-            source_file="seminars/vol1.md",
-            category="牧野生保塾",
+            source_file="shared/quotes.md",
+            category="共通",
             metadata={"category": "営業マインド"},
+            pattern_ids=[1, 2, 3, 4],
         ),
     ]
 
@@ -234,6 +237,80 @@ class TestVectorRAG:
         rag.chunks = sample_chunks[:1]
         rag.rebuild_index()
         assert rag.index.ntotal == 1
+
+    def test_search_pattern_filter(
+        self, sample_chunks: list[KnowledgeChunk], mock_embedding: MagicMock
+    ) -> None:
+        """パターン指定で正しくフィルタされること。"""
+        from src.chat.vector_rag import VectorRAG
+
+        rag = VectorRAG(
+            chunks=sample_chunks,
+            embedding_model=mock_embedding,
+            similarity_threshold=0.0,
+        )
+        # パターン3（法人保険）で検索 → corporate + shared のみ
+        results = rag.search("保険", top_k=5, pattern=3)
+        for r in results:
+            assert 3 in r.chunk.pattern_ids
+
+    def test_search_pattern_excludes_other(
+        self, sample_chunks: list[KnowledgeChunk], mock_embedding: MagicMock
+    ) -> None:
+        """パターン指定で他パターン専用チャンクが除外されること。"""
+        from src.chat.vector_rag import VectorRAG
+
+        rag = VectorRAG(
+            chunks=sample_chunks,
+            embedding_model=mock_embedding,
+            similarity_threshold=0.0,
+        )
+        # パターン1で検索 → doctor(pattern=2), corporate(pattern=3) は除外
+        results = rag.search("保険", top_k=5, pattern=1)
+        for r in results:
+            assert "doctor" not in r.chunk.source_file
+            assert "corporate" not in r.chunk.source_file
+
+    def test_search_no_pattern_returns_all(
+        self, sample_chunks: list[KnowledgeChunk], mock_embedding: MagicMock
+    ) -> None:
+        """パターンなしで全チャンクが返ること。"""
+        from src.chat.vector_rag import VectorRAG
+
+        rag = VectorRAG(
+            chunks=sample_chunks,
+            embedding_model=mock_embedding,
+            similarity_threshold=0.0,
+        )
+        results = rag.search("保険", top_k=5)
+        assert len(results) == 3  # 全3チャンク
+
+    def test_save_load_preserves_pattern_ids(
+        self,
+        sample_chunks: list[KnowledgeChunk],
+        mock_embedding: MagicMock,
+        tmp_path: Path,
+    ) -> None:
+        """保存・読み込みでpattern_idsが保持されること。"""
+        from src.chat.vector_rag import VectorRAG
+
+        index_path = tmp_path / "test_index"
+        VectorRAG(
+            chunks=sample_chunks,
+            embedding_model=mock_embedding,
+            index_path=index_path,
+            similarity_threshold=0.0,
+        )
+
+        rag2 = VectorRAG(
+            chunks=[],
+            embedding_model=mock_embedding,
+            index_path=index_path,
+            similarity_threshold=0.0,
+        )
+        assert rag2.chunks[0].pattern_ids == [3]
+        assert rag2.chunks[1].pattern_ids == [2]
+        assert rag2.chunks[2].pattern_ids == [1, 2, 3, 4]
 
 
 class TestCreateRag:

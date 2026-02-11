@@ -3,16 +3,25 @@
 このディレクトリにAI伴走システムの学習データを格納する。
 全データはGitHubで管理され、変更履歴の追跡・ロールバックが可能。
 
-## ディレクトリ構成
+## ディレクトリ構成（パターン別）
 
 ```
 knowledge/
-├── seminars/       # 牧野生保塾 過去講義の文字起こし
-├── trainings/      # 各種研修データ（ドクター研修、法人研修等）
-├── qa/             # 過去の質問・回答ペア
-├── articles/       # メルマガ・ニュースレター・書籍
-└── sales_tools/    # 営業トーク集・プレゼン資料
+├── general/      # パターン1: 生保全般 Q&A
+├── doctor/       # パターン2: ドクターマーケット特化
+├── corporate/    # パターン3: 法人保険特化
+├── mentoring/    # パターン4: 励まし・メンタリング
+└── shared/       # 全パターン共通（牧野語録、基本マインド等）
 ```
+
+### パターン × ディレクトリのマッピング
+
+| パターン | 検索対象 |
+|---------|---------|
+| 1: 生保全般 Q&A | `general/` + `shared/` |
+| 2: ドクター特化 | `doctor/` + `shared/` |
+| 3: 法人保険特化 | `corporate/` + `shared/` |
+| 4: 励まし | `mentoring/` + `shared/` |
 
 ## ファイル形式
 
@@ -24,8 +33,7 @@ knowledge/
 
 ```markdown
 ---
-category: 法人保険
-sub_category: 決算書分析
+category: 決算書分析
 source: 牧野生保塾 Vol.5 (2024/05)
 priority: high
 tags: [断定, 論理的解説]
@@ -38,8 +46,7 @@ tags: [断定, 論理的解説]
 
 ## データ追加の手順
 
-1. 該当するサブディレクトリにMarkdownファイルを作成
+1. 対象パターンに対応するディレクトリにMarkdownファイルを作成
 2. フロントマターにメタデータを記述
-3. `python cli.py knowledge validate` でバリデーション
-4. `python cli.py knowledge stats` で統計確認
-5. git commit & push
+3. git commit & push
+4. Railway が自動デプロイ → ナレッジが反映される

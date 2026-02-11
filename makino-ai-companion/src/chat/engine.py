@@ -100,8 +100,8 @@ class ChatEngine:
         Returns:
             ChatResponse
         """
-        # RAG検索
-        search_results = self.rag.search(question)
+        # RAG検索（パターン別フィルタリング）
+        search_results = self.rag.search(question, pattern=pattern)
         context = self.rag.format_context(search_results)
         sources = self.rag.get_sources(search_results)
 

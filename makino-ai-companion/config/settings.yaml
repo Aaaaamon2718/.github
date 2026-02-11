@@ -48,42 +48,29 @@ rag:
 knowledge_base:
   # GitHubリポジトリ内のナレッジ格納パス
   base_path: "knowledge"
-  # データソース種別ごとのサブディレクトリ
-  sources:
-    - dir: "seminars"
-      description: "牧野生保塾 過去講義の文字起こし"
-      format: "markdown"
+  # パターン別ナレッジディレクトリ
+  # 各パターンは専用ディレクトリ + shared を検索する
+  pattern_dirs:
+    - dir: "general"
+      pattern_id: 1
+      description: "生保全般 Q&A"
       priority: "high"
-    - dir: "trainings"
-      description: "各種研修データ"
-      format: "markdown"
+    - dir: "doctor"
+      pattern_id: 2
+      description: "ドクターマーケット特化"
       priority: "high"
-    - dir: "qa"
-      description: "過去の質問・回答ペア"
-      format: "markdown"
+    - dir: "corporate"
+      pattern_id: 3
+      description: "法人保険特化"
       priority: "high"
-    - dir: "articles"
-      description: "メルマガ・ニュースレター・書籍"
-      format: "markdown"
-      priority: "medium"
-    - dir: "sales_tools"
-      description: "営業トーク集・プレゼン資料"
-      format: "markdown"
-      priority: "medium"
-
-  # カテゴリ定義
-  categories:
-    - "法人保険"
-    - "ドクターマーケット"
-    - "相続"
-    - "営業マインド"
-    - "決算書分析"
-    - "退職金設計"
-    - "事業承継"
-    - "医療法人"
-    - "個人開業医"
-    - "アプローチ手法"
-    - "クロージング"
+    - dir: "mentoring"
+      pattern_id: 4
+      description: "励まし・メンタリング"
+      priority: "high"
+    - dir: "shared"
+      pattern_id: null  # 全パターン共通
+      description: "全パターン共通ナレッジ（牧野語録等）"
+      priority: "high"
 
 # --- データベース設定（会話ログ蓄積）---
 database:

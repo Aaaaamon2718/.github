@@ -128,6 +128,7 @@ class VectorRAG:
                 "source_file": c.source_file,
                 "category": c.category,
                 "metadata": c.metadata,
+                "pattern_ids": c.pattern_ids,
             })
         with open(self.index_path / "chunks.json", "w", encoding="utf-8") as f:
             json.dump(meta, f, ensure_ascii=False, indent=2)
@@ -165,12 +166,18 @@ class VectorRAG:
             logger.warning(f"インデックス読み込みエラー: {e}")
             return False
 
-    def search(self, query: str, top_k: int = 5) -> list[SearchResult]:
+    def search(
+        self,
+        query: str,
+        top_k: int = 5,
+        pattern: Optional[int] = None,
+    ) -> list[SearchResult]:
         """ベクトル類似度でチャンクを検索する。
 
         Args:
             query: 検索クエリ文字列
             top_k: 返却する最大件数
+            pattern: パターン番号でフィルタ（Noneなら全検索）
 
         Returns:
             類似度降順にソートされた SearchResult リスト
@@ -181,7 +188,9 @@ class VectorRAG:
         query_vec = self.embedding.encode_query(query)
         query_vec = np.array([query_vec], dtype=np.float32)
 
-        k = min(top_k, self.index.ntotal)
+        # パターンフィルタ時は多めに取得してからフィルタ
+        fetch_k = top_k * 3 if pattern is not None else top_k
+        k = min(fetch_k, self.index.ntotal)
         scores, indices = self.index.search(query_vec, k)
 
         results = []
@@ -190,12 +199,15 @@ class VectorRAG:
                 continue
             if score < self.similarity_threshold:
                 continue
+            chunk = self.chunks[idx]
+            if pattern is not None and pattern not in chunk.pattern_ids:
+                continue
             results.append(SearchResult(
-                chunk=self.chunks[idx],
+                chunk=chunk,
                 score=float(score),
             ))
 
-        return results
+        return results[:top_k]
 
     def format_context(self, results: list[SearchResult]) -> str:
         """検索結果をLLMに渡すコンテキスト文字列に整形する。"""
