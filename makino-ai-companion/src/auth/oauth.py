@@ -118,6 +118,7 @@ def create_auth_routes(config: dict) -> APIRouter:
             key=COOKIE_NAME,
             value=jwt_token,
             httponly=True,
+            secure=True,
             samesite="lax",
             max_age=JWT_EXPIRATION_HOURS * 3600,
         )
