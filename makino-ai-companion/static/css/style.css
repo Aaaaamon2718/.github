@@ -139,6 +139,49 @@ body {
 }
 
 /* ==========================================================================
+   ヘッダー右側（パターン選択 + ユーザーメニュー）
+   ========================================================================== */
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-xs);
+    color: var(--text-muted);
+    transition: all var(--transition);
+    text-decoration: none;
+}
+
+.logout-btn:hover {
+    background: var(--bg-alt);
+    color: var(--text);
+}
+
+/* ==========================================================================
    チャットエリア
    ========================================================================== */
 
@@ -1020,5 +1063,8 @@ body {
     }
     .guide-body {
         padding: 12px 16px;
+    }
+    .user-name {
+        display: none;
     }
 }

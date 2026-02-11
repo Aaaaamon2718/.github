@@ -16,13 +16,23 @@
                 </div>
                 <h1 class="app-title">牧野生保塾 AI伴走</h1>
             </div>
-            <div class="pattern-selector">
-                <select id="patternSelect">
+            <div class="header-right">
+                <select id="patternSelect" class="pattern-select--compact">
                     <option value="1">質問対応（汎用）</option>
                     <option value="2">ドクターマーケット特化</option>
                     <option value="3">法人保険特化</option>
                     <option value="4">励まし・メンタリング</option>
                 </select>
+                <div class="user-menu">
+                    <span class="user-name">{{ user.name }}</span>
+                    <a href="/auth/logout" class="logout-btn" title="ログアウト">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+                            <polyline points="16 17 21 12 16 7"/>
+                            <line x1="21" y1="12" x2="9" y2="12"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
         </header>
 

@@ -12,7 +12,7 @@ from pathlib import Path
 import yaml
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.requests import Request
@@ -20,6 +20,7 @@ from starlette.requests import Request
 from starlette.middleware.sessions import SessionMiddleware
 
 from src.api.routes import create_routes, router
+from src.auth.dependencies import get_optional_user
 from src.auth.oauth import create_auth_routes
 from src.chat.engine import ChatEngine
 from src.database.models import init_db
@@ -108,10 +109,21 @@ def create_app() -> FastAPI:
 
     # --- ページルーティング ---
 
+    @app.get("/login", response_class=HTMLResponse)
+    async def login_page(request: Request):
+        """ログインページ。認証済みならトップへリダイレクト。"""
+        user = await get_optional_user(request)
+        if user:
+            return RedirectResponse(url="/")
+        return templates.TemplateResponse("login.html", {"request": request})
+
     @app.get("/", response_class=HTMLResponse)
-    async def index(request: Request) -> HTMLResponse:
-        """メインチャットページ。"""
-        return templates.TemplateResponse("index.html", {"request": request})
+    async def index(request: Request):
+        """メインチャットページ。未認証ならログインページへ。"""
+        user = await get_optional_user(request)
+        if not user:
+            return RedirectResponse(url="/login")
+        return templates.TemplateResponse("index.html", {"request": request, "user": user})
 
     @app.get("/widget", response_class=HTMLResponse)
     async def widget(request: Request) -> HTMLResponse:
@@ -119,9 +131,14 @@ def create_app() -> FastAPI:
         return templates.TemplateResponse("widget.html", {"request": request})
 
     @app.get("/dashboard", response_class=HTMLResponse)
-    async def dashboard(request: Request) -> HTMLResponse:
-        """管理ダッシュボード（管理者用KPI表示）。"""
-        return templates.TemplateResponse("dashboard.html", {"request": request})
+    async def dashboard(request: Request):
+        """管理ダッシュボード（管理者用KPI表示）。未認証・非管理者はリダイレクト。"""
+        user = await get_optional_user(request)
+        if not user:
+            return RedirectResponse(url="/login")
+        if not user.is_admin:
+            return RedirectResponse(url="/")
+        return templates.TemplateResponse("dashboard.html", {"request": request, "user": user})
 
     logger.info("アプリケーション初期化完了")
     return app
