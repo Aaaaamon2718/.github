@@ -13,6 +13,7 @@
 ## 対話記録
 
 - [FLUKE 第7章「物語を語る動物」議論レポート](../../output/dialogues/2026-04-20_fluke-ch7-storytelling-animal.md) — 物語化・感情の解像度・ロゴスとピュシスの緊張
+- [FLUKE 第8章「地球の籤引き」議論レポート](../../output/dialogues/2026-04-20_fluke-ch8-earths-lottery.md) — 経路依存性・偶然性と信念・自由意志の再定義
 
 ## 未分類の断片メモ
 
