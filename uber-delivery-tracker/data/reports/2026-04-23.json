@@ -1,0 +1,21 @@
+{
+  "date": "2026-04-23",
+  "dateJP": "2026年4月23日（木）",
+  "generatedAt": "2026-04-24T08:18:42.072Z",
+  "summary": {
+    "totalEarnings": 0,
+    "totalCount": 0,
+    "totalDistance": 0,
+    "totalTip": 0,
+    "avgEarnings": 0,
+    "avgDistance": 0,
+    "avgEfficiency": 0,
+    "avgDurationSec": 0,
+    "avgDurationFormatted": "不明"
+  },
+  "deliveries": [],
+  "byTimeSlot": [],
+  "byArea": [],
+  "byStore": [],
+  "efficiencyRanking": []
+}
