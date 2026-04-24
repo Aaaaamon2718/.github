@@ -67,7 +67,7 @@ const humanWait = () => wait(1000 + Math.random() * 800);
 
   // ---- セッション確認 ----
   console.log('\n🔐 セッション確認中...');
-  await page.goto('https://drivers.uber.com/p3/payments/activity-details', { waitUntil: 'networkidle', timeout: 30000 });
+  await page.goto('https://drivers.uber.com/p3/payments/activity-details', { waitUntil: 'domcontentloaded', timeout: 30000 });
   await wait(3000);
 
   if (page.url().includes('auth.uber.com') || page.url().includes('login')) {
@@ -80,7 +80,7 @@ const humanWait = () => wait(1000 + Math.random() * 800);
   // ---- 対象日に移動 ----
   const url = `https://drivers.uber.com/p3/payments/activity-details?from=${targetDate}&to=${targetDate}`;
   console.log(`\n📄 移動中: ${url}`);
-  await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
+  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
 
   // Reactのレンダリングを待つ（テーブルの行が出るまで）
   console.log('   Reactレンダリング待機中...');
