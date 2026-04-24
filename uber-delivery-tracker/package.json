@@ -1,0 +1,22 @@
+{
+  "name": "uber-delivery-tracker",
+  "version": "1.0.0",
+  "description": "Uber Eats配達データ自動収集・レポート化システム",
+  "main": "scripts/scraper.js",
+  "scripts": {
+    "setup-session": "node scripts/auth/save-session.js",
+    "scrape": "node scripts/scraper.js",
+    "parse": "node scripts/parser.js",
+    "report": "node scripts/report-generator.js",
+    "daily": "node scripts/scraper.js --date today && node scripts/parser.js --date today && node scripts/report-generator.js --date today"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0",
+    "date-fns": "^3.0.0",
+    "node-cron": "^3.0.3",
+    "simple-git": "^3.21.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

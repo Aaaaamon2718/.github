@@ -1,0 +1,103 @@
+name: Daily Delivery Data Scrape
+
+on:
+  schedule:
+    # 毎日23:00 JST (14:00 UTC) に実行
+    - cron: '0 14 * * *'
+  workflow_dispatch:
+    inputs:
+      date:
+        description: '取得対象日 (YYYY-MM-DD または today)'
+        required: false
+        default: 'today'
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+
+      - name: Restore session from secret
+        run: |
+          mkdir -p session
+          echo "${{ secrets.UBER_SESSION }}" | base64 -d > session/session.json
+        env:
+          UBER_SESSION: ${{ secrets.UBER_SESSION }}
+
+      - name: Run scraper
+        run: node scripts/scraper.js --date ${{ github.event.inputs.date || 'today' }}
+
+      - name: Run parser
+        run: node scripts/parser.js --date ${{ github.event.inputs.date || 'today' }}
+
+      - name: Run report generator
+        run: node scripts/report-generator.js --date ${{ github.event.inputs.date || 'today' }}
+
+      - name: Run weekly report (Mondays only)
+        if: github.event_name == 'schedule'
+        run: |
+          DOW=$(date +%u)
+          if [ "$DOW" = "1" ]; then
+            node scripts/report-generator.js --date today --type weekly
+          fi
+
+      - name: Run monthly report (1st of month only)
+        if: github.event_name == 'schedule'
+        run: |
+          DAY=$(date +%d)
+          if [ "$DAY" = "01" ]; then
+            node scripts/report-generator.js --date $(date -d "yesterday" +%Y-%m-%d) --type monthly
+          fi
+
+      - name: Commit and push data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/ dashboard/
+          git diff --staged --quiet || git commit -m "chore: add delivery data $(date +%Y-%m-%d)"
+          git push
+
+  deploy-dashboard:
+    needs: scrape
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dashboard
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
