@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uber Eats 配達ダッシュボード</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f0f; color: #e0e0e0; min-height: 100vh; }
+    header { background: #1a1a2e; padding: 20px 32px; border-bottom: 2px solid #06b6d4; display: flex; align-items: center; gap: 12px; }
+    header h1 { font-size: 1.4rem; color: #06b6d4; }
+    header span { font-size: 0.85rem; color: #666; }
+    main { max-width: 1200px; margin: 0 auto; padding: 24px 20px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 32px; }
+    .stat-card { background: #1a1a2e; border: 1px solid #2a2a4e; border-radius: 12px; padding: 20px; text-align: center; }
+    .stat-card .label { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .stat-card .value { font-size: 1.6rem; font-weight: 700; color: #06b6d4; }
+    .stat-card .sub { font-size: 0.75rem; color: #666; margin-top: 4px; }
+    .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+    @media (max-width: 768px) { .charts-grid { grid-template-columns: 1fr; } }
+    .chart-card { background: #1a1a2e; border: 1px solid #2a2a4e; border-radius: 12px; padding: 20px; }
+    .chart-card h2 { font-size: 0.9rem; color: #aaa; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
+    canvas { max-height: 280px; }
+    .ranking { background: #1a1a2e; border: 1px solid #2a2a4e; border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+    .ranking h2 { font-size: 0.9rem; color: #aaa; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .rank-item { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px solid #2a2a4e; }
+    .rank-item:last-child { border-bottom: none; }
+    .rank-num { width: 28px; font-size: 0.8rem; color: #555; font-weight: 700; }
+    .rank-name { flex: 1; font-size: 0.9rem; }
+    .rank-count { font-size: 0.85rem; color: #06b6d4; font-weight: 600; }
+    .status { text-align: center; padding: 40px; color: #555; font-size: 0.9rem; }
+    .error { color: #f87171; }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Uber Eats 配達ダッシュボード</h1>
+  <span id="last-updated">読み込み中...</span>
+</header>
+<main>
+  <div class="stats-grid" id="stats-grid">
+    <div class="stat-card"><div class="label">累計売上</div><div class="value" id="total-earnings">—</div></div>
+    <div class="stat-card"><div class="label">累計件数</div><div class="value" id="total-deliveries">—</div></div>
+    <div class="stat-card"><div class="label">累計距離</div><div class="value" id="total-distance">—</div><div class="sub">km</div></div>
+    <div class="stat-card"><div class="label">平均単価</div><div class="value" id="avg-earnings">—</div></div>
+    <div class="stat-card"><div class="label">稼働日数</div><div class="value" id="working-days">—</div><div class="sub">日</div></div>
+  </div>
+
+  <div class="charts-grid">
+    <div class="chart-card">
+      <h2>直近30日 日次売上</h2>
+      <canvas id="daily-chart"></canvas>
+    </div>
+    <div class="chart-card">
+      <h2>時間帯別配達件数</h2>
+      <canvas id="timeslot-chart"></canvas>
+    </div>
+    <div class="chart-card">
+      <h2>月別売上</h2>
+      <canvas id="monthly-chart"></canvas>
+    </div>
+    <div class="chart-card">
+      <h2>距離分布</h2>
+      <canvas id="distance-chart"></canvas>
+    </div>
+  </div>
+
+  <div class="ranking">
+    <h2>エリア別配達件数ランキング</h2>
+    <div id="area-ranking"><div class="status">データ読み込み中...</div></div>
+  </div>
+</main>
+
+<script>
+const BASE = location.pathname.replace(/\/[^/]*$/, '');
+const DATA_BASE = BASE + '/../data/raw/';
+const INDEX_URL = BASE + '/../data/reports/index.json';
+
+function yen(n) {
+  return '¥' + Math.round(n).toLocaleString('ja-JP');
+}
+
+function getTimeSlot(t) {
+  if (!t) return null;
+  const m = t.match(/(\d{1,2}):/);
+  if (!m) return null;
+  const h = parseInt(m[1]);
+  if (h >= 6 && h < 10) return '朝';
+  if (h >= 10 && h < 14) return '昼';
+  if (h >= 14 && h < 18) return '夕方';
+  if (h >= 18 && h < 22) return '夜';
+  return '深夜';
+}
+
+async function fetchJSON(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`HTTP ${r.status}: ${url}`);
+  return r.json();
+}
+
+async function loadAllData() {
+  // 直近30日の生データを収集
+  const today = new Date();
+  const dates = Array.from({ length: 30 }, (_, i) => {
+    const d = new Date(today);
+    d.setDate(today.getDate() - i);
+    return d.toISOString().split('T')[0];
+  }).reverse();
+
+  const results = await Promise.allSettled(
+    dates.map(date => fetchJSON(DATA_BASE + date + '.json'))
+  );
+
+  return results
+    .map((r, i) => (r.status === 'fulfilled' ? { date: dates[i], ...r.value } : null))
+    .filter(Boolean);
+}
+
+function aggregateAll(datasets) {
+  let totalEarnings = 0, totalTips = 0, totalDistance = 0, totalDeliveries = 0;
+  const areaCount = {}, timeSlotCount = { 朝: 0, 昼: 0, 夕方: 0, 夜: 0, 深夜: 0 };
+  const monthlyEarnings = {}, dailyEarnings = [];
+  const distBuckets = { '〜2km': 0, '2〜4km': 0, '4〜6km': 0, '6km〜': 0 };
+
+  for (const ds of datasets) {
+    const valid = (ds.deliveries || []).filter(d => !d.error);
+    const dayEarnings = valid.reduce((s, d) => s + (d.earnings || 0), 0);
+    totalEarnings += dayEarnings;
+    totalTips += valid.reduce((s, d) => s + (d.tipAmount || 0), 0);
+    totalDistance += valid.reduce((s, d) => s + (d.distance || 0), 0);
+    totalDeliveries += valid.length;
+
+    dailyEarnings.push({ date: ds.date, earnings: dayEarnings, count: valid.length });
+
+    const month = ds.date.slice(0, 7);
+    monthlyEarnings[month] = (monthlyEarnings[month] || 0) + dayEarnings;
+
+    for (const d of valid) {
+      if (d.area) areaCount[d.area] = (areaCount[d.area] || 0) + 1;
+      const slot = getTimeSlot(d.completedAt);
+      if (slot && timeSlotCount[slot] !== undefined) timeSlotCount[slot]++;
+      if (d.distance != null) {
+        if (d.distance < 2) distBuckets['〜2km']++;
+        else if (d.distance < 4) distBuckets['2〜4km']++;
+        else if (d.distance < 6) distBuckets['4〜6km']++;
+        else distBuckets['6km〜']++;
+      }
+    }
+  }
+
+  return { totalEarnings, totalTips, totalDistance, totalDeliveries, areaCount, timeSlotCount, monthlyEarnings, dailyEarnings, distBuckets };
+}
+
+function renderStats(agg, workingDays) {
+  document.getElementById('total-earnings').textContent = yen(agg.totalEarnings);
+  document.getElementById('total-deliveries').textContent = agg.totalDeliveries + '件';
+  document.getElementById('total-distance').textContent = agg.totalDistance.toFixed(1);
+  document.getElementById('avg-earnings').textContent = agg.totalDeliveries > 0 ? yen(agg.totalEarnings / agg.totalDeliveries) : '—';
+  document.getElementById('working-days').textContent = workingDays;
+}
+
+function renderDailyChart(dailyEarnings) {
+  const ctx = document.getElementById('daily-chart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: dailyEarnings.map(d => d.date.slice(5)),
+      datasets: [{
+        label: '売上',
+        data: dailyEarnings.map(d => d.earnings),
+        backgroundColor: 'rgba(6, 182, 212, 0.6)',
+        borderColor: '#06b6d4',
+        borderWidth: 1,
+        borderRadius: 4,
+      }],
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: '#666', maxRotation: 45 }, grid: { color: '#222' } },
+        y: { ticks: { color: '#666', callback: v => '¥' + v.toLocaleString() }, grid: { color: '#222' } },
+      },
+    },
+  });
+}
+
+function renderTimeslotChart(timeSlotCount) {
+  const ctx = document.getElementById('timeslot-chart').getContext('2d');
+  const labels = Object.keys(timeSlotCount);
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels,
+      datasets: [{
+        data: Object.values(timeSlotCount),
+        backgroundColor: ['#f59e0b', '#06b6d4', '#8b5cf6', '#10b981', '#f87171'],
+        borderWidth: 0,
+      }],
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { position: 'bottom', labels: { color: '#aaa', padding: 12 } } },
+    },
+  });
+}
+
+function renderMonthlyChart(monthlyEarnings) {
+  const ctx = document.getElementById('monthly-chart').getContext('2d');
+  const labels = Object.keys(monthlyEarnings).sort();
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: '月別売上',
+        data: labels.map(l => monthlyEarnings[l]),
+        borderColor: '#06b6d4',
+        backgroundColor: 'rgba(6, 182, 212, 0.1)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 5,
+        pointBackgroundColor: '#06b6d4',
+      }],
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: '#666' }, grid: { color: '#222' } },
+        y: { ticks: { color: '#666', callback: v => '¥' + v.toLocaleString() }, grid: { color: '#222' } },
+      },
+    },
+  });
+}
+
+function renderDistanceChart(distBuckets) {
+  const ctx = document.getElementById('distance-chart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: Object.keys(distBuckets),
+      datasets: [{
+        label: '件数',
+        data: Object.values(distBuckets),
+        backgroundColor: ['#10b981', '#06b6d4', '#8b5cf6', '#f59e0b'],
+        borderWidth: 0,
+        borderRadius: 6,
+      }],
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: '#666' }, grid: { color: '#222' } },
+        y: { ticks: { color: '#666' }, grid: { color: '#222' } },
+      },
+    },
+  });
+}
+
+function renderAreaRanking(areaCount) {
+  const container = document.getElementById('area-ranking');
+  const sorted = Object.entries(areaCount).sort((a, b) => b[1] - a[1]).slice(0, 10);
+  if (sorted.length === 0) {
+    container.innerHTML = '<div class="status">データなし</div>';
+    return;
+  }
+  container.innerHTML = sorted.map(([area, count], i) =>
+    `<div class="rank-item"><div class="rank-num">${i + 1}</div><div class="rank-name">${area}</div><div class="rank-count">${count}件</div></div>`
+  ).join('');
+}
+
+(async () => {
+  try {
+    const datasets = await loadAllData();
+    if (datasets.length === 0) {
+      document.querySelector('main').innerHTML = '<div class="status error">データが見つかりませんでした。<br>scraper.jsを実行してデータを収集してください。</div>';
+      return;
+    }
+
+    const agg = aggregateAll(datasets);
+    const workingDays = datasets.filter(d => (d.deliveries || []).some(x => !x.error)).length;
+
+    renderStats(agg, workingDays);
+    renderDailyChart(agg.dailyEarnings);
+    renderTimeslotChart(agg.timeSlotCount);
+    renderMonthlyChart(agg.monthlyEarnings);
+    renderDistanceChart(agg.distBuckets);
+    renderAreaRanking(agg.areaCount);
+
+    document.getElementById('last-updated').textContent = '最終更新: ' + new Date().toLocaleString('ja-JP');
+  } catch (e) {
+    document.querySelector('main').innerHTML = `<div class="status error">読み込みエラー: ${e.message}</div>`;
+  }
+})();
+</script>
+</body>
+</html>

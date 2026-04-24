@@ -1,0 +1,22 @@
+# 認証情報 - 絶対にコミットしない
+session/session.json
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# 環境変数
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# ログ
+*.log
+logs/
+
+# IDE
+.vscode/
+.idea/
