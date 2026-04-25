@@ -1,21 +1,836 @@
 {
   "date": "2026-04-22",
   "dateJP": "2026年4月22日（水）",
-  "generatedAt": "2026-04-24T08:16:34.903Z",
+  "generatedAt": "2026-04-25T12:09:27.892Z",
   "summary": {
-    "totalEarnings": 0,
-    "totalCount": 0,
-    "totalDistance": 0,
+    "totalEarnings": 13448,
+    "totalCount": 28,
+    "totalDistance": 123.68,
     "totalTip": 0,
-    "avgEarnings": 0,
-    "avgDistance": 0,
-    "avgEfficiency": 0,
-    "avgDurationSec": 0,
-    "avgDurationFormatted": "不明"
+    "avgEarnings": 480,
+    "avgDistance": 4.42,
+    "avgEfficiency": 109,
+    "avgDurationSec": 1208,
+    "avgDurationFormatted": "20:08"
   },
-  "deliveries": [],
-  "byTimeSlot": [],
-  "byArea": [],
-  "byStore": [],
-  "efficiencyRanking": []
+  "deliveries": [
+    {
+      "no": 1,
+      "completedTime": "22:15",
+      "datetime": "2026年4月22日 午後10時15分",
+      "hour": 22,
+      "timeSlot": "その他",
+      "storeName": "マクドナルド 目黒不動前店 McDonald's Meguro Fudo-mae",
+      "area": "東京都品川区大崎２丁目",
+      "earnings": 608,
+      "tip": 0,
+      "baseEarnings": 608,
+      "distance": 7.02,
+      "durationSec": 1347,
+      "durationFormatted": "22:27",
+      "efficiency": 87
+    },
+    {
+      "no": 2,
+      "completedTime": "21:15",
+      "datetime": "2026年4月22日 午後9時15分",
+      "hour": 21,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "やよい軒 恵比寿１丁目店",
+      "area": "東京都目黒区中目黒２丁目",
+      "earnings": 348,
+      "tip": 0,
+      "baseEarnings": 348,
+      "distance": 4.43,
+      "durationSec": 1170,
+      "durationFormatted": "19:30",
+      "efficiency": 79
+    },
+    {
+      "no": 3,
+      "completedTime": "21:02",
+      "datetime": "2026年4月22日 午後9時02分",
+      "hour": 21,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "マクドナルド 渋谷サクラステージ店 McDonald's SHIBUYA SAKURA STAGE",
+      "area": "東京都渋谷区広尾２丁目",
+      "earnings": 403,
+      "tip": 0,
+      "baseEarnings": 403,
+      "distance": 4.3,
+      "durationSec": 1323,
+      "durationFormatted": "22:03",
+      "efficiency": 94
+    },
+    {
+      "no": 4,
+      "completedTime": "20:44",
+      "datetime": "2026年4月22日 午後8時44分",
+      "hour": 20,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "【1986年創業】タンドゥール TANDOOR since 1986",
+      "area": "東京都渋谷区鶯谷町",
+      "earnings": 346,
+      "tip": 0,
+      "baseEarnings": 346,
+      "distance": 3.01,
+      "durationSec": 1306,
+      "durationFormatted": "21:46",
+      "efficiency": 115
+    },
+    {
+      "no": 5,
+      "completedTime": "20:25",
+      "datetime": "2026年4月22日 午後8時25分",
+      "hour": 20,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "高評価！高リピート！鉄板焼　甚六　関西風お好み焼",
+      "area": "東京都渋谷区恵比寿西１丁目",
+      "earnings": 417,
+      "tip": 0,
+      "baseEarnings": 417,
+      "distance": 4.09,
+      "durationSec": 1365,
+      "durationFormatted": "22:45",
+      "efficiency": 102
+    },
+    {
+      "no": 6,
+      "completedTime": "19:59",
+      "datetime": "2026年4月22日 午後7時59分",
+      "hour": 19,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "大阪王将広尾店",
+      "area": "東京都港区白金６丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 3.52,
+      "durationSec": 1127,
+      "durationFormatted": "18:47",
+      "efficiency": 91
+    },
+    {
+      "no": 7,
+      "completedTime": "19:51",
+      "datetime": "2026年4月22日 午後7時51分",
+      "hour": 19,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "ブリスクスタンド 恵比寿【BRISKSTAND EBISU】",
+      "area": "1-chōme Tokyo Shibuya Hiroo JP",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 5.28,
+      "durationSec": 1361,
+      "durationFormatted": "22:41",
+      "efficiency": 61
+    },
+    {
+      "no": 8,
+      "completedTime": "19:16",
+      "datetime": "2026年4月22日 午後7時16分",
+      "hour": 19,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "レストラン ママ RESTAURANT MAMA.",
+      "area": "東京都港区白金台５丁目",
+      "earnings": 840,
+      "tip": 0,
+      "baseEarnings": 840,
+      "distance": 5.29,
+      "durationSec": 1656,
+      "durationFormatted": "27:36",
+      "efficiency": 159
+    },
+    {
+      "no": 9,
+      "completedTime": "19:01",
+      "datetime": "2026年4月22日 午後7時01分",
+      "hour": 19,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "精肉店のサムギョプサル＆ポッサム produce by naizoo EBISU Samgyeopsal(korean grilled pork belly) and possum at the butcher shop",
+      "area": "東京都渋谷区広尾３丁目",
+      "earnings": 385,
+      "tip": 0,
+      "baseEarnings": 385,
+      "distance": 3.78,
+      "durationSec": 1197,
+      "durationFormatted": "19:57",
+      "efficiency": 102
+    },
+    {
+      "no": 10,
+      "completedTime": "18:26",
+      "datetime": "2026年4月22日 午後6時26分",
+      "hour": 18,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "ガスト 渋谷桜丘店 Gusto Shibuya Sakuragaoka",
+      "area": "東京都渋谷区恵比寿南３丁目",
+      "earnings": 1066,
+      "tip": 0,
+      "baseEarnings": 1066,
+      "distance": 8.35,
+      "durationSec": 2025,
+      "durationFormatted": "33:45",
+      "efficiency": 128
+    },
+    {
+      "no": 11,
+      "completedTime": "18:13",
+      "datetime": "2026年4月22日 午後6時13分",
+      "hour": 18,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "SweetCut カットフルーツ",
+      "area": "東京都渋谷区鶯谷町",
+      "earnings": 345,
+      "tip": 0,
+      "baseEarnings": 345,
+      "distance": 3.19,
+      "durationSec": 911,
+      "durationFormatted": "15:11",
+      "efficiency": 108
+    },
+    {
+      "no": 12,
+      "completedTime": "17:35",
+      "datetime": "2026年4月22日 午後5時35分",
+      "hour": 17,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "ソナム 中目黒店 Sonamu Nakamegurotenn",
+      "area": "東京都渋谷区神山町",
+      "earnings": 534,
+      "tip": 0,
+      "baseEarnings": 534,
+      "distance": 6.02,
+      "durationSec": 1297,
+      "durationFormatted": "21:37",
+      "efficiency": 89
+    },
+    {
+      "no": 13,
+      "completedTime": "16:51",
+      "datetime": "2026年4月22日 午後4時51分",
+      "hour": 16,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "スープストック トーキョー アトレ恵比寿店 Soup Stock Tokyo Atre Ebisu",
+      "area": "1 Chome Tokyo Shibuya Ebisuminami JP",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 3.27,
+      "durationSec": 1144,
+      "durationFormatted": "19:04",
+      "efficiency": 98
+    },
+    {
+      "no": 14,
+      "completedTime": "16:20",
+      "datetime": "2026年4月22日 午後4時20分",
+      "hour": 16,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "すぱじろう 中目黒　Supajiro Nakameguro",
+      "area": "東京都渋谷区桜丘町",
+      "earnings": 542,
+      "tip": 0,
+      "baseEarnings": 542,
+      "distance": 4.17,
+      "durationSec": 1411,
+      "durationFormatted": "23:31",
+      "efficiency": 130
+    },
+    {
+      "no": 15,
+      "completedTime": "14:00",
+      "datetime": "2026年4月22日 午後2時00分",
+      "hour": 14,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "モスバーガー 目黒大鳥神社前店 Mos Burger MEGURO OTORIIiJINJAMAE",
+      "area": "東京都目黒区中目黒４丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.16,
+      "durationSec": 672,
+      "durationFormatted": "11:12",
+      "efficiency": 148
+    },
+    {
+      "no": 16,
+      "completedTime": "13:39",
+      "datetime": "2026年4月22日 午後1時39分",
+      "hour": 13,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "サーティワン アイスクリーム 目黒店 31 IceCream Meguro store",
+      "area": "東京都目黒区目黒２丁目",
+      "earnings": 515,
+      "tip": 0,
+      "baseEarnings": 515,
+      "distance": 3.32,
+      "durationSec": 1004,
+      "durationFormatted": "16:44",
+      "efficiency": 155
+    },
+    {
+      "no": 17,
+      "completedTime": "13:11",
+      "datetime": "2026年4月22日 午後1時11分",
+      "hour": 13,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "マクドナルド 目黒駅前店 McDonald's Meguro",
+      "area": "東京都目黒区下目黒３丁目",
+      "earnings": 424,
+      "tip": 0,
+      "baseEarnings": 424,
+      "distance": 3.19,
+      "durationSec": 968,
+      "durationFormatted": "16:08",
+      "efficiency": 133
+    },
+    {
+      "no": 18,
+      "completedTime": "12:35",
+      "datetime": "2026年4月22日 午後12時35分",
+      "hour": 12,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "松屋 武蔵小山店 Matsuya Musashi-Koyama",
+      "area": "東京都目黒区目黒本町４丁目",
+      "earnings": 334,
+      "tip": 0,
+      "baseEarnings": 334,
+      "distance": 2.93,
+      "durationSec": 852,
+      "durationFormatted": "14:12",
+      "efficiency": 114
+    },
+    {
+      "no": 19,
+      "completedTime": "12:15",
+      "datetime": "2026年4月22日 午後12時15分",
+      "hour": 12,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "スターバックス コーヒー イオンスタイル碑文谷店 Starbucks Coffee AEON STYLE Himonya",
+      "area": "東京都目黒区目黒本町６丁目",
+      "earnings": 359,
+      "tip": 0,
+      "baseEarnings": 359,
+      "distance": 3.81,
+      "durationSec": 1097,
+      "durationFormatted": "18:17",
+      "efficiency": 94
+    },
+    {
+      "no": 20,
+      "completedTime": "11:43",
+      "datetime": "2026年4月22日 午前11時43分",
+      "hour": 11,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "aroi cafe",
+      "area": "東京都目黒区八雲３丁目",
+      "earnings": 426,
+      "tip": 0,
+      "baseEarnings": 426,
+      "distance": 4.17,
+      "durationSec": 1429,
+      "durationFormatted": "23:49",
+      "efficiency": 102
+    },
+    {
+      "no": 21,
+      "completedTime": "10:58",
+      "datetime": "2026年4月22日 午前10時58分",
+      "hour": 10,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "フォーティンメグロ　Pho thin Meguro",
+      "area": "東京都世田谷区駒沢４丁目",
+      "earnings": 972,
+      "tip": 0,
+      "baseEarnings": 972,
+      "distance": 9.46,
+      "durationSec": 2299,
+      "durationFormatted": "38:19",
+      "efficiency": 103
+    },
+    {
+      "no": 22,
+      "completedTime": "10:46",
+      "datetime": "2026年4月22日 午前10時46分",
+      "hour": 10,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "マクドナルド 目黒駅前店 McDonald's Meguro",
+      "area": "東京都目黒区下目黒２丁目",
+      "earnings": 450,
+      "tip": 0,
+      "baseEarnings": 450,
+      "distance": 3.73,
+      "durationSec": 822,
+      "durationFormatted": "13:42",
+      "efficiency": 121
+    },
+    {
+      "no": 23,
+      "completedTime": "10:29",
+      "datetime": "2026年4月22日 午前10時29分",
+      "hour": 10,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "究極のソーセージエッグ丼 目黒駅前店",
+      "area": "東京都目黒区目黒１丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 3.22,
+      "durationSec": 852,
+      "durationFormatted": "14:12",
+      "efficiency": 99
+    },
+    {
+      "no": 24,
+      "completedTime": "09:46",
+      "datetime": "2026年4月22日 午前9時46分",
+      "hour": 9,
+      "timeSlot": "朝（6〜10時）",
+      "storeName": "マクドナルド 目黒駅前店 McDonald's Meguro",
+      "area": "東京都目黒区目黒２丁目",
+      "earnings": 509,
+      "tip": 0,
+      "baseEarnings": 509,
+      "distance": 4.18,
+      "durationSec": 908,
+      "durationFormatted": "15:08",
+      "efficiency": 122
+    },
+    {
+      "no": 25,
+      "completedTime": "09:37",
+      "datetime": "2026年4月22日 午前9時37分",
+      "hour": 9,
+      "timeSlot": "朝（6〜10時）",
+      "storeName": "スターバックス コーヒー 広尾店 Starbucks Coffee Hiroo",
+      "area": "4-chōme Tokyo Minato City Shirokanedai JP",
+      "earnings": 422,
+      "tip": 0,
+      "baseEarnings": 422,
+      "distance": 3.67,
+      "durationSec": 853,
+      "durationFormatted": "14:13",
+      "efficiency": 115
+    },
+    {
+      "no": 26,
+      "completedTime": "09:22",
+      "datetime": "2026年4月22日 午前9時22分",
+      "hour": 9,
+      "timeSlot": "朝（6〜10時）",
+      "storeName": "フォーティンメグロ　Pho thin Meguro",
+      "area": "東京都渋谷区恵比寿３丁目",
+      "earnings": 566,
+      "tip": 0,
+      "baseEarnings": 566,
+      "distance": 5.13,
+      "durationSec": 1237,
+      "durationFormatted": "20:37",
+      "efficiency": 110
+    },
+    {
+      "no": 27,
+      "completedTime": "09:10",
+      "datetime": "2026年4月22日 午前9時10分",
+      "hour": 9,
+      "timeSlot": "朝（6〜10時）",
+      "storeName": "マクドナルド 祐天寺店 McDonald's YUTENJI",
+      "area": "東京都目黒区中町１丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.95,
+      "durationSec": 813,
+      "durationFormatted": "13:33",
+      "efficiency": 108
+    },
+    {
+      "no": 28,
+      "completedTime": "08:43",
+      "datetime": "2026年4月22日 午前8時43分",
+      "hour": 8,
+      "timeSlot": "朝（6〜10時）",
+      "storeName": "はなまるうどん 渋谷駅西口店 Hanamaru Udon SHIBUYA-EKI NISHIGUCHI",
+      "area": "東京都目黒区上目黒２丁目",
+      "earnings": 717,
+      "tip": 0,
+      "baseEarnings": 717,
+      "distance": 6.04,
+      "durationSec": 1372,
+      "durationFormatted": "22:52",
+      "efficiency": 119
+    }
+  ],
+  "byTimeSlot": [
+    {
+      "label": "朝（6〜10時）",
+      "count": 5,
+      "earnings": 2534,
+      "distance": 21.97,
+      "avgEarnings": 507,
+      "efficiency": 115
+    },
+    {
+      "label": "昼（10〜14時）",
+      "count": 8,
+      "earnings": 3800,
+      "distance": 33.83,
+      "avgEarnings": 475,
+      "efficiency": 112
+    },
+    {
+      "label": "夕（14〜18時）",
+      "count": 4,
+      "earnings": 1716,
+      "distance": 15.62,
+      "avgEarnings": 429,
+      "efficiency": 110
+    },
+    {
+      "label": "夜（18〜22時）",
+      "count": 10,
+      "earnings": 4790,
+      "distance": 45.24,
+      "avgEarnings": 479,
+      "efficiency": 106
+    },
+    {
+      "label": "その他",
+      "count": 1,
+      "earnings": 608,
+      "distance": 7.02,
+      "avgEarnings": 608,
+      "efficiency": 87
+    }
+  ],
+  "byArea": [
+    {
+      "area": "東京都目黒区",
+      "count": 12,
+      "earnings": 5042,
+      "distance": 44.13,
+      "avgEarnings": 420
+    },
+    {
+      "area": "東京都渋谷区",
+      "count": 9,
+      "earnings": 4604,
+      "distance": 42.04,
+      "avgEarnings": 512
+    },
+    {
+      "area": "東京都港区",
+      "count": 2,
+      "earnings": 1160,
+      "distance": 8.81,
+      "avgEarnings": 580
+    },
+    {
+      "area": "東京都世田谷区",
+      "count": 1,
+      "earnings": 972,
+      "distance": 9.46,
+      "avgEarnings": 972
+    },
+    {
+      "area": "東京都品川区",
+      "count": 1,
+      "earnings": 608,
+      "distance": 7.02,
+      "avgEarnings": 608
+    },
+    {
+      "area": "4-chōme Tokyo Minato City Shirokanedai JP",
+      "count": 1,
+      "earnings": 422,
+      "distance": 3.67,
+      "avgEarnings": 422
+    },
+    {
+      "area": "1-chōme Tokyo Shibuya Hiroo JP",
+      "count": 1,
+      "earnings": 320,
+      "distance": 5.28,
+      "avgEarnings": 320
+    },
+    {
+      "area": "1 Chome Tokyo Shibuya Ebisuminami JP",
+      "count": 1,
+      "earnings": 320,
+      "distance": 3.27,
+      "avgEarnings": 320
+    }
+  ],
+  "byStore": [
+    {
+      "storeName": "フォーティンメグロ　Pho thin Meguro",
+      "count": 2,
+      "earnings": 1538,
+      "distance": 14.59,
+      "avgEarnings": 769
+    },
+    {
+      "storeName": "マクドナルド 目黒駅前店 McDonald's Meguro",
+      "count": 3,
+      "earnings": 1383,
+      "distance": 11.1,
+      "avgEarnings": 461
+    },
+    {
+      "storeName": "ガスト 渋谷桜丘店 Gusto Shibuya Sakuragaoka",
+      "count": 1,
+      "earnings": 1066,
+      "distance": 8.35,
+      "avgEarnings": 1066
+    },
+    {
+      "storeName": "レストラン ママ RESTAURANT MAMA.",
+      "count": 1,
+      "earnings": 840,
+      "distance": 5.29,
+      "avgEarnings": 840
+    },
+    {
+      "storeName": "はなまるうどん 渋谷駅西口店 Hanamaru Udon SHIBUYA-EKI NISHIGUCHI",
+      "count": 1,
+      "earnings": 717,
+      "distance": 6.04,
+      "avgEarnings": 717
+    },
+    {
+      "storeName": "マクドナルド 目黒不動前店 McDonald's Meguro Fudo-mae",
+      "count": 1,
+      "earnings": 608,
+      "distance": 7.02,
+      "avgEarnings": 608
+    },
+    {
+      "storeName": "すぱじろう 中目黒　Supajiro Nakameguro",
+      "count": 1,
+      "earnings": 542,
+      "distance": 4.17,
+      "avgEarnings": 542
+    },
+    {
+      "storeName": "ソナム 中目黒店 Sonamu Nakamegurotenn",
+      "count": 1,
+      "earnings": 534,
+      "distance": 6.02,
+      "avgEarnings": 534
+    },
+    {
+      "storeName": "サーティワン アイスクリーム 目黒店 31 IceCream Meguro store",
+      "count": 1,
+      "earnings": 515,
+      "distance": 3.32,
+      "avgEarnings": 515
+    },
+    {
+      "storeName": "aroi cafe",
+      "count": 1,
+      "earnings": 426,
+      "distance": 4.17,
+      "avgEarnings": 426
+    }
+  ],
+  "efficiencyRanking": [
+    {
+      "no": 8,
+      "storeName": "レストラン ママ RESTAURANT MAMA.",
+      "efficiency": 159,
+      "earnings": 840,
+      "distance": 5.29
+    },
+    {
+      "no": 16,
+      "storeName": "サーティワン アイスクリーム 目黒店 31 IceCream Meguro store",
+      "efficiency": 155,
+      "earnings": 515,
+      "distance": 3.32
+    },
+    {
+      "no": 15,
+      "storeName": "モスバーガー 目黒大鳥神社前店 Mos Burger MEGURO OTORIIiJINJAMAE",
+      "efficiency": 148,
+      "earnings": 320,
+      "distance": 2.16
+    },
+    {
+      "no": 17,
+      "storeName": "マクドナルド 目黒駅前店 McDonald's Meguro",
+      "efficiency": 133,
+      "earnings": 424,
+      "distance": 3.19
+    },
+    {
+      "no": 14,
+      "storeName": "すぱじろう 中目黒　Supajiro Nakameguro",
+      "efficiency": 130,
+      "earnings": 542,
+      "distance": 4.17
+    },
+    {
+      "no": 10,
+      "storeName": "ガスト 渋谷桜丘店 Gusto Shibuya Sakuragaoka",
+      "efficiency": 128,
+      "earnings": 1066,
+      "distance": 8.35
+    },
+    {
+      "no": 24,
+      "storeName": "マクドナルド 目黒駅前店 McDonald's Meguro",
+      "efficiency": 122,
+      "earnings": 509,
+      "distance": 4.18
+    },
+    {
+      "no": 22,
+      "storeName": "マクドナルド 目黒駅前店 McDonald's Meguro",
+      "efficiency": 121,
+      "earnings": 450,
+      "distance": 3.73
+    },
+    {
+      "no": 28,
+      "storeName": "はなまるうどん 渋谷駅西口店 Hanamaru Udon SHIBUYA-EKI NISHIGUCHI",
+      "efficiency": 119,
+      "earnings": 717,
+      "distance": 6.04
+    },
+    {
+      "no": 4,
+      "storeName": "【1986年創業】タンドゥール TANDOOR since 1986",
+      "efficiency": 115,
+      "earnings": 346,
+      "distance": 3.01
+    },
+    {
+      "no": 25,
+      "storeName": "スターバックス コーヒー 広尾店 Starbucks Coffee Hiroo",
+      "efficiency": 115,
+      "earnings": 422,
+      "distance": 3.67
+    },
+    {
+      "no": 18,
+      "storeName": "松屋 武蔵小山店 Matsuya Musashi-Koyama",
+      "efficiency": 114,
+      "earnings": 334,
+      "distance": 2.93
+    },
+    {
+      "no": 26,
+      "storeName": "フォーティンメグロ　Pho thin Meguro",
+      "efficiency": 110,
+      "earnings": 566,
+      "distance": 5.13
+    },
+    {
+      "no": 11,
+      "storeName": "SweetCut カットフルーツ",
+      "efficiency": 108,
+      "earnings": 345,
+      "distance": 3.19
+    },
+    {
+      "no": 27,
+      "storeName": "マクドナルド 祐天寺店 McDonald's YUTENJI",
+      "efficiency": 108,
+      "earnings": 320,
+      "distance": 2.95
+    },
+    {
+      "no": 21,
+      "storeName": "フォーティンメグロ　Pho thin Meguro",
+      "efficiency": 103,
+      "earnings": 972,
+      "distance": 9.46
+    },
+    {
+      "no": 5,
+      "storeName": "高評価！高リピート！鉄板焼　甚六　関西風お好み焼",
+      "efficiency": 102,
+      "earnings": 417,
+      "distance": 4.09
+    },
+    {
+      "no": 9,
+      "storeName": "精肉店のサムギョプサル＆ポッサム produce by naizoo EBISU Samgyeopsal(korean grilled pork belly) and possum at the butcher shop",
+      "efficiency": 102,
+      "earnings": 385,
+      "distance": 3.78
+    },
+    {
+      "no": 20,
+      "storeName": "aroi cafe",
+      "efficiency": 102,
+      "earnings": 426,
+      "distance": 4.17
+    },
+    {
+      "no": 23,
+      "storeName": "究極のソーセージエッグ丼 目黒駅前店",
+      "efficiency": 99,
+      "earnings": 320,
+      "distance": 3.22
+    },
+    {
+      "no": 13,
+      "storeName": "スープストック トーキョー アトレ恵比寿店 Soup Stock Tokyo Atre Ebisu",
+      "efficiency": 98,
+      "earnings": 320,
+      "distance": 3.27
+    },
+    {
+      "no": 3,
+      "storeName": "マクドナルド 渋谷サクラステージ店 McDonald's SHIBUYA SAKURA STAGE",
+      "efficiency": 94,
+      "earnings": 403,
+      "distance": 4.3
+    },
+    {
+      "no": 19,
+      "storeName": "スターバックス コーヒー イオンスタイル碑文谷店 Starbucks Coffee AEON STYLE Himonya",
+      "efficiency": 94,
+      "earnings": 359,
+      "distance": 3.81
+    },
+    {
+      "no": 6,
+      "storeName": "大阪王将広尾店",
+      "efficiency": 91,
+      "earnings": 320,
+      "distance": 3.52
+    },
+    {
+      "no": 12,
+      "storeName": "ソナム 中目黒店 Sonamu Nakamegurotenn",
+      "efficiency": 89,
+      "earnings": 534,
+      "distance": 6.02
+    },
+    {
+      "no": 1,
+      "storeName": "マクドナルド 目黒不動前店 McDonald's Meguro Fudo-mae",
+      "efficiency": 87,
+      "earnings": 608,
+      "distance": 7.02
+    },
+    {
+      "no": 2,
+      "storeName": "やよい軒 恵比寿１丁目店",
+      "efficiency": 79,
+      "earnings": 348,
+      "distance": 4.43
+    },
+    {
+      "no": 7,
+      "storeName": "ブリスクスタンド 恵比寿【BRISKSTAND EBISU】",
+      "efficiency": 61,
+      "earnings": 320,
+      "distance": 5.28
+    }
+  ]
 }
