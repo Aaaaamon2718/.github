@@ -112,50 +112,41 @@ const unixToDatetime = (unix) => {
     await wait(500);
   }
   await browser.close();
-  // TRIPのみ抽出してフォーマット
+  const dayStart = new Date(targetDate + 'T00:00:00+09:00').getTime() / 1000;
+  const dayEnd   = new Date(targetDate + 'T23:59:59+09:00').getTime() / 1000;
   const trips = allActivities
-    .filter(a => a.type === 'TRIP' && a.status === 'COMPLETED')
+    .filter(a =>
+      a.type === 'TRIP' &&
+      a.status === 'COMPLETED' &&
+      a.recognizedAt >= dayStart &&
+      a.recognizedAt <= dayEnd
+    )
     .map((a, i) => {
       const meta = a.tripMetaData || {};
       return {
-        no:                i + 1,
-        earnings:          parseEarnings(a.formattedTotal),
-        duration:          formatDuration(meta.formattedDuration),
-        durationSec:       parseDurationSec(meta.formattedDuration),
-        distance:          parseDistance(meta.formattedDistance),
-        datetime:          unixToDatetime(a.recognizedAt),
-        storeName:         meta.pickupAddress  || '不明',
-        destAddress:       meta.dropOffAddress || '不明',
-        tip:               0,
-        uuid:              a.uuid,
+        no:          i + 1,
+        earnings:    parseEarnings(a.formattedTotal),
+        duration:    formatDuration(meta.formattedDuration),
+        durationSec: parseDurationSec(meta.formattedDuration),
+        distance:    parseDistance(meta.formattedDistance),
+        datetime:    unixToDatetime(a.recognizedAt),
+        storeName:   meta.pickupAddress  || '不明',
+        destAddress: meta.dropOffAddress || '不明',
+        tip:         0,
+        uuid:        a.uuid,
       };
     });
-  // クエスト・ボーナスも記録
-  const quests = allActivities
-    .filter(a => a.type !== 'TRIP')
-    .map(a => ({
-      type:     a.type,
-      title:    a.activityTitle,
-      earnings: parseEarnings(a.formattedTotal),
-      datetime: unixToDatetime(a.recognizedAt),
-    }));
   const result = {
     date:         targetDate,
     scrapedAt:    new Date().toISOString(),
     totalCount:   trips.length,
     successCount: trips.length,
     deliveries:   trips,
-    quests,
   };
   fs.writeFileSync(OUTPUT_PATH, JSON.stringify(result, null, 2), 'utf-8');
+  const totalEarnings = trips.reduce((s, t) => s + t.earnings, 0);
   console.log(`\n✅ 完了`);
   console.log(`   配達件数 : ${trips.length}件`);
-  console.log(`   クエスト : ${quests.length}件`);
+  console.log(`   配達売上 : ¥${totalEarnings.toLocaleString('ja-JP')}`);
   console.log(`   保存先   : ${OUTPUT_PATH}`);
-  // サマリー表示
-  const total = trips.reduce((s, t) => s + t.earnings, 0);
-  const questTotal = quests.reduce((s, q) => s + q.earnings, 0);
-  console.log(`\n💰 配達売上   : ¥${total.toLocaleString('ja-JP')}`);
-  console.log(`🎯 クエスト等 : ¥${questTotal.toLocaleString('ja-JP')}`);
-  console.log(`📊 合計       : ¥${(total + questTotal).toLocaleString('ja-JP')}`);
 })();
