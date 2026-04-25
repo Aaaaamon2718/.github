@@ -117,7 +117,7 @@ const unixToDatetime = (unix) => {
   const trips = allActivities
     .filter(a =>
       a.activityTitle === 'Delivery' &&
-      a.type === 'TRIP' &&
+      (a.type === 'TRIP' || a.type === 'CT') &&
       a.status === 'COMPLETED' &&
       a.recognizedAt >= dayStart &&
       a.recognizedAt <= dayEnd
