@@ -116,6 +116,7 @@ const unixToDatetime = (unix) => {
   const dayEnd   = new Date(targetDate + 'T23:59:59+09:00').getTime() / 1000;
   const trips = allActivities
     .filter(a =>
+      a.activityTitle === 'Delivery' &&
       a.type === 'TRIP' &&
       a.status === 'COMPLETED' &&
       a.recognizedAt >= dayStart &&
