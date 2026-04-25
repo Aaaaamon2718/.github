@@ -83,7 +83,10 @@ const unixToDatetime = (unix) => {
       };
       const res = await fetch('https://drivers.uber.com/earnings/api/getWebActivityFeed?localeCode=ja-JP', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-csrf-token': 'x',
+        },
         body: JSON.stringify(body),
       });
       return await res.json();
