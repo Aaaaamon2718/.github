@@ -76,9 +76,17 @@ const unixToDatetime = (unix) => {
   while (true) {
     console.log(`   ページ ${page_num} 取得中...`);
     const result = await page.evaluate(async ({ targetDate, cursor }) => {
+      // Uberは週単位でデータを返すため、対象日を含む週（月曜〜日曜）を指定
+      const d = new Date(targetDate + 'T00:00:00+09:00');
+      const dow = d.getDay(); // 0=日, 1=月...
+      const monday = new Date(d);
+      monday.setDate(d.getDate() - (dow === 0 ? 6 : dow - 1));
+      const sunday = new Date(monday);
+      sunday.setDate(monday.getDate() + 6);
+      const fmt = (dt) => dt.toISOString().slice(0,10);
       const body = {
-        startDateIso: targetDate,
-        endDateIso:   targetDate,
+        startDateIso: fmt(monday),
+        endDateIso:   fmt(sunday),
         paginationOption: cursor ? { cursor } : {},
       };
       const res = await fetch('https://drivers.uber.com/earnings/api/getWebActivityFeed?localeCode=ja-JP', {
