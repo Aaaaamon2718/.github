@@ -144,6 +144,19 @@ const unixToDatetime = (unix) => {
     successCount: trips.length,
     deliveries:   trips,
   };
+  // デバッグ：4/23のDelivery全件をログ出力
+  const dayStart = new Date(targetDate + 'T00:00:00+09:00').getTime() / 1000;
+  const dayEnd   = new Date(targetDate + 'T23:59:59+09:00').getTime() / 1000;
+  const allDeliveries = allActivities.filter(a => 
+    a.activityTitle === 'Delivery' &&
+    a.recognizedAt >= dayStart && 
+    a.recognizedAt <= dayEnd
+  );
+  console.log(`\n🔍 デバッグ: 対象日のDelivery全件 = ${allDeliveries.length}件`);
+  allDeliveries.forEach(a => {
+    const t = new Date((a.recognizedAt + 9*60*60)*1000);
+    console.log(`  ${t.getUTCHours()}:${String(t.getUTCMinutes()).padStart(2,'0')} ¥${a.formattedTotal} type=${a.type} status=${a.status}`);
+  });
   fs.writeFileSync(OUTPUT_PATH, JSON.stringify(result, null, 2), 'utf-8');
   const totalEarnings = trips.reduce((s, t) => s + t.earnings, 0);
   console.log(`\n✅ 完了`);
