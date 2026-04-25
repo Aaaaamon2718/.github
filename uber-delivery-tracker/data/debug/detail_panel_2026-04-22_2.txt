@@ -1,0 +1,241 @@
+Uber での売り上げ
+売り上げ
+乗車記録
+明細書の設定
+銀行口座情報
+利用状況
+毎週の明細
+アクティビティの詳細
+週で検索
+
+Date format is PP – PP. Press the down arrow or enter key to interact with the calendar and select a date. Press the escape button to close the calendar.
+
+Selected date range is from Apr 20, 2026 to Apr 27, 2026.
+
+イベント	日時	売り上げ	表示する
+
+
+{0} 回乗車クエスト
+
+	
+
+Friday, April 24th, 2026
+
+04:00
+
+	
+
+￥0.00
+
+	View Details
+
+
+Delivery
+
+	
+
+Thursday, April 23rd, 2026
+
+14:25
+
+	
+
+￥320
+
+	View Details
+
+
+Delivery
+
+	
+
+Thursday, April 23rd, 2026
+
+14:01
+
+	
+
+￥320
+
+	View Details
+
+
+クエスト
+
+	
+
+Thursday, April 23rd, 2026
+
+13:50
+
+	
+
+￥700
+
+	View Details
+
+
+{0} 回乗車クエスト
+
+	
+
+Thursday, April 23rd, 2026
+
+13:50
+
+	
+
+￥700.00
+
+	View Details
+
+
+Delivery
+
+	
+
+Thursday, April 23rd, 2026
+
+13:21
+
+	
+
+￥489
+
+	View Details
+
+
+クエスト
+
+	
+
+Thursday, April 23rd, 2026
+
+13:13
+
+	
+
+￥250
+
+	View Details
+
+
+{0} 回乗車クエスト
+
+	
+
+Thursday, April 23rd, 2026
+
+13:12
+
+	
+
+￥250.00
+
+	View Details
+
+
+Delivery
+
+	
+
+Thursday, April 23rd, 2026
+
+12:51
+
+	
+
+￥320
+
+	View Details
+
+
+クエスト
+
+	
+
+Thursday, April 23rd, 2026
+
+12:50
+
+	
+
+￥250
+
+	View Details
+
+
+クエスト
+
+	
+
+Thursday, April 23rd, 2026
+
+12:50
+
+	
+
+￥600
+
+	View Details
+
+
+{0} 回乗車クエスト
+
+	
+
+Thursday, April 23rd, 2026
+
+12:50
+
+	
+
+￥250.00
+
+	View Details
+
+
+クエスト
+
+	
+
+Thursday, April 23rd, 2026
+
+12:44
+
+	
+
+￥250
+
+	View Details
+
+
+{0} 回乗車クエスト
+
+	
+
+Thursday, April 23rd, 2026
+
+12:44
+
+	
+
+￥600.00
+
+	View Details
+
+
+{0} 回乗車クエスト
+
+	
+
+Thursday, April 23rd, 2026
+
+12:44
+
+	
+
+￥250.00
+
+	View Details
+さらに読み込む

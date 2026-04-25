@@ -1,21 +1,461 @@
 {
   "date": "2026-04-23",
   "dateJP": "2026年4月23日（木）",
-  "generatedAt": "2026-04-24T08:18:42.072Z",
+  "generatedAt": "2026-04-25T12:04:53.397Z",
   "summary": {
-    "totalEarnings": 0,
-    "totalCount": 0,
-    "totalDistance": 0,
+    "totalEarnings": 6018,
+    "totalCount": 13,
+    "totalDistance": 50.61,
     "totalTip": 0,
-    "avgEarnings": 0,
-    "avgDistance": 0,
-    "avgEfficiency": 0,
-    "avgDurationSec": 0,
-    "avgDurationFormatted": "不明"
+    "avgEarnings": 463,
+    "avgDistance": 3.89,
+    "avgEfficiency": 119,
+    "avgDurationSec": 1154,
+    "avgDurationFormatted": "19:14"
   },
-  "deliveries": [],
-  "byTimeSlot": [],
-  "byArea": [],
-  "byStore": [],
-  "efficiencyRanking": []
+  "deliveries": [
+    {
+      "no": 1,
+      "completedTime": "14:25",
+      "datetime": "2026年4月23日 午後2時25分",
+      "hour": 14,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "SCALES中目黒 ヘルシーポキボウル専門店  サラダ＆ポケ Healthy Poke Bowl",
+      "area": "東京都渋谷区猿楽町",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.51,
+      "durationSec": 2364,
+      "durationFormatted": "39:24",
+      "efficiency": 127
+    },
+    {
+      "no": 2,
+      "completedTime": "14:01",
+      "datetime": "2026年4月23日 午後2時01分",
+      "hour": 14,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "スープストック トーキョー 目黒店 Soup Stock Tokyo Meguro",
+      "area": "東京都目黒区目黒２丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.61,
+      "durationSec": 781,
+      "durationFormatted": "13:01",
+      "efficiency": 123
+    },
+    {
+      "no": 3,
+      "completedTime": "13:21",
+      "datetime": "2026年4月23日 午後1時21分",
+      "hour": 13,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "マクドナルド 目黒駅前店 McDonald's Meguro",
+      "area": "2-chōme Tokyo Shibuya Ebisu JP",
+      "earnings": 489,
+      "tip": 0,
+      "baseEarnings": 489,
+      "distance": 4.99,
+      "durationSec": 1046,
+      "durationFormatted": "17:26",
+      "efficiency": 98
+    },
+    {
+      "no": 4,
+      "completedTime": "12:51",
+      "datetime": "2026年4月23日 午後12時51分",
+      "hour": 12,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "スターバックス コーヒー 代官山 蔦屋書店 Starbucks Coffee Daikanyama TSUTAYA BOOKS",
+      "area": "東京都渋谷区恵比寿南１丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 3.35,
+      "durationSec": 1300,
+      "durationFormatted": "21:40",
+      "efficiency": 96
+    },
+    {
+      "no": 5,
+      "completedTime": "12:28",
+      "datetime": "2026年4月23日 午後12時28分",
+      "hour": 12,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "マクドナルド 渋谷サクラステージ店 McDonald's SHIBUYA SAKURA STAGE",
+      "area": "東京都渋谷区渋谷区猿楽町",
+      "earnings": 545,
+      "tip": 0,
+      "baseEarnings": 545,
+      "distance": 3.62,
+      "durationSec": 962,
+      "durationFormatted": "16:02",
+      "efficiency": 151
+    },
+    {
+      "no": 6,
+      "completedTime": "11:48",
+      "datetime": "2026年4月23日 午前11時48分",
+      "hour": 11,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "吉そば　不動前店　無添加秘伝つゆ・国産そば粉使用",
+      "area": "東京都渋谷区鉢山町",
+      "earnings": 1059,
+      "tip": 0,
+      "baseEarnings": 1059,
+      "distance": 6.58,
+      "durationSec": 1577,
+      "durationFormatted": "26:17",
+      "efficiency": 161
+    },
+    {
+      "no": 7,
+      "completedTime": "11:37",
+      "datetime": "2026年4月23日 午前11時37分",
+      "hour": 11,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "スターバックス コーヒー 目黒セントラルスクエア店 Starbucks Coffee MEGURO CENTRAL SQUARE",
+      "area": "東京都目黒区下目黒３丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 3.93,
+      "durationSec": 1185,
+      "durationFormatted": "19:45",
+      "efficiency": 81
+    },
+    {
+      "no": 8,
+      "completedTime": "11:12",
+      "datetime": "2026年4月23日 午前11時12分",
+      "hour": 11,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "いきなり！ステーキ 目黒上大崎 Ikinari Steak Meguro-Kamiosaki",
+      "area": "東京都品川区上大崎３丁目",
+      "earnings": 524,
+      "tip": 0,
+      "baseEarnings": 524,
+      "distance": 4.86,
+      "durationSec": 925,
+      "durationFormatted": "15:25",
+      "efficiency": 108
+    },
+    {
+      "no": 9,
+      "completedTime": "10:36",
+      "datetime": "2026年4月23日 午前10時36分",
+      "hour": 10,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "天丼てんや 目黒 Tendon tenya Meguro",
+      "area": "3-chōme Tokyo Minato City Takanawa JP",
+      "earnings": 552,
+      "tip": 0,
+      "baseEarnings": 552,
+      "distance": 4.91,
+      "durationSec": 1269,
+      "durationFormatted": "21:09",
+      "efficiency": 112
+    },
+    {
+      "no": 10,
+      "completedTime": "10:18",
+      "datetime": "2026年4月23日 午前10時18分",
+      "hour": 10,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "レ ジュ ド ベベ les joues de BeBe",
+      "area": "東京都目黒区目黒１丁目",
+      "earnings": 338,
+      "tip": 0,
+      "baseEarnings": 338,
+      "distance": 2.86,
+      "durationSec": 727,
+      "durationFormatted": "12:07",
+      "efficiency": 118
+    },
+    {
+      "no": 11,
+      "completedTime": "10:14",
+      "datetime": "2026年4月23日 午前10時14分",
+      "hour": 10,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "マクドナルドアトレ五反田店 McDonald's ATRE GOTANDA",
+      "area": "東京都品川区西五反田",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 1.85,
+      "durationSec": 549,
+      "durationFormatted": "9:09",
+      "efficiency": 173
+    },
+    {
+      "no": 12,
+      "completedTime": "09:28",
+      "datetime": "2026年4月23日 午前9時28分",
+      "hour": 9,
+      "timeSlot": "朝（6〜10時）",
+      "storeName": "お弁当のみのわ OBENTOUNOMINOWA",
+      "area": "東京都港区港南２丁目",
+      "earnings": 591,
+      "tip": 0,
+      "baseEarnings": 591,
+      "distance": 6.05,
+      "durationSec": 1604,
+      "durationFormatted": "26:44",
+      "efficiency": 98
+    },
+    {
+      "no": 13,
+      "completedTime": "09:23",
+      "datetime": "2026年4月23日 午前9時23分",
+      "hour": 9,
+      "timeSlot": "朝（6〜10時）",
+      "storeName": "おにぎり維心 五反田店 Onigiri ISHIN GOTANDA",
+      "area": "東京都品川区西五反田２丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.49,
+      "durationSec": 709,
+      "durationFormatted": "11:49",
+      "efficiency": 129
+    }
+  ],
+  "byTimeSlot": [
+    {
+      "label": "朝（6〜10時）",
+      "count": 2,
+      "earnings": 911,
+      "distance": 8.54,
+      "avgEarnings": 456,
+      "efficiency": 107
+    },
+    {
+      "label": "昼（10〜14時）",
+      "count": 9,
+      "earnings": 4467,
+      "distance": 36.95,
+      "avgEarnings": 496,
+      "efficiency": 121
+    },
+    {
+      "label": "夕（14〜18時）",
+      "count": 2,
+      "earnings": 640,
+      "distance": 5.12,
+      "avgEarnings": 320,
+      "efficiency": 125
+    }
+  ],
+  "byArea": [
+    {
+      "area": "東京都渋谷区",
+      "count": 4,
+      "earnings": 2244,
+      "distance": 16.06,
+      "avgEarnings": 561
+    },
+    {
+      "area": "東京都品川区",
+      "count": 3,
+      "earnings": 1164,
+      "distance": 9.2,
+      "avgEarnings": 388
+    },
+    {
+      "area": "東京都目黒区",
+      "count": 3,
+      "earnings": 978,
+      "distance": 9.4,
+      "avgEarnings": 326
+    },
+    {
+      "area": "東京都港区",
+      "count": 1,
+      "earnings": 591,
+      "distance": 6.05,
+      "avgEarnings": 591
+    },
+    {
+      "area": "3-chōme Tokyo Minato City Takanawa JP",
+      "count": 1,
+      "earnings": 552,
+      "distance": 4.91,
+      "avgEarnings": 552
+    },
+    {
+      "area": "2-chōme Tokyo Shibuya Ebisu JP",
+      "count": 1,
+      "earnings": 489,
+      "distance": 4.99,
+      "avgEarnings": 489
+    }
+  ],
+  "byStore": [
+    {
+      "storeName": "吉そば　不動前店　無添加秘伝つゆ・国産そば粉使用",
+      "count": 1,
+      "earnings": 1059,
+      "distance": 6.58,
+      "avgEarnings": 1059
+    },
+    {
+      "storeName": "お弁当のみのわ OBENTOUNOMINOWA",
+      "count": 1,
+      "earnings": 591,
+      "distance": 6.05,
+      "avgEarnings": 591
+    },
+    {
+      "storeName": "天丼てんや 目黒 Tendon tenya Meguro",
+      "count": 1,
+      "earnings": 552,
+      "distance": 4.91,
+      "avgEarnings": 552
+    },
+    {
+      "storeName": "マクドナルド 渋谷サクラステージ店 McDonald's SHIBUYA SAKURA STAGE",
+      "count": 1,
+      "earnings": 545,
+      "distance": 3.62,
+      "avgEarnings": 545
+    },
+    {
+      "storeName": "いきなり！ステーキ 目黒上大崎 Ikinari Steak Meguro-Kamiosaki",
+      "count": 1,
+      "earnings": 524,
+      "distance": 4.86,
+      "avgEarnings": 524
+    },
+    {
+      "storeName": "マクドナルド 目黒駅前店 McDonald's Meguro",
+      "count": 1,
+      "earnings": 489,
+      "distance": 4.99,
+      "avgEarnings": 489
+    },
+    {
+      "storeName": "レ ジュ ド ベベ les joues de BeBe",
+      "count": 1,
+      "earnings": 338,
+      "distance": 2.86,
+      "avgEarnings": 338
+    },
+    {
+      "storeName": "SCALES中目黒 ヘルシーポキボウル専門店  サラダ＆ポケ Healthy Poke Bowl",
+      "count": 1,
+      "earnings": 320,
+      "distance": 2.51,
+      "avgEarnings": 320
+    },
+    {
+      "storeName": "スープストック トーキョー 目黒店 Soup Stock Tokyo Meguro",
+      "count": 1,
+      "earnings": 320,
+      "distance": 2.61,
+      "avgEarnings": 320
+    },
+    {
+      "storeName": "スターバックス コーヒー 代官山 蔦屋書店 Starbucks Coffee Daikanyama TSUTAYA BOOKS",
+      "count": 1,
+      "earnings": 320,
+      "distance": 3.35,
+      "avgEarnings": 320
+    }
+  ],
+  "efficiencyRanking": [
+    {
+      "no": 11,
+      "storeName": "マクドナルドアトレ五反田店 McDonald's ATRE GOTANDA",
+      "efficiency": 173,
+      "earnings": 320,
+      "distance": 1.85
+    },
+    {
+      "no": 6,
+      "storeName": "吉そば　不動前店　無添加秘伝つゆ・国産そば粉使用",
+      "efficiency": 161,
+      "earnings": 1059,
+      "distance": 6.58
+    },
+    {
+      "no": 5,
+      "storeName": "マクドナルド 渋谷サクラステージ店 McDonald's SHIBUYA SAKURA STAGE",
+      "efficiency": 151,
+      "earnings": 545,
+      "distance": 3.62
+    },
+    {
+      "no": 13,
+      "storeName": "おにぎり維心 五反田店 Onigiri ISHIN GOTANDA",
+      "efficiency": 129,
+      "earnings": 320,
+      "distance": 2.49
+    },
+    {
+      "no": 1,
+      "storeName": "SCALES中目黒 ヘルシーポキボウル専門店  サラダ＆ポケ Healthy Poke Bowl",
+      "efficiency": 127,
+      "earnings": 320,
+      "distance": 2.51
+    },
+    {
+      "no": 2,
+      "storeName": "スープストック トーキョー 目黒店 Soup Stock Tokyo Meguro",
+      "efficiency": 123,
+      "earnings": 320,
+      "distance": 2.61
+    },
+    {
+      "no": 10,
+      "storeName": "レ ジュ ド ベベ les joues de BeBe",
+      "efficiency": 118,
+      "earnings": 338,
+      "distance": 2.86
+    },
+    {
+      "no": 9,
+      "storeName": "天丼てんや 目黒 Tendon tenya Meguro",
+      "efficiency": 112,
+      "earnings": 552,
+      "distance": 4.91
+    },
+    {
+      "no": 8,
+      "storeName": "いきなり！ステーキ 目黒上大崎 Ikinari Steak Meguro-Kamiosaki",
+      "efficiency": 108,
+      "earnings": 524,
+      "distance": 4.86
+    },
+    {
+      "no": 3,
+      "storeName": "マクドナルド 目黒駅前店 McDonald's Meguro",
+      "efficiency": 98,
+      "earnings": 489,
+      "distance": 4.99
+    },
+    {
+      "no": 12,
+      "storeName": "お弁当のみのわ OBENTOUNOMINOWA",
+      "efficiency": 98,
+      "earnings": 591,
+      "distance": 6.05
+    },
+    {
+      "no": 4,
+      "storeName": "スターバックス コーヒー 代官山 蔦屋書店 Starbucks Coffee Daikanyama TSUTAYA BOOKS",
+      "efficiency": 96,
+      "earnings": 320,
+      "distance": 3.35
+    },
+    {
+      "no": 7,
+      "storeName": "スターバックス コーヒー 目黒セントラルスクエア店 Starbucks Coffee MEGURO CENTRAL SQUARE",
+      "efficiency": 81,
+      "earnings": 320,
+      "distance": 3.93
+    }
+  ]
 }
