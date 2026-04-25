@@ -132,7 +132,16 @@ const unixToDatetime = (unix) => {
         distance:    parseDistance(meta.formattedDistance),
         datetime:    unixToDatetime(a.recognizedAt),
         storeName:   meta.pickupAddress  || '不明',
-        destAddress: meta.dropOffAddress || '不明',
+        destAddress: (() => {
+          const addr = meta.dropOffAddress || '不明';
+          // 英語住所を日本語に変換（例: "3-chōme Tokyo Minato Takanawa" → そのまま保持、区名だけ抽出）
+          if (addr.includes('Tokyo')) {
+            const m = addr.match(/Tokyo\s+(\w+)\s+City\s+(\w+)/i) ||
+                      addr.match(/Tokyo\s+(\w+)\s+(\w+)/i);
+            return addr; // 一旦そのまま保持
+          }
+          return addr;
+        })(),
         tip:         0,
         uuid:        a.uuid,
       };
