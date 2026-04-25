@@ -145,8 +145,6 @@ const unixToDatetime = (unix) => {
     deliveries:   trips,
   };
   // デバッグ：4/23のDelivery全件をログ出力
-  const dayStart = new Date(targetDate + 'T00:00:00+09:00').getTime() / 1000;
-  const dayEnd   = new Date(targetDate + 'T23:59:59+09:00').getTime() / 1000;
   const allDeliveries = allActivities.filter(a => 
     a.activityTitle === 'Delivery' &&
     a.recognizedAt >= dayStart && 
