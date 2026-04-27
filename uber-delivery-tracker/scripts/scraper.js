@@ -77,7 +77,7 @@ const unixToDatetime = (unix) => {
   let page_num = 1;
   while (true) {
     console.log(`   ページ ${page_num} 取得中...`);
-    const result = await page.evaluate(async ({ targetDate, cursor }) => {
+    const result = await page.evaluate(async ({ targetDate, cursor, fromDate, toDate }) => {
       // Uberは週単位でデータを返すため、対象日を含む週（月曜〜日曜）を指定
       const d = new Date(targetDate + 'T00:00:00+09:00');
       const dow = d.getDay(); // 0=日, 1=月...
@@ -87,8 +87,8 @@ const unixToDatetime = (unix) => {
       sunday.setDate(monday.getDate() + 6);
       const fmt = (dt) => dt.toISOString().slice(0,10);
       const body = {
-        startDateIso: fromArg || fmt(monday),
-        endDateIso:   toArg   || fmt(sunday),
+        startDateIso: fromDate,
+        endDateIso:   toDate,
         paginationOption: cursor ? { cursor } : {},
       };
       const res = await fetch('https://drivers.uber.com/earnings/api/getWebActivityFeed?localeCode=ja-JP', {
@@ -100,7 +100,7 @@ const unixToDatetime = (unix) => {
         body: JSON.stringify(body),
       });
       return await res.json();
-    }, { targetDate, cursor });
+    }, { targetDate, cursor, fromDate: fromArg || targetDate, toDate: toArg || targetDate });
     if (result.status !== 'success') {
       console.error('❌ APIエラー:', JSON.stringify(result));
       break;
