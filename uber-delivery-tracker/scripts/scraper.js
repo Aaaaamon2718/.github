@@ -161,6 +161,15 @@ const unixToDatetime = (unix) => {
     a.recognizedAt >= dayStart && 
     a.recognizedAt <= dayEnd
   );
+  // 取得した全データの日付分布を確認
+  const dateCounts = {};
+  allActivities.forEach(a => {
+    const d = new Date((a.recognizedAt + 9*60*60)*1000);
+    const dateStr = `${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,'0')}-${String(d.getUTCDate()).padStart(2,'0')}`;
+    dateCounts[dateStr] = (dateCounts[dateStr] || 0) + 1;
+  });
+  console.log('\n📅 取得データの日付分布:');
+  Object.entries(dateCounts).sort().forEach(([d,c]) => console.log(`  ${d}: ${c}件`));
   console.log(`\n🔍 デバッグ: 対象日のDelivery全件 = ${allDeliveries.length}件`);
   allDeliveries.forEach(a => {
     const t = new Date((a.recognizedAt + 9*60*60)*1000);
