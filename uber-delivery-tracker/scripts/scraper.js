@@ -9,6 +9,8 @@ const dateArg    = args[args.indexOf('--date') + 1] || 'today';
 const targetDate = dateArg === 'today'
   ? new Date(Date.now() + 9*60*60*1000).toISOString().slice(0,10)
   : dateArg;
+const fromArg = args[args.indexOf('--from') + 1] || null;
+const toArg   = args[args.indexOf('--to')   + 1] || null;
 console.log(`\n🚀 scraper.js 起動（API直接版）`);
 console.log(`   対象日 : ${targetDate}`);
 const SESSION_PATH = path.join(__dirname, '../session/session.json');
@@ -85,8 +87,8 @@ const unixToDatetime = (unix) => {
       sunday.setDate(monday.getDate() + 6);
       const fmt = (dt) => dt.toISOString().slice(0,10);
       const body = {
-        startDateIso: fmt(monday),
-        endDateIso:   fmt(sunday),
+        startDateIso: fromArg || fmt(monday),
+        endDateIso:   toArg   || fmt(sunday),
         paginationOption: cursor ? { cursor } : {},
       };
       const res = await fetch('https://drivers.uber.com/earnings/api/getWebActivityFeed?localeCode=ja-JP', {
