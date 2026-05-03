@@ -1,0 +1,964 @@
+{
+  "date": "2026-05-02",
+  "dateJP": "2026年5月2日（土）",
+  "generatedAt": "2026-05-03T16:59:55.357Z",
+  "summary": {
+    "totalEarnings": 15172,
+    "totalCount": 33,
+    "totalDistance": 116.6,
+    "totalTip": 0,
+    "avgEarnings": 460,
+    "avgDistance": 3.53,
+    "avgEfficiency": 130,
+    "avgDurationSec": 1061,
+    "avgDurationFormatted": "17:41"
+  },
+  "deliveries": [
+    {
+      "no": 1,
+      "completedTime": "22:30",
+      "datetime": "2026年5月2日 午後10時30分",
+      "hour": 22,
+      "timeSlot": "その他",
+      "storeName": "Reis Kebab 高田馬場店",
+      "area": "東京都文京区目白台３丁目",
+      "earnings": 757,
+      "tip": 0,
+      "baseEarnings": 757,
+      "distance": 6.98,
+      "durationSec": 1865,
+      "durationFormatted": "31:05",
+      "efficiency": 108
+    },
+    {
+      "no": 2,
+      "completedTime": "22:20",
+      "datetime": "2026年5月2日 午後10時20分",
+      "hour": 22,
+      "timeSlot": "その他",
+      "storeName": "蒙古タンメン中本 高田馬場店 Moukotanmen Nakamoto Takadanobaba",
+      "area": "東京都新宿区高田馬場４丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.25,
+      "durationSec": 601,
+      "durationFormatted": "10:01",
+      "efficiency": 142
+    },
+    {
+      "no": 3,
+      "completedTime": "21:28",
+      "datetime": "2026年5月2日 午後9時28分",
+      "hour": 21,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "ガスト 高田馬場駅前店 Gusto Takadanobaba",
+      "area": "東京都新宿区上落合２丁目",
+      "earnings": 574,
+      "tip": 0,
+      "baseEarnings": 574,
+      "distance": 5.17,
+      "durationSec": 1275,
+      "durationFormatted": "21:15",
+      "efficiency": 111
+    },
+    {
+      "no": 4,
+      "completedTime": "21:24",
+      "datetime": "2026年5月2日 午後9時24分",
+      "hour": 21,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "カツ丼屋 八方 高田馬場店",
+      "area": "東京都新宿区高田馬場２丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.98,
+      "durationSec": 974,
+      "durationFormatted": "16:14",
+      "efficiency": 107
+    },
+    {
+      "no": 5,
+      "completedTime": "20:54",
+      "datetime": "2026年5月2日 午後8時54分",
+      "hour": 20,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "日本橋海鮮丼　つじ半　神楽坂店",
+      "area": "東京都新宿区早稲田鶴巻町",
+      "earnings": 548,
+      "tip": 0,
+      "baseEarnings": 548,
+      "distance": 5.05,
+      "durationSec": 1334,
+      "durationFormatted": "22:14",
+      "efficiency": 109
+    },
+    {
+      "no": 6,
+      "completedTime": "20:17",
+      "datetime": "2026年5月2日 午後8時17分",
+      "hour": 20,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "絶品スープで味わうハンバーグの店「スープdeバーグ」 Soup de Burg\", Hamburg restaurant with excellent soup",
+      "area": "東京都新宿区市谷砂土原町３丁目",
+      "earnings": 506,
+      "tip": 0,
+      "baseEarnings": 506,
+      "distance": 4.28,
+      "durationSec": 1094,
+      "durationFormatted": "18:14",
+      "efficiency": 118
+    },
+    {
+      "no": 7,
+      "completedTime": "19:56",
+      "datetime": "2026年5月2日 午後7時56分",
+      "hour": 19,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "リコス 西片２丁目店",
+      "area": "東京都文京区西片２丁目",
+      "earnings": 432,
+      "tip": 0,
+      "baseEarnings": 432,
+      "distance": 4.12,
+      "durationSec": 1075,
+      "durationFormatted": "17:55",
+      "efficiency": 105
+    },
+    {
+      "no": 8,
+      "completedTime": "19:40",
+      "datetime": "2026年5月2日 午後7時40分",
+      "hour": 19,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "マクドナルド 春日駅前店　McDonald's Kasuga",
+      "area": "1-chōme Tokyo Bunkyo City Nishikata JP",
+      "earnings": 508,
+      "tip": 0,
+      "baseEarnings": 508,
+      "distance": 2.49,
+      "durationSec": 981,
+      "durationFormatted": "16:21",
+      "efficiency": 204
+    },
+    {
+      "no": 9,
+      "completedTime": "19:28",
+      "datetime": "2026年5月2日 午後7時28分",
+      "hour": 19,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "くすりの福太郎本郷店",
+      "area": "東京都文京区本郷１丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.22,
+      "durationSec": 760,
+      "durationFormatted": "12:40",
+      "efficiency": 144
+    },
+    {
+      "no": 10,
+      "completedTime": "19:22",
+      "datetime": "2026年5月2日 午後7時22分",
+      "hour": 19,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "ローソン 御茶ノ水",
+      "area": "2-chōme Tokyo Bunkyo City Hongō JP",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.04,
+      "durationSec": 576,
+      "durationFormatted": "9:36",
+      "efficiency": 157
+    },
+    {
+      "no": 11,
+      "completedTime": "18:49",
+      "datetime": "2026年5月2日 午後6時49分",
+      "hour": 18,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "スシロー 後楽園春日店",
+      "area": "東京都文京区本郷３丁目",
+      "earnings": 524,
+      "tip": 0,
+      "baseEarnings": 524,
+      "distance": 4.49,
+      "durationSec": 1272,
+      "durationFormatted": "21:12",
+      "efficiency": 117
+    },
+    {
+      "no": 12,
+      "completedTime": "18:41",
+      "datetime": "2026年5月2日 午後6時41分",
+      "hour": 18,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "楊国福マーラータン 後楽園店Yangguofumalatang",
+      "area": "東京都文京区小石川２丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 1.05,
+      "durationSec": 454,
+      "durationFormatted": "7:34",
+      "efficiency": 305
+    },
+    {
+      "no": 13,
+      "completedTime": "17:58",
+      "datetime": "2026年5月2日 午後5時58分",
+      "hour": 17,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "ローソン MS GARDEN",
+      "area": "東京都文京区春日１丁目",
+      "earnings": 556,
+      "tip": 0,
+      "baseEarnings": 556,
+      "distance": 3.75,
+      "durationSec": 1423,
+      "durationFormatted": "23:43",
+      "efficiency": 148
+    },
+    {
+      "no": 14,
+      "completedTime": "17:57",
+      "datetime": "2026年5月2日 午後5時57分",
+      "hour": 17,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "7-Eleven飯田橋アイガーデンテラス店",
+      "area": "東京都千代田区神田三崎町３丁目",
+      "earnings": 342,
+      "tip": 0,
+      "baseEarnings": 342,
+      "distance": 2.32,
+      "durationSec": 982,
+      "durationFormatted": "16:22",
+      "efficiency": 147
+    },
+    {
+      "no": 15,
+      "completedTime": "17:14",
+      "datetime": "2026年5月2日 午後5時14分",
+      "hour": 17,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "【アサイー＆スムージーボウル】シリアルモンスター神楽坂 Serial Monster Kagurazaka",
+      "area": "1-chōme Tokyo Chiyoda City Kanda Jinbōchō JP",
+      "earnings": 764,
+      "tip": 0,
+      "baseEarnings": 764,
+      "distance": 5.36,
+      "durationSec": 1967,
+      "durationFormatted": "32:47",
+      "efficiency": 143
+    },
+    {
+      "no": 16,
+      "completedTime": "16:52",
+      "datetime": "2026年5月2日 午後4時52分",
+      "hour": 16,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "マクドナルド 市ヶ谷店　McDonald's Ichigaya",
+      "area": "東京都新宿区市谷左内町",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 1.38,
+      "durationSec": 518,
+      "durationFormatted": "8:38",
+      "efficiency": 232
+    },
+    {
+      "no": 17,
+      "completedTime": "16:51",
+      "datetime": "2026年5月2日 午後4時51分",
+      "hour": 16,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "ガスト 市ヶ谷駅前店 Gusto ICHIGAYAEKIMAE",
+      "area": "東京都新宿区東榎町",
+      "earnings": 522,
+      "tip": 0,
+      "baseEarnings": 522,
+      "distance": 4.02,
+      "durationSec": 1362,
+      "durationFormatted": "22:42",
+      "efficiency": 130
+    },
+    {
+      "no": 18,
+      "completedTime": "16:37",
+      "datetime": "2026年5月2日 午後4時37分",
+      "hour": 16,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "Tanaka's Roti",
+      "area": "Tokyo Shinjuku City Haraikatamachi JP",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.48,
+      "durationSec": 791,
+      "durationFormatted": "13:11",
+      "efficiency": 129
+    },
+    {
+      "no": 19,
+      "completedTime": "16:13",
+      "datetime": "2026年5月2日 午後4時13分",
+      "hour": 16,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "マクドナルド 春日駅前店",
+      "area": "東京都文京区小石川２丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.95,
+      "durationSec": 754,
+      "durationFormatted": "12:34",
+      "efficiency": 108
+    },
+    {
+      "no": 20,
+      "completedTime": "15:53",
+      "datetime": "2026年5月2日 午後3時53分",
+      "hour": 15,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "サーティワンアイスクリーム 東京ドームシティラクーア店",
+      "area": "東京都文京区小石川２丁目",
+      "earnings": 537,
+      "tip": 0,
+      "baseEarnings": 537,
+      "distance": 5.25,
+      "durationSec": 1132,
+      "durationFormatted": "18:52",
+      "efficiency": 102
+    },
+    {
+      "no": 21,
+      "completedTime": "15:40",
+      "datetime": "2026年5月2日 午後3時40分",
+      "hour": 15,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "ゴンチャ 飯田橋ラムラ店 Gong cha IIDABASHI RAMLA",
+      "area": "東京都新宿区水道町",
+      "earnings": 432,
+      "tip": 0,
+      "baseEarnings": 432,
+      "distance": 2.7,
+      "durationSec": 1097,
+      "durationFormatted": "18:17",
+      "efficiency": 160
+    },
+    {
+      "no": 22,
+      "completedTime": "14:01",
+      "datetime": "2026年5月2日 午後2時01分",
+      "hour": 14,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "マクドナルド 春日駅前店　McDonald's Kasuga",
+      "area": "東京都文京区弥生２丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 1.64,
+      "durationSec": 528,
+      "durationFormatted": "8:48",
+      "efficiency": 195
+    },
+    {
+      "no": 23,
+      "completedTime": "13:38",
+      "datetime": "2026年5月2日 午後1時38分",
+      "hour": 13,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "マクドナルド 稲荷町駅前店 McDonald's INARI-CHO EKI-MAE",
+      "area": "東京都文京区文京区根津１丁目",
+      "earnings": 345,
+      "tip": 0,
+      "baseEarnings": 345,
+      "distance": 3.48,
+      "durationSec": 925,
+      "durationFormatted": "15:25",
+      "efficiency": 99
+    },
+    {
+      "no": 24,
+      "completedTime": "13:08",
+      "datetime": "2026年5月2日 午後1時08分",
+      "hour": 13,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "麺屋武蔵　神山 menya musashi　kanzan",
+      "area": "東京都台東区松が谷１丁目",
+      "earnings": 876,
+      "tip": 0,
+      "baseEarnings": 876,
+      "distance": 5.79,
+      "durationSec": 1616,
+      "durationFormatted": "26:56",
+      "efficiency": 151
+    },
+    {
+      "no": 25,
+      "completedTime": "12:42",
+      "datetime": "2026年5月2日 午後12時42分",
+      "hour": 12,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "焼肉ライク 秋葉原中央通り店",
+      "area": "東京都中央区日本橋本町４丁目",
+      "earnings": 568,
+      "tip": 0,
+      "baseEarnings": 568,
+      "distance": 4.54,
+      "durationSec": 1345,
+      "durationFormatted": "22:25",
+      "efficiency": 125
+    },
+    {
+      "no": 26,
+      "completedTime": "12:16",
+      "datetime": "2026年5月2日 午後12時16分",
+      "hour": 12,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "【台湾朝食専門店】 wanna manna 飯田橋サクラテラス店",
+      "area": "3-chōme Tokyo Bunkyo City Yushima JP",
+      "earnings": 786,
+      "tip": 0,
+      "baseEarnings": 786,
+      "distance": 5.99,
+      "durationSec": 1346,
+      "durationFormatted": "22:26",
+      "efficiency": 131
+    },
+    {
+      "no": 27,
+      "completedTime": "12:02",
+      "datetime": "2026年5月2日 午後12時02分",
+      "hour": 12,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "モスバーガー 飯田橋東店 Mos Burger IIDABASHI-HIGASHI",
+      "area": "東京都千代田区飯田橋１丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.82,
+      "durationSec": 945,
+      "durationFormatted": "15:45",
+      "efficiency": 113
+    },
+    {
+      "no": 28,
+      "completedTime": "11:54",
+      "datetime": "2026年5月2日 午前11時54分",
+      "hour": 11,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "ドミノ・ピザ 飯田橋店 Domino's Pizza Iidabashi Store",
+      "area": "東京都千代田区神田三崎町３丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.2,
+      "durationSec": 659,
+      "durationFormatted": "10:59",
+      "efficiency": 145
+    },
+    {
+      "no": 29,
+      "completedTime": "11:30",
+      "datetime": "2026年5月2日 午前11時30分",
+      "hour": 11,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "ウェンディーズ・ファーストキッチン 飯田橋ラムラ店 Wendy's First Kitchen IIDABASHI RAMURA",
+      "area": "東京都千代田区三番町",
+      "earnings": 477,
+      "tip": 0,
+      "baseEarnings": 477,
+      "distance": 3.3,
+      "durationSec": 1283,
+      "durationFormatted": "21:23",
+      "efficiency": 145
+    },
+    {
+      "no": 30,
+      "completedTime": "11:09",
+      "datetime": "2026年5月2日 午前11時09分",
+      "hour": 11,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "スターバックス コーヒー 市ヶ谷駅前店 Starbucks Coffee Ichigaya Eki-mae",
+      "area": "東京都千代田区九段北４丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 3.19,
+      "durationSec": 959,
+      "durationFormatted": "15:59",
+      "efficiency": 100
+    },
+    {
+      "no": 31,
+      "completedTime": "10:45",
+      "datetime": "2026年5月2日 午前10時45分",
+      "hour": 10,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "焼肉亭かぐら YAKINIKUTEI KAGURA",
+      "area": "東京都千代田区麹町４丁目",
+      "earnings": 638,
+      "tip": 0,
+      "baseEarnings": 638,
+      "distance": 4.89,
+      "durationSec": 1432,
+      "durationFormatted": "23:52",
+      "efficiency": 130
+    },
+    {
+      "no": 32,
+      "completedTime": "10:15",
+      "datetime": "2026年5月2日 午前10時15分",
+      "hour": 10,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "フレッシュネスバーガー 新大久保店 Freshness Burger Shin-Okubo",
+      "area": "東京都新宿区北新宿２丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.95,
+      "durationSec": 989,
+      "durationFormatted": "16:29",
+      "efficiency": 108
+    },
+    {
+      "no": 33,
+      "completedTime": "10:04",
+      "datetime": "2026年5月2日 午前10時04分",
+      "hour": 10,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "スターバックス コーヒー 高田馬場早稲田通り店 Starbucks Coffee Takadanobaba Waseda-dori",
+      "area": "3-chōme Tokyo Shinjuku City Hyakuninchō JP",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.48,
+      "durationSec": 687,
+      "durationFormatted": "11:27",
+      "efficiency": 129
+    }
+  ],
+  "byTimeSlot": [
+    {
+      "label": "昼（10〜14時）",
+      "count": 11,
+      "earnings": 5290,
+      "distance": 41.63,
+      "avgEarnings": 481,
+      "efficiency": 127
+    },
+    {
+      "label": "夕（14〜18時）",
+      "count": 10,
+      "earnings": 4433,
+      "distance": 31.85,
+      "avgEarnings": 443,
+      "efficiency": 139
+    },
+    {
+      "label": "夜（18〜22時）",
+      "count": 10,
+      "earnings": 4372,
+      "distance": 33.89,
+      "avgEarnings": 437,
+      "efficiency": 129
+    },
+    {
+      "label": "その他",
+      "count": 2,
+      "earnings": 1077,
+      "distance": 9.23,
+      "avgEarnings": 539,
+      "efficiency": 117
+    }
+  ],
+  "byArea": [
+    {
+      "area": "東京都文京区",
+      "count": 10,
+      "earnings": 4431,
+      "distance": 35.93,
+      "avgEarnings": 443
+    },
+    {
+      "area": "東京都新宿区",
+      "count": 9,
+      "earnings": 3862,
+      "distance": 30.78,
+      "avgEarnings": 429
+    },
+    {
+      "area": "東京都千代田区",
+      "count": 6,
+      "earnings": 2417,
+      "distance": 18.72,
+      "avgEarnings": 403
+    },
+    {
+      "area": "東京都台東区",
+      "count": 1,
+      "earnings": 876,
+      "distance": 5.79,
+      "avgEarnings": 876
+    },
+    {
+      "area": "3-chōme Tokyo Bunkyo City Yushima JP",
+      "count": 1,
+      "earnings": 786,
+      "distance": 5.99,
+      "avgEarnings": 786
+    },
+    {
+      "area": "1-chōme Tokyo Chiyoda City Kanda Jinbōchō JP",
+      "count": 1,
+      "earnings": 764,
+      "distance": 5.36,
+      "avgEarnings": 764
+    },
+    {
+      "area": "東京都中央区",
+      "count": 1,
+      "earnings": 568,
+      "distance": 4.54,
+      "avgEarnings": 568
+    },
+    {
+      "area": "1-chōme Tokyo Bunkyo City Nishikata JP",
+      "count": 1,
+      "earnings": 508,
+      "distance": 2.49,
+      "avgEarnings": 508
+    },
+    {
+      "area": "2-chōme Tokyo Bunkyo City Hongō JP",
+      "count": 1,
+      "earnings": 320,
+      "distance": 2.04,
+      "avgEarnings": 320
+    },
+    {
+      "area": "Tokyo Shinjuku City Haraikatamachi JP",
+      "count": 1,
+      "earnings": 320,
+      "distance": 2.48,
+      "avgEarnings": 320
+    },
+    {
+      "area": "3-chōme Tokyo Shinjuku City Hyakuninchō JP",
+      "count": 1,
+      "earnings": 320,
+      "distance": 2.48,
+      "avgEarnings": 320
+    }
+  ],
+  "byStore": [
+    {
+      "storeName": "麺屋武蔵　神山 menya musashi　kanzan",
+      "count": 1,
+      "earnings": 876,
+      "distance": 5.79,
+      "avgEarnings": 876
+    },
+    {
+      "storeName": "マクドナルド 春日駅前店　McDonald's Kasuga",
+      "count": 2,
+      "earnings": 828,
+      "distance": 4.13,
+      "avgEarnings": 414
+    },
+    {
+      "storeName": "【台湾朝食専門店】 wanna manna 飯田橋サクラテラス店",
+      "count": 1,
+      "earnings": 786,
+      "distance": 5.99,
+      "avgEarnings": 786
+    },
+    {
+      "storeName": "【アサイー＆スムージーボウル】シリアルモンスター神楽坂 Serial Monster Kagurazaka",
+      "count": 1,
+      "earnings": 764,
+      "distance": 5.36,
+      "avgEarnings": 764
+    },
+    {
+      "storeName": "Reis Kebab 高田馬場店",
+      "count": 1,
+      "earnings": 757,
+      "distance": 6.98,
+      "avgEarnings": 757
+    },
+    {
+      "storeName": "焼肉亭かぐら YAKINIKUTEI KAGURA",
+      "count": 1,
+      "earnings": 638,
+      "distance": 4.89,
+      "avgEarnings": 638
+    },
+    {
+      "storeName": "ガスト 高田馬場駅前店 Gusto Takadanobaba",
+      "count": 1,
+      "earnings": 574,
+      "distance": 5.17,
+      "avgEarnings": 574
+    },
+    {
+      "storeName": "焼肉ライク 秋葉原中央通り店",
+      "count": 1,
+      "earnings": 568,
+      "distance": 4.54,
+      "avgEarnings": 568
+    },
+    {
+      "storeName": "ローソン MS GARDEN",
+      "count": 1,
+      "earnings": 556,
+      "distance": 3.75,
+      "avgEarnings": 556
+    },
+    {
+      "storeName": "日本橋海鮮丼　つじ半　神楽坂店",
+      "count": 1,
+      "earnings": 548,
+      "distance": 5.05,
+      "avgEarnings": 548
+    }
+  ],
+  "efficiencyRanking": [
+    {
+      "no": 12,
+      "storeName": "楊国福マーラータン 後楽園店Yangguofumalatang",
+      "efficiency": 305,
+      "earnings": 320,
+      "distance": 1.05
+    },
+    {
+      "no": 16,
+      "storeName": "マクドナルド 市ヶ谷店　McDonald's Ichigaya",
+      "efficiency": 232,
+      "earnings": 320,
+      "distance": 1.38
+    },
+    {
+      "no": 8,
+      "storeName": "マクドナルド 春日駅前店　McDonald's Kasuga",
+      "efficiency": 204,
+      "earnings": 508,
+      "distance": 2.49
+    },
+    {
+      "no": 22,
+      "storeName": "マクドナルド 春日駅前店　McDonald's Kasuga",
+      "efficiency": 195,
+      "earnings": 320,
+      "distance": 1.64
+    },
+    {
+      "no": 21,
+      "storeName": "ゴンチャ 飯田橋ラムラ店 Gong cha IIDABASHI RAMLA",
+      "efficiency": 160,
+      "earnings": 432,
+      "distance": 2.7
+    },
+    {
+      "no": 10,
+      "storeName": "ローソン 御茶ノ水",
+      "efficiency": 157,
+      "earnings": 320,
+      "distance": 2.04
+    },
+    {
+      "no": 24,
+      "storeName": "麺屋武蔵　神山 menya musashi　kanzan",
+      "efficiency": 151,
+      "earnings": 876,
+      "distance": 5.79
+    },
+    {
+      "no": 13,
+      "storeName": "ローソン MS GARDEN",
+      "efficiency": 148,
+      "earnings": 556,
+      "distance": 3.75
+    },
+    {
+      "no": 14,
+      "storeName": "7-Eleven飯田橋アイガーデンテラス店",
+      "efficiency": 147,
+      "earnings": 342,
+      "distance": 2.32
+    },
+    {
+      "no": 28,
+      "storeName": "ドミノ・ピザ 飯田橋店 Domino's Pizza Iidabashi Store",
+      "efficiency": 145,
+      "earnings": 320,
+      "distance": 2.2
+    },
+    {
+      "no": 29,
+      "storeName": "ウェンディーズ・ファーストキッチン 飯田橋ラムラ店 Wendy's First Kitchen IIDABASHI RAMURA",
+      "efficiency": 145,
+      "earnings": 477,
+      "distance": 3.3
+    },
+    {
+      "no": 9,
+      "storeName": "くすりの福太郎本郷店",
+      "efficiency": 144,
+      "earnings": 320,
+      "distance": 2.22
+    },
+    {
+      "no": 15,
+      "storeName": "【アサイー＆スムージーボウル】シリアルモンスター神楽坂 Serial Monster Kagurazaka",
+      "efficiency": 143,
+      "earnings": 764,
+      "distance": 5.36
+    },
+    {
+      "no": 2,
+      "storeName": "蒙古タンメン中本 高田馬場店 Moukotanmen Nakamoto Takadanobaba",
+      "efficiency": 142,
+      "earnings": 320,
+      "distance": 2.25
+    },
+    {
+      "no": 26,
+      "storeName": "【台湾朝食専門店】 wanna manna 飯田橋サクラテラス店",
+      "efficiency": 131,
+      "earnings": 786,
+      "distance": 5.99
+    },
+    {
+      "no": 17,
+      "storeName": "ガスト 市ヶ谷駅前店 Gusto ICHIGAYAEKIMAE",
+      "efficiency": 130,
+      "earnings": 522,
+      "distance": 4.02
+    },
+    {
+      "no": 31,
+      "storeName": "焼肉亭かぐら YAKINIKUTEI KAGURA",
+      "efficiency": 130,
+      "earnings": 638,
+      "distance": 4.89
+    },
+    {
+      "no": 18,
+      "storeName": "Tanaka's Roti",
+      "efficiency": 129,
+      "earnings": 320,
+      "distance": 2.48
+    },
+    {
+      "no": 33,
+      "storeName": "スターバックス コーヒー 高田馬場早稲田通り店 Starbucks Coffee Takadanobaba Waseda-dori",
+      "efficiency": 129,
+      "earnings": 320,
+      "distance": 2.48
+    },
+    {
+      "no": 25,
+      "storeName": "焼肉ライク 秋葉原中央通り店",
+      "efficiency": 125,
+      "earnings": 568,
+      "distance": 4.54
+    },
+    {
+      "no": 6,
+      "storeName": "絶品スープで味わうハンバーグの店「スープdeバーグ」 Soup de Burg\", Hamburg restaurant with excellent soup",
+      "efficiency": 118,
+      "earnings": 506,
+      "distance": 4.28
+    },
+    {
+      "no": 11,
+      "storeName": "スシロー 後楽園春日店",
+      "efficiency": 117,
+      "earnings": 524,
+      "distance": 4.49
+    },
+    {
+      "no": 27,
+      "storeName": "モスバーガー 飯田橋東店 Mos Burger IIDABASHI-HIGASHI",
+      "efficiency": 113,
+      "earnings": 320,
+      "distance": 2.82
+    },
+    {
+      "no": 3,
+      "storeName": "ガスト 高田馬場駅前店 Gusto Takadanobaba",
+      "efficiency": 111,
+      "earnings": 574,
+      "distance": 5.17
+    },
+    {
+      "no": 5,
+      "storeName": "日本橋海鮮丼　つじ半　神楽坂店",
+      "efficiency": 109,
+      "earnings": 548,
+      "distance": 5.05
+    },
+    {
+      "no": 1,
+      "storeName": "Reis Kebab 高田馬場店",
+      "efficiency": 108,
+      "earnings": 757,
+      "distance": 6.98
+    },
+    {
+      "no": 19,
+      "storeName": "マクドナルド 春日駅前店",
+      "efficiency": 108,
+      "earnings": 320,
+      "distance": 2.95
+    },
+    {
+      "no": 32,
+      "storeName": "フレッシュネスバーガー 新大久保店 Freshness Burger Shin-Okubo",
+      "efficiency": 108,
+      "earnings": 320,
+      "distance": 2.95
+    },
+    {
+      "no": 4,
+      "storeName": "カツ丼屋 八方 高田馬場店",
+      "efficiency": 107,
+      "earnings": 320,
+      "distance": 2.98
+    },
+    {
+      "no": 7,
+      "storeName": "リコス 西片２丁目店",
+      "efficiency": 105,
+      "earnings": 432,
+      "distance": 4.12
+    },
+    {
+      "no": 20,
+      "storeName": "サーティワンアイスクリーム 東京ドームシティラクーア店",
+      "efficiency": 102,
+      "earnings": 537,
+      "distance": 5.25
+    },
+    {
+      "no": 30,
+      "storeName": "スターバックス コーヒー 市ヶ谷駅前店 Starbucks Coffee Ichigaya Eki-mae",
+      "efficiency": 100,
+      "earnings": 320,
+      "distance": 3.19
+    },
+    {
+      "no": 23,
+      "storeName": "マクドナルド 稲荷町駅前店 McDonald's INARI-CHO EKI-MAE",
+      "efficiency": 99,
+      "earnings": 345,
+      "distance": 3.48
+    }
+  ]
+}
