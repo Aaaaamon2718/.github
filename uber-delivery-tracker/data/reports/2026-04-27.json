@@ -1,0 +1,333 @@
+{
+  "date": "2026-04-27",
+  "dateJP": "2026年4月27日（月）",
+  "generatedAt": "2026-05-03T16:40:03.084Z",
+  "summary": {
+    "totalEarnings": 15139,
+    "totalCount": 9,
+    "totalDistance": 59.37,
+    "totalTip": 0,
+    "avgEarnings": 1682,
+    "avgDistance": 6.6,
+    "avgEfficiency": 255,
+    "avgDurationSec": 1588,
+    "avgDurationFormatted": "26:28"
+  },
+  "deliveries": [
+    {
+      "no": 1,
+      "completedTime": "20:53",
+      "datetime": "2026年4月27日 午後8時53分",
+      "hour": 20,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "ビバパエリア五反田",
+      "area": "5-chōme Tokyo Shinagawa City Kitashinagawa JP",
+      "earnings": 904,
+      "tip": 0,
+      "baseEarnings": 904,
+      "distance": 5.31,
+      "durationSec": 1264,
+      "durationFormatted": "21:04",
+      "efficiency": 170
+    },
+    {
+      "no": 2,
+      "completedTime": "20:35",
+      "datetime": "2026年4月27日 午後8時35分",
+      "hour": 20,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "スープストック トーキョー 目黒店 Soup Stock Tokyo Meguro",
+      "area": "東京都港区高輪１丁目",
+      "earnings": 426,
+      "tip": 0,
+      "baseEarnings": 426,
+      "distance": 3.96,
+      "durationSec": 1091,
+      "durationFormatted": "18:11",
+      "efficiency": 108
+    },
+    {
+      "no": 3,
+      "completedTime": "19:22",
+      "datetime": "2026年4月27日 午後7時22分",
+      "hour": 19,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "カフェ・ド・クリエ 田町駅東口なぎさテラス店 CAFÉ de CRIÉ TAMACHI-EKI HIGASHIGUCHI NAGISATERRACE",
+      "area": "5-chōme Tokyo Minato City Minamiaoyama JP",
+      "earnings": 2735,
+      "tip": 0,
+      "baseEarnings": 2735,
+      "distance": 11.56,
+      "durationSec": 3100,
+      "durationFormatted": "51:40",
+      "efficiency": 237
+    },
+    {
+      "no": 4,
+      "completedTime": "18:17",
+      "datetime": "2026年4月27日 午後6時17分",
+      "hour": 18,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "炭火焼き干物定食 しんぱち食堂 田町店 Charcoal Grilled Meal Sinpachi Syokudo Tamachi",
+      "area": "東京都港区芝浦４丁目",
+      "earnings": 898,
+      "tip": 0,
+      "baseEarnings": 898,
+      "distance": 1.37,
+      "durationSec": 356,
+      "durationFormatted": "5:56",
+      "efficiency": 655
+    },
+    {
+      "no": 5,
+      "completedTime": "18:07",
+      "datetime": "2026年4月27日 午後6時07分",
+      "hour": 18,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "銀だこハイボール酒場 田町駅東口 Gindaco Hi-Ball Sakaba Tamachi Station East-Exit",
+      "area": "東京都港区芝浦４丁目",
+      "earnings": 1048,
+      "tip": 0,
+      "baseEarnings": 1048,
+      "distance": 6.45,
+      "durationSec": 1665,
+      "durationFormatted": "27:45",
+      "efficiency": 162
+    },
+    {
+      "no": 6,
+      "completedTime": "17:26",
+      "datetime": "2026年4月27日 午後5時26分",
+      "hour": 17,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "7-Eleven芝浦４丁目店",
+      "area": "東京都港区港南３丁目",
+      "earnings": 2012,
+      "tip": 0,
+      "baseEarnings": 2012,
+      "distance": 9.3,
+      "durationSec": 1389,
+      "durationFormatted": "23:09",
+      "efficiency": 216
+    },
+    {
+      "no": 7,
+      "completedTime": "16:58",
+      "datetime": "2026年4月27日 午後4時58分",
+      "hour": 16,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "ナチュラルローソン 白金一丁目",
+      "area": "東京都港区白金１丁目",
+      "earnings": 2200,
+      "tip": 0,
+      "baseEarnings": 2200,
+      "distance": 6.68,
+      "durationSec": 1826,
+      "durationFormatted": "30:26",
+      "efficiency": 329
+    },
+    {
+      "no": 8,
+      "completedTime": "16:41",
+      "datetime": "2026年4月27日 午後4時41分",
+      "hour": 16,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "セガフレード・ザネッティ・エスプレッソ 広尾店",
+      "area": "東京都港区高輪１丁目",
+      "earnings": 1340,
+      "tip": 0,
+      "baseEarnings": 1340,
+      "distance": 5.65,
+      "durationSec": 1458,
+      "durationFormatted": "24:18",
+      "efficiency": 237
+    },
+    {
+      "no": 9,
+      "completedTime": "15:59",
+      "datetime": "2026年4月27日 午後3時59分",
+      "hour": 15,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "ローソン 西五反田高齢者複合施設",
+      "area": "東京都港区南麻布４丁目",
+      "earnings": 3576,
+      "tip": 0,
+      "baseEarnings": 3576,
+      "distance": 9.09,
+      "durationSec": 2143,
+      "durationFormatted": "35:43",
+      "efficiency": 393
+    }
+  ],
+  "byTimeSlot": [
+    {
+      "label": "夕（14〜18時）",
+      "count": 4,
+      "earnings": 9128,
+      "distance": 30.72,
+      "avgEarnings": 2282,
+      "efficiency": 297
+    },
+    {
+      "label": "夜（18〜22時）",
+      "count": 5,
+      "earnings": 6011,
+      "distance": 28.65,
+      "avgEarnings": 1202,
+      "efficiency": 210
+    }
+  ],
+  "byArea": [
+    {
+      "area": "東京都港区",
+      "count": 7,
+      "earnings": 11500,
+      "distance": 42.5,
+      "avgEarnings": 1643
+    },
+    {
+      "area": "5-chōme Tokyo Minato City Minamiaoyama JP",
+      "count": 1,
+      "earnings": 2735,
+      "distance": 11.56,
+      "avgEarnings": 2735
+    },
+    {
+      "area": "5-chōme Tokyo Shinagawa City Kitashinagawa JP",
+      "count": 1,
+      "earnings": 904,
+      "distance": 5.31,
+      "avgEarnings": 904
+    }
+  ],
+  "byStore": [
+    {
+      "storeName": "ローソン 西五反田高齢者複合施設",
+      "count": 1,
+      "earnings": 3576,
+      "distance": 9.09,
+      "avgEarnings": 3576
+    },
+    {
+      "storeName": "カフェ・ド・クリエ 田町駅東口なぎさテラス店 CAFÉ de CRIÉ TAMACHI-EKI HIGASHIGUCHI NAGISATERRACE",
+      "count": 1,
+      "earnings": 2735,
+      "distance": 11.56,
+      "avgEarnings": 2735
+    },
+    {
+      "storeName": "ナチュラルローソン 白金一丁目",
+      "count": 1,
+      "earnings": 2200,
+      "distance": 6.68,
+      "avgEarnings": 2200
+    },
+    {
+      "storeName": "7-Eleven芝浦４丁目店",
+      "count": 1,
+      "earnings": 2012,
+      "distance": 9.3,
+      "avgEarnings": 2012
+    },
+    {
+      "storeName": "セガフレード・ザネッティ・エスプレッソ 広尾店",
+      "count": 1,
+      "earnings": 1340,
+      "distance": 5.65,
+      "avgEarnings": 1340
+    },
+    {
+      "storeName": "銀だこハイボール酒場 田町駅東口 Gindaco Hi-Ball Sakaba Tamachi Station East-Exit",
+      "count": 1,
+      "earnings": 1048,
+      "distance": 6.45,
+      "avgEarnings": 1048
+    },
+    {
+      "storeName": "ビバパエリア五反田",
+      "count": 1,
+      "earnings": 904,
+      "distance": 5.31,
+      "avgEarnings": 904
+    },
+    {
+      "storeName": "炭火焼き干物定食 しんぱち食堂 田町店 Charcoal Grilled Meal Sinpachi Syokudo Tamachi",
+      "count": 1,
+      "earnings": 898,
+      "distance": 1.37,
+      "avgEarnings": 898
+    },
+    {
+      "storeName": "スープストック トーキョー 目黒店 Soup Stock Tokyo Meguro",
+      "count": 1,
+      "earnings": 426,
+      "distance": 3.96,
+      "avgEarnings": 426
+    }
+  ],
+  "efficiencyRanking": [
+    {
+      "no": 4,
+      "storeName": "炭火焼き干物定食 しんぱち食堂 田町店 Charcoal Grilled Meal Sinpachi Syokudo Tamachi",
+      "efficiency": 655,
+      "earnings": 898,
+      "distance": 1.37
+    },
+    {
+      "no": 9,
+      "storeName": "ローソン 西五反田高齢者複合施設",
+      "efficiency": 393,
+      "earnings": 3576,
+      "distance": 9.09
+    },
+    {
+      "no": 7,
+      "storeName": "ナチュラルローソン 白金一丁目",
+      "efficiency": 329,
+      "earnings": 2200,
+      "distance": 6.68
+    },
+    {
+      "no": 3,
+      "storeName": "カフェ・ド・クリエ 田町駅東口なぎさテラス店 CAFÉ de CRIÉ TAMACHI-EKI HIGASHIGUCHI NAGISATERRACE",
+      "efficiency": 237,
+      "earnings": 2735,
+      "distance": 11.56
+    },
+    {
+      "no": 8,
+      "storeName": "セガフレード・ザネッティ・エスプレッソ 広尾店",
+      "efficiency": 237,
+      "earnings": 1340,
+      "distance": 5.65
+    },
+    {
+      "no": 6,
+      "storeName": "7-Eleven芝浦４丁目店",
+      "efficiency": 216,
+      "earnings": 2012,
+      "distance": 9.3
+    },
+    {
+      "no": 1,
+      "storeName": "ビバパエリア五反田",
+      "efficiency": 170,
+      "earnings": 904,
+      "distance": 5.31
+    },
+    {
+      "no": 5,
+      "storeName": "銀だこハイボール酒場 田町駅東口 Gindaco Hi-Ball Sakaba Tamachi Station East-Exit",
+      "efficiency": 162,
+      "earnings": 1048,
+      "distance": 6.45
+    },
+    {
+      "no": 2,
+      "storeName": "スープストック トーキョー 目黒店 Soup Stock Tokyo Meguro",
+      "efficiency": 108,
+      "earnings": 426,
+      "distance": 3.96
+    }
+  ]
+}
