@@ -1,0 +1,980 @@
+{
+  "date": "2026-05-03",
+  "dateJP": "2026年5月3日（日）",
+  "generatedAt": "2026-05-03T17:00:37.706Z",
+  "summary": {
+    "totalEarnings": 15247,
+    "totalCount": 34,
+    "totalDistance": 118.18,
+    "totalTip": 0,
+    "avgEarnings": 448,
+    "avgDistance": 3.48,
+    "avgEfficiency": 129,
+    "avgDurationSec": 1005,
+    "avgDurationFormatted": "16:45"
+  },
+  "deliveries": [
+    {
+      "no": 1,
+      "completedTime": "22:11",
+      "datetime": "2026年5月3日 午後10時11分",
+      "hour": 22,
+      "timeSlot": "その他",
+      "storeName": "【アサイーボウル】ザ・ナチュラル ボウル　【Acai Bowl】THE NATURAL BOWL",
+      "area": "東京都新宿区若松町",
+      "earnings": 548,
+      "tip": 0,
+      "baseEarnings": 548,
+      "distance": 4.65,
+      "durationSec": 1059,
+      "durationFormatted": "17:39",
+      "efficiency": 118
+    },
+    {
+      "no": 2,
+      "completedTime": "21:45",
+      "datetime": "2026年5月3日 午後9時45分",
+      "hour": 21,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "東大門toudaimon韓国料理チキン",
+      "area": "東京都文京区本郷５丁目",
+      "earnings": 476,
+      "tip": 0,
+      "baseEarnings": 476,
+      "distance": 3.17,
+      "durationSec": 764,
+      "durationFormatted": "12:44",
+      "efficiency": 150
+    },
+    {
+      "no": 3,
+      "completedTime": "21:25",
+      "datetime": "2026年5月3日 午後9時25分",
+      "hour": 21,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "横浜家系ラーメン 家家家 飯田橋店 Yokohama iekei ra-men yah-yah-ya iidabashiten",
+      "area": "東京都台東区元浅草１丁目",
+      "earnings": 936,
+      "tip": 0,
+      "baseEarnings": 936,
+      "distance": 6.66,
+      "durationSec": 1644,
+      "durationFormatted": "27:24",
+      "efficiency": 141
+    },
+    {
+      "no": 4,
+      "completedTime": "21:19",
+      "datetime": "2026年5月3日 午後9時19分",
+      "hour": 21,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "マクドナルド 市ケ谷店",
+      "area": "東京都新宿区神楽坂３丁目",
+      "earnings": 377,
+      "tip": 0,
+      "baseEarnings": 377,
+      "distance": 2.19,
+      "durationSec": 703,
+      "durationFormatted": "11:43",
+      "efficiency": 172
+    },
+    {
+      "no": 5,
+      "completedTime": "20:59",
+      "datetime": "2026年5月3日 午後8時59分",
+      "hour": 20,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "アジアンダイニング ダルバール",
+      "area": "Tokyo Shinjuku City Yotsuyasakamachi JP",
+      "earnings": 351,
+      "tip": 0,
+      "baseEarnings": 351,
+      "distance": 2.62,
+      "durationSec": 797,
+      "durationFormatted": "13:17",
+      "efficiency": 134
+    },
+    {
+      "no": 6,
+      "completedTime": "20:47",
+      "datetime": "2026年5月3日 午後8時47分",
+      "hour": 20,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "スターバックス コーヒー 九段下店 Starbucks Coffee Kudanshita",
+      "area": "東京都千代田区三番町",
+      "earnings": 403,
+      "tip": 0,
+      "baseEarnings": 403,
+      "distance": 3.27,
+      "durationSec": 857,
+      "durationFormatted": "14:17",
+      "efficiency": 123
+    },
+    {
+      "no": 7,
+      "completedTime": "20:41",
+      "datetime": "2026年5月3日 午後8時41分",
+      "hour": 20,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "クリスプサラダワークス 飯田橋ファーストビル店 CRISP SALAD WORKS Iidabashi First Building",
+      "area": "東京都千代田区飯田橋２丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.46,
+      "durationSec": 583,
+      "durationFormatted": "9:43",
+      "efficiency": 130
+    },
+    {
+      "no": 8,
+      "completedTime": "20:29",
+      "datetime": "2026年5月3日 午後8時29分",
+      "hour": 20,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "ゴンチャ 飯田橋ラムラ店 Gong cha IIDABASHI RAMLA",
+      "area": "東京都新宿区筑土八幡町",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 1.8,
+      "durationSec": 585,
+      "durationFormatted": "9:45",
+      "efficiency": 178
+    },
+    {
+      "no": 9,
+      "completedTime": "20:00",
+      "datetime": "2026年5月3日 午後8時00分",
+      "hour": 20,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "~クラフトとスパイス料理~ 餐事 [(sanZi)サンジ] Craft & Spice Food sanZi",
+      "area": "東京都新宿区市谷田町３丁目",
+      "earnings": 484,
+      "tip": 0,
+      "baseEarnings": 484,
+      "distance": 3.03,
+      "durationSec": 1204,
+      "durationFormatted": "20:04",
+      "efficiency": 160
+    },
+    {
+      "no": 10,
+      "completedTime": "19:41",
+      "datetime": "2026年5月3日 午後7時41分",
+      "hour": 19,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "~クラフトとスパイス料理~ 餐事 [(sanZi)サンジ] Craft & Spice Food sanZi",
+      "area": "東京都新宿区矢来町",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 1.71,
+      "durationSec": 586,
+      "durationFormatted": "9:46",
+      "efficiency": 187
+    },
+    {
+      "no": 11,
+      "completedTime": "19:27",
+      "datetime": "2026年5月3日 午後7時27分",
+      "hour": 19,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "チキン・ウイングストリート　江戸川橋店　Wing Street Edogawabashi",
+      "area": "東京都新宿区山吹町",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 1.64,
+      "durationSec": 774,
+      "durationFormatted": "12:54",
+      "efficiency": 195
+    },
+    {
+      "no": 12,
+      "completedTime": "19:11",
+      "datetime": "2026年5月3日 午後7時11分",
+      "hour": 19,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "タコライスベイビー 神楽坂 Taco Rice Baby",
+      "area": "東京都新宿区東五軒町",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 1.71,
+      "durationSec": 513,
+      "durationFormatted": "8:33",
+      "efficiency": 187
+    },
+    {
+      "no": 13,
+      "completedTime": "18:59",
+      "datetime": "2026年5月3日 午後6時59分",
+      "hour": 18,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "HIGH FIVE SALAD 奥神楽坂店",
+      "area": "東京都新宿区矢来町",
+      "earnings": 412,
+      "tip": 0,
+      "baseEarnings": 412,
+      "distance": 2.29,
+      "durationSec": 1061,
+      "durationFormatted": "17:41",
+      "efficiency": 180
+    },
+    {
+      "no": 14,
+      "completedTime": "18:14",
+      "datetime": "2026年5月3日 午後6時14分",
+      "hour": 18,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "広島風お好み焼もみじ屋 Hiroshimastyle Okonomiyaki MOMIJIYA",
+      "area": "東京都文京区音羽１丁目",
+      "earnings": 783,
+      "tip": 0,
+      "baseEarnings": 783,
+      "distance": 6.6,
+      "durationSec": 1679,
+      "durationFormatted": "27:59",
+      "efficiency": 119
+    },
+    {
+      "no": 15,
+      "completedTime": "17:43",
+      "datetime": "2026年5月3日 午後5時43分",
+      "hour": 17,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "神田一番寿司白山店 kandaitibansushihakusanten",
+      "area": "1-chōme Tokyo Bunkyo City Kōraku JP",
+      "earnings": 678,
+      "tip": 0,
+      "baseEarnings": 678,
+      "distance": 4.55,
+      "durationSec": 1675,
+      "durationFormatted": "27:55",
+      "efficiency": 149
+    },
+    {
+      "no": 16,
+      "completedTime": "17:34",
+      "datetime": "2026年5月3日 午後5時34分",
+      "hour": 17,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "マクドナルド白山駅前店 McDonald's HAKUSAN EKI-MAE",
+      "area": "東京都文京区白山４丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 1.72,
+      "durationSec": 515,
+      "durationFormatted": "8:35",
+      "efficiency": 186
+    },
+    {
+      "no": 17,
+      "completedTime": "16:31",
+      "datetime": "2026年5月3日 午後4時31分",
+      "hour": 16,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "成城石井 東京ドームラクーア Seijo Ishii Tokyo Dome LaQua",
+      "area": "東京都文京区本駒込３丁目",
+      "earnings": 914,
+      "tip": 0,
+      "baseEarnings": 914,
+      "distance": 7.16,
+      "durationSec": 1764,
+      "durationFormatted": "29:24",
+      "efficiency": 128
+    },
+    {
+      "no": 18,
+      "completedTime": "16:21",
+      "datetime": "2026年5月3日 午後4時21分",
+      "hour": 16,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "サブウェイ飯田橋東口店 Subway Iidabashi higashiguchi",
+      "area": "東京都文京区春日２丁目",
+      "earnings": 347,
+      "tip": 0,
+      "baseEarnings": 347,
+      "distance": 2.91,
+      "durationSec": 597,
+      "durationFormatted": "9:57",
+      "efficiency": 119
+    },
+    {
+      "no": 19,
+      "completedTime": "15:47",
+      "datetime": "2026年5月3日 午後3時47分",
+      "hour": 15,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "マクドナルド 市ヶ谷店　McDonald's Ichigaya",
+      "area": "Tokyo Shinjuku City Katamachi JP",
+      "earnings": 326,
+      "tip": 0,
+      "baseEarnings": 326,
+      "distance": 2.78,
+      "durationSec": 726,
+      "durationFormatted": "12:06",
+      "efficiency": 117
+    },
+    {
+      "no": 20,
+      "completedTime": "15:41",
+      "datetime": "2026年5月3日 午後3時41分",
+      "hour": 15,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "ローソン 四谷本塩町",
+      "area": "東京都新宿区市谷左内町",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.09,
+      "durationSec": 778,
+      "durationFormatted": "12:58",
+      "efficiency": 153
+    },
+    {
+      "no": 21,
+      "completedTime": "15:32",
+      "datetime": "2026年5月3日 午後3時32分",
+      "hour": 15,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "大阪王将 市ヶ谷店 Osaka Ohsho Ichigaya",
+      "area": "Tokyo Shinjuku City Ichigayayakuōjimachi JP",
+      "earnings": 360,
+      "tip": 0,
+      "baseEarnings": 360,
+      "distance": 3.2,
+      "durationSec": 826,
+      "durationFormatted": "13:46",
+      "efficiency": 113
+    },
+    {
+      "no": 22,
+      "completedTime": "15:10",
+      "datetime": "2026年5月3日 午後3時10分",
+      "hour": 15,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "ゴンチャ 飯田橋ラムラ店 Gong cha IIDABASHI RAMLA",
+      "area": "東京都千代田区三番町",
+      "earnings": 376,
+      "tip": 0,
+      "baseEarnings": 376,
+      "distance": 3.52,
+      "durationSec": 1074,
+      "durationFormatted": "17:54",
+      "efficiency": 107
+    },
+    {
+      "no": 23,
+      "completedTime": "14:55",
+      "datetime": "2026年5月3日 午後2時55分",
+      "hour": 14,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "ミニストップ九段南１丁目店 MINISTOP",
+      "area": "東京都千代田区富士見１丁目",
+      "earnings": 408,
+      "tip": 0,
+      "baseEarnings": 408,
+      "distance": 2.82,
+      "durationSec": 952,
+      "durationFormatted": "15:52",
+      "efficiency": 145
+    },
+    {
+      "no": 24,
+      "completedTime": "14:31",
+      "datetime": "2026年5月3日 午後2時31分",
+      "hour": 14,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "スターバックス コーヒー 九段下店 Starbucks Coffee Kudanshita",
+      "area": "東京都千代田区九段北１丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.8,
+      "durationSec": 1027,
+      "durationFormatted": "17:07",
+      "efficiency": 114
+    },
+    {
+      "no": 25,
+      "completedTime": "14:18",
+      "datetime": "2026年5月3日 午後2時18分",
+      "hour": 14,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "モスバーガー 飯田橋東店 Mos Burger IIDABASHI-HIGASHI",
+      "area": "東京都千代田区富士見２丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 3.65,
+      "durationSec": 1199,
+      "durationFormatted": "19:59",
+      "efficiency": 88
+    },
+    {
+      "no": 26,
+      "completedTime": "13:49",
+      "datetime": "2026年5月3日 午後1時49分",
+      "hour": 13,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "バーガーキング神保町店 Burgerking Jinbocho",
+      "area": "Tokyo Shinjuku City Wakamiyachō JP",
+      "earnings": 605,
+      "tip": 0,
+      "baseEarnings": 605,
+      "distance": 5.78,
+      "durationSec": 1533,
+      "durationFormatted": "25:33",
+      "efficiency": 105
+    },
+    {
+      "no": 27,
+      "completedTime": "13:25",
+      "datetime": "2026年5月3日 午後1時25分",
+      "hour": 13,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "東京トンテキヨドバシアキバ店 tokyotontekiyodobashi akiba",
+      "area": "東京都千代田区神田猿楽町２丁目",
+      "earnings": 597,
+      "tip": 0,
+      "baseEarnings": 597,
+      "distance": 5.23,
+      "durationSec": 1443,
+      "durationFormatted": "24:03",
+      "efficiency": 114
+    },
+    {
+      "no": 28,
+      "completedTime": "13:06",
+      "datetime": "2026年5月3日 午後1時06分",
+      "hour": 13,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "松のや 岩本町店 Matsunoya Iwamotocyo",
+      "area": "東京都台東区台東２丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.96,
+      "durationSec": 891,
+      "durationFormatted": "14:51",
+      "efficiency": 108
+    },
+    {
+      "no": 29,
+      "completedTime": "12:31",
+      "datetime": "2026年5月3日 午後12時31分",
+      "hour": 12,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "讃岐ブルース 飯田橋",
+      "area": "東京都千代田区神田西福田町",
+      "earnings": 726,
+      "tip": 0,
+      "baseEarnings": 726,
+      "distance": 5.57,
+      "durationSec": 1611,
+      "durationFormatted": "26:51",
+      "efficiency": 130
+    },
+    {
+      "no": 30,
+      "completedTime": "12:24",
+      "datetime": "2026年5月3日 午後12時24分",
+      "hour": 12,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "ポール 神楽坂店 French Bakery PAUL Kagurazaka",
+      "area": "東京都千代田区富士見２丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.2,
+      "durationSec": 653,
+      "durationFormatted": "10:53",
+      "efficiency": 145
+    },
+    {
+      "no": 31,
+      "completedTime": "11:54",
+      "datetime": "2026年5月3日 午前11時54分",
+      "hour": 11,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "マクドナルド 水道橋外堀通り店 McDonald's Suidobashi Sotobori-Dori",
+      "area": "Tokyo Shinjuku City Nishigokenchō JP",
+      "earnings": 445,
+      "tip": 0,
+      "baseEarnings": 445,
+      "distance": 4.51,
+      "durationSec": 1092,
+      "durationFormatted": "18:12",
+      "efficiency": 99
+    },
+    {
+      "no": 32,
+      "completedTime": "11:42",
+      "datetime": "2026年5月3日 午前11時42分",
+      "hour": 11,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "マクドナルド 九段下店 McDonald's KUDAN-SHITA",
+      "area": "東京都千代田区九段北１丁目",
+      "earnings": 321,
+      "tip": 0,
+      "baseEarnings": 321,
+      "distance": 3.01,
+      "durationSec": 722,
+      "durationFormatted": "12:02",
+      "efficiency": 107
+    },
+    {
+      "no": 33,
+      "completedTime": "11:18",
+      "datetime": "2026年5月3日 午前11時18分",
+      "hour": 11,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "神楽坂から揚げ 斉唐 KAGURAZAKA KARAAGE SAITOU",
+      "area": "東京都新宿区袋町",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.74,
+      "durationSec": 1244,
+      "durationFormatted": "20:44",
+      "efficiency": 117
+    },
+    {
+      "no": 34,
+      "completedTime": "10:52",
+      "datetime": "2026年5月3日 午前10時52分",
+      "hour": 10,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "ウェンディーズ・ファーストキッチン 飯田橋ラムラ店 Wendy's First Kitchen IIDABASHI RAMURA",
+      "area": "東京都新宿区南町２",
+      "earnings": 534,
+      "tip": 0,
+      "baseEarnings": 534,
+      "distance": 5.18,
+      "durationSec": 1047,
+      "durationFormatted": "17:27",
+      "efficiency": 103
+    }
+  ],
+  "byTimeSlot": [
+    {
+      "label": "昼（10〜14時）",
+      "count": 9,
+      "earnings": 4188,
+      "distance": 37.18,
+      "avgEarnings": 465,
+      "efficiency": 113
+    },
+    {
+      "label": "夕（14〜18時）",
+      "count": 11,
+      "earnings": 4689,
+      "distance": 37.2,
+      "avgEarnings": 426,
+      "efficiency": 126
+    },
+    {
+      "label": "夜（18〜22時）",
+      "count": 13,
+      "earnings": 5822,
+      "distance": 39.15,
+      "avgEarnings": 448,
+      "efficiency": 149
+    },
+    {
+      "label": "その他",
+      "count": 1,
+      "earnings": 548,
+      "distance": 4.65,
+      "avgEarnings": 548,
+      "efficiency": 118
+    }
+  ],
+  "byArea": [
+    {
+      "area": "東京都新宿区",
+      "count": 11,
+      "earnings": 4275,
+      "distance": 29.03,
+      "avgEarnings": 389
+    },
+    {
+      "area": "東京都千代田区",
+      "count": 10,
+      "earnings": 4111,
+      "distance": 34.53,
+      "avgEarnings": 411
+    },
+    {
+      "area": "東京都文京区",
+      "count": 5,
+      "earnings": 2840,
+      "distance": 21.56,
+      "avgEarnings": 568
+    },
+    {
+      "area": "東京都台東区",
+      "count": 2,
+      "earnings": 1256,
+      "distance": 9.62,
+      "avgEarnings": 628
+    },
+    {
+      "area": "1-chōme Tokyo Bunkyo City Kōraku JP",
+      "count": 1,
+      "earnings": 678,
+      "distance": 4.55,
+      "avgEarnings": 678
+    },
+    {
+      "area": "Tokyo Shinjuku City Wakamiyachō JP",
+      "count": 1,
+      "earnings": 605,
+      "distance": 5.78,
+      "avgEarnings": 605
+    },
+    {
+      "area": "Tokyo Shinjuku City Nishigokenchō JP",
+      "count": 1,
+      "earnings": 445,
+      "distance": 4.51,
+      "avgEarnings": 445
+    },
+    {
+      "area": "Tokyo Shinjuku City Ichigayayakuōjimachi JP",
+      "count": 1,
+      "earnings": 360,
+      "distance": 3.2,
+      "avgEarnings": 360
+    },
+    {
+      "area": "Tokyo Shinjuku City Yotsuyasakamachi JP",
+      "count": 1,
+      "earnings": 351,
+      "distance": 2.62,
+      "avgEarnings": 351
+    },
+    {
+      "area": "Tokyo Shinjuku City Katamachi JP",
+      "count": 1,
+      "earnings": 326,
+      "distance": 2.78,
+      "avgEarnings": 326
+    }
+  ],
+  "byStore": [
+    {
+      "storeName": "横浜家系ラーメン 家家家 飯田橋店 Yokohama iekei ra-men yah-yah-ya iidabashiten",
+      "count": 1,
+      "earnings": 936,
+      "distance": 6.66,
+      "avgEarnings": 936
+    },
+    {
+      "storeName": "成城石井 東京ドームラクーア Seijo Ishii Tokyo Dome LaQua",
+      "count": 1,
+      "earnings": 914,
+      "distance": 7.16,
+      "avgEarnings": 914
+    },
+    {
+      "storeName": "~クラフトとスパイス料理~ 餐事 [(sanZi)サンジ] Craft & Spice Food sanZi",
+      "count": 2,
+      "earnings": 804,
+      "distance": 4.74,
+      "avgEarnings": 402
+    },
+    {
+      "storeName": "広島風お好み焼もみじ屋 Hiroshimastyle Okonomiyaki MOMIJIYA",
+      "count": 1,
+      "earnings": 783,
+      "distance": 6.6,
+      "avgEarnings": 783
+    },
+    {
+      "storeName": "讃岐ブルース 飯田橋",
+      "count": 1,
+      "earnings": 726,
+      "distance": 5.57,
+      "avgEarnings": 726
+    },
+    {
+      "storeName": "スターバックス コーヒー 九段下店 Starbucks Coffee Kudanshita",
+      "count": 2,
+      "earnings": 723,
+      "distance": 6.07,
+      "avgEarnings": 362
+    },
+    {
+      "storeName": "ゴンチャ 飯田橋ラムラ店 Gong cha IIDABASHI RAMLA",
+      "count": 2,
+      "earnings": 696,
+      "distance": 5.32,
+      "avgEarnings": 348
+    },
+    {
+      "storeName": "神田一番寿司白山店 kandaitibansushihakusanten",
+      "count": 1,
+      "earnings": 678,
+      "distance": 4.55,
+      "avgEarnings": 678
+    },
+    {
+      "storeName": "バーガーキング神保町店 Burgerking Jinbocho",
+      "count": 1,
+      "earnings": 605,
+      "distance": 5.78,
+      "avgEarnings": 605
+    },
+    {
+      "storeName": "東京トンテキヨドバシアキバ店 tokyotontekiyodobashi akiba",
+      "count": 1,
+      "earnings": 597,
+      "distance": 5.23,
+      "avgEarnings": 597
+    }
+  ],
+  "efficiencyRanking": [
+    {
+      "no": 11,
+      "storeName": "チキン・ウイングストリート　江戸川橋店　Wing Street Edogawabashi",
+      "efficiency": 195,
+      "earnings": 320,
+      "distance": 1.64
+    },
+    {
+      "no": 10,
+      "storeName": "~クラフトとスパイス料理~ 餐事 [(sanZi)サンジ] Craft & Spice Food sanZi",
+      "efficiency": 187,
+      "earnings": 320,
+      "distance": 1.71
+    },
+    {
+      "no": 12,
+      "storeName": "タコライスベイビー 神楽坂 Taco Rice Baby",
+      "efficiency": 187,
+      "earnings": 320,
+      "distance": 1.71
+    },
+    {
+      "no": 16,
+      "storeName": "マクドナルド白山駅前店 McDonald's HAKUSAN EKI-MAE",
+      "efficiency": 186,
+      "earnings": 320,
+      "distance": 1.72
+    },
+    {
+      "no": 13,
+      "storeName": "HIGH FIVE SALAD 奥神楽坂店",
+      "efficiency": 180,
+      "earnings": 412,
+      "distance": 2.29
+    },
+    {
+      "no": 8,
+      "storeName": "ゴンチャ 飯田橋ラムラ店 Gong cha IIDABASHI RAMLA",
+      "efficiency": 178,
+      "earnings": 320,
+      "distance": 1.8
+    },
+    {
+      "no": 4,
+      "storeName": "マクドナルド 市ケ谷店",
+      "efficiency": 172,
+      "earnings": 377,
+      "distance": 2.19
+    },
+    {
+      "no": 9,
+      "storeName": "~クラフトとスパイス料理~ 餐事 [(sanZi)サンジ] Craft & Spice Food sanZi",
+      "efficiency": 160,
+      "earnings": 484,
+      "distance": 3.03
+    },
+    {
+      "no": 20,
+      "storeName": "ローソン 四谷本塩町",
+      "efficiency": 153,
+      "earnings": 320,
+      "distance": 2.09
+    },
+    {
+      "no": 2,
+      "storeName": "東大門toudaimon韓国料理チキン",
+      "efficiency": 150,
+      "earnings": 476,
+      "distance": 3.17
+    },
+    {
+      "no": 15,
+      "storeName": "神田一番寿司白山店 kandaitibansushihakusanten",
+      "efficiency": 149,
+      "earnings": 678,
+      "distance": 4.55
+    },
+    {
+      "no": 23,
+      "storeName": "ミニストップ九段南１丁目店 MINISTOP",
+      "efficiency": 145,
+      "earnings": 408,
+      "distance": 2.82
+    },
+    {
+      "no": 30,
+      "storeName": "ポール 神楽坂店 French Bakery PAUL Kagurazaka",
+      "efficiency": 145,
+      "earnings": 320,
+      "distance": 2.2
+    },
+    {
+      "no": 3,
+      "storeName": "横浜家系ラーメン 家家家 飯田橋店 Yokohama iekei ra-men yah-yah-ya iidabashiten",
+      "efficiency": 141,
+      "earnings": 936,
+      "distance": 6.66
+    },
+    {
+      "no": 5,
+      "storeName": "アジアンダイニング ダルバール",
+      "efficiency": 134,
+      "earnings": 351,
+      "distance": 2.62
+    },
+    {
+      "no": 7,
+      "storeName": "クリスプサラダワークス 飯田橋ファーストビル店 CRISP SALAD WORKS Iidabashi First Building",
+      "efficiency": 130,
+      "earnings": 320,
+      "distance": 2.46
+    },
+    {
+      "no": 29,
+      "storeName": "讃岐ブルース 飯田橋",
+      "efficiency": 130,
+      "earnings": 726,
+      "distance": 5.57
+    },
+    {
+      "no": 17,
+      "storeName": "成城石井 東京ドームラクーア Seijo Ishii Tokyo Dome LaQua",
+      "efficiency": 128,
+      "earnings": 914,
+      "distance": 7.16
+    },
+    {
+      "no": 6,
+      "storeName": "スターバックス コーヒー 九段下店 Starbucks Coffee Kudanshita",
+      "efficiency": 123,
+      "earnings": 403,
+      "distance": 3.27
+    },
+    {
+      "no": 14,
+      "storeName": "広島風お好み焼もみじ屋 Hiroshimastyle Okonomiyaki MOMIJIYA",
+      "efficiency": 119,
+      "earnings": 783,
+      "distance": 6.6
+    },
+    {
+      "no": 18,
+      "storeName": "サブウェイ飯田橋東口店 Subway Iidabashi higashiguchi",
+      "efficiency": 119,
+      "earnings": 347,
+      "distance": 2.91
+    },
+    {
+      "no": 1,
+      "storeName": "【アサイーボウル】ザ・ナチュラル ボウル　【Acai Bowl】THE NATURAL BOWL",
+      "efficiency": 118,
+      "earnings": 548,
+      "distance": 4.65
+    },
+    {
+      "no": 19,
+      "storeName": "マクドナルド 市ヶ谷店　McDonald's Ichigaya",
+      "efficiency": 117,
+      "earnings": 326,
+      "distance": 2.78
+    },
+    {
+      "no": 33,
+      "storeName": "神楽坂から揚げ 斉唐 KAGURAZAKA KARAAGE SAITOU",
+      "efficiency": 117,
+      "earnings": 320,
+      "distance": 2.74
+    },
+    {
+      "no": 24,
+      "storeName": "スターバックス コーヒー 九段下店 Starbucks Coffee Kudanshita",
+      "efficiency": 114,
+      "earnings": 320,
+      "distance": 2.8
+    },
+    {
+      "no": 27,
+      "storeName": "東京トンテキヨドバシアキバ店 tokyotontekiyodobashi akiba",
+      "efficiency": 114,
+      "earnings": 597,
+      "distance": 5.23
+    },
+    {
+      "no": 21,
+      "storeName": "大阪王将 市ヶ谷店 Osaka Ohsho Ichigaya",
+      "efficiency": 113,
+      "earnings": 360,
+      "distance": 3.2
+    },
+    {
+      "no": 28,
+      "storeName": "松のや 岩本町店 Matsunoya Iwamotocyo",
+      "efficiency": 108,
+      "earnings": 320,
+      "distance": 2.96
+    },
+    {
+      "no": 22,
+      "storeName": "ゴンチャ 飯田橋ラムラ店 Gong cha IIDABASHI RAMLA",
+      "efficiency": 107,
+      "earnings": 376,
+      "distance": 3.52
+    },
+    {
+      "no": 32,
+      "storeName": "マクドナルド 九段下店 McDonald's KUDAN-SHITA",
+      "efficiency": 107,
+      "earnings": 321,
+      "distance": 3.01
+    },
+    {
+      "no": 26,
+      "storeName": "バーガーキング神保町店 Burgerking Jinbocho",
+      "efficiency": 105,
+      "earnings": 605,
+      "distance": 5.78
+    },
+    {
+      "no": 34,
+      "storeName": "ウェンディーズ・ファーストキッチン 飯田橋ラムラ店 Wendy's First Kitchen IIDABASHI RAMURA",
+      "efficiency": 103,
+      "earnings": 534,
+      "distance": 5.18
+    },
+    {
+      "no": 31,
+      "storeName": "マクドナルド 水道橋外堀通り店 McDonald's Suidobashi Sotobori-Dori",
+      "efficiency": 99,
+      "earnings": 445,
+      "distance": 4.51
+    },
+    {
+      "no": 25,
+      "storeName": "モスバーガー 飯田橋東店 Mos Burger IIDABASHI-HIGASHI",
+      "efficiency": 88,
+      "earnings": 320,
+      "distance": 3.65
+    }
+  ]
+}
