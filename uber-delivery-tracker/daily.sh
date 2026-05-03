@@ -42,6 +42,8 @@ echo ""
 echo "[3/3] GitHubにpush中..."
 git add data/
 git commit -m "data: add report $TARGET"
+# リモートに新しいコミットがある場合に備えてrebase後にpush
+git pull --rebase origin main
 git push
 if [ $? -ne 0 ]; then
   echo "❌ push失敗"
