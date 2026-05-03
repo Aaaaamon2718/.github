@@ -1,12 +1,9 @@
 /**
- * parser.js - 完全版
- *
- * PDFフォーマットを完全再現しつつ、分析・蓄積・進化のための
- * 多層データ構造を同時出力する。
+ * parser.js - 完全版（天気データ統合）
  *
  * 出力:
- *   data/reports/YYYY-MM-DD.md   → PDFと同一の人間が読むレポート
- *   data/reports/YYYY-MM-DD.json → 分析・ダッシュボード用の構造化データ
+ *   data/reports/YYYY-MM-DD.md   → 人間が読むレポート
+ *   data/reports/YYYY-MM-DD.json → 分析・ダッシュボード用
  *
  * 使用方法:
  *   node scripts/parser.js --date today
@@ -16,17 +13,17 @@
 const fs   = require('fs');
 const path = require('path');
 
-// ---- 引数処理 ----
 const args = process.argv.slice(2);
 const dateArg    = args[args.indexOf('--date') + 1] || 'today';
 const targetDate = dateArg === 'today'
   ? new Date().toISOString().slice(0, 10)
   : dateArg;
 
-const RAW_PATH    = path.join(__dirname, `../data/raw/${targetDate}.json`);
-const REPORTS_DIR = path.join(__dirname, '../data/reports');
-const MD_PATH     = path.join(REPORTS_DIR, `${targetDate}.md`);
-const JSON_PATH   = path.join(REPORTS_DIR, `${targetDate}.json`);
+const RAW_PATH     = path.join(__dirname, `../data/raw/${targetDate}.json`);
+const WEATHER_PATH = path.join(__dirname, `../data/weather/${targetDate}.json`);
+const REPORTS_DIR  = path.join(__dirname, '../data/reports');
+const MD_PATH      = path.join(REPORTS_DIR, `${targetDate}.md`);
+const JSON_PATH    = path.join(REPORTS_DIR, `${targetDate}.json`);
 
 if (!fs.existsSync(RAW_PATH)) {
   console.error(`❌ ${RAW_PATH} が見つかりません。先に scraper.js を実行してください。`);
@@ -34,7 +31,10 @@ if (!fs.existsSync(RAW_PATH)) {
 }
 if (!fs.existsSync(REPORTS_DIR)) fs.mkdirSync(REPORTS_DIR, { recursive: true });
 
-const raw = JSON.parse(fs.readFileSync(RAW_PATH, 'utf-8'));
+const raw     = JSON.parse(fs.readFileSync(RAW_PATH, 'utf-8'));
+const weather = fs.existsSync(WEATHER_PATH)
+  ? JSON.parse(fs.readFileSync(WEATHER_PATH, 'utf-8'))
+  : null;
 
 // ================================================================
 // ユーティリティ
@@ -114,18 +114,17 @@ const calcEfficiency = (earnings, distance) =>
 const deliveries = raw.deliveries
   .filter(d => !d.error && parseEarnings(d) > 0)
   .map((d, i) => {
-    const earnings     = parseEarnings(d);
-    const distance     = parseDistance(d);
-    const durationSec  = parseDurationSec(d);
-    const tip          = d.tip || 0;
-    const efficiency   = calcEfficiency(earnings, distance);
+    const earnings    = parseEarnings(d);
+    const distance    = parseDistance(d);
+    const durationSec = parseDurationSec(d);
+    const tip         = d.tip || 0;
     return {
       no:                i + 1,
       completedTime:     parseTime(d),
       datetime:          d.datetime || null,
       hour:              getHour(d),
       timeSlot:          getTimeSlot(d),
-      storeName:         (d.storeName  || '不明').trim(),
+      storeName:         (d.storeName   || '不明').trim(),
       area:              (d.destAddress || '不明').trim(),
       earnings,
       tip,
@@ -133,7 +132,7 @@ const deliveries = raw.deliveries
       distance,
       durationSec,
       durationFormatted: d.duration || formatDuration(durationSec),
-      efficiency,
+      efficiency:        calcEfficiency(earnings, distance),
     };
   });
 
@@ -151,7 +150,7 @@ const avgEfficiency    = totalDistance > 0 ? Math.round(totalEarnings / totalDis
 const avgDurationSec   = deliveries.length > 0 ? Math.round(totalDurationSec / deliveries.length) : 0;
 
 // ================================================================
-// 分析軸① 時間帯別
+// 分析軸
 // ================================================================
 
 const TIME_SLOTS = ['朝（6〜10時）', '昼（10〜14時）', '夕（14〜18時）', '夜（18〜22時）', 'その他'];
@@ -164,10 +163,6 @@ deliveries.forEach(d => {
   slotStats[d.timeSlot].durationSec += d.durationSec;
 });
 
-// ================================================================
-// 分析軸② エリア別
-// ================================================================
-
 const areaStats = {};
 deliveries.forEach(d => {
   const key = d.area.match(/(.+?区)/) ? d.area.match(/(.+?区)/)[1] : d.area;
@@ -179,10 +174,6 @@ deliveries.forEach(d => {
 const areaRanking = Object.entries(areaStats)
   .map(([area, s]) => ({ area, ...s, avgEarnings: Math.round(s.earnings / s.count) }))
   .sort((a, b) => b.earnings - a.earnings);
-
-// ================================================================
-// 分析軸③ 店舗別
-// ================================================================
 
 const storeStats = {};
 deliveries.forEach(d => {
@@ -211,12 +202,22 @@ const dateJP      = `${y}年${parseInt(mo)}月${parseInt(da)}日（${wday}）`;
 // ================================================================
 
 let md = '';
-
-// ヘッダー（PDF完全再現）
 md += `# Uber Eats 配達レポート（完全版）\n`;
 md += `対象日: ${dateJP}\n\n`;
 
-// ── マクロ：全体サマリー ──
+// ── 天気セクション（データがある場合のみ）──
+if (weather) {
+  const icon = weather.isRainy ? '🌧️ ' : '☀️  ';
+  md += `## 天気（東京）\n\n`;
+  md += `| 天候 | 最高気温 | 最低気温 | 降水量 | 最大風速 |\n`;
+  md += `|---|---|---|---|---|\n`;
+  md += `| ${icon}${weather.condition} | ${weather.tempMax}℃ | ${weather.tempMin}℃ | ${weather.precipitation}mm | ${weather.windspeedMax ?? '-'} km/h |\n\n`;
+  if (weather.isRainy) {
+    md += `> 🌧️ **雨天稼働日** — 天候プレミアムの影響を分析してください\n\n`;
+  }
+}
+
+// ── 全体サマリー ──
 md += `## 全体サマリー\n\n`;
 md += `| 項目 | 値 |\n|---|---|\n`;
 md += `| 総売上 | **${yen(totalEarnings)}** |\n`;
@@ -229,7 +230,7 @@ md += `| 平均配達時間 | **${formatDuration(avgDurationSec)}** |\n`;
 if (totalTip > 0) md += `| 総チップ | **${yen(totalTip)}** |\n`;
 md += `\n`;
 
-// ── ミクロ：配達明細テーブル（PDF完全再現） ──
+// ── 配達明細 ──
 md += `## 配達明細\n\n`;
 md += `| No | 完了時刻 | ピック店舗 | エリア | 売上 | 距離 | 時間 |\n`;
 md += `|---|---|---|---|---|---|---|\n`;
@@ -239,7 +240,7 @@ deliveries.forEach(d => {
 });
 md += `\n`;
 
-// ── 分析①：時間帯別 ──
+// ── 時間帯別 ──
 md += `## 時間帯別分析\n\n`;
 md += `| 時間帯 | 件数 | 売上 | 平均単価 | 平均距離 | 効率(円/km) |\n`;
 md += `|---|---|---|---|---|---|\n`;
@@ -250,7 +251,7 @@ TIME_SLOTS.forEach(slot => {
 });
 md += `\n`;
 
-// ── 分析②：エリア別 ──
+// ── エリア別 ──
 md += `## エリア別分析\n\n`;
 md += `| エリア | 件数 | 売上 | 平均単価 |\n`;
 md += `|---|---|---|---|\n`;
@@ -259,7 +260,7 @@ areaRanking.forEach(a => {
 });
 md += `\n`;
 
-// ── 分析③：店舗別 TOP10 ──
+// ── 店舗別 TOP10 ──
 md += `## 店舗別売上 TOP10\n\n`;
 md += `| 店舗 | 件数 | 売上 | 平均単価 |\n`;
 md += `|---|---|---|---|\n`;
@@ -268,7 +269,7 @@ storeRanking.forEach(s => {
 });
 md += `\n`;
 
-// ── 分析④：効率 TOP5（円/km） ──
+// ── 効率 TOP5 ──
 md += `## 距離効率 TOP5（円/km）\n\n`;
 md += `| No | 店舗 | 売上 | 距離 | 効率(円/km) |\n`;
 md += `|---|---|---|---|---|\n`;
@@ -277,7 +278,7 @@ md += `|---|---|---|---|---|\n`;
 });
 md += `\n`;
 
-// ── 分析⑤：高単価 TOP5 ──
+// ── 高単価 TOP5 ──
 md += `## 高単価配達 TOP5\n\n`;
 md += `| No | 店舗 | 売上 | 距離 | 時間 |\n`;
 md += `|---|---|---|---|---|\n`;
@@ -290,88 +291,50 @@ md += `---\n`;
 md += `*Generated by Uber Delivery Tracker | ${new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })}*\n`;
 
 // ================================================================
-// JSON出力（分析・ダッシュボード・将来の拡張用）
+// JSON出力
 // ================================================================
 
 const jsonReport = {
   date:        targetDate,
   dateJP,
   generatedAt: new Date().toISOString(),
-
-  // マクロ
+  weather:     weather || null,
   summary: {
     totalEarnings,
-    totalCount:          deliveries.length,
-    totalDistance:       parseFloat(totalDistance.toFixed(2)),
+    totalCount:           deliveries.length,
+    totalDistance:        parseFloat(totalDistance.toFixed(2)),
     totalTip,
     avgEarnings,
-    avgDistance:         parseFloat(avgDistance.toFixed(2)),
+    avgDistance:          parseFloat(avgDistance.toFixed(2)),
     avgEfficiency,
     avgDurationSec,
     avgDurationFormatted: formatDuration(avgDurationSec),
   },
-
-  // ミクロ：全件明細
   deliveries: deliveries.map(d => ({
-    no:                d.no,
-    completedTime:     d.completedTime,
-    datetime:          d.datetime,
-    hour:              d.hour,
-    timeSlot:          d.timeSlot,
-    storeName:         d.storeName,
-    area:              d.area,
-    earnings:          d.earnings,
-    tip:               d.tip,
-    baseEarnings:      d.baseEarnings,
-    distance:          d.distance,
-    durationSec:       d.durationSec,
-    durationFormatted: d.durationFormatted,
-    efficiency:        d.efficiency,
+    no: d.no, completedTime: d.completedTime, datetime: d.datetime,
+    hour: d.hour, timeSlot: d.timeSlot, storeName: d.storeName, area: d.area,
+    earnings: d.earnings, tip: d.tip, baseEarnings: d.baseEarnings,
+    distance: d.distance, durationSec: d.durationSec,
+    durationFormatted: d.durationFormatted, efficiency: d.efficiency,
   })),
-
-  // 分析軸①
   byTimeSlot: TIME_SLOTS.filter(s => slotStats[s].count > 0).map(s => ({
-    label:       s,
-    count:       slotStats[s].count,
-    earnings:    slotStats[s].earnings,
-    distance:    parseFloat(slotStats[s].distance.toFixed(2)),
+    label: s, count: slotStats[s].count, earnings: slotStats[s].earnings,
+    distance: parseFloat(slotStats[s].distance.toFixed(2)),
     avgEarnings: Math.round(slotStats[s].earnings / slotStats[s].count),
-    efficiency:  slotStats[s].distance > 0 ? Math.round(slotStats[s].earnings / slotStats[s].distance) : 0,
+    efficiency: slotStats[s].distance > 0 ? Math.round(slotStats[s].earnings / slotStats[s].distance) : 0,
   })),
-
-  // 分析軸②
   byArea: areaRanking.map(a => ({
-    area:        a.area,
-    count:       a.count,
-    earnings:    a.earnings,
-    distance:    parseFloat(a.distance.toFixed(2)),
-    avgEarnings: a.avgEarnings,
+    area: a.area, count: a.count, earnings: a.earnings,
+    distance: parseFloat(a.distance.toFixed(2)), avgEarnings: a.avgEarnings,
   })),
-
-  // 分析軸③
   byStore: storeRanking.map(s => ({
-    storeName:   s.store,
-    count:       s.count,
-    earnings:    s.earnings,
-    distance:    parseFloat(s.distance.toFixed(2)),
-    avgEarnings: s.avgEarnings,
+    storeName: s.store, count: s.count, earnings: s.earnings,
+    distance: parseFloat(s.distance.toFixed(2)), avgEarnings: s.avgEarnings,
   })),
-
-  // 分析軸④
   efficiencyRanking: [...deliveries]
     .sort((a, b) => b.efficiency - a.efficiency)
-    .map(d => ({
-      no:         d.no,
-      storeName:  d.storeName,
-      efficiency: d.efficiency,
-      earnings:   d.earnings,
-      distance:   d.distance,
-    })),
+    .map(d => ({ no: d.no, storeName: d.storeName, efficiency: d.efficiency, earnings: d.earnings, distance: d.distance })),
 };
-
-// ================================================================
-// ファイル書き出し
-// ================================================================
 
 fs.writeFileSync(MD_PATH,   md, 'utf-8');
 fs.writeFileSync(JSON_PATH, JSON.stringify(jsonReport, null, 2), 'utf-8');
