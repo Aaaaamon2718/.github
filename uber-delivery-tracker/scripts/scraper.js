@@ -58,8 +58,6 @@ const unixToDatetime = (unix) => {
   const h12  = h === 0 ? 12 : h > 12 ? h - 12 : h;
   return `${y}年${mo}月${da}日 ${ampm}${h12}時${mi}分`;
 };
-
-// JST日付文字列に変換（Unix秒 → JST YYYY-MM-DD）
 const unixToJstDate = (unix) => {
   const d = new Date((unix + 9*60*60) * 1000);
   return `${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,'0')}-${String(d.getUTCDate()).padStart(2,'0')}`;
@@ -86,30 +84,23 @@ const unixToJstDate = (unix) => {
   }
   console.log('   ✅ セッション有効');
 
-  console.log('\n📡 API呼び出し中...');
+  // クエリ範囲の決定
+  // --from/--to が渡されない場合は対象日当日のみ（+翌日2日バッファはdaily.sh側で付与）
+  const d = new Date(targetDate + 'T00:00:00+09:00');
+  const fmt = (dt) => dt.toISOString().slice(0, 10);
+  const nextDay = new Date(d);
+  nextDay.setDate(d.getDate() + 2);
+  const startDate = fromArg || fmt(d);
+  const endDate   = toArg   || fmt(nextDay);
+
+  console.log(`\n📡 API呼び出し中... (${startDate} 〜 ${endDate})`);
   const allActivities = [];
   let cursor = null;
   let page_num = 1;
 
   while (true) {
     console.log(`   ページ ${page_num} 取得中...`);
-    const result = await page.evaluate(async ({ targetDate, cursor, fromDate, toDate }) => {
-      // 対象日を含む週（月〜日）を計算
-      const d = new Date(targetDate + 'T00:00:00+09:00');
-      const dow = d.getDay(); // 0=日, 1=月...
-      const monday = new Date(d);
-      monday.setDate(d.getDate() - (dow === 0 ? 6 : dow - 1));
-      const sunday = new Date(monday);
-      sunday.setDate(monday.getDate() + 6);
-      // 翌月曜まで含める（日曜配達が月曜朝にrecognized処理されるケース対応）
-      const nextMonday = new Date(sunday);
-      nextMonday.setDate(sunday.getDate() + 1);
-      const fmt = (dt) => dt.toISOString().slice(0, 10);
-
-      // --from/--to が渡された場合はそちらを優先、なければ週範囲を使用
-      const startDate = fromDate || fmt(monday);
-      const endDate   = toDate   || fmt(nextMonday);
-
+    const result = await page.evaluate(async ({ startDate, endDate, cursor }) => {
       const body = {
         startDateIso: startDate,
         endDateIso:   endDate,
@@ -124,10 +115,11 @@ const unixToJstDate = (unix) => {
         body: JSON.stringify(body),
       });
       return await res.json();
-    }, { targetDate, cursor, fromDate: fromArg, toDate: toArg });
+    }, { startDate, endDate, cursor });
 
     if (result.status !== 'success') {
       console.error('❌ APIエラー:', JSON.stringify(result));
+      console.error('   → botブロックの場合は数分待ってから再実行してください');
       break;
     }
     const activities = result.data.activities || [];
@@ -136,7 +128,8 @@ const unixToJstDate = (unix) => {
     if (!result.data.pagination.hasMoreData) break;
     cursor = result.data.pagination.nextCursor;
     page_num++;
-    await wait(500);
+    // bot検知回避: ページ間に1.5秒待機
+    await wait(1500);
   }
 
   await browser.close();
@@ -150,14 +143,11 @@ const unixToJstDate = (unix) => {
   console.log('\n📅 取得データの日付分布（JST）:');
   Object.entries(dateCounts).sort().forEach(([d, c]) => console.log(`  ${d}: ${c}件`));
 
-  // --- 日付フィルター ---
+  // 日付フィルター
   // dayStart: 対象日 00:00 JST
+  // dayEnd: 翌日 06:00 JST（深夜〜早朝のrecognized処理を吸収）
   const dayStart = new Date(targetDate + 'T00:00:00+09:00').getTime() / 1000;
-  // dayEnd: 翌日 06:00 JST まで延長
-  // 理由: Uberは週末・深夜配達を翌日早朝にrecognized処理することがある
-  //       翌日06:00を超えると通常の翌日稼働時間に入るため、そこを境界とする
-  const dayEnd = dayStart + 30 * 3600; // +30時間 = 翌日06:00 JST
-
+  const dayEnd   = dayStart + 30 * 3600; // +30時間 = 翌日06:00 JST
   const dayEndStrict = new Date(targetDate + 'T23:59:59+09:00').getTime() / 1000;
 
   const tripsAll = allActivities.filter(a =>
@@ -168,28 +158,21 @@ const unixToJstDate = (unix) => {
     a.recognizedAt <= dayEnd
   );
 
-  // 当日23:59 JSTを超えて翌日06:00 JSTまでに認識された配達（延長分）
   const extendedTrips = tripsAll.filter(a => a.recognizedAt > dayEndStrict);
   if (extendedTrips.length > 0) {
     console.log(`\n⚠️  翌日早朝にrecognized処理された配達: ${extendedTrips.length}件`);
-    console.log('   (Uberが週末・深夜分を翌日朝にまとめて処理した可能性があります)');
-    extendedTrips.forEach(a => {
-      console.log(`   ${unixToJstDate(a.recognizedAt)} ${unixToDatetime(a.recognizedAt).split(' ').slice(-1)} ¥${a.formattedTotal}`);
-    });
   }
 
-  // フィルター外の近傍データをデバッグ表示（原因調査用）
+  // フィルター外の近傍データ（デバッグ用）
   const nearBoundary = allActivities.filter(a =>
     a.activityTitle === 'Delivery' &&
-    (
-      (a.recognizedAt >= dayEnd && a.recognizedAt <= dayEnd + 18*3600) || // 翌日以降6〜24時間
-      (a.recognizedAt >= dayStart - 12*3600 && a.recognizedAt < dayStart)  // 前日12時間
-    )
+    a.recognizedAt > dayEnd &&
+    a.recognizedAt <= dayEnd + 18*3600
   );
   if (nearBoundary.length > 0) {
     console.log(`\n🔍 フィルター外の近傍配達（参考）: ${nearBoundary.length}件`);
-    nearBoundary.slice(0, 5).forEach(a => {
-      console.log(`   JST日付=${unixToJstDate(a.recognizedAt)} recognizedAt=${a.recognizedAt} ¥${a.formattedTotal} type=${a.type} status=${a.status}`);
+    nearBoundary.slice(0, 3).forEach(a => {
+      console.log(`   JST日付=${unixToJstDate(a.recognizedAt)} ¥${a.formattedTotal}`);
     });
   }
 
