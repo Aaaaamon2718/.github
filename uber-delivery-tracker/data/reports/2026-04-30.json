@@ -1,0 +1,138 @@
+{
+  "date": "2026-04-30",
+  "dateJP": "2026年4月30日（木）",
+  "generatedAt": "2026-05-03T16:57:56.883Z",
+  "summary": {
+    "totalEarnings": 2307,
+    "totalCount": 3,
+    "totalDistance": 10.54,
+    "totalTip": 0,
+    "avgEarnings": 769,
+    "avgDistance": 3.51,
+    "avgEfficiency": 219,
+    "avgDurationSec": 1174,
+    "avgDurationFormatted": "19:34"
+  },
+  "deliveries": [
+    {
+      "no": 1,
+      "completedTime": "11:44",
+      "datetime": "2026年4月30日 午前11時44分",
+      "hour": 11,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "BRISK STAND 中目黒 BRISK STAND NAKAMEGURO",
+      "area": "東京都目黒区青葉台４丁目",
+      "earnings": 401,
+      "tip": 0,
+      "baseEarnings": 401,
+      "distance": 3.25,
+      "durationSec": 977,
+      "durationFormatted": "16:17",
+      "efficiency": 123
+    },
+    {
+      "no": 2,
+      "completedTime": "11:38",
+      "datetime": "2026年4月30日 午前11時38分",
+      "hour": 11,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "餃子の王将 渋谷ハチ公口",
+      "area": "東京都渋谷区広尾４丁目",
+      "earnings": 1586,
+      "tip": 0,
+      "baseEarnings": 1586,
+      "distance": 5.39,
+      "durationSec": 1954,
+      "durationFormatted": "32:34",
+      "efficiency": 294
+    },
+    {
+      "no": 3,
+      "completedTime": "11:34",
+      "datetime": "2026年4月30日 午前11時34分",
+      "hour": 11,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "吉野家 中目黒駅前店 Yoshinoya NAKAMEGURO-EKIMAE",
+      "area": "東京都目黒区中目黒１丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 1.9,
+      "durationSec": 591,
+      "durationFormatted": "9:51",
+      "efficiency": 168
+    }
+  ],
+  "byTimeSlot": [
+    {
+      "label": "昼（10〜14時）",
+      "count": 3,
+      "earnings": 2307,
+      "distance": 10.54,
+      "avgEarnings": 769,
+      "efficiency": 219
+    }
+  ],
+  "byArea": [
+    {
+      "area": "東京都渋谷区",
+      "count": 1,
+      "earnings": 1586,
+      "distance": 5.39,
+      "avgEarnings": 1586
+    },
+    {
+      "area": "東京都目黒区",
+      "count": 2,
+      "earnings": 721,
+      "distance": 5.15,
+      "avgEarnings": 361
+    }
+  ],
+  "byStore": [
+    {
+      "storeName": "餃子の王将 渋谷ハチ公口",
+      "count": 1,
+      "earnings": 1586,
+      "distance": 5.39,
+      "avgEarnings": 1586
+    },
+    {
+      "storeName": "BRISK STAND 中目黒 BRISK STAND NAKAMEGURO",
+      "count": 1,
+      "earnings": 401,
+      "distance": 3.25,
+      "avgEarnings": 401
+    },
+    {
+      "storeName": "吉野家 中目黒駅前店 Yoshinoya NAKAMEGURO-EKIMAE",
+      "count": 1,
+      "earnings": 320,
+      "distance": 1.9,
+      "avgEarnings": 320
+    }
+  ],
+  "efficiencyRanking": [
+    {
+      "no": 2,
+      "storeName": "餃子の王将 渋谷ハチ公口",
+      "efficiency": 294,
+      "earnings": 1586,
+      "distance": 5.39
+    },
+    {
+      "no": 3,
+      "storeName": "吉野家 中目黒駅前店 Yoshinoya NAKAMEGURO-EKIMAE",
+      "efficiency": 168,
+      "earnings": 320,
+      "distance": 1.9
+    },
+    {
+      "no": 1,
+      "storeName": "BRISK STAND 中目黒 BRISK STAND NAKAMEGURO",
+      "efficiency": 123,
+      "earnings": 401,
+      "distance": 3.25
+    }
+  ]
+}
