@@ -1,21 +1,469 @@
 {
   "date": "2026-04-26",
   "dateJP": "2026年4月26日（日）",
-  "generatedAt": "2026-05-03T16:29:35.796Z",
+  "generatedAt": "2026-05-03T16:34:27.544Z",
   "summary": {
-    "totalEarnings": 0,
-    "totalCount": 0,
-    "totalDistance": 0,
+    "totalEarnings": 8257,
+    "totalCount": 14,
+    "totalDistance": 57.28,
     "totalTip": 0,
-    "avgEarnings": 0,
-    "avgDistance": 0,
-    "avgEfficiency": 0,
-    "avgDurationSec": 0,
-    "avgDurationFormatted": "不明"
+    "avgEarnings": 590,
+    "avgDistance": 4.09,
+    "avgEfficiency": 144,
+    "avgDurationSec": 1130,
+    "avgDurationFormatted": "18:50"
   },
-  "deliveries": [],
-  "byTimeSlot": [],
-  "byArea": [],
-  "byStore": [],
-  "efficiencyRanking": []
+  "deliveries": [
+    {
+      "no": 1,
+      "completedTime": "21:54",
+      "datetime": "2026年4月26日 午後9時54分",
+      "hour": 21,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "蒙古タンメン中本 目黒店 Moukotanmen Nakamoto Meguro",
+      "area": "東京都港区白金台４丁目",
+      "earnings": 528,
+      "tip": 0,
+      "baseEarnings": 528,
+      "distance": 4.25,
+      "durationSec": 852,
+      "durationFormatted": "14:12",
+      "efficiency": 124
+    },
+    {
+      "no": 2,
+      "completedTime": "21:34",
+      "datetime": "2026年4月26日 午後9時34分",
+      "hour": 21,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "マクドナルド 目黒駅前店 McDonald's Meguro",
+      "area": "東京都目黒区中目黒４丁目",
+      "earnings": 481,
+      "tip": 0,
+      "baseEarnings": 481,
+      "distance": 4.23,
+      "durationSec": 1053,
+      "durationFormatted": "17:33",
+      "efficiency": 114
+    },
+    {
+      "no": 3,
+      "completedTime": "21:19",
+      "datetime": "2026年4月26日 午後9時19分",
+      "hour": 21,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "【本格中華】大陸食堂 Tairikushokudou",
+      "area": "1-chōme Tokyo Shinagawa City Kamiōsaki JP",
+      "earnings": 577,
+      "tip": 0,
+      "baseEarnings": 577,
+      "distance": 4.04,
+      "durationSec": 1160,
+      "durationFormatted": "19:20",
+      "efficiency": 143
+    },
+    {
+      "no": 4,
+      "completedTime": "20:56",
+      "datetime": "2026年4月26日 午後8時56分",
+      "hour": 20,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "マクドナルド 目黒不動前店",
+      "area": "東京都目黒区下目黒４丁目",
+      "earnings": 411,
+      "tip": 0,
+      "baseEarnings": 411,
+      "distance": 4.26,
+      "durationSec": 1367,
+      "durationFormatted": "22:47",
+      "efficiency": 96
+    },
+    {
+      "no": 5,
+      "completedTime": "20:40",
+      "datetime": "2026年4月26日 午後8時40分",
+      "hour": 20,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "スターバックス コーヒー 目黒セントラルスクエア店 Starbucks Coffee MEGURO CENTRAL SQUARE",
+      "area": "4-chōme Tokyo Shinagawa City Kamiōsaki JP",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 3.27,
+      "durationSec": 1059,
+      "durationFormatted": "17:39",
+      "efficiency": 98
+    },
+    {
+      "no": 6,
+      "completedTime": "20:37",
+      "datetime": "2026年4月26日 午後8時37分",
+      "hour": 20,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "成城石井 アトレ目黒2 Seijo Ishii atre Meguro2",
+      "area": "東京都品川区上大崎３丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 1.95,
+      "durationSec": 683,
+      "durationFormatted": "11:23",
+      "efficiency": 164
+    },
+    {
+      "no": 7,
+      "completedTime": "20:10",
+      "datetime": "2026年4月26日 午後8時10分",
+      "hour": 20,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "マクドナルド 目黒駅前店 McDonald's Meguro",
+      "area": "東京都目黒区下目黒２丁目",
+      "earnings": 474,
+      "tip": 0,
+      "baseEarnings": 474,
+      "distance": 4.46,
+      "durationSec": 902,
+      "durationFormatted": "15:02",
+      "efficiency": 106
+    },
+    {
+      "no": 8,
+      "completedTime": "19:42",
+      "datetime": "2026年4月26日 午後7時42分",
+      "hour": 19,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "本場四川料理龍門 目黒本店 RYUMON Megro Sichuan Restaurant",
+      "area": "東京都港区白金台３丁目",
+      "earnings": 1180,
+      "tip": 0,
+      "baseEarnings": 1180,
+      "distance": 6.36,
+      "durationSec": 1792,
+      "durationFormatted": "29:52",
+      "efficiency": 186
+    },
+    {
+      "no": 9,
+      "completedTime": "19:14",
+      "datetime": "2026年4月26日 午後7時14分",
+      "hour": 19,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "串カツ田中 学芸大店 Kushikatsu Tanaka Gakugeidai",
+      "area": "東京都目黒区中央町２丁目",
+      "earnings": 490,
+      "tip": 0,
+      "baseEarnings": 490,
+      "distance": 2.98,
+      "durationSec": 952,
+      "durationFormatted": "15:52",
+      "efficiency": 164
+    },
+    {
+      "no": 10,
+      "completedTime": "19:05",
+      "datetime": "2026年4月26日 午後7時05分",
+      "hour": 19,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "すき家 目黒三丁目店 Sukiya Meguro 3chome",
+      "area": "東京都目黒区中央町２丁目",
+      "earnings": 580,
+      "tip": 0,
+      "baseEarnings": 580,
+      "distance": 4.2,
+      "durationSec": 850,
+      "durationFormatted": "14:10",
+      "efficiency": 138
+    },
+    {
+      "no": 11,
+      "completedTime": "18:25",
+      "datetime": "2026年4月26日 午後6時25分",
+      "hour": 18,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "王様とストロベリー King and Strawberry",
+      "area": "東京都品川区西五反田３丁目",
+      "earnings": 360,
+      "tip": 0,
+      "baseEarnings": 360,
+      "distance": 1.43,
+      "durationSec": 733,
+      "durationFormatted": "12:13",
+      "efficiency": 252
+    },
+    {
+      "no": 12,
+      "completedTime": "17:47",
+      "datetime": "2026年4月26日 午後5時47分",
+      "hour": 17,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "中華味一　Ajiichi",
+      "area": "東京都目黒区原町２丁目",
+      "earnings": 652,
+      "tip": 0,
+      "baseEarnings": 652,
+      "distance": 5.12,
+      "durationSec": 1518,
+      "durationFormatted": "25:18",
+      "efficiency": 127
+    },
+    {
+      "no": 13,
+      "completedTime": "17:26",
+      "datetime": "2026年4月26日 午後5時26分",
+      "hour": 17,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "魚屋路 碑文谷店 Totoyamichi Himonya",
+      "area": "東京都目黒区目黒４丁目",
+      "earnings": 570,
+      "tip": 0,
+      "baseEarnings": 570,
+      "distance": 4.36,
+      "durationSec": 1187,
+      "durationFormatted": "19:47",
+      "efficiency": 131
+    },
+    {
+      "no": 14,
+      "completedTime": "17:04",
+      "datetime": "2026年4月26日 午後5時04分",
+      "hour": 17,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "から揚げの天才 不動前店 Karaage no tensai Fudomae",
+      "area": "東京都目黒区柿の木坂１丁目",
+      "earnings": 1314,
+      "tip": 0,
+      "baseEarnings": 1314,
+      "distance": 6.37,
+      "durationSec": 1707,
+      "durationFormatted": "28:27",
+      "efficiency": 206
+    }
+  ],
+  "byTimeSlot": [
+    {
+      "label": "夕（14〜18時）",
+      "count": 3,
+      "earnings": 2536,
+      "distance": 15.85,
+      "avgEarnings": 845,
+      "efficiency": 160
+    },
+    {
+      "label": "夜（18〜22時）",
+      "count": 11,
+      "earnings": 5721,
+      "distance": 41.43,
+      "avgEarnings": 520,
+      "efficiency": 138
+    }
+  ],
+  "byArea": [
+    {
+      "area": "東京都目黒区",
+      "count": 8,
+      "earnings": 4972,
+      "distance": 35.98,
+      "avgEarnings": 622
+    },
+    {
+      "area": "東京都港区",
+      "count": 2,
+      "earnings": 1708,
+      "distance": 10.61,
+      "avgEarnings": 854
+    },
+    {
+      "area": "東京都品川区",
+      "count": 2,
+      "earnings": 680,
+      "distance": 3.38,
+      "avgEarnings": 340
+    },
+    {
+      "area": "1-chōme Tokyo Shinagawa City Kamiōsaki JP",
+      "count": 1,
+      "earnings": 577,
+      "distance": 4.04,
+      "avgEarnings": 577
+    },
+    {
+      "area": "4-chōme Tokyo Shinagawa City Kamiōsaki JP",
+      "count": 1,
+      "earnings": 320,
+      "distance": 3.27,
+      "avgEarnings": 320
+    }
+  ],
+  "byStore": [
+    {
+      "storeName": "から揚げの天才 不動前店 Karaage no tensai Fudomae",
+      "count": 1,
+      "earnings": 1314,
+      "distance": 6.37,
+      "avgEarnings": 1314
+    },
+    {
+      "storeName": "本場四川料理龍門 目黒本店 RYUMON Megro Sichuan Restaurant",
+      "count": 1,
+      "earnings": 1180,
+      "distance": 6.36,
+      "avgEarnings": 1180
+    },
+    {
+      "storeName": "マクドナルド 目黒駅前店 McDonald's Meguro",
+      "count": 2,
+      "earnings": 955,
+      "distance": 8.69,
+      "avgEarnings": 478
+    },
+    {
+      "storeName": "中華味一　Ajiichi",
+      "count": 1,
+      "earnings": 652,
+      "distance": 5.12,
+      "avgEarnings": 652
+    },
+    {
+      "storeName": "すき家 目黒三丁目店 Sukiya Meguro 3chome",
+      "count": 1,
+      "earnings": 580,
+      "distance": 4.2,
+      "avgEarnings": 580
+    },
+    {
+      "storeName": "【本格中華】大陸食堂 Tairikushokudou",
+      "count": 1,
+      "earnings": 577,
+      "distance": 4.04,
+      "avgEarnings": 577
+    },
+    {
+      "storeName": "魚屋路 碑文谷店 Totoyamichi Himonya",
+      "count": 1,
+      "earnings": 570,
+      "distance": 4.36,
+      "avgEarnings": 570
+    },
+    {
+      "storeName": "蒙古タンメン中本 目黒店 Moukotanmen Nakamoto Meguro",
+      "count": 1,
+      "earnings": 528,
+      "distance": 4.25,
+      "avgEarnings": 528
+    },
+    {
+      "storeName": "串カツ田中 学芸大店 Kushikatsu Tanaka Gakugeidai",
+      "count": 1,
+      "earnings": 490,
+      "distance": 2.98,
+      "avgEarnings": 490
+    },
+    {
+      "storeName": "マクドナルド 目黒不動前店",
+      "count": 1,
+      "earnings": 411,
+      "distance": 4.26,
+      "avgEarnings": 411
+    }
+  ],
+  "efficiencyRanking": [
+    {
+      "no": 11,
+      "storeName": "王様とストロベリー King and Strawberry",
+      "efficiency": 252,
+      "earnings": 360,
+      "distance": 1.43
+    },
+    {
+      "no": 14,
+      "storeName": "から揚げの天才 不動前店 Karaage no tensai Fudomae",
+      "efficiency": 206,
+      "earnings": 1314,
+      "distance": 6.37
+    },
+    {
+      "no": 8,
+      "storeName": "本場四川料理龍門 目黒本店 RYUMON Megro Sichuan Restaurant",
+      "efficiency": 186,
+      "earnings": 1180,
+      "distance": 6.36
+    },
+    {
+      "no": 6,
+      "storeName": "成城石井 アトレ目黒2 Seijo Ishii atre Meguro2",
+      "efficiency": 164,
+      "earnings": 320,
+      "distance": 1.95
+    },
+    {
+      "no": 9,
+      "storeName": "串カツ田中 学芸大店 Kushikatsu Tanaka Gakugeidai",
+      "efficiency": 164,
+      "earnings": 490,
+      "distance": 2.98
+    },
+    {
+      "no": 3,
+      "storeName": "【本格中華】大陸食堂 Tairikushokudou",
+      "efficiency": 143,
+      "earnings": 577,
+      "distance": 4.04
+    },
+    {
+      "no": 10,
+      "storeName": "すき家 目黒三丁目店 Sukiya Meguro 3chome",
+      "efficiency": 138,
+      "earnings": 580,
+      "distance": 4.2
+    },
+    {
+      "no": 13,
+      "storeName": "魚屋路 碑文谷店 Totoyamichi Himonya",
+      "efficiency": 131,
+      "earnings": 570,
+      "distance": 4.36
+    },
+    {
+      "no": 12,
+      "storeName": "中華味一　Ajiichi",
+      "efficiency": 127,
+      "earnings": 652,
+      "distance": 5.12
+    },
+    {
+      "no": 1,
+      "storeName": "蒙古タンメン中本 目黒店 Moukotanmen Nakamoto Meguro",
+      "efficiency": 124,
+      "earnings": 528,
+      "distance": 4.25
+    },
+    {
+      "no": 2,
+      "storeName": "マクドナルド 目黒駅前店 McDonald's Meguro",
+      "efficiency": 114,
+      "earnings": 481,
+      "distance": 4.23
+    },
+    {
+      "no": 7,
+      "storeName": "マクドナルド 目黒駅前店 McDonald's Meguro",
+      "efficiency": 106,
+      "earnings": 474,
+      "distance": 4.46
+    },
+    {
+      "no": 5,
+      "storeName": "スターバックス コーヒー 目黒セントラルスクエア店 Starbucks Coffee MEGURO CENTRAL SQUARE",
+      "efficiency": 98,
+      "earnings": 320,
+      "distance": 3.27
+    },
+    {
+      "no": 4,
+      "storeName": "マクドナルド 目黒不動前店",
+      "efficiency": 96,
+      "earnings": 411,
+      "distance": 4.26
+    }
+  ]
 }
