@@ -1,0 +1,691 @@
+{
+  "date": "2026-05-01",
+  "dateJP": "2026年5月1日（金）",
+  "generatedAt": "2026-05-03T16:58:48.283Z",
+  "summary": {
+    "totalEarnings": 13332,
+    "totalCount": 23,
+    "totalDistance": 100.24,
+    "totalTip": 0,
+    "avgEarnings": 580,
+    "avgDistance": 4.36,
+    "avgEfficiency": 133,
+    "avgDurationSec": 1103,
+    "avgDurationFormatted": "18:23"
+  },
+  "deliveries": [
+    {
+      "no": 1,
+      "completedTime": "18:19",
+      "datetime": "2026年5月1日 午後6時19分",
+      "hour": 18,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "上島珈琲店 千代田区二番町店",
+      "area": "東京都千代田区平河町１丁目",
+      "earnings": 345,
+      "tip": 0,
+      "baseEarnings": 345,
+      "distance": 3.09,
+      "durationSec": 813,
+      "durationFormatted": "13:33",
+      "efficiency": 112
+    },
+    {
+      "no": 2,
+      "completedTime": "18:16",
+      "datetime": "2026年5月1日 午後6時16分",
+      "hour": 18,
+      "timeSlot": "夜（18〜22時）",
+      "storeName": "香港物語 赤坂見附店",
+      "area": "東京都港区北青山３丁目",
+      "earnings": 957,
+      "tip": 0,
+      "baseEarnings": 957,
+      "distance": 10.24,
+      "durationSec": 1509,
+      "durationFormatted": "25:09",
+      "efficiency": 93
+    },
+    {
+      "no": 3,
+      "completedTime": "17:50",
+      "datetime": "2026年5月1日 午後5時50分",
+      "hour": 17,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "ガスト 市ヶ谷駅前店 Gusto ICHIGAYAEKIMAE",
+      "area": "東京都千代田区麹町３丁目",
+      "earnings": 512,
+      "tip": 0,
+      "baseEarnings": 512,
+      "distance": 3.43,
+      "durationSec": 1120,
+      "durationFormatted": "18:40",
+      "efficiency": 149
+    },
+    {
+      "no": 4,
+      "completedTime": "17:36",
+      "datetime": "2026年5月1日 午後5時36分",
+      "hour": 17,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "俺流塩らーめん 神楽坂店 oreryu shio ramen kagurazaka store",
+      "area": "東京都新宿区若宮町",
+      "earnings": 644,
+      "tip": 0,
+      "baseEarnings": 644,
+      "distance": 4.62,
+      "durationSec": 1210,
+      "durationFormatted": "20:10",
+      "efficiency": 139
+    },
+    {
+      "no": 5,
+      "completedTime": "17:00",
+      "datetime": "2026年5月1日 午後5時00分",
+      "hour": 17,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "ミニストップ九段南４丁目店 MINISTOP",
+      "area": "東京都新宿区南山伏町",
+      "earnings": 714,
+      "tip": 0,
+      "baseEarnings": 714,
+      "distance": 6.26,
+      "durationSec": 1465,
+      "durationFormatted": "24:25",
+      "efficiency": 114
+    },
+    {
+      "no": 6,
+      "completedTime": "16:58",
+      "datetime": "2026年5月1日 午後4時58分",
+      "hour": 16,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "ウェンディーズ・ファーストキッチン 飯田橋ラムラ店 Wendy's First Kitchen IIDABASHI RAMURA",
+      "area": "東京都新宿区神楽坂１丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.08,
+      "durationSec": 737,
+      "durationFormatted": "12:17",
+      "efficiency": 154
+    },
+    {
+      "no": 7,
+      "completedTime": "16:44",
+      "datetime": "2026年5月1日 午後4時44分",
+      "hour": 16,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "セーヌよしや 柳町店",
+      "area": "東京都新宿区市谷砂土原町",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.95,
+      "durationSec": 978,
+      "durationFormatted": "16:18",
+      "efficiency": 108
+    },
+    {
+      "no": 8,
+      "completedTime": "16:25",
+      "datetime": "2026年5月1日 午後4時25分",
+      "hour": 16,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "クリスプサラダワークス コモレ四谷店 CRISP SALAD WORKS CO･MO･RE YOTSUYA",
+      "area": "東京都新宿区原町１丁目",
+      "earnings": 920,
+      "tip": 0,
+      "baseEarnings": 920,
+      "distance": 6.45,
+      "durationSec": 1535,
+      "durationFormatted": "25:35",
+      "efficiency": 143
+    },
+    {
+      "no": 9,
+      "completedTime": "16:04",
+      "datetime": "2026年5月1日 午後4時04分",
+      "hour": 16,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "ミニストップ九段南４丁目店 MINISTOP",
+      "area": "東京都新宿区市谷本村町",
+      "earnings": 515,
+      "tip": 0,
+      "baseEarnings": 515,
+      "distance": 3.98,
+      "durationSec": 1149,
+      "durationFormatted": "19:09",
+      "efficiency": 129
+    },
+    {
+      "no": 10,
+      "completedTime": "15:53",
+      "datetime": "2026年5月1日 午後3時53分",
+      "hour": 15,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "山下本気うどん 神楽坂 Yamashitahonkiudon Kagurazaka",
+      "area": "東京都千代田区九段南２丁目",
+      "earnings": 623,
+      "tip": 0,
+      "baseEarnings": 623,
+      "distance": 3.73,
+      "durationSec": 964,
+      "durationFormatted": "16:04",
+      "efficiency": 167
+    },
+    {
+      "no": 11,
+      "completedTime": "15:38",
+      "datetime": "2026年5月1日 午後3時38分",
+      "hour": 15,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "スターバックス コーヒー 神楽坂下店 Starbucks Coffee Kagurazakashita",
+      "area": "東京都新宿区横寺町",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.54,
+      "durationSec": 700,
+      "durationFormatted": "11:40",
+      "efficiency": 126
+    },
+    {
+      "no": 12,
+      "completedTime": "15:17",
+      "datetime": "2026年5月1日 午後3時17分",
+      "hour": 15,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "マクドナルド 九段下店 McDonald's KUDAN-SHITA",
+      "area": "東京都千代田区富士見１丁目",
+      "earnings": 387,
+      "tip": 0,
+      "baseEarnings": 387,
+      "distance": 3.51,
+      "durationSec": 1145,
+      "durationFormatted": "19:05",
+      "efficiency": 110
+    },
+    {
+      "no": 13,
+      "completedTime": "15:13",
+      "datetime": "2026年5月1日 午後3時13分",
+      "hour": 15,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "マイカリー食堂 春日店 My Curry Shokudo Kasuga",
+      "area": "東京都千代田区神田三崎町２丁目",
+      "earnings": 462,
+      "tip": 0,
+      "baseEarnings": 462,
+      "distance": 4.14,
+      "durationSec": 880,
+      "durationFormatted": "14:40",
+      "efficiency": 112
+    },
+    {
+      "no": 14,
+      "completedTime": "14:52",
+      "datetime": "2026年5月1日 午後2時52分",
+      "hour": 14,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "ケンタッキーフライドチキン 春日白山通り店 KFC",
+      "area": "1-chōme Tokyo Bunkyo City Sendagi JP",
+      "earnings": 390,
+      "tip": 0,
+      "baseEarnings": 390,
+      "distance": 3.64,
+      "durationSec": 1073,
+      "durationFormatted": "17:53",
+      "efficiency": 107
+    },
+    {
+      "no": 15,
+      "completedTime": "14:27",
+      "datetime": "2026年5月1日 午後2時27分",
+      "hour": 14,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "ミニストップ九段南１丁目店 MINISTOP",
+      "area": "2-chōme Tokyo Chiyoda City Iidabashi JP",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 3.91,
+      "durationSec": 1099,
+      "durationFormatted": "18:19",
+      "efficiency": 82
+    },
+    {
+      "no": 16,
+      "completedTime": "14:19",
+      "datetime": "2026年5月1日 午後2時19分",
+      "hour": 14,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "タリーズコーヒー 東京ドームシティクリスタルアベニュー",
+      "area": "東京都文京区小石川１丁目",
+      "earnings": 387,
+      "tip": 0,
+      "baseEarnings": 387,
+      "distance": 4.23,
+      "durationSec": 1024,
+      "durationFormatted": "17:04",
+      "efficiency": 91
+    },
+    {
+      "no": 17,
+      "completedTime": "14:16",
+      "datetime": "2026年5月1日 午後2時16分",
+      "hour": 14,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "【奥州いわいどり使用」絶品から揚げ定食】トリニモマケズ 神楽坂店",
+      "area": "東京都千代田区神田三崎町３丁目",
+      "earnings": 435,
+      "tip": 0,
+      "baseEarnings": 435,
+      "distance": 3.85,
+      "durationSec": 764,
+      "durationFormatted": "12:44",
+      "efficiency": 113
+    },
+    {
+      "no": 18,
+      "completedTime": "14:02",
+      "datetime": "2026年5月1日 午後2時02分",
+      "hour": 14,
+      "timeSlot": "夕（14〜18時）",
+      "storeName": "とんかつ さくたろう 神楽坂店",
+      "area": "東京都新宿区早稲田南町",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 3.44,
+      "durationSec": 745,
+      "durationFormatted": "12:25",
+      "efficiency": 93
+    },
+    {
+      "no": 19,
+      "completedTime": "13:40",
+      "datetime": "2026年5月1日 午後1時40分",
+      "hour": 13,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "日本橋海鮮丼　つじ半　神楽坂店",
+      "area": "東京都新宿区箪笥町",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 2.85,
+      "durationSec": 945,
+      "durationFormatted": "15:45",
+      "efficiency": 112
+    },
+    {
+      "no": 20,
+      "completedTime": "13:32",
+      "datetime": "2026年5月1日 午後1時32分",
+      "hour": 13,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "つじ田 飯田橋店 tsujita iidabashiten",
+      "area": "東京都千代田区富士見２丁目",
+      "earnings": 320,
+      "tip": 0,
+      "baseEarnings": 320,
+      "distance": 3.32,
+      "durationSec": 902,
+      "durationFormatted": "15:02",
+      "efficiency": 96
+    },
+    {
+      "no": 21,
+      "completedTime": "13:11",
+      "datetime": "2026年5月1日 午後1時11分",
+      "hour": 13,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "ゴンチャ 飯田橋ラムラ店 Gong cha IIDABASHI RAMLA",
+      "area": "東京都千代田区九段南２丁目",
+      "earnings": 514,
+      "tip": 0,
+      "baseEarnings": 514,
+      "distance": 3.96,
+      "durationSec": 1294,
+      "durationFormatted": "21:34",
+      "efficiency": 130
+    },
+    {
+      "no": 22,
+      "completedTime": "12:38",
+      "datetime": "2026年5月1日 午後12時38分",
+      "hour": 12,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "ウエルシア新宿牛込店",
+      "area": "東京都千代田区富士見２丁目",
+      "earnings": 870,
+      "tip": 0,
+      "baseEarnings": 870,
+      "distance": 4.62,
+      "durationSec": 1230,
+      "durationFormatted": "20:30",
+      "efficiency": 188
+    },
+    {
+      "no": 23,
+      "completedTime": "12:14",
+      "datetime": "2026年5月1日 午後12時14分",
+      "hour": 12,
+      "timeSlot": "昼（10〜14時）",
+      "storeName": "カレーハウス CoCo壱番屋 新宿歌舞伎町 Curry House CoCo Ichibanya Shinjuku Kabukicho",
+      "area": "東京都新宿区市谷薬王寺町",
+      "earnings": 2417,
+      "tip": 0,
+      "baseEarnings": 2417,
+      "distance": 9.4,
+      "durationSec": 2089,
+      "durationFormatted": "34:49",
+      "efficiency": 257
+    }
+  ],
+  "byTimeSlot": [
+    {
+      "label": "昼（10〜14時）",
+      "count": 5,
+      "earnings": 4441,
+      "distance": 24.15,
+      "avgEarnings": 888,
+      "efficiency": 184
+    },
+    {
+      "label": "夕（14〜18時）",
+      "count": 16,
+      "earnings": 7589,
+      "distance": 62.76,
+      "avgEarnings": 474,
+      "efficiency": 121
+    },
+    {
+      "label": "夜（18〜22時）",
+      "count": 2,
+      "earnings": 1302,
+      "distance": 13.33,
+      "avgEarnings": 651,
+      "efficiency": 98
+    }
+  ],
+  "byArea": [
+    {
+      "area": "東京都新宿区",
+      "count": 10,
+      "earnings": 6810,
+      "distance": 44.57,
+      "avgEarnings": 681
+    },
+    {
+      "area": "東京都千代田区",
+      "count": 9,
+      "earnings": 4468,
+      "distance": 33.65,
+      "avgEarnings": 496
+    },
+    {
+      "area": "東京都港区",
+      "count": 1,
+      "earnings": 957,
+      "distance": 10.24,
+      "avgEarnings": 957
+    },
+    {
+      "area": "1-chōme Tokyo Bunkyo City Sendagi JP",
+      "count": 1,
+      "earnings": 390,
+      "distance": 3.64,
+      "avgEarnings": 390
+    },
+    {
+      "area": "東京都文京区",
+      "count": 1,
+      "earnings": 387,
+      "distance": 4.23,
+      "avgEarnings": 387
+    },
+    {
+      "area": "2-chōme Tokyo Chiyoda City Iidabashi JP",
+      "count": 1,
+      "earnings": 320,
+      "distance": 3.91,
+      "avgEarnings": 320
+    }
+  ],
+  "byStore": [
+    {
+      "storeName": "カレーハウス CoCo壱番屋 新宿歌舞伎町 Curry House CoCo Ichibanya Shinjuku Kabukicho",
+      "count": 1,
+      "earnings": 2417,
+      "distance": 9.4,
+      "avgEarnings": 2417
+    },
+    {
+      "storeName": "ミニストップ九段南４丁目店 MINISTOP",
+      "count": 2,
+      "earnings": 1229,
+      "distance": 10.24,
+      "avgEarnings": 615
+    },
+    {
+      "storeName": "香港物語 赤坂見附店",
+      "count": 1,
+      "earnings": 957,
+      "distance": 10.24,
+      "avgEarnings": 957
+    },
+    {
+      "storeName": "クリスプサラダワークス コモレ四谷店 CRISP SALAD WORKS CO･MO･RE YOTSUYA",
+      "count": 1,
+      "earnings": 920,
+      "distance": 6.45,
+      "avgEarnings": 920
+    },
+    {
+      "storeName": "ウエルシア新宿牛込店",
+      "count": 1,
+      "earnings": 870,
+      "distance": 4.62,
+      "avgEarnings": 870
+    },
+    {
+      "storeName": "俺流塩らーめん 神楽坂店 oreryu shio ramen kagurazaka store",
+      "count": 1,
+      "earnings": 644,
+      "distance": 4.62,
+      "avgEarnings": 644
+    },
+    {
+      "storeName": "山下本気うどん 神楽坂 Yamashitahonkiudon Kagurazaka",
+      "count": 1,
+      "earnings": 623,
+      "distance": 3.73,
+      "avgEarnings": 623
+    },
+    {
+      "storeName": "ゴンチャ 飯田橋ラムラ店 Gong cha IIDABASHI RAMLA",
+      "count": 1,
+      "earnings": 514,
+      "distance": 3.96,
+      "avgEarnings": 514
+    },
+    {
+      "storeName": "ガスト 市ヶ谷駅前店 Gusto ICHIGAYAEKIMAE",
+      "count": 1,
+      "earnings": 512,
+      "distance": 3.43,
+      "avgEarnings": 512
+    },
+    {
+      "storeName": "マイカリー食堂 春日店 My Curry Shokudo Kasuga",
+      "count": 1,
+      "earnings": 462,
+      "distance": 4.14,
+      "avgEarnings": 462
+    }
+  ],
+  "efficiencyRanking": [
+    {
+      "no": 23,
+      "storeName": "カレーハウス CoCo壱番屋 新宿歌舞伎町 Curry House CoCo Ichibanya Shinjuku Kabukicho",
+      "efficiency": 257,
+      "earnings": 2417,
+      "distance": 9.4
+    },
+    {
+      "no": 22,
+      "storeName": "ウエルシア新宿牛込店",
+      "efficiency": 188,
+      "earnings": 870,
+      "distance": 4.62
+    },
+    {
+      "no": 10,
+      "storeName": "山下本気うどん 神楽坂 Yamashitahonkiudon Kagurazaka",
+      "efficiency": 167,
+      "earnings": 623,
+      "distance": 3.73
+    },
+    {
+      "no": 6,
+      "storeName": "ウェンディーズ・ファーストキッチン 飯田橋ラムラ店 Wendy's First Kitchen IIDABASHI RAMURA",
+      "efficiency": 154,
+      "earnings": 320,
+      "distance": 2.08
+    },
+    {
+      "no": 3,
+      "storeName": "ガスト 市ヶ谷駅前店 Gusto ICHIGAYAEKIMAE",
+      "efficiency": 149,
+      "earnings": 512,
+      "distance": 3.43
+    },
+    {
+      "no": 8,
+      "storeName": "クリスプサラダワークス コモレ四谷店 CRISP SALAD WORKS CO･MO･RE YOTSUYA",
+      "efficiency": 143,
+      "earnings": 920,
+      "distance": 6.45
+    },
+    {
+      "no": 4,
+      "storeName": "俺流塩らーめん 神楽坂店 oreryu shio ramen kagurazaka store",
+      "efficiency": 139,
+      "earnings": 644,
+      "distance": 4.62
+    },
+    {
+      "no": 21,
+      "storeName": "ゴンチャ 飯田橋ラムラ店 Gong cha IIDABASHI RAMLA",
+      "efficiency": 130,
+      "earnings": 514,
+      "distance": 3.96
+    },
+    {
+      "no": 9,
+      "storeName": "ミニストップ九段南４丁目店 MINISTOP",
+      "efficiency": 129,
+      "earnings": 515,
+      "distance": 3.98
+    },
+    {
+      "no": 11,
+      "storeName": "スターバックス コーヒー 神楽坂下店 Starbucks Coffee Kagurazakashita",
+      "efficiency": 126,
+      "earnings": 320,
+      "distance": 2.54
+    },
+    {
+      "no": 5,
+      "storeName": "ミニストップ九段南４丁目店 MINISTOP",
+      "efficiency": 114,
+      "earnings": 714,
+      "distance": 6.26
+    },
+    {
+      "no": 17,
+      "storeName": "【奥州いわいどり使用」絶品から揚げ定食】トリニモマケズ 神楽坂店",
+      "efficiency": 113,
+      "earnings": 435,
+      "distance": 3.85
+    },
+    {
+      "no": 1,
+      "storeName": "上島珈琲店 千代田区二番町店",
+      "efficiency": 112,
+      "earnings": 345,
+      "distance": 3.09
+    },
+    {
+      "no": 13,
+      "storeName": "マイカリー食堂 春日店 My Curry Shokudo Kasuga",
+      "efficiency": 112,
+      "earnings": 462,
+      "distance": 4.14
+    },
+    {
+      "no": 19,
+      "storeName": "日本橋海鮮丼　つじ半　神楽坂店",
+      "efficiency": 112,
+      "earnings": 320,
+      "distance": 2.85
+    },
+    {
+      "no": 12,
+      "storeName": "マクドナルド 九段下店 McDonald's KUDAN-SHITA",
+      "efficiency": 110,
+      "earnings": 387,
+      "distance": 3.51
+    },
+    {
+      "no": 7,
+      "storeName": "セーヌよしや 柳町店",
+      "efficiency": 108,
+      "earnings": 320,
+      "distance": 2.95
+    },
+    {
+      "no": 14,
+      "storeName": "ケンタッキーフライドチキン 春日白山通り店 KFC",
+      "efficiency": 107,
+      "earnings": 390,
+      "distance": 3.64
+    },
+    {
+      "no": 20,
+      "storeName": "つじ田 飯田橋店 tsujita iidabashiten",
+      "efficiency": 96,
+      "earnings": 320,
+      "distance": 3.32
+    },
+    {
+      "no": 2,
+      "storeName": "香港物語 赤坂見附店",
+      "efficiency": 93,
+      "earnings": 957,
+      "distance": 10.24
+    },
+    {
+      "no": 18,
+      "storeName": "とんかつ さくたろう 神楽坂店",
+      "efficiency": 93,
+      "earnings": 320,
+      "distance": 3.44
+    },
+    {
+      "no": 16,
+      "storeName": "タリーズコーヒー 東京ドームシティクリスタルアベニュー",
+      "efficiency": 91,
+      "earnings": 387,
+      "distance": 4.23
+    },
+    {
+      "no": 15,
+      "storeName": "ミニストップ九段南１丁目店 MINISTOP",
+      "efficiency": 82,
+      "earnings": 320,
+      "distance": 3.91
+    }
+  ]
+}
