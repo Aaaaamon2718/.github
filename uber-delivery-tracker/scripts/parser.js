@@ -109,33 +109,30 @@ function buildTimeSlotTable(deliveries) {
   return rows || '| （データなし） | — | — |';
 }
 
-function buildDetailSection(delivery, index, weather) {
-  if (delivery.error) {
-    return `### No.${index} — 取得エラー\n- エラー: ${delivery.error}\n`;
-  }
+function buildDeliveryTable(deliveries, weather) {
+  const header = '| No. | 時刻 | 店舗 | エリア | 売上 | 距離 | 所要時間 | 天気 |';
+  const sep    = '|---|---|---|---|---|---|---|---|';
 
-  const timeStr = parseTime(delivery.datetime);
-  const w = getWeatherAtHour(weather, timeStr);
-  const timeDisplay = timeStr || delivery.datetime || '時刻不明';
-  const lines = [`### No.${index} — ${timeDisplay}完了`];
-  if (delivery.storeName) lines.push(`- **店舗**: ${delivery.storeName}`);
-  if (delivery.destAddress) lines.push(`- **エリア**: ${delivery.destAddress}`);
+  const rows = deliveries.map((d, i) => {
+    if (d.error) {
+      return `| ${i + 1} | — | エラー | — | — | — | — | — |`;
+    }
+    const time = parseTime(d.datetime) || '—';
+    const store = (d.storeName || '—').replace(/\|/g, '／').slice(0, 30);
+    const area = (d.destAddress || '—').replace(/^東京都/, '').replace(/\|/g, '／');
+    const earnings = formatYen(d.earnings || 0);
+    const tip = d.tip || d.tipAmount || 0;
+    const earningsCell = tip > 0 ? `${earnings}+T` : earnings;
+    const dist = d.distance != null ? `${d.distance.toFixed(1)}km` : '—';
+    const dur = d.duration || '—';
 
-  const tip = delivery.tip || delivery.tipAmount || 0;
-  const earningsStr = tip > 0
-    ? `${formatYen(delivery.earnings)}（チップ: ${formatYen(tip)}含む）`
-    : formatYen(delivery.earnings || 0);
-  lines.push(`- **売上**: ${earningsStr}`);
+    const w = getWeatherAtHour(weather, time);
+    const weatherCell = w ? `${w.condition}${w.isRainy ? '🌧' : ''} ${w.temperature}℃` : '—';
 
-  if (delivery.distance != null) lines.push(`- **距離**: ${delivery.distance.toFixed(2)} km`);
-  if (delivery.duration) lines.push(`- **所要時間**: ${delivery.duration}`);
+    return `| ${i + 1} | ${time} | ${store} | ${area} | ${earningsCell} | ${dist} | ${dur} | ${weatherCell} |`;
+  });
 
-  if (w) {
-    const rainMark = w.isRainy ? ' 🌧' : '';
-    lines.push(`- **天気**: ${w.condition}${rainMark}（${w.temperature}℃ / 降水${w.precipitation}mm）`);
-  }
-
-  return lines.join('\n');
+  return [header, sep, ...rows].join('\n');
 }
 
 function buildCalendarSection(cal) {
@@ -214,9 +211,7 @@ function generateMarkdown(data, weather, cal) {
     d.weatherAtDelivery = getWeatherAtHour(weather, parseTime(d.datetime));
   }
 
-  const details = data.deliveries
-    .map((d, i) => buildDetailSection(d, i + 1, weather))
-    .join('\n\n');
+  const details = buildDeliveryTable(data.deliveries, weather);
 
   const calendarSection = buildCalendarSection(cal);
   const weatherSection = buildWeatherSection(weather);
