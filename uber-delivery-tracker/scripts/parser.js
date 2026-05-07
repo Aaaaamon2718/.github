@@ -34,6 +34,18 @@ function formatJapaneseDate(dateStr) {
   return `${y}年${parseInt(m)}月${parseInt(d)}日`;
 }
 
+// "2026年4月29日 午後11時14分" → "23:14"
+function parseTime(datetimeStr) {
+  if (!datetimeStr) return null;
+  const m = datetimeStr.match(/(午前|午後)(\d+)時(\d+)分/);
+  if (!m) return null;
+  let hour = parseInt(m[2]);
+  const minute = parseInt(m[3]);
+  if (m[1] === '午後' && hour !== 12) hour += 12;
+  if (m[1] === '午前' && hour === 12) hour = 0;
+  return `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+}
+
 function getTimeSlot(timeStr) {
   if (!timeStr) return 'unknown';
   const hourMatch = timeStr.match(/(\d{1,2}):/);
@@ -82,7 +94,7 @@ function buildTimeSlotTable(deliveries) {
 
   for (const d of deliveries) {
     if (d.error) continue;
-    const slot = getTimeSlot(d.completedAt);
+    const slot = getTimeSlot(parseTime(d.datetime));
     if (slots[slot]) {
       slots[slot].count++;
       slots[slot].earnings += d.earnings || 0;
@@ -102,19 +114,21 @@ function buildDetailSection(delivery, index, weather) {
     return `### No.${index} — 取得エラー\n- エラー: ${delivery.error}\n`;
   }
 
-  const w = getWeatherAtHour(weather, delivery.completedAt);
-  const lines = [`### No.${index} — ${delivery.completedAt || '時刻不明'}完了`];
+  const timeStr = parseTime(delivery.datetime);
+  const w = getWeatherAtHour(weather, timeStr);
+  const timeDisplay = timeStr || delivery.datetime || '時刻不明';
+  const lines = [`### No.${index} — ${timeDisplay}完了`];
   if (delivery.storeName) lines.push(`- **店舗**: ${delivery.storeName}`);
-  if (delivery.area) lines.push(`- **エリア**: ${delivery.area}`);
+  if (delivery.destAddress) lines.push(`- **エリア**: ${delivery.destAddress}`);
 
-  const earningsStr = delivery.tipAmount
-    ? `${formatYen(delivery.earnings)}（チップ: ${formatYen(delivery.tipAmount)}含む）`
+  const tip = delivery.tip || delivery.tipAmount || 0;
+  const earningsStr = tip > 0
+    ? `${formatYen(delivery.earnings)}（チップ: ${formatYen(tip)}含む）`
     : formatYen(delivery.earnings || 0);
   lines.push(`- **売上**: ${earningsStr}`);
 
-  if (delivery.questBonus) lines.push(`- **クエストボーナス**: ${formatYen(delivery.questBonus)}`);
   if (delivery.distance != null) lines.push(`- **距離**: ${delivery.distance.toFixed(2)} km`);
-  if (delivery.duration) lines.push(`- **時間**: ${delivery.duration}`);
+  if (delivery.duration) lines.push(`- **所要時間**: ${delivery.duration}`);
 
   if (w) {
     const rainMark = w.isRainy ? ' 🌧' : '';
@@ -191,13 +205,13 @@ function buildRainPremiumSection(deliveries, weather) {
 function generateMarkdown(data, weather, cal) {
   const valid = data.deliveries.filter(d => !d.error);
   const totalEarnings = valid.reduce((s, d) => s + (d.earnings || 0), 0);
-  const totalTips = valid.reduce((s, d) => s + (d.tipAmount || 0), 0);
+  const totalTips = valid.reduce((s, d) => s + (d.tip || d.tipAmount || 0), 0);
   const totalDistance = valid.reduce((s, d) => s + (d.distance || 0), 0);
   const avgEarnings = valid.length > 0 ? Math.round(totalEarnings / valid.length) : 0;
 
   // 各配達に天気情報を付与
   for (const d of valid) {
-    d.weatherAtDelivery = getWeatherAtHour(weather, d.completedAt);
+    d.weatherAtDelivery = getWeatherAtHour(weather, parseTime(d.datetime));
   }
 
   const details = data.deliveries
