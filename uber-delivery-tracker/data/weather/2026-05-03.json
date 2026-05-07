@@ -1,20 +1,19 @@
 {
   "date": "2026-05-03",
-  "location": "東京",
+  "location": "東京都渋谷区",
   "source": "openmeteo-archive",
   "daily": {
-    "condition": "小雨",
     "conditionCode": 51,
-    "isRainy": true,
-    "tempMax": 23.1,
-    "tempMin": 13.9,
-    "precipitation": 0.3,
+    "condition": "小雨",
+    "temperatureMax": 23.1,
+    "temperatureMin": 13.9,
+    "precipitationSum": 0.3,
     "windspeedMax": 20.1
   },
   "hourly": [
     {
       "hour": 0,
-      "time": "00:00",
+      "time": "2026-05-03 00:00",
       "temperature": 16.9,
       "apparentTemperature": 17.2,
       "precipitationProbability": null,
@@ -27,7 +26,7 @@
     },
     {
       "hour": 1,
-      "time": "01:00",
+      "time": "2026-05-03 01:00",
       "temperature": 15.9,
       "apparentTemperature": 15.5,
       "precipitationProbability": null,
@@ -40,7 +39,7 @@
     },
     {
       "hour": 2,
-      "time": "02:00",
+      "time": "2026-05-03 02:00",
       "temperature": 15.2,
       "apparentTemperature": 14.5,
       "precipitationProbability": null,
@@ -53,7 +52,7 @@
     },
     {
       "hour": 3,
-      "time": "03:00",
+      "time": "2026-05-03 03:00",
       "temperature": 14.2,
       "apparentTemperature": 13.3,
       "precipitationProbability": null,
@@ -66,7 +65,7 @@
     },
     {
       "hour": 4,
-      "time": "04:00",
+      "time": "2026-05-03 04:00",
       "temperature": 14.1,
       "apparentTemperature": 13.1,
       "precipitationProbability": null,
@@ -79,7 +78,7 @@
     },
     {
       "hour": 5,
-      "time": "05:00",
+      "time": "2026-05-03 05:00",
       "temperature": 13.9,
       "apparentTemperature": 12.7,
       "precipitationProbability": null,
@@ -92,7 +91,7 @@
     },
     {
       "hour": 6,
-      "time": "06:00",
+      "time": "2026-05-03 06:00",
       "temperature": 14,
       "apparentTemperature": 12.8,
       "precipitationProbability": null,
@@ -105,7 +104,7 @@
     },
     {
       "hour": 7,
-      "time": "07:00",
+      "time": "2026-05-03 07:00",
       "temperature": 14.4,
       "apparentTemperature": 13.5,
       "precipitationProbability": null,
@@ -118,7 +117,7 @@
     },
     {
       "hour": 8,
-      "time": "08:00",
+      "time": "2026-05-03 08:00",
       "temperature": 15.1,
       "apparentTemperature": 14.5,
       "precipitationProbability": null,
@@ -131,7 +130,7 @@
     },
     {
       "hour": 9,
-      "time": "09:00",
+      "time": "2026-05-03 09:00",
       "temperature": 16,
       "apparentTemperature": 15.4,
       "precipitationProbability": null,
@@ -144,7 +143,7 @@
     },
     {
       "hour": 10,
-      "time": "10:00",
+      "time": "2026-05-03 10:00",
       "temperature": 18.2,
       "apparentTemperature": 18.4,
       "precipitationProbability": null,
@@ -157,7 +156,7 @@
     },
     {
       "hour": 11,
-      "time": "11:00",
+      "time": "2026-05-03 11:00",
       "temperature": 18.8,
       "apparentTemperature": 19.5,
       "precipitationProbability": null,
@@ -170,7 +169,7 @@
     },
     {
       "hour": 12,
-      "time": "12:00",
+      "time": "2026-05-03 12:00",
       "temperature": 20.6,
       "apparentTemperature": 21.6,
       "precipitationProbability": null,
@@ -183,7 +182,7 @@
     },
     {
       "hour": 13,
-      "time": "13:00",
+      "time": "2026-05-03 13:00",
       "temperature": 22.1,
       "apparentTemperature": 22.9,
       "precipitationProbability": null,
@@ -196,7 +195,7 @@
     },
     {
       "hour": 14,
-      "time": "14:00",
+      "time": "2026-05-03 14:00",
       "temperature": 22.6,
       "apparentTemperature": 21.5,
       "precipitationProbability": null,
@@ -209,7 +208,7 @@
     },
     {
       "hour": 15,
-      "time": "15:00",
+      "time": "2026-05-03 15:00",
       "temperature": 23.1,
       "apparentTemperature": 22.5,
       "precipitationProbability": null,
@@ -222,7 +221,7 @@
     },
     {
       "hour": 16,
-      "time": "16:00",
+      "time": "2026-05-03 16:00",
       "temperature": 22.8,
       "apparentTemperature": 22.3,
       "precipitationProbability": null,
@@ -235,7 +234,7 @@
     },
     {
       "hour": 17,
-      "time": "17:00",
+      "time": "2026-05-03 17:00",
       "temperature": 21.5,
       "apparentTemperature": 20.8,
       "precipitationProbability": null,
@@ -248,7 +247,7 @@
     },
     {
       "hour": 18,
-      "time": "18:00",
+      "time": "2026-05-03 18:00",
       "temperature": 20.4,
       "apparentTemperature": 19.2,
       "precipitationProbability": null,
@@ -261,7 +260,7 @@
     },
     {
       "hour": 19,
-      "time": "19:00",
+      "time": "2026-05-03 19:00",
       "temperature": 19.6,
       "apparentTemperature": 18,
       "precipitationProbability": null,
@@ -274,7 +273,7 @@
     },
     {
       "hour": 20,
-      "time": "20:00",
+      "time": "2026-05-03 20:00",
       "temperature": 19.1,
       "apparentTemperature": 18.1,
       "precipitationProbability": null,
@@ -287,7 +286,7 @@
     },
     {
       "hour": 21,
-      "time": "21:00",
+      "time": "2026-05-03 21:00",
       "temperature": 19.5,
       "apparentTemperature": 18.7,
       "precipitationProbability": null,
@@ -300,7 +299,7 @@
     },
     {
       "hour": 22,
-      "time": "22:00",
+      "time": "2026-05-03 22:00",
       "temperature": 19.5,
       "apparentTemperature": 18.8,
       "precipitationProbability": null,
@@ -313,7 +312,7 @@
     },
     {
       "hour": 23,
-      "time": "23:00",
+      "time": "2026-05-03 23:00",
       "temperature": 19.3,
       "apparentTemperature": 18.7,
       "precipitationProbability": null,

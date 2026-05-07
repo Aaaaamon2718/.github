@@ -6,10 +6,9 @@
   "scripts": {
     "setup-session": "node scripts/auth/save-session.js",
     "scrape": "node scripts/scraper.js",
-    "weather": "node scripts/weather.js",
     "parse": "node scripts/parser.js",
     "report": "node scripts/report-generator.js",
-    "daily": "bash daily.sh"
+    "daily": "node scripts/scraper.js --date today && node scripts/parser.js --date today && node scripts/report-generator.js --date today"
   },
   "dependencies": {
     "playwright": "^1.40.0",

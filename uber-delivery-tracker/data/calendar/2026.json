@@ -1,0 +1,4223 @@
+{
+  "year": 2026,
+  "updatedAt": "2026-05-07T12:34:02.022Z",
+  "holidays": {
+    "2025-01-01": "元日",
+    "2025-01-13": "成人の日",
+    "2025-02-11": "建国記念の日",
+    "2025-02-23": "天皇誕生日",
+    "2025-02-24": "天皇誕生日 振替休日",
+    "2025-03-20": "春分の日",
+    "2025-04-29": "昭和の日",
+    "2025-05-03": "憲法記念日",
+    "2025-05-04": "みどりの日",
+    "2025-05-05": "こどもの日",
+    "2025-05-06": "みどりの日 振替休日",
+    "2025-07-21": "海の日",
+    "2025-08-11": "山の日",
+    "2025-09-15": "敬老の日",
+    "2025-09-23": "秋分の日",
+    "2025-10-13": "スポーツの日",
+    "2025-11-03": "文化の日",
+    "2025-11-23": "勤労感謝の日",
+    "2025-11-24": "勤労感謝の日 振替休日",
+    "2026-01-01": "元日",
+    "2026-01-12": "成人の日",
+    "2026-02-11": "建国記念の日",
+    "2026-02-23": "天皇誕生日",
+    "2026-03-20": "春分の日",
+    "2026-04-29": "昭和の日",
+    "2026-05-03": "憲法記念日",
+    "2026-05-04": "みどりの日",
+    "2026-05-05": "こどもの日",
+    "2026-05-06": "憲法記念日 振替休日",
+    "2026-07-20": "海の日",
+    "2026-08-11": "山の日",
+    "2026-09-21": "敬老の日",
+    "2026-09-22": "国民の休日",
+    "2026-09-23": "秋分の日",
+    "2026-10-12": "スポーツの日",
+    "2026-11-03": "文化の日",
+    "2026-11-23": "勤労感謝の日",
+    "2027-01-01": "元日",
+    "2027-01-11": "成人の日",
+    "2027-02-11": "建国記念の日",
+    "2027-02-23": "天皇誕生日",
+    "2027-03-21": "春分の日",
+    "2027-03-22": "春分の日 振替休日",
+    "2027-04-29": "昭和の日",
+    "2027-05-03": "憲法記念日",
+    "2027-05-04": "みどりの日",
+    "2027-05-05": "こどもの日",
+    "2027-07-19": "海の日",
+    "2027-08-11": "山の日",
+    "2027-09-20": "敬老の日",
+    "2027-09-23": "秋分の日",
+    "2027-10-11": "スポーツの日",
+    "2027-11-03": "文化の日",
+    "2027-11-23": "勤労感謝の日"
+  },
+  "paydays": {
+    "2026-01-23": [
+      "給料日(25日振替)"
+    ],
+    "2026-01-30": [
+      "給料日(月末振替)"
+    ],
+    "2026-02-25": [
+      "給料日(25日)"
+    ],
+    "2026-02-27": [
+      "給料日(月末振替)"
+    ],
+    "2026-03-25": [
+      "給料日(25日)"
+    ],
+    "2026-03-31": [
+      "給料日(月末31日)"
+    ],
+    "2026-04-24": [
+      "給料日(25日振替)"
+    ],
+    "2026-04-30": [
+      "給料日(月末30日)"
+    ],
+    "2026-05-25": [
+      "給料日(25日)"
+    ],
+    "2026-05-29": [
+      "給料日(月末振替)"
+    ],
+    "2026-06-25": [
+      "給料日(25日)"
+    ],
+    "2026-06-30": [
+      "給料日(月末30日)"
+    ],
+    "2026-07-24": [
+      "給料日(25日振替)"
+    ],
+    "2026-07-31": [
+      "給料日(月末31日)"
+    ],
+    "2026-08-25": [
+      "給料日(25日)"
+    ],
+    "2026-08-31": [
+      "給料日(月末31日)"
+    ],
+    "2026-09-25": [
+      "給料日(25日)"
+    ],
+    "2026-09-30": [
+      "給料日(月末30日)"
+    ],
+    "2026-10-23": [
+      "給料日(25日振替)"
+    ],
+    "2026-10-30": [
+      "給料日(月末振替)"
+    ],
+    "2026-11-25": [
+      "給料日(25日)"
+    ],
+    "2026-11-30": [
+      "給料日(月末30日)"
+    ],
+    "2026-12-25": [
+      "給料日(25日)"
+    ],
+    "2026-12-31": [
+      "給料日(月末31日)"
+    ]
+  },
+  "days": {
+    "2026-01-01": {
+      "date": "2026-01-01",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": "元日",
+      "paydays": [],
+      "types": [
+        "祝日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-02": {
+      "date": "2026-01-02",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-03": {
+      "date": "2026-01-03",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-04": {
+      "date": "2026-01-04",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-05": {
+      "date": "2026-01-05",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-06": {
+      "date": "2026-01-06",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-07": {
+      "date": "2026-01-07",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-08": {
+      "date": "2026-01-08",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-09": {
+      "date": "2026-01-09",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-10": {
+      "date": "2026-01-10",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-11": {
+      "date": "2026-01-11",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-12": {
+      "date": "2026-01-12",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": "成人の日",
+      "paydays": [],
+      "types": [
+        "祝日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-13": {
+      "date": "2026-01-13",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-14": {
+      "date": "2026-01-14",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-15": {
+      "date": "2026-01-15",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-16": {
+      "date": "2026-01-16",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-17": {
+      "date": "2026-01-17",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-01-18": {
+      "date": "2026-01-18",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-01-19": {
+      "date": "2026-01-19",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-20": {
+      "date": "2026-01-20",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-21": {
+      "date": "2026-01-21",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-22": {
+      "date": "2026-01-22",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-23": {
+      "date": "2026-01-23",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(25日振替)"
+      ],
+      "types": [
+        "平日",
+        "給料日(25日振替)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-24": {
+      "date": "2026-01-24",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-01-25": {
+      "date": "2026-01-25",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-01-26": {
+      "date": "2026-01-26",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-27": {
+      "date": "2026-01-27",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-28": {
+      "date": "2026-01-28",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-29": {
+      "date": "2026-01-29",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-30": {
+      "date": "2026-01-30",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(月末振替)"
+      ],
+      "types": [
+        "平日",
+        "給料日(月末振替)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-01-31": {
+      "date": "2026-01-31",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-02-01": {
+      "date": "2026-02-01",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-02-02": {
+      "date": "2026-02-02",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-03": {
+      "date": "2026-02-03",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-04": {
+      "date": "2026-02-04",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-05": {
+      "date": "2026-02-05",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-06": {
+      "date": "2026-02-06",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-07": {
+      "date": "2026-02-07",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-02-08": {
+      "date": "2026-02-08",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-09": {
+      "date": "2026-02-09",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-10": {
+      "date": "2026-02-10",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-11": {
+      "date": "2026-02-11",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": "建国記念の日",
+      "paydays": [],
+      "types": [
+        "祝日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-12": {
+      "date": "2026-02-12",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-13": {
+      "date": "2026-02-13",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-14": {
+      "date": "2026-02-14",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-15": {
+      "date": "2026-02-15",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-02-16": {
+      "date": "2026-02-16",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-17": {
+      "date": "2026-02-17",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-18": {
+      "date": "2026-02-18",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-19": {
+      "date": "2026-02-19",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-20": {
+      "date": "2026-02-20",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-21": {
+      "date": "2026-02-21",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-22": {
+      "date": "2026-02-22",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-23": {
+      "date": "2026-02-23",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": "天皇誕生日",
+      "paydays": [],
+      "types": [
+        "祝日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-24": {
+      "date": "2026-02-24",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-25": {
+      "date": "2026-02-25",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(25日)"
+      ],
+      "types": [
+        "平日",
+        "給料日(25日)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-26": {
+      "date": "2026-02-26",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-27": {
+      "date": "2026-02-27",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(月末振替)"
+      ],
+      "types": [
+        "平日",
+        "給料日(月末振替)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-02-28": {
+      "date": "2026-02-28",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-03-01": {
+      "date": "2026-03-01",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-03-02": {
+      "date": "2026-03-02",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-03": {
+      "date": "2026-03-03",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-04": {
+      "date": "2026-03-04",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-05": {
+      "date": "2026-03-05",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-06": {
+      "date": "2026-03-06",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-07": {
+      "date": "2026-03-07",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-03-08": {
+      "date": "2026-03-08",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-03-09": {
+      "date": "2026-03-09",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-10": {
+      "date": "2026-03-10",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-11": {
+      "date": "2026-03-11",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-12": {
+      "date": "2026-03-12",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-13": {
+      "date": "2026-03-13",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-14": {
+      "date": "2026-03-14",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-03-15": {
+      "date": "2026-03-15",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-03-16": {
+      "date": "2026-03-16",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-17": {
+      "date": "2026-03-17",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-18": {
+      "date": "2026-03-18",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-19": {
+      "date": "2026-03-19",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-20": {
+      "date": "2026-03-20",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": "春分の日",
+      "paydays": [],
+      "types": [
+        "祝日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-21": {
+      "date": "2026-03-21",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-22": {
+      "date": "2026-03-22",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-23": {
+      "date": "2026-03-23",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-24": {
+      "date": "2026-03-24",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-25": {
+      "date": "2026-03-25",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(25日)"
+      ],
+      "types": [
+        "平日",
+        "給料日(25日)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-26": {
+      "date": "2026-03-26",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-27": {
+      "date": "2026-03-27",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-28": {
+      "date": "2026-03-28",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-03-29": {
+      "date": "2026-03-29",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-03-30": {
+      "date": "2026-03-30",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-03-31": {
+      "date": "2026-03-31",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(月末31日)"
+      ],
+      "types": [
+        "平日",
+        "給料日(月末31日)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-01": {
+      "date": "2026-04-01",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-02": {
+      "date": "2026-04-02",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-03": {
+      "date": "2026-04-03",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-04": {
+      "date": "2026-04-04",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-04-05": {
+      "date": "2026-04-05",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-04-06": {
+      "date": "2026-04-06",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-07": {
+      "date": "2026-04-07",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-08": {
+      "date": "2026-04-08",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-09": {
+      "date": "2026-04-09",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-10": {
+      "date": "2026-04-10",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-11": {
+      "date": "2026-04-11",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-04-12": {
+      "date": "2026-04-12",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-04-13": {
+      "date": "2026-04-13",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-14": {
+      "date": "2026-04-14",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-15": {
+      "date": "2026-04-15",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-16": {
+      "date": "2026-04-16",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-17": {
+      "date": "2026-04-17",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-18": {
+      "date": "2026-04-18",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-04-19": {
+      "date": "2026-04-19",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-04-20": {
+      "date": "2026-04-20",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-21": {
+      "date": "2026-04-21",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-22": {
+      "date": "2026-04-22",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-23": {
+      "date": "2026-04-23",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-24": {
+      "date": "2026-04-24",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(25日振替)"
+      ],
+      "types": [
+        "平日",
+        "給料日(25日振替)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-25": {
+      "date": "2026-04-25",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-04-26": {
+      "date": "2026-04-26",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-27": {
+      "date": "2026-04-27",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-28": {
+      "date": "2026-04-28",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-29": {
+      "date": "2026-04-29",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": "昭和の日",
+      "paydays": [],
+      "types": [
+        "祝日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-04-30": {
+      "date": "2026-04-30",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(月末30日)"
+      ],
+      "types": [
+        "平日",
+        "給料日(月末30日)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-01": {
+      "date": "2026-05-01",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-02": {
+      "date": "2026-05-02",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-03": {
+      "date": "2026-05-03",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": "憲法記念日",
+      "paydays": [],
+      "types": [
+        "祝日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-04": {
+      "date": "2026-05-04",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": "みどりの日",
+      "paydays": [],
+      "types": [
+        "祝日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-05": {
+      "date": "2026-05-05",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": "こどもの日",
+      "paydays": [],
+      "types": [
+        "祝日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-06": {
+      "date": "2026-05-06",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": "憲法記念日 振替休日",
+      "paydays": [],
+      "types": [
+        "祝日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-07": {
+      "date": "2026-05-07",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-08": {
+      "date": "2026-05-08",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-09": {
+      "date": "2026-05-09",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-10": {
+      "date": "2026-05-10",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-05-11": {
+      "date": "2026-05-11",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-12": {
+      "date": "2026-05-12",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-13": {
+      "date": "2026-05-13",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-14": {
+      "date": "2026-05-14",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-15": {
+      "date": "2026-05-15",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-16": {
+      "date": "2026-05-16",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-05-17": {
+      "date": "2026-05-17",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-05-18": {
+      "date": "2026-05-18",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-19": {
+      "date": "2026-05-19",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-20": {
+      "date": "2026-05-20",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-21": {
+      "date": "2026-05-21",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-22": {
+      "date": "2026-05-22",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-23": {
+      "date": "2026-05-23",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-05-24": {
+      "date": "2026-05-24",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-05-25": {
+      "date": "2026-05-25",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(25日)"
+      ],
+      "types": [
+        "平日",
+        "給料日(25日)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-26": {
+      "date": "2026-05-26",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-27": {
+      "date": "2026-05-27",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-28": {
+      "date": "2026-05-28",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-29": {
+      "date": "2026-05-29",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(月末振替)"
+      ],
+      "types": [
+        "平日",
+        "給料日(月末振替)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-05-30": {
+      "date": "2026-05-30",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-05-31": {
+      "date": "2026-05-31",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-06-01": {
+      "date": "2026-06-01",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-02": {
+      "date": "2026-06-02",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-03": {
+      "date": "2026-06-03",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-04": {
+      "date": "2026-06-04",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-05": {
+      "date": "2026-06-05",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-06": {
+      "date": "2026-06-06",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-06-07": {
+      "date": "2026-06-07",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-06-08": {
+      "date": "2026-06-08",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-09": {
+      "date": "2026-06-09",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-10": {
+      "date": "2026-06-10",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-11": {
+      "date": "2026-06-11",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-12": {
+      "date": "2026-06-12",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-13": {
+      "date": "2026-06-13",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-06-14": {
+      "date": "2026-06-14",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-06-15": {
+      "date": "2026-06-15",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-16": {
+      "date": "2026-06-16",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-17": {
+      "date": "2026-06-17",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-18": {
+      "date": "2026-06-18",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-19": {
+      "date": "2026-06-19",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-20": {
+      "date": "2026-06-20",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-06-21": {
+      "date": "2026-06-21",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-06-22": {
+      "date": "2026-06-22",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-23": {
+      "date": "2026-06-23",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-24": {
+      "date": "2026-06-24",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-25": {
+      "date": "2026-06-25",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(25日)"
+      ],
+      "types": [
+        "平日",
+        "給料日(25日)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-26": {
+      "date": "2026-06-26",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-27": {
+      "date": "2026-06-27",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-06-28": {
+      "date": "2026-06-28",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-06-29": {
+      "date": "2026-06-29",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-06-30": {
+      "date": "2026-06-30",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(月末30日)"
+      ],
+      "types": [
+        "平日",
+        "給料日(月末30日)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-01": {
+      "date": "2026-07-01",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-02": {
+      "date": "2026-07-02",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-03": {
+      "date": "2026-07-03",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-04": {
+      "date": "2026-07-04",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-07-05": {
+      "date": "2026-07-05",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-07-06": {
+      "date": "2026-07-06",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-07": {
+      "date": "2026-07-07",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-08": {
+      "date": "2026-07-08",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-09": {
+      "date": "2026-07-09",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-10": {
+      "date": "2026-07-10",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-11": {
+      "date": "2026-07-11",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-07-12": {
+      "date": "2026-07-12",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-07-13": {
+      "date": "2026-07-13",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-14": {
+      "date": "2026-07-14",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-15": {
+      "date": "2026-07-15",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-16": {
+      "date": "2026-07-16",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-17": {
+      "date": "2026-07-17",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-18": {
+      "date": "2026-07-18",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-19": {
+      "date": "2026-07-19",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-20": {
+      "date": "2026-07-20",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": "海の日",
+      "paydays": [],
+      "types": [
+        "祝日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-21": {
+      "date": "2026-07-21",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-22": {
+      "date": "2026-07-22",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-23": {
+      "date": "2026-07-23",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-24": {
+      "date": "2026-07-24",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(25日振替)"
+      ],
+      "types": [
+        "平日",
+        "給料日(25日振替)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-25": {
+      "date": "2026-07-25",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-07-26": {
+      "date": "2026-07-26",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-07-27": {
+      "date": "2026-07-27",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-28": {
+      "date": "2026-07-28",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-29": {
+      "date": "2026-07-29",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-30": {
+      "date": "2026-07-30",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-07-31": {
+      "date": "2026-07-31",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(月末31日)"
+      ],
+      "types": [
+        "平日",
+        "給料日(月末31日)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-01": {
+      "date": "2026-08-01",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-08-02": {
+      "date": "2026-08-02",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-08-03": {
+      "date": "2026-08-03",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-04": {
+      "date": "2026-08-04",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-05": {
+      "date": "2026-08-05",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-06": {
+      "date": "2026-08-06",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-07": {
+      "date": "2026-08-07",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-08": {
+      "date": "2026-08-08",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-09": {
+      "date": "2026-08-09",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-10": {
+      "date": "2026-08-10",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-11": {
+      "date": "2026-08-11",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": "山の日",
+      "paydays": [],
+      "types": [
+        "祝日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-12": {
+      "date": "2026-08-12",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-13": {
+      "date": "2026-08-13",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-14": {
+      "date": "2026-08-14",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-15": {
+      "date": "2026-08-15",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-08-16": {
+      "date": "2026-08-16",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-08-17": {
+      "date": "2026-08-17",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-18": {
+      "date": "2026-08-18",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-19": {
+      "date": "2026-08-19",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-20": {
+      "date": "2026-08-20",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-21": {
+      "date": "2026-08-21",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-22": {
+      "date": "2026-08-22",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-08-23": {
+      "date": "2026-08-23",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-08-24": {
+      "date": "2026-08-24",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-25": {
+      "date": "2026-08-25",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(25日)"
+      ],
+      "types": [
+        "平日",
+        "給料日(25日)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-26": {
+      "date": "2026-08-26",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-27": {
+      "date": "2026-08-27",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-28": {
+      "date": "2026-08-28",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-08-29": {
+      "date": "2026-08-29",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-08-30": {
+      "date": "2026-08-30",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-08-31": {
+      "date": "2026-08-31",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(月末31日)"
+      ],
+      "types": [
+        "平日",
+        "給料日(月末31日)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-01": {
+      "date": "2026-09-01",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-02": {
+      "date": "2026-09-02",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-03": {
+      "date": "2026-09-03",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-04": {
+      "date": "2026-09-04",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-05": {
+      "date": "2026-09-05",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-09-06": {
+      "date": "2026-09-06",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-09-07": {
+      "date": "2026-09-07",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-08": {
+      "date": "2026-09-08",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-09": {
+      "date": "2026-09-09",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-10": {
+      "date": "2026-09-10",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-11": {
+      "date": "2026-09-11",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-12": {
+      "date": "2026-09-12",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-09-13": {
+      "date": "2026-09-13",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-09-14": {
+      "date": "2026-09-14",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-15": {
+      "date": "2026-09-15",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-16": {
+      "date": "2026-09-16",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-17": {
+      "date": "2026-09-17",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-18": {
+      "date": "2026-09-18",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-19": {
+      "date": "2026-09-19",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-20": {
+      "date": "2026-09-20",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-21": {
+      "date": "2026-09-21",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": "敬老の日",
+      "paydays": [],
+      "types": [
+        "祝日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-22": {
+      "date": "2026-09-22",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": "国民の休日",
+      "paydays": [],
+      "types": [
+        "祝日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-23": {
+      "date": "2026-09-23",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": "秋分の日",
+      "paydays": [],
+      "types": [
+        "祝日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-24": {
+      "date": "2026-09-24",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-25": {
+      "date": "2026-09-25",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(25日)"
+      ],
+      "types": [
+        "平日",
+        "給料日(25日)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-26": {
+      "date": "2026-09-26",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-27": {
+      "date": "2026-09-27",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-09-28": {
+      "date": "2026-09-28",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-29": {
+      "date": "2026-09-29",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-09-30": {
+      "date": "2026-09-30",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(月末30日)"
+      ],
+      "types": [
+        "平日",
+        "給料日(月末30日)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-01": {
+      "date": "2026-10-01",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-02": {
+      "date": "2026-10-02",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-03": {
+      "date": "2026-10-03",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-10-04": {
+      "date": "2026-10-04",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-10-05": {
+      "date": "2026-10-05",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-06": {
+      "date": "2026-10-06",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-07": {
+      "date": "2026-10-07",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-08": {
+      "date": "2026-10-08",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-09": {
+      "date": "2026-10-09",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-10": {
+      "date": "2026-10-10",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-11": {
+      "date": "2026-10-11",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-12": {
+      "date": "2026-10-12",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": "スポーツの日",
+      "paydays": [],
+      "types": [
+        "祝日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-13": {
+      "date": "2026-10-13",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-14": {
+      "date": "2026-10-14",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-15": {
+      "date": "2026-10-15",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-16": {
+      "date": "2026-10-16",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-17": {
+      "date": "2026-10-17",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-10-18": {
+      "date": "2026-10-18",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-10-19": {
+      "date": "2026-10-19",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-20": {
+      "date": "2026-10-20",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-21": {
+      "date": "2026-10-21",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-22": {
+      "date": "2026-10-22",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-23": {
+      "date": "2026-10-23",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(25日振替)"
+      ],
+      "types": [
+        "平日",
+        "給料日(25日振替)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-24": {
+      "date": "2026-10-24",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-10-25": {
+      "date": "2026-10-25",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-10-26": {
+      "date": "2026-10-26",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-27": {
+      "date": "2026-10-27",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-28": {
+      "date": "2026-10-28",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-29": {
+      "date": "2026-10-29",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-30": {
+      "date": "2026-10-30",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(月末振替)"
+      ],
+      "types": [
+        "平日",
+        "給料日(月末振替)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-10-31": {
+      "date": "2026-10-31",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-01": {
+      "date": "2026-11-01",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-02": {
+      "date": "2026-11-02",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-03": {
+      "date": "2026-11-03",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": "文化の日",
+      "paydays": [],
+      "types": [
+        "祝日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-04": {
+      "date": "2026-11-04",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-05": {
+      "date": "2026-11-05",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-06": {
+      "date": "2026-11-06",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-07": {
+      "date": "2026-11-07",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-11-08": {
+      "date": "2026-11-08",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-11-09": {
+      "date": "2026-11-09",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-10": {
+      "date": "2026-11-10",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-11": {
+      "date": "2026-11-11",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-12": {
+      "date": "2026-11-12",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-13": {
+      "date": "2026-11-13",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-14": {
+      "date": "2026-11-14",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-11-15": {
+      "date": "2026-11-15",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-11-16": {
+      "date": "2026-11-16",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-17": {
+      "date": "2026-11-17",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-18": {
+      "date": "2026-11-18",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-19": {
+      "date": "2026-11-19",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-20": {
+      "date": "2026-11-20",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-21": {
+      "date": "2026-11-21",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-22": {
+      "date": "2026-11-22",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-23": {
+      "date": "2026-11-23",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": "勤労感謝の日",
+      "paydays": [],
+      "types": [
+        "祝日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-24": {
+      "date": "2026-11-24",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-25": {
+      "date": "2026-11-25",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(25日)"
+      ],
+      "types": [
+        "平日",
+        "給料日(25日)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-26": {
+      "date": "2026-11-26",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-27": {
+      "date": "2026-11-27",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-11-28": {
+      "date": "2026-11-28",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-11-29": {
+      "date": "2026-11-29",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-11-30": {
+      "date": "2026-11-30",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(月末30日)"
+      ],
+      "types": [
+        "平日",
+        "給料日(月末30日)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-01": {
+      "date": "2026-12-01",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-02": {
+      "date": "2026-12-02",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-03": {
+      "date": "2026-12-03",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-04": {
+      "date": "2026-12-04",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-05": {
+      "date": "2026-12-05",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-12-06": {
+      "date": "2026-12-06",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-12-07": {
+      "date": "2026-12-07",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-08": {
+      "date": "2026-12-08",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-09": {
+      "date": "2026-12-09",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-10": {
+      "date": "2026-12-10",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-11": {
+      "date": "2026-12-11",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-12": {
+      "date": "2026-12-12",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-12-13": {
+      "date": "2026-12-13",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-12-14": {
+      "date": "2026-12-14",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-15": {
+      "date": "2026-12-15",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-16": {
+      "date": "2026-12-16",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-17": {
+      "date": "2026-12-17",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-18": {
+      "date": "2026-12-18",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-19": {
+      "date": "2026-12-19",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-12-20": {
+      "date": "2026-12-20",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-12-21": {
+      "date": "2026-12-21",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-22": {
+      "date": "2026-12-22",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-23": {
+      "date": "2026-12-23",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-24": {
+      "date": "2026-12-24",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-25": {
+      "date": "2026-12-25",
+      "dayOfWeek": "金",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(25日)"
+      ],
+      "types": [
+        "平日",
+        "給料日(25日)"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-26": {
+      "date": "2026-12-26",
+      "dayOfWeek": "土",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "土曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-12-27": {
+      "date": "2026-12-27",
+      "dayOfWeek": "日",
+      "isWeekend": true,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "日曜"
+      ],
+      "isLongWeekend": false
+    },
+    "2026-12-28": {
+      "date": "2026-12-28",
+      "dayOfWeek": "月",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-29": {
+      "date": "2026-12-29",
+      "dayOfWeek": "火",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-30": {
+      "date": "2026-12-30",
+      "dayOfWeek": "水",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [],
+      "types": [
+        "平日"
+      ],
+      "isLongWeekend": true
+    },
+    "2026-12-31": {
+      "date": "2026-12-31",
+      "dayOfWeek": "木",
+      "isWeekend": false,
+      "holiday": null,
+      "paydays": [
+        "給料日(月末31日)"
+      ],
+      "types": [
+        "平日",
+        "給料日(月末31日)"
+      ],
+      "isLongWeekend": true
+    }
+  }
+}

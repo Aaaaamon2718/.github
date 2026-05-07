@@ -1,20 +1,19 @@
 {
   "date": "2026-05-01",
-  "location": "東京",
+  "location": "東京都渋谷区",
   "source": "openmeteo-archive",
   "daily": {
-    "condition": "強い雨",
     "conditionCode": 65,
-    "isRainy": true,
-    "tempMax": 20.4,
-    "tempMin": 10.7,
-    "precipitation": 41.7,
+    "condition": "大雨",
+    "temperatureMax": 20.4,
+    "temperatureMin": 10.7,
+    "precipitationSum": 41.7,
     "windspeedMax": 24.1
   },
   "hourly": [
     {
       "hour": 0,
-      "time": "00:00",
+      "time": "2026-05-01 00:00",
       "temperature": 12,
       "apparentTemperature": 10.7,
       "precipitationProbability": null,
@@ -27,7 +26,7 @@
     },
     {
       "hour": 1,
-      "time": "01:00",
+      "time": "2026-05-01 01:00",
       "temperature": 11.6,
       "apparentTemperature": 10.3,
       "precipitationProbability": null,
@@ -40,7 +39,7 @@
     },
     {
       "hour": 2,
-      "time": "02:00",
+      "time": "2026-05-01 02:00",
       "temperature": 11.2,
       "apparentTemperature": 9.9,
       "precipitationProbability": null,
@@ -53,7 +52,7 @@
     },
     {
       "hour": 3,
-      "time": "03:00",
+      "time": "2026-05-01 03:00",
       "temperature": 10.7,
       "apparentTemperature": 9.1,
       "precipitationProbability": null,
@@ -66,7 +65,7 @@
     },
     {
       "hour": 4,
-      "time": "04:00",
+      "time": "2026-05-01 04:00",
       "temperature": 10.7,
       "apparentTemperature": 9.4,
       "precipitationProbability": null,
@@ -74,12 +73,12 @@
       "windspeed": 8.5,
       "humidity": 94,
       "conditionCode": 61,
-      "condition": "弱い雨",
+      "condition": "小雨",
       "isRainy": true
     },
     {
       "hour": 5,
-      "time": "05:00",
+      "time": "2026-05-01 05:00",
       "temperature": 10.8,
       "apparentTemperature": 9.5,
       "precipitationProbability": null,
@@ -92,7 +91,7 @@
     },
     {
       "hour": 6,
-      "time": "06:00",
+      "time": "2026-05-01 06:00",
       "temperature": 10.8,
       "apparentTemperature": 9.6,
       "precipitationProbability": null,
@@ -105,7 +104,7 @@
     },
     {
       "hour": 7,
-      "time": "07:00",
+      "time": "2026-05-01 07:00",
       "temperature": 11.1,
       "apparentTemperature": 10.1,
       "precipitationProbability": null,
@@ -118,7 +117,7 @@
     },
     {
       "hour": 8,
-      "time": "08:00",
+      "time": "2026-05-01 08:00",
       "temperature": 11.1,
       "apparentTemperature": 9.8,
       "precipitationProbability": null,
@@ -126,12 +125,12 @@
       "windspeed": 11.2,
       "humidity": 99,
       "conditionCode": 65,
-      "condition": "強い雨",
+      "condition": "大雨",
       "isRainy": true
     },
     {
       "hour": 9,
-      "time": "09:00",
+      "time": "2026-05-01 09:00",
       "temperature": 11.4,
       "apparentTemperature": 9.3,
       "precipitationProbability": null,
@@ -139,12 +138,12 @@
       "windspeed": 17,
       "humidity": 99,
       "conditionCode": 65,
-      "condition": "強い雨",
+      "condition": "大雨",
       "isRainy": true
     },
     {
       "hour": 10,
-      "time": "10:00",
+      "time": "2026-05-01 10:00",
       "temperature": 12.5,
       "apparentTemperature": 11.9,
       "precipitationProbability": null,
@@ -157,7 +156,7 @@
     },
     {
       "hour": 11,
-      "time": "11:00",
+      "time": "2026-05-01 11:00",
       "temperature": 12.9,
       "apparentTemperature": 12.2,
       "precipitationProbability": null,
@@ -170,7 +169,7 @@
     },
     {
       "hour": 12,
-      "time": "12:00",
+      "time": "2026-05-01 12:00",
       "temperature": 14.4,
       "apparentTemperature": 14.8,
       "precipitationProbability": null,
@@ -178,12 +177,12 @@
       "windspeed": 5.1,
       "humidity": 95,
       "conditionCode": 61,
-      "condition": "弱い雨",
+      "condition": "小雨",
       "isRainy": true
     },
     {
       "hour": 13,
-      "time": "13:00",
+      "time": "2026-05-01 13:00",
       "temperature": 15.6,
       "apparentTemperature": 16.5,
       "precipitationProbability": null,
@@ -196,7 +195,7 @@
     },
     {
       "hour": 14,
-      "time": "14:00",
+      "time": "2026-05-01 14:00",
       "temperature": 16.7,
       "apparentTemperature": 17.9,
       "precipitationProbability": null,
@@ -209,7 +208,7 @@
     },
     {
       "hour": 15,
-      "time": "15:00",
+      "time": "2026-05-01 15:00",
       "temperature": 19.3,
       "apparentTemperature": 19.9,
       "precipitationProbability": null,
@@ -222,7 +221,7 @@
     },
     {
       "hour": 16,
-      "time": "16:00",
+      "time": "2026-05-01 16:00",
       "temperature": 20,
       "apparentTemperature": 20.9,
       "precipitationProbability": null,
@@ -235,7 +234,7 @@
     },
     {
       "hour": 17,
-      "time": "17:00",
+      "time": "2026-05-01 17:00",
       "temperature": 20.4,
       "apparentTemperature": 21.1,
       "precipitationProbability": null,
@@ -248,7 +247,7 @@
     },
     {
       "hour": 18,
-      "time": "18:00",
+      "time": "2026-05-01 18:00",
       "temperature": 19.9,
       "apparentTemperature": 18.9,
       "precipitationProbability": null,
@@ -261,7 +260,7 @@
     },
     {
       "hour": 19,
-      "time": "19:00",
+      "time": "2026-05-01 19:00",
       "temperature": 18,
       "apparentTemperature": 15.1,
       "precipitationProbability": null,
@@ -274,7 +273,7 @@
     },
     {
       "hour": 20,
-      "time": "20:00",
+      "time": "2026-05-01 20:00",
       "temperature": 16.8,
       "apparentTemperature": 14.2,
       "precipitationProbability": null,
@@ -287,7 +286,7 @@
     },
     {
       "hour": 21,
-      "time": "21:00",
+      "time": "2026-05-01 21:00",
       "temperature": 14.9,
       "apparentTemperature": 14.9,
       "precipitationProbability": null,
@@ -300,7 +299,7 @@
     },
     {
       "hour": 22,
-      "time": "22:00",
+      "time": "2026-05-01 22:00",
       "temperature": 13.7,
       "apparentTemperature": 12.6,
       "precipitationProbability": null,
@@ -313,7 +312,7 @@
     },
     {
       "hour": 23,
-      "time": "23:00",
+      "time": "2026-05-01 23:00",
       "temperature": 13.2,
       "apparentTemperature": 12.8,
       "precipitationProbability": null,

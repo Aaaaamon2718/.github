@@ -1,410 +1,273 @@
+#!/usr/bin/env node
 /**
- * parser.js - 完全版（天気×配達分析対応）
- *
- * 出力:
- *   data/reports/YYYY-MM-DD.md   → 人間が読むレポート
- *   data/reports/YYYY-MM-DD.json → 分析・ダッシュボード用
- *
- * 使用方法:
- *   node scripts/parser.js --date today
- *   node scripts/parser.js --date 2026-04-29
+ * 生JSONデータをMarkdownレポートに変換するパーサー
+ * 実行: node scripts/parser.js [--date YYYY-MM-DD|today]
  */
 
-const fs   = require('fs');
+const fs = require('fs');
 const path = require('path');
 
-const args = process.argv.slice(2);
-const dateArg    = args[args.indexOf('--date') + 1] || 'today';
-const targetDate = dateArg === 'today'
-  ? new Date().toISOString().slice(0, 10)
-  : dateArg;
+const RAW_DIR = path.join(__dirname, '../data/raw');
+const REPORTS_DIR = path.join(__dirname, '../data/reports');
+const WEATHER_DIR = path.join(__dirname, '../data/weather');
+const CALENDAR_DIR = path.join(__dirname, '../data/calendar');
 
-const RAW_PATH     = path.join(__dirname, `../data/raw/${targetDate}.json`);
-const WEATHER_PATH = path.join(__dirname, `../data/weather/${targetDate}.json`);
-const REPORTS_DIR  = path.join(__dirname, '../data/reports');
-const MD_PATH      = path.join(REPORTS_DIR, `${targetDate}.md`);
-const JSON_PATH    = path.join(REPORTS_DIR, `${targetDate}.json`);
-
-if (!fs.existsSync(RAW_PATH)) {
-  console.error(`❌ ${RAW_PATH} が見つかりません。先に scraper.js を実行してください。`);
-  process.exit(1);
-}
-if (!fs.existsSync(REPORTS_DIR)) fs.mkdirSync(REPORTS_DIR, { recursive: true });
-
-const raw = JSON.parse(fs.readFileSync(RAW_PATH, 'utf-8'));
-
-// 天気データ読み込み（新形式 daily+hourly / 旧形式 フラット 両対応）
-let weather = null;
-if (fs.existsSync(WEATHER_PATH)) {
-  const w = JSON.parse(fs.readFileSync(WEATHER_PATH, 'utf-8'));
-  // 新形式: { daily: {...}, hourly: [...] }
-  if (w.daily) {
-    weather = w;
-  } else {
-    // 旧形式をラップ
-    weather = {
-      date: w.date, location: w.location, source: w.source,
-      daily: {
-        condition: w.condition, conditionCode: w.conditionCode,
-        isRainy: w.isRainy, tempMax: w.tempMax, tempMin: w.tempMin,
-        precipitation: w.precipitation, windspeedMax: w.windspeedMax,
-      },
-      hourly: null,
-    };
-  }
+function getTargetDate(args) {
+  const dateArg = args.find(a => a.startsWith('--date'));
+  if (!dateArg) return formatDate(new Date());
+  const val = dateArg.includes('=') ? dateArg.split('=')[1] : args[args.indexOf(dateArg) + 1];
+  if (val === 'today') return formatDate(new Date());
+  if (/^\d{4}-\d{2}-\d{2}$/.test(val)) return val;
+  throw new Error(`無効な日付形式: ${val}`);
 }
 
-// 時間別天気ルックアップ（hourly データがある場合のみ）
-const getWeatherAtHour = (hour) => {
-  if (!weather?.hourly) return null;
+function formatDate(d) {
+  return d.toISOString().split('T')[0];
+}
+
+function formatYen(amount) {
+  return `¥${Math.round(amount).toLocaleString('ja-JP')}`;
+}
+
+function formatJapaneseDate(dateStr) {
+  const [y, m, d] = dateStr.split('-');
+  return `${y}年${parseInt(m)}月${parseInt(d)}日`;
+}
+
+function getTimeSlot(timeStr) {
+  if (!timeStr) return 'unknown';
+  const hourMatch = timeStr.match(/(\d{1,2}):/);
+  if (!hourMatch) return 'unknown';
+  const hour = parseInt(hourMatch[1]);
+  if (hour >= 6 && hour < 10) return '朝（6-10時）';
+  if (hour >= 10 && hour < 14) return '昼（10-14時）';
+  if (hour >= 14 && hour < 18) return '夕（14-18時）';
+  if (hour >= 18 && hour < 22) return '夜（18-22時）';
+  return '深夜（22-6時）';
+}
+
+function loadCalendar(date) {
+  const year = date.split('-')[0];
+  const p = path.join(CALENDAR_DIR, `${year}.json`);
+  if (!fs.existsSync(p)) return null;
+  const cal = JSON.parse(fs.readFileSync(p, 'utf-8'));
+  return cal.days[date] || null;
+}
+
+function loadWeather(date) {
+  const p = path.join(WEATHER_DIR, `${date}.json`);
+  if (!fs.existsSync(p)) return null;
+  const raw = JSON.parse(fs.readFileSync(p, 'utf-8'));
+  // 旧フォーマット（フラット）と新フォーマット（{daily,hourly}）の両対応
+  if (raw.hourly && Array.isArray(raw.hourly)) return raw;
+  return null;
+}
+
+function getWeatherAtHour(weather, timeStr) {
+  if (!weather || !timeStr) return null;
+  const m = timeStr.match(/(\d{1,2}):/);
+  if (!m) return null;
+  const hour = parseInt(m[1]);
   return weather.hourly.find(h => h.hour === hour) || null;
-};
+}
 
-// ================================================================
-// ユーティリティ
-// ================================================================
+function buildTimeSlotTable(deliveries) {
+  const slots = {
+    '朝（6-10時）': { count: 0, earnings: 0 },
+    '昼（10-14時）': { count: 0, earnings: 0 },
+    '夕（14-18時）': { count: 0, earnings: 0 },
+    '夜（18-22時）': { count: 0, earnings: 0 },
+    '深夜（22-6時）': { count: 0, earnings: 0 },
+  };
 
-const yen = n => `¥${Number(Math.round(n)).toLocaleString('ja-JP')}`;
-
-const parseEarnings = d => {
-  if (typeof d.earnings === 'number') return d.earnings;
-  if (d.earningsText) { const m = d.earningsText.match(/¥([\d,]+)/); return m ? parseInt(m[1].replace(',','')) : 0; }
-  return 0;
-};
-const parseDistance = d => {
-  if (!d.distance) return 0;
-  const m = String(d.distance).match(/([\d.]+)/);
-  return m ? parseFloat(m[1]) : 0;
-};
-const parseDurationSec = d => {
-  if (!d.duration) return 0;
-  const m = String(d.duration).match(/(\d+)分(\d+)秒/);
-  if (m) return parseInt(m[1])*60 + parseInt(m[2]);
-  const m2 = String(d.duration).match(/(\d+):(\d+)/);
-  if (m2) return parseInt(m2[1])*60 + parseInt(m2[2]);
-  return 0;
-};
-const formatDuration = sec => {
-  if (!sec) return '不明';
-  return `${Math.floor(sec/60)}:${String(sec%60).padStart(2,'0')}`;
-};
-const parseTime = d => {
-  if (!d.datetime) return '不明';
-  const m = d.datetime.match(/(午前|午後)\s*(\d+)時(\d+)分/);
-  if (!m) return d.datetime || '不明';
-  let h = parseInt(m[2]);
-  if (m[1]==='午後' && h!==12) h+=12;
-  if (m[1]==='午前' && h===12) h=0;
-  return `${String(h).padStart(2,'0')}:${m[3]}`;
-};
-const getHour = d => {
-  if (!d.datetime) return -1;
-  const m = d.datetime.match(/(午前|午後)\s*(\d+)時/);
-  if (!m) return -1;
-  let h = parseInt(m[2]);
-  if (m[1]==='午後' && h!==12) h+=12;
-  if (m[1]==='午前' && h===12) h=0;
-  return h;
-};
-const getTimeSlot = d => {
-  const h = getHour(d);
-  if (h<0)            return 'その他';
-  if (h>=6  && h<10) return '朝（6〜10時）';
-  if (h>=10 && h<14) return '昼（10〜14時）';
-  if (h>=14 && h<18) return '夕（14〜18時）';
-  if (h>=18 && h<22) return '夜（18〜22時）';
-  return 'その他';
-};
-
-// ================================================================
-// データ整形
-// ================================================================
-
-const deliveries = raw.deliveries
-  .filter(d => !d.error && parseEarnings(d) > 0)
-  .map((d, i) => {
-    const earnings    = parseEarnings(d);
-    const distance    = parseDistance(d);
-    const durationSec = parseDurationSec(d);
-    const hour        = getHour(d);
-    const hw          = getWeatherAtHour(hour);
-    return {
-      no:                i + 1,
-      completedTime:     parseTime(d),
-      datetime:          d.datetime || null,
-      hour,
-      timeSlot:          getTimeSlot(d),
-      storeName:         (d.storeName   || '不明').trim(),
-      area:              (d.destAddress || '不明').trim(),
-      earnings,
-      tip:               d.tip || 0,
-      baseEarnings:      earnings - (d.tip || 0),
-      distance,
-      durationSec,
-      durationFormatted: d.duration || formatDuration(durationSec),
-      efficiency:        distance > 0 ? Math.round(earnings/distance) : 0,
-      // 時間別天気
-      weatherAtDelivery: hw,
-    };
-  });
-
-// ================================================================
-// マクロ集計
-// ================================================================
-
-const totalEarnings    = deliveries.reduce((s,d) => s+d.earnings, 0);
-const totalDistance    = deliveries.reduce((s,d) => s+d.distance, 0);
-const totalTip         = deliveries.reduce((s,d) => s+d.tip, 0);
-const totalDurationSec = deliveries.reduce((s,d) => s+d.durationSec, 0);
-const avgEarnings      = deliveries.length > 0 ? Math.round(totalEarnings/deliveries.length) : 0;
-const avgDistance      = deliveries.length > 0 ? totalDistance/deliveries.length : 0;
-const avgEfficiency    = totalDistance > 0 ? Math.round(totalEarnings/totalDistance) : 0;
-const avgDurationSec   = deliveries.length > 0 ? Math.round(totalDurationSec/deliveries.length) : 0;
-
-// ================================================================
-// 分析軸
-// ================================================================
-
-const TIME_SLOTS = ['朝（6〜10時）','昼（10〜14時）','夕（14〜18時）','夜（18〜22時）','その他'];
-const slotStats  = {};
-TIME_SLOTS.forEach(s => slotStats[s] = {count:0, earnings:0, distance:0});
-deliveries.forEach(d => {
-  slotStats[d.timeSlot].count++;
-  slotStats[d.timeSlot].earnings += d.earnings;
-  slotStats[d.timeSlot].distance += d.distance;
-});
-
-const areaStats = {};
-deliveries.forEach(d => {
-  const key = d.area.match(/(.+?区)/)?.[1] || d.area;
-  if (!areaStats[key]) areaStats[key] = {count:0, earnings:0, distance:0};
-  areaStats[key].count++; areaStats[key].earnings += d.earnings; areaStats[key].distance += d.distance;
-});
-const areaRanking = Object.entries(areaStats)
-  .map(([area,s]) => ({area, ...s, avgEarnings: Math.round(s.earnings/s.count)}))
-  .sort((a,b) => b.earnings - a.earnings);
-
-const storeStats = {};
-deliveries.forEach(d => {
-  if (!storeStats[d.storeName]) storeStats[d.storeName] = {count:0, earnings:0, distance:0};
-  storeStats[d.storeName].count++; storeStats[d.storeName].earnings += d.earnings; storeStats[d.storeName].distance += d.distance;
-});
-const storeRanking = Object.entries(storeStats)
-  .map(([store,s]) => ({store, ...s, avgEarnings: Math.round(s.earnings/s.count)}))
-  .sort((a,b) => b.earnings - a.earnings).slice(0,10);
-
-// 雨天 vs 晴天 分析
-const rainyDeliveries = deliveries.filter(d => d.weatherAtDelivery?.isRainy);
-const clearDeliveries = deliveries.filter(d => d.weatherAtDelivery && !d.weatherAtDelivery.isRainy);
-const unknownDeliveries = deliveries.filter(d => !d.weatherAtDelivery);
-const rainyEarnings = rainyDeliveries.reduce((s,d) => s+d.earnings, 0);
-const clearEarnings = clearDeliveries.reduce((s,d) => s+d.earnings, 0);
-const rainyAvg = rainyDeliveries.length > 0 ? Math.round(rainyEarnings/rainyDeliveries.length) : 0;
-const clearAvg = clearDeliveries.length > 0 ? Math.round(clearEarnings/clearDeliveries.length) : 0;
-const rainPremium = clearAvg > 0 ? Math.round((rainyAvg - clearAvg) / clearAvg * 100) : null;
-
-// ================================================================
-// 日付表示
-// ================================================================
-
-const [y,mo,da] = targetDate.split('-');
-const dateObj   = new Date(`${targetDate}T12:00:00+09:00`);
-const wday      = ['日','月','火','水','木','金','土'][dateObj.getDay()];
-const dateJP    = `${y}年${parseInt(mo)}月${parseInt(da)}日（${wday}）`;
-
-// ================================================================
-// Markdown生成
-// ================================================================
-
-let md = '';
-md += `# Uber Eats 配達レポート\n対象日: ${dateJP}\n\n`;
-
-// ── 天気サマリー ──
-if (weather?.daily) {
-  const w    = weather.daily;
-  const icon = w.isRainy ? '🌧️ ' : '☀️  ';
-  md += `## 天気（東京）\n\n`;
-  md += `| 天候 | 最高気温 | 最低気温 | 降水量 | 最大風速 |\n|---|---|---|---|---|\n`;
-  md += `| ${icon}${w.condition} | ${w.tempMax}℃ | ${w.tempMin}℃ | ${w.precipitation}mm | ${w.windspeedMax ?? '-'} km/h |\n\n`;
-
-  // 稼働時間帯の時間別天気（hourly がある場合）
-  if (weather.hourly) {
-    const activeHours = weather.hourly.filter(h => h.hour >= 10 && h.hour <= 22);
-    if (activeHours.length > 0) {
-      md += `### 時間別天気（稼働時間帯）\n\n`;
-      md += `| 時刻 | 天候 | 気温 | 体感 | 降水量 | 降水確率 | 湿度 | 風速 |\n`;
-      md += `|---|---|---|---|---|---|---|---|\n`;
-      activeHours.forEach(h => {
-        const hIcon = h.isRainy ? '🌧️' : '☀️';
-        const prob  = h.precipitationProbability !== null ? `${h.precipitationProbability}%` : '—';
-        md += `| ${h.time} | ${hIcon} ${h.condition} | ${h.temperature}℃ | ${h.apparentTemperature}℃ | ${h.precipitation}mm | ${prob} | ${h.humidity ?? '—'}% | ${h.windspeed}km/h |\n`;
-      });
-      md += '\n';
+  for (const d of deliveries) {
+    if (d.error) continue;
+    const slot = getTimeSlot(d.completedAt);
+    if (slots[slot]) {
+      slots[slot].count++;
+      slots[slot].earnings += d.earnings || 0;
     }
   }
 
-  if (w.isRainy) md += `> 🌧️ **雨天稼働日** — 天気プレミアムの影響を下記で確認してください\n\n`;
+  const rows = Object.entries(slots)
+    .filter(([, v]) => v.count > 0)
+    .map(([slot, v]) => `| ${slot} | ${v.count}件 | ${formatYen(v.earnings)} |`)
+    .join('\n');
+
+  return rows || '| （データなし） | — | — |';
 }
 
-// ── 全体サマリー ──
-md += `## 全体サマリー\n\n| 項目 | 値 |\n|---|---|\n`;
-md += `| 総売上 | **${yen(totalEarnings)}** |\n`;
-md += `| 配達件数 | **${deliveries.length} 件** |\n`;
-md += `| 総距離 | **${totalDistance.toFixed(2)} km** |\n`;
-md += `| 件単価（平均） | **${yen(avgEarnings)}** |\n`;
-md += `| 平均距離 | **${avgDistance.toFixed(2)} km** |\n`;
-md += `| 距離効率 | **${yen(avgEfficiency)}/km** |\n`;
-md += `| 平均配達時間 | **${formatDuration(avgDurationSec)}** |\n`;
-if (totalTip > 0) md += `| 総チップ | **${yen(totalTip)}** |\n`;
-md += '\n';
+function buildDetailSection(delivery, index, weather) {
+  if (delivery.error) {
+    return `### No.${index} — 取得エラー\n- エラー: ${delivery.error}\n`;
+  }
 
-// ── 雨天プレミアム分析 ──
-if (weather?.hourly && (rainyDeliveries.length > 0 || clearDeliveries.length > 0)) {
-  md += `## 🌧️ 雨天プレミアム分析\n\n`;
-  md += `| 区分 | 件数 | 平均単価 | 合計売上 | 平均距離 |\n|---|---|---|---|---|\n`;
-  if (clearDeliveries.length > 0) {
-    const cd = clearDeliveries.reduce((s,d) => s+d.distance, 0) / clearDeliveries.length;
-    md += `| ☀️ 晴れ・曇り | ${clearDeliveries.length}件 | ${yen(clearAvg)} | ${yen(clearEarnings)} | ${cd.toFixed(2)}km |\n`;
+  const w = getWeatherAtHour(weather, delivery.completedAt);
+  const lines = [`### No.${index} — ${delivery.completedAt || '時刻不明'}完了`];
+  if (delivery.storeName) lines.push(`- **店舗**: ${delivery.storeName}`);
+  if (delivery.area) lines.push(`- **エリア**: ${delivery.area}`);
+
+  const earningsStr = delivery.tipAmount
+    ? `${formatYen(delivery.earnings)}（チップ: ${formatYen(delivery.tipAmount)}含む）`
+    : formatYen(delivery.earnings || 0);
+  lines.push(`- **売上**: ${earningsStr}`);
+
+  if (delivery.questBonus) lines.push(`- **クエストボーナス**: ${formatYen(delivery.questBonus)}`);
+  if (delivery.distance != null) lines.push(`- **距離**: ${delivery.distance.toFixed(2)} km`);
+  if (delivery.duration) lines.push(`- **時間**: ${delivery.duration}`);
+
+  if (w) {
+    const rainMark = w.isRainy ? ' 🌧' : '';
+    lines.push(`- **天気**: ${w.condition}${rainMark}（${w.temperature}℃ / 降水${w.precipitation}mm）`);
   }
-  if (rainyDeliveries.length > 0) {
-    const rd = rainyDeliveries.reduce((s,d) => s+d.distance, 0) / rainyDeliveries.length;
-    md += `| 🌧️ 雨・にわか雨 | ${rainyDeliveries.length}件 | ${yen(rainyAvg)} | ${yen(rainyEarnings)} | ${rd.toFixed(2)}km |\n`;
-  }
-  if (rainPremium !== null && rainyDeliveries.length > 0 && clearDeliveries.length > 0) {
-    const sign = rainPremium >= 0 ? '+' : '';
-    md += `\n> 雨天プレミアム: **${sign}${rainPremium}%**（晴れ時との単価差）\n`;
-  }
-  md += '\n';
+
+  return lines.join('\n');
 }
 
-// ── 配達明細 ──
-md += `## 配達明細\n\n`;
-if (weather?.hourly) {
-  md += `| No | 完了時刻 | 天気 | 気温 | ピック店舗 | エリア | 売上 | 距離 | 時間 |\n`;
-  md += `|---|---|---|---|---|---|---|---|---|\n`;
-  deliveries.forEach(d => {
-    const hw      = d.weatherAtDelivery;
-    const wIcon   = hw ? (hw.isRainy ? '🌧️' : '☀️') : '—';
-    const wTemp   = hw ? `${hw.temperature}℃` : '—';
-    const tipStr  = d.tip > 0 ? `<br>内チップ${yen(d.tip)}` : '';
-    md += `| ${d.no} | ${d.completedTime} | ${wIcon} | ${wTemp} | ${d.storeName}${tipStr} | ${d.area} | ${yen(d.earnings)} | ${d.distance.toFixed(2)}km | ${d.durationFormatted} |\n`;
-  });
-} else {
-  md += `| No | 完了時刻 | ピック店舗 | エリア | 売上 | 距離 | 時間 |\n`;
-  md += `|---|---|---|---|---|---|---|\n`;
-  deliveries.forEach(d => {
-    const tipStr = d.tip > 0 ? `<br>内チップ${yen(d.tip)}` : '';
-    md += `| ${d.no} | ${d.completedTime} | ${d.storeName}${tipStr} | ${d.area} | ${yen(d.earnings)} | ${d.distance.toFixed(2)}km | ${d.durationFormatted} |\n`;
-  });
+function buildCalendarSection(cal) {
+  if (!cal) return '';
+  const typeStr = cal.types.join(' / ');
+  const longWeekend = cal.isLongWeekend ? '（連休）' : '';
+  return `## この日のコンテキスト
+- 曜日: ${cal.dayOfWeek}曜日${longWeekend}
+- 区分: ${typeStr}
+${cal.holiday ? `- 祝日: ${cal.holiday}\n` : ''}
+`;
 }
-md += '\n';
 
-// ── 時間帯別 ──
-md += `## 時間帯別分析\n\n`;
-md += `| 時間帯 | 件数 | 売上 | 平均単価 | 平均距離 | 効率(円/km) |\n|---|---|---|---|---|---|\n`;
-TIME_SLOTS.forEach(slot => {
-  const s = slotStats[slot];
-  if (s.count === 0) return;
-  md += `| ${slot} | ${s.count}件 | ${yen(s.earnings)} | ${yen(Math.round(s.earnings/s.count))} | ${(s.distance/s.count).toFixed(2)}km | ${yen(s.distance>0 ? Math.round(s.earnings/s.distance) : 0)} |\n`;
-});
-md += '\n';
+function buildWeatherSection(weather) {
+  if (!weather) return '';
 
-// ── エリア別 ──
-md += `## エリア別分析\n\n| エリア | 件数 | 売上 | 平均単価 |\n|---|---|---|---|\n`;
-areaRanking.forEach(a => { md += `| ${a.area} | ${a.count}件 | ${yen(a.earnings)} | ${yen(a.avgEarnings)} |\n`; });
-md += '\n';
+  const d = weather.daily;
+  const hourlyTable = weather.hourly
+    .filter(h => h.hour >= 10 && h.hour <= 22)
+    .map(h => {
+      const prob = h.precipitationProbability !== null ? `${h.precipitationProbability}%` : '—';
+      const rain = h.isRainy ? ' 🌧' : '';
+      return `| ${String(h.hour).padStart(2, '0')}:00 | ${h.condition}${rain} | ${h.temperature}℃ | ${h.precipitation}mm | ${prob} |`;
+    })
+    .join('\n');
 
-// ── 店舗別 TOP10 ──
-md += `## 店舗別売上 TOP10\n\n| 店舗 | 件数 | 売上 | 平均単価 |\n|---|---|---|---|\n`;
-storeRanking.forEach(s => { md += `| ${s.store} | ${s.count}件 | ${yen(s.earnings)} | ${yen(s.avgEarnings)} |\n`; });
-md += '\n';
+  return `## 天気（${weather.location}）
+- 天気: ${d.condition}
+- 気温: ${d.temperatureMin}℃ 〜 ${d.temperatureMax}℃
+- 降水量: ${d.precipitationSum}mm | 最大風速: ${d.windspeedMax}km/h
+- データ元: ${weather.source}
 
-// ── 効率 TOP5 ──
-md += `## 距離効率 TOP5（円/km）\n\n| No | 店舗 | 売上 | 距離 | 効率 |\n|---|---|---|---|---|\n`;
-[...deliveries].sort((a,b) => b.efficiency-a.efficiency).slice(0,5).forEach(d => {
-  md += `| ${d.no} | ${d.storeName} | ${yen(d.earnings)} | ${d.distance.toFixed(2)}km | ${yen(d.efficiency)} |\n`;
-});
-md += '\n';
+### 時間帯別天気（10〜22時）
+| 時間 | 天気 | 気温 | 降水量 | 降水確率 |
+|---|---|---|---|---|
+${hourlyTable || '| — | — | — | — | — |'}
 
-// ── 高単価 TOP5 ──
-md += `## 高単価配達 TOP5\n\n| No | 店舗 | 売上 | 距離 | 時間 |\n|---|---|---|---|---|\n`;
-[...deliveries].sort((a,b) => b.earnings-a.earnings).slice(0,5).forEach(d => {
-  md += `| ${d.no} | ${d.storeName} | ${yen(d.earnings)} | ${d.distance.toFixed(2)}km | ${d.durationFormatted} |\n`;
-});
-md += '\n';
+`;
+}
 
-md += `---\n*Generated by Uber Delivery Tracker | ${new Date().toLocaleString('ja-JP', {timeZone:'Asia/Tokyo'})}*\n`;
+function buildRainPremiumSection(deliveries, weather) {
+  if (!weather) return '';
 
-// ================================================================
-// JSON出力
-// ================================================================
+  const withWeather = deliveries.filter(d => !d.error && d.weatherAtDelivery);
+  if (withWeather.length === 0) return '';
 
-const jsonReport = {
-  date: targetDate, dateJP,
-  generatedAt: new Date().toISOString(),
-  weather: weather || null,
-  summary: {
-    totalEarnings, totalCount: deliveries.length,
-    totalDistance: parseFloat(totalDistance.toFixed(2)),
-    totalTip, avgEarnings,
-    avgDistance: parseFloat(avgDistance.toFixed(2)),
-    avgEfficiency, avgDurationSec,
-    avgDurationFormatted: formatDuration(avgDurationSec),
-  },
-  weatherAnalysis: weather?.hourly ? {
-    rainyCount:   rainyDeliveries.length,
-    clearCount:   clearDeliveries.length,
-    unknownCount: unknownDeliveries.length,
-    rainyAvgEarnings: rainyAvg,
-    clearAvgEarnings: clearAvg,
-    rainPremiumPct:   rainPremium,
-  } : null,
-  deliveries: deliveries.map(d => ({
-    no: d.no, completedTime: d.completedTime, datetime: d.datetime,
-    hour: d.hour, timeSlot: d.timeSlot, storeName: d.storeName, area: d.area,
-    earnings: d.earnings, tip: d.tip, baseEarnings: d.baseEarnings,
-    distance: d.distance, durationSec: d.durationSec,
-    durationFormatted: d.durationFormatted, efficiency: d.efficiency,
-    weatherAtDelivery: d.weatherAtDelivery,
-  })),
-  byTimeSlot: TIME_SLOTS.filter(s => slotStats[s].count > 0).map(s => ({
-    label: s, count: slotStats[s].count, earnings: slotStats[s].earnings,
-    distance: parseFloat(slotStats[s].distance.toFixed(2)),
-    avgEarnings: Math.round(slotStats[s].earnings/slotStats[s].count),
-    efficiency: slotStats[s].distance > 0 ? Math.round(slotStats[s].earnings/slotStats[s].distance) : 0,
-  })),
-  byArea: areaRanking.map(a => ({
-    area: a.area, count: a.count, earnings: a.earnings,
-    distance: parseFloat(a.distance.toFixed(2)), avgEarnings: a.avgEarnings,
-  })),
-  byStore: storeRanking.map(s => ({
-    storeName: s.store, count: s.count, earnings: s.earnings,
-    distance: parseFloat(s.distance.toFixed(2)), avgEarnings: s.avgEarnings,
-  })),
-};
+  const rainy = withWeather.filter(d => d.weatherAtDelivery.isRainy);
+  const clear = withWeather.filter(d => !d.weatherAtDelivery.isRainy);
 
-fs.writeFileSync(MD_PATH,   md, 'utf-8');
-fs.writeFileSync(JSON_PATH, JSON.stringify(jsonReport, null, 2), 'utf-8');
+  if (rainy.length === 0 || clear.length === 0) return '';
 
-console.log(`\n✅ レポート生成完了`);
-console.log(`   Markdown : ${MD_PATH}`);
-console.log(`   JSON     : ${JSON_PATH}`);
-console.log(`\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
-console.log(`📊 ${dateJP} サマリー`);
-console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
-console.log(`  総売上    : ${yen(totalEarnings)}`);
-console.log(`  件数      : ${deliveries.length}件`);
-console.log(`  総距離    : ${totalDistance.toFixed(2)} km`);
-console.log(`  件単価    : ${yen(avgEarnings)}`);
-console.log(`  距離効率  : ${yen(avgEfficiency)}/km`);
-if (totalTip > 0) console.log(`  総チップ  : ${yen(totalTip)}`);
-if (weather?.hourly && (rainyDeliveries.length > 0 || clearDeliveries.length > 0)) {
-  console.log(`  雨天件数  : ${rainyDeliveries.length}件 / 晴天件数: ${clearDeliveries.length}件`);
-  if (rainPremium !== null) {
-    const sign = rainPremium >= 0 ? '+' : '';
-    console.log(`  雨天プレミアム: ${sign}${rainPremium}%`);
+  const rainyAvg = rainy.reduce((s, d) => s + (d.earnings || 0), 0) / rainy.length;
+  const clearAvg = clear.reduce((s, d) => s + (d.earnings || 0), 0) / clear.length;
+  const premiumPct = Math.round((rainyAvg - clearAvg) / clearAvg * 100);
+  const sign = premiumPct >= 0 ? '+' : '';
+
+  return `## 雨天プレミアム分析
+| 区分 | 件数 | 平均単価 |
+|---|---|---|
+| 雨天時 🌧 | ${rainy.length}件 | ${formatYen(rainyAvg)} |
+| 晴天時 ☀️ | ${clear.length}件 | ${formatYen(clearAvg)} |
+| **差分** | — | **${sign}${premiumPct}%** |
+
+`;
+}
+
+function generateMarkdown(data, weather, cal) {
+  const valid = data.deliveries.filter(d => !d.error);
+  const totalEarnings = valid.reduce((s, d) => s + (d.earnings || 0), 0);
+  const totalTips = valid.reduce((s, d) => s + (d.tipAmount || 0), 0);
+  const totalDistance = valid.reduce((s, d) => s + (d.distance || 0), 0);
+  const avgEarnings = valid.length > 0 ? Math.round(totalEarnings / valid.length) : 0;
+
+  // 各配達に天気情報を付与
+  for (const d of valid) {
+    d.weatherAtDelivery = getWeatherAtHour(weather, d.completedAt);
   }
+
+  const details = data.deliveries
+    .map((d, i) => buildDetailSection(d, i + 1, weather))
+    .join('\n\n');
+
+  const calendarSection = buildCalendarSection(cal);
+  const weatherSection = buildWeatherSection(weather);
+  const rainPremiumSection = buildRainPremiumSection(valid, weather);
+
+  return `# Uber Eats 配達レポート — ${formatJapaneseDate(data.date)}
+
+## サマリー
+- 総売上: ${formatYen(totalEarnings)}
+- 配達件数: ${valid.length}件
+- 総距離: ${totalDistance.toFixed(2)} km
+- 平均単価: ${formatYen(avgEarnings)}
+- 総チップ: ${formatYen(totalTips)}
+
+${calendarSection}${weatherSection}${rainPremiumSection}## 配達明細
+
+${details}
+
+## 時間帯分析
+| 時間帯 | 件数 | 売上 |
+|---|---|---|
+${buildTimeSlotTable(data.deliveries)}
+
+---
+*生成日時: ${new Date().toLocaleString('ja-JP')}*
+*スクレイピング日時: ${data.scrapedAt}*
+`;
 }
-console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
-console.log(`\n🏆 エリア別売上`);
-areaRanking.forEach((a,i) => console.log(`  ${i+1}. ${a.area}: ${yen(a.earnings)}（${a.count}件）`));
+
+(async () => {
+  const args = process.argv.slice(2);
+  const date = getTargetDate(args);
+
+  console.log(`=== パーサー ===`);
+  console.log(`対象日: ${date}`);
+
+  const rawPath = path.join(RAW_DIR, `${date}.json`);
+  if (!fs.existsSync(rawPath)) {
+    console.error(`生データが見つかりません: ${rawPath}`);
+    console.error('先に node scripts/scraper.js --date を実行してください。');
+    process.exit(1);
+  }
+
+  const data = JSON.parse(fs.readFileSync(rawPath, 'utf-8'));
+  const weather = loadWeather(date);
+  const cal = loadCalendar(date);
+
+  if (weather) {
+    console.log(`天気データ読み込み: ${weather.source}`);
+  } else {
+    console.log('天気データなし（weather.jsを先に実行してください）');
+  }
+  if (cal) {
+    console.log(`カレンダー: ${cal.types.join(' / ')}`);
+  } else {
+    console.log('カレンダーデータなし（calendar.jsを先に実行してください）');
+  }
+
+  if (!fs.existsSync(REPORTS_DIR)) {
+    fs.mkdirSync(REPORTS_DIR, { recursive: true });
+  }
+
+  const markdown = generateMarkdown(data, weather, cal);
+  const outPath = path.join(REPORTS_DIR, `${date}.md`);
+  fs.writeFileSync(outPath, markdown, 'utf-8');
+
+  console.log(`完了: ${outPath} に保存しました`);
+})();

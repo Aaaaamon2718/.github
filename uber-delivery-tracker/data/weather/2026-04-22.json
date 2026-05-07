@@ -1,20 +1,19 @@
 {
   "date": "2026-04-22",
-  "location": "東京",
+  "location": "東京都渋谷区",
   "source": "openmeteo-archive",
   "daily": {
-    "condition": "曇り",
     "conditionCode": 3,
-    "isRainy": false,
-    "tempMax": 23.3,
-    "tempMin": 12.2,
-    "precipitation": 0,
+    "condition": "曇り",
+    "temperatureMax": 23.3,
+    "temperatureMin": 12.2,
+    "precipitationSum": 0,
     "windspeedMax": 20.5
   },
   "hourly": [
     {
       "hour": 0,
-      "time": "00:00",
+      "time": "2026-04-22 00:00",
       "temperature": 15.6,
       "apparentTemperature": 13.6,
       "precipitationProbability": null,
@@ -27,7 +26,7 @@
     },
     {
       "hour": 1,
-      "time": "01:00",
+      "time": "2026-04-22 01:00",
       "temperature": 15.2,
       "apparentTemperature": 12.3,
       "precipitationProbability": null,
@@ -40,7 +39,7 @@
     },
     {
       "hour": 2,
-      "time": "02:00",
+      "time": "2026-04-22 02:00",
       "temperature": 14.1,
       "apparentTemperature": 10.9,
       "precipitationProbability": null,
@@ -53,7 +52,7 @@
     },
     {
       "hour": 3,
-      "time": "03:00",
+      "time": "2026-04-22 03:00",
       "temperature": 12.6,
       "apparentTemperature": 9.1,
       "precipitationProbability": null,
@@ -66,7 +65,7 @@
     },
     {
       "hour": 4,
-      "time": "04:00",
+      "time": "2026-04-22 04:00",
       "temperature": 12.5,
       "apparentTemperature": 8.6,
       "precipitationProbability": null,
@@ -79,7 +78,7 @@
     },
     {
       "hour": 5,
-      "time": "05:00",
+      "time": "2026-04-22 05:00",
       "temperature": 12.2,
       "apparentTemperature": 8.8,
       "precipitationProbability": null,
@@ -92,7 +91,7 @@
     },
     {
       "hour": 6,
-      "time": "06:00",
+      "time": "2026-04-22 06:00",
       "temperature": 12.9,
       "apparentTemperature": 9.9,
       "precipitationProbability": null,
@@ -105,7 +104,7 @@
     },
     {
       "hour": 7,
-      "time": "07:00",
+      "time": "2026-04-22 07:00",
       "temperature": 15.2,
       "apparentTemperature": 12.8,
       "precipitationProbability": null,
@@ -118,7 +117,7 @@
     },
     {
       "hour": 8,
-      "time": "08:00",
+      "time": "2026-04-22 08:00",
       "temperature": 17.8,
       "apparentTemperature": 15.4,
       "precipitationProbability": null,
@@ -131,7 +130,7 @@
     },
     {
       "hour": 9,
-      "time": "09:00",
+      "time": "2026-04-22 09:00",
       "temperature": 20,
       "apparentTemperature": 17.3,
       "precipitationProbability": null,
@@ -144,7 +143,7 @@
     },
     {
       "hour": 10,
-      "time": "10:00",
+      "time": "2026-04-22 10:00",
       "temperature": 22,
       "apparentTemperature": 19.2,
       "precipitationProbability": null,
@@ -157,7 +156,7 @@
     },
     {
       "hour": 11,
-      "time": "11:00",
+      "time": "2026-04-22 11:00",
       "temperature": 22.4,
       "apparentTemperature": 19.2,
       "precipitationProbability": null,
@@ -170,7 +169,7 @@
     },
     {
       "hour": 12,
-      "time": "12:00",
+      "time": "2026-04-22 12:00",
       "temperature": 23.3,
       "apparentTemperature": 20.7,
       "precipitationProbability": null,
@@ -183,7 +182,7 @@
     },
     {
       "hour": 13,
-      "time": "13:00",
+      "time": "2026-04-22 13:00",
       "temperature": 22.2,
       "apparentTemperature": 18.6,
       "precipitationProbability": null,
@@ -196,7 +195,7 @@
     },
     {
       "hour": 14,
-      "time": "14:00",
+      "time": "2026-04-22 14:00",
       "temperature": 21,
       "apparentTemperature": 17.9,
       "precipitationProbability": null,
@@ -209,7 +208,7 @@
     },
     {
       "hour": 15,
-      "time": "15:00",
+      "time": "2026-04-22 15:00",
       "temperature": 21.1,
       "apparentTemperature": 17.7,
       "precipitationProbability": null,
@@ -222,7 +221,7 @@
     },
     {
       "hour": 16,
-      "time": "16:00",
+      "time": "2026-04-22 16:00",
       "temperature": 20.8,
       "apparentTemperature": 17.6,
       "precipitationProbability": null,
@@ -235,7 +234,7 @@
     },
     {
       "hour": 17,
-      "time": "17:00",
+      "time": "2026-04-22 17:00",
       "temperature": 20.1,
       "apparentTemperature": 17.2,
       "precipitationProbability": null,
@@ -248,7 +247,7 @@
     },
     {
       "hour": 18,
-      "time": "18:00",
+      "time": "2026-04-22 18:00",
       "temperature": 19.7,
       "apparentTemperature": 17.4,
       "precipitationProbability": null,
@@ -261,7 +260,7 @@
     },
     {
       "hour": 19,
-      "time": "19:00",
+      "time": "2026-04-22 19:00",
       "temperature": 19.5,
       "apparentTemperature": 18,
       "precipitationProbability": null,
@@ -274,7 +273,7 @@
     },
     {
       "hour": 20,
-      "time": "20:00",
+      "time": "2026-04-22 20:00",
       "temperature": 19.4,
       "apparentTemperature": 18.3,
       "precipitationProbability": null,
@@ -287,7 +286,7 @@
     },
     {
       "hour": 21,
-      "time": "21:00",
+      "time": "2026-04-22 21:00",
       "temperature": 19.1,
       "apparentTemperature": 19.1,
       "precipitationProbability": null,
@@ -300,7 +299,7 @@
     },
     {
       "hour": 22,
-      "time": "22:00",
+      "time": "2026-04-22 22:00",
       "temperature": 19,
       "apparentTemperature": 18.8,
       "precipitationProbability": null,
@@ -313,7 +312,7 @@
     },
     {
       "hour": 23,
-      "time": "23:00",
+      "time": "2026-04-22 23:00",
       "temperature": 18.6,
       "apparentTemperature": 18.1,
       "precipitationProbability": null,
