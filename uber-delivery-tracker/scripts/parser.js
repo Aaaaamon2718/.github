@@ -10,6 +10,7 @@ const path = require('path');
 const RAW_DIR = path.join(__dirname, '../data/raw');
 const REPORTS_DIR = path.join(__dirname, '../data/reports');
 const WEATHER_DIR = path.join(__dirname, '../data/weather');
+const CALENDAR_DIR = path.join(__dirname, '../data/calendar');
 
 function getTargetDate(args) {
   const dateArg = args.find(a => a.startsWith('--date'));
@@ -43,6 +44,14 @@ function getTimeSlot(timeStr) {
   if (hour >= 14 && hour < 18) return '夕（14-18時）';
   if (hour >= 18 && hour < 22) return '夜（18-22時）';
   return '深夜（22-6時）';
+}
+
+function loadCalendar(date) {
+  const year = date.split('-')[0];
+  const p = path.join(CALENDAR_DIR, `${year}.json`);
+  if (!fs.existsSync(p)) return null;
+  const cal = JSON.parse(fs.readFileSync(p, 'utf-8'));
+  return cal.days[date] || null;
 }
 
 function loadWeather(date) {
@@ -115,6 +124,17 @@ function buildDetailSection(delivery, index, weather) {
   return lines.join('\n');
 }
 
+function buildCalendarSection(cal) {
+  if (!cal) return '';
+  const typeStr = cal.types.join(' / ');
+  const longWeekend = cal.isLongWeekend ? '（連休）' : '';
+  return `## この日のコンテキスト
+- 曜日: ${cal.dayOfWeek}曜日${longWeekend}
+- 区分: ${typeStr}
+${cal.holiday ? `- 祝日: ${cal.holiday}\n` : ''}
+`;
+}
+
 function buildWeatherSection(weather) {
   if (!weather) return '';
 
@@ -168,7 +188,7 @@ function buildRainPremiumSection(deliveries, weather) {
 `;
 }
 
-function generateMarkdown(data, weather) {
+function generateMarkdown(data, weather, cal) {
   const valid = data.deliveries.filter(d => !d.error);
   const totalEarnings = valid.reduce((s, d) => s + (d.earnings || 0), 0);
   const totalTips = valid.reduce((s, d) => s + (d.tipAmount || 0), 0);
@@ -184,6 +204,7 @@ function generateMarkdown(data, weather) {
     .map((d, i) => buildDetailSection(d, i + 1, weather))
     .join('\n\n');
 
+  const calendarSection = buildCalendarSection(cal);
   const weatherSection = buildWeatherSection(weather);
   const rainPremiumSection = buildRainPremiumSection(valid, weather);
 
@@ -196,7 +217,7 @@ function generateMarkdown(data, weather) {
 - 平均単価: ${formatYen(avgEarnings)}
 - 総チップ: ${formatYen(totalTips)}
 
-${weatherSection}${rainPremiumSection}## 配達明細
+${calendarSection}${weatherSection}${rainPremiumSection}## 配達明細
 
 ${details}
 
@@ -227,18 +248,24 @@ ${buildTimeSlotTable(data.deliveries)}
 
   const data = JSON.parse(fs.readFileSync(rawPath, 'utf-8'));
   const weather = loadWeather(date);
+  const cal = loadCalendar(date);
 
   if (weather) {
     console.log(`天気データ読み込み: ${weather.source}`);
   } else {
     console.log('天気データなし（weather.jsを先に実行してください）');
   }
+  if (cal) {
+    console.log(`カレンダー: ${cal.types.join(' / ')}`);
+  } else {
+    console.log('カレンダーデータなし（calendar.jsを先に実行してください）');
+  }
 
   if (!fs.existsSync(REPORTS_DIR)) {
     fs.mkdirSync(REPORTS_DIR, { recursive: true });
   }
 
-  const markdown = generateMarkdown(data, weather);
+  const markdown = generateMarkdown(data, weather, cal);
   const outPath = path.join(REPORTS_DIR, `${date}.md`);
   fs.writeFileSync(outPath, markdown, 'utf-8');
 
