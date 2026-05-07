@@ -1,7 +1,335 @@
 {
   "date": "2026-05-02",
   "dateJP": "2026年5月2日（土）",
-  "generatedAt": "2026-05-03T16:59:55.357Z",
+  "generatedAt": "2026-05-07T12:07:28.940Z",
+  "weather": {
+    "date": "2026-05-02",
+    "location": "東京",
+    "source": "openmeteo-archive",
+    "daily": {
+      "condition": "曇り",
+      "conditionCode": 3,
+      "isRainy": false,
+      "tempMax": 26.1,
+      "tempMin": 12.9,
+      "precipitation": 0,
+      "windspeedMax": 14.4
+    },
+    "hourly": [
+      {
+        "hour": 0,
+        "time": "00:00",
+        "temperature": 12.9,
+        "apparentTemperature": 12.1,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 7.5,
+        "humidity": 89,
+        "conditionCode": 1,
+        "condition": "晴れ",
+        "isRainy": false
+      },
+      {
+        "hour": 1,
+        "time": "01:00",
+        "temperature": 13.2,
+        "apparentTemperature": 11.9,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 9.5,
+        "humidity": 83,
+        "conditionCode": 2,
+        "condition": "晴れ時々曇り",
+        "isRainy": false
+      },
+      {
+        "hour": 2,
+        "time": "02:00",
+        "temperature": 13,
+        "apparentTemperature": 11,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 11.7,
+        "humidity": 77,
+        "conditionCode": 1,
+        "condition": "晴れ",
+        "isRainy": false
+      },
+      {
+        "hour": 3,
+        "time": "03:00",
+        "temperature": 13.3,
+        "apparentTemperature": 11.8,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 8.1,
+        "humidity": 73,
+        "conditionCode": 0,
+        "condition": "快晴",
+        "isRainy": false
+      },
+      {
+        "hour": 4,
+        "time": "04:00",
+        "temperature": 13.4,
+        "apparentTemperature": 11.8,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 8.4,
+        "humidity": 71,
+        "conditionCode": 0,
+        "condition": "快晴",
+        "isRainy": false
+      },
+      {
+        "hour": 5,
+        "time": "05:00",
+        "temperature": 13.9,
+        "apparentTemperature": 11.8,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 9.8,
+        "humidity": 65,
+        "conditionCode": 0,
+        "condition": "快晴",
+        "isRainy": false
+      },
+      {
+        "hour": 6,
+        "time": "06:00",
+        "temperature": 15.2,
+        "apparentTemperature": 12.6,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 11.7,
+        "humidity": 56,
+        "conditionCode": 0,
+        "condition": "快晴",
+        "isRainy": false
+      },
+      {
+        "hour": 7,
+        "time": "07:00",
+        "temperature": 16.9,
+        "apparentTemperature": 14.8,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 7.5,
+        "humidity": 50,
+        "conditionCode": 0,
+        "condition": "快晴",
+        "isRainy": false
+      },
+      {
+        "hour": 8,
+        "time": "08:00",
+        "temperature": 17.5,
+        "apparentTemperature": 16,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 9.5,
+        "humidity": 58,
+        "conditionCode": 0,
+        "condition": "快晴",
+        "isRainy": false
+      },
+      {
+        "hour": 9,
+        "time": "09:00",
+        "temperature": 20.9,
+        "apparentTemperature": 21.1,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 7.7,
+        "humidity": 59,
+        "conditionCode": 0,
+        "condition": "快晴",
+        "isRainy": false
+      },
+      {
+        "hour": 10,
+        "time": "10:00",
+        "temperature": 22.6,
+        "apparentTemperature": 23.5,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 9.8,
+        "humidity": 53,
+        "conditionCode": 2,
+        "condition": "晴れ時々曇り",
+        "isRainy": false
+      },
+      {
+        "hour": 11,
+        "time": "11:00",
+        "temperature": 24.9,
+        "apparentTemperature": 25.2,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 8.7,
+        "humidity": 35,
+        "conditionCode": 1,
+        "condition": "晴れ",
+        "isRainy": false
+      },
+      {
+        "hour": 12,
+        "time": "12:00",
+        "temperature": 26,
+        "apparentTemperature": 25.1,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 12.8,
+        "humidity": 27,
+        "conditionCode": 0,
+        "condition": "快晴",
+        "isRainy": false
+      },
+      {
+        "hour": 13,
+        "time": "13:00",
+        "temperature": 26.1,
+        "apparentTemperature": 25.1,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 14.4,
+        "humidity": 29,
+        "conditionCode": 0,
+        "condition": "快晴",
+        "isRainy": false
+      },
+      {
+        "hour": 14,
+        "time": "14:00",
+        "temperature": 26.1,
+        "apparentTemperature": 25.7,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 8.5,
+        "humidity": 30,
+        "conditionCode": 1,
+        "condition": "晴れ",
+        "isRainy": false
+      },
+      {
+        "hour": 15,
+        "time": "15:00",
+        "temperature": 26,
+        "apparentTemperature": 24.8,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 6.4,
+        "humidity": 27,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      },
+      {
+        "hour": 16,
+        "time": "16:00",
+        "temperature": 25.5,
+        "apparentTemperature": 24.1,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 6,
+        "humidity": 33,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      },
+      {
+        "hour": 17,
+        "time": "17:00",
+        "temperature": 24.4,
+        "apparentTemperature": 23.9,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 4.3,
+        "humidity": 42,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      },
+      {
+        "hour": 18,
+        "time": "18:00",
+        "temperature": 23,
+        "apparentTemperature": 22.8,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 5.4,
+        "humidity": 49,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      },
+      {
+        "hour": 19,
+        "time": "19:00",
+        "temperature": 21,
+        "apparentTemperature": 21.3,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 3.1,
+        "humidity": 57,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      },
+      {
+        "hour": 20,
+        "time": "20:00",
+        "temperature": 20.4,
+        "apparentTemperature": 19.8,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 6,
+        "humidity": 54,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      },
+      {
+        "hour": 21,
+        "time": "21:00",
+        "temperature": 19.1,
+        "apparentTemperature": 19,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 1.5,
+        "humidity": 57,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      },
+      {
+        "hour": 22,
+        "time": "22:00",
+        "temperature": 18.7,
+        "apparentTemperature": 17.8,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 5.4,
+        "humidity": 56,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      },
+      {
+        "hour": 23,
+        "time": "23:00",
+        "temperature": 17.5,
+        "apparentTemperature": 17.2,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 4.6,
+        "humidity": 67,
+        "conditionCode": 1,
+        "condition": "晴れ",
+        "isRainy": false
+      }
+    ]
+  },
   "summary": {
     "totalEarnings": 15172,
     "totalCount": 33,
@@ -12,6 +340,14 @@
     "avgEfficiency": 130,
     "avgDurationSec": 1061,
     "avgDurationFormatted": "17:41"
+  },
+  "weatherAnalysis": {
+    "rainyCount": 0,
+    "clearCount": 33,
+    "unknownCount": 0,
+    "rainyAvgEarnings": 0,
+    "clearAvgEarnings": 460,
+    "rainPremiumPct": -100
   },
   "deliveries": [
     {
@@ -28,7 +364,20 @@
       "distance": 6.98,
       "durationSec": 1865,
       "durationFormatted": "31:05",
-      "efficiency": 108
+      "efficiency": 108,
+      "weatherAtDelivery": {
+        "hour": 22,
+        "time": "22:00",
+        "temperature": 18.7,
+        "apparentTemperature": 17.8,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 5.4,
+        "humidity": 56,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 2,
@@ -44,7 +393,20 @@
       "distance": 2.25,
       "durationSec": 601,
       "durationFormatted": "10:01",
-      "efficiency": 142
+      "efficiency": 142,
+      "weatherAtDelivery": {
+        "hour": 22,
+        "time": "22:00",
+        "temperature": 18.7,
+        "apparentTemperature": 17.8,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 5.4,
+        "humidity": 56,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 3,
@@ -60,7 +422,20 @@
       "distance": 5.17,
       "durationSec": 1275,
       "durationFormatted": "21:15",
-      "efficiency": 111
+      "efficiency": 111,
+      "weatherAtDelivery": {
+        "hour": 21,
+        "time": "21:00",
+        "temperature": 19.1,
+        "apparentTemperature": 19,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 1.5,
+        "humidity": 57,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 4,
@@ -76,7 +451,20 @@
       "distance": 2.98,
       "durationSec": 974,
       "durationFormatted": "16:14",
-      "efficiency": 107
+      "efficiency": 107,
+      "weatherAtDelivery": {
+        "hour": 21,
+        "time": "21:00",
+        "temperature": 19.1,
+        "apparentTemperature": 19,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 1.5,
+        "humidity": 57,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 5,
@@ -92,7 +480,20 @@
       "distance": 5.05,
       "durationSec": 1334,
       "durationFormatted": "22:14",
-      "efficiency": 109
+      "efficiency": 109,
+      "weatherAtDelivery": {
+        "hour": 20,
+        "time": "20:00",
+        "temperature": 20.4,
+        "apparentTemperature": 19.8,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 6,
+        "humidity": 54,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 6,
@@ -108,7 +509,20 @@
       "distance": 4.28,
       "durationSec": 1094,
       "durationFormatted": "18:14",
-      "efficiency": 118
+      "efficiency": 118,
+      "weatherAtDelivery": {
+        "hour": 20,
+        "time": "20:00",
+        "temperature": 20.4,
+        "apparentTemperature": 19.8,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 6,
+        "humidity": 54,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 7,
@@ -124,7 +538,20 @@
       "distance": 4.12,
       "durationSec": 1075,
       "durationFormatted": "17:55",
-      "efficiency": 105
+      "efficiency": 105,
+      "weatherAtDelivery": {
+        "hour": 19,
+        "time": "19:00",
+        "temperature": 21,
+        "apparentTemperature": 21.3,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 3.1,
+        "humidity": 57,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 8,
@@ -140,7 +567,20 @@
       "distance": 2.49,
       "durationSec": 981,
       "durationFormatted": "16:21",
-      "efficiency": 204
+      "efficiency": 204,
+      "weatherAtDelivery": {
+        "hour": 19,
+        "time": "19:00",
+        "temperature": 21,
+        "apparentTemperature": 21.3,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 3.1,
+        "humidity": 57,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 9,
@@ -156,7 +596,20 @@
       "distance": 2.22,
       "durationSec": 760,
       "durationFormatted": "12:40",
-      "efficiency": 144
+      "efficiency": 144,
+      "weatherAtDelivery": {
+        "hour": 19,
+        "time": "19:00",
+        "temperature": 21,
+        "apparentTemperature": 21.3,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 3.1,
+        "humidity": 57,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 10,
@@ -172,7 +625,20 @@
       "distance": 2.04,
       "durationSec": 576,
       "durationFormatted": "9:36",
-      "efficiency": 157
+      "efficiency": 157,
+      "weatherAtDelivery": {
+        "hour": 19,
+        "time": "19:00",
+        "temperature": 21,
+        "apparentTemperature": 21.3,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 3.1,
+        "humidity": 57,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 11,
@@ -188,7 +654,20 @@
       "distance": 4.49,
       "durationSec": 1272,
       "durationFormatted": "21:12",
-      "efficiency": 117
+      "efficiency": 117,
+      "weatherAtDelivery": {
+        "hour": 18,
+        "time": "18:00",
+        "temperature": 23,
+        "apparentTemperature": 22.8,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 5.4,
+        "humidity": 49,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 12,
@@ -204,7 +683,20 @@
       "distance": 1.05,
       "durationSec": 454,
       "durationFormatted": "7:34",
-      "efficiency": 305
+      "efficiency": 305,
+      "weatherAtDelivery": {
+        "hour": 18,
+        "time": "18:00",
+        "temperature": 23,
+        "apparentTemperature": 22.8,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 5.4,
+        "humidity": 49,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 13,
@@ -220,7 +712,20 @@
       "distance": 3.75,
       "durationSec": 1423,
       "durationFormatted": "23:43",
-      "efficiency": 148
+      "efficiency": 148,
+      "weatherAtDelivery": {
+        "hour": 17,
+        "time": "17:00",
+        "temperature": 24.4,
+        "apparentTemperature": 23.9,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 4.3,
+        "humidity": 42,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 14,
@@ -236,7 +741,20 @@
       "distance": 2.32,
       "durationSec": 982,
       "durationFormatted": "16:22",
-      "efficiency": 147
+      "efficiency": 147,
+      "weatherAtDelivery": {
+        "hour": 17,
+        "time": "17:00",
+        "temperature": 24.4,
+        "apparentTemperature": 23.9,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 4.3,
+        "humidity": 42,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 15,
@@ -252,7 +770,20 @@
       "distance": 5.36,
       "durationSec": 1967,
       "durationFormatted": "32:47",
-      "efficiency": 143
+      "efficiency": 143,
+      "weatherAtDelivery": {
+        "hour": 17,
+        "time": "17:00",
+        "temperature": 24.4,
+        "apparentTemperature": 23.9,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 4.3,
+        "humidity": 42,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 16,
@@ -268,7 +799,20 @@
       "distance": 1.38,
       "durationSec": 518,
       "durationFormatted": "8:38",
-      "efficiency": 232
+      "efficiency": 232,
+      "weatherAtDelivery": {
+        "hour": 16,
+        "time": "16:00",
+        "temperature": 25.5,
+        "apparentTemperature": 24.1,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 6,
+        "humidity": 33,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 17,
@@ -284,7 +828,20 @@
       "distance": 4.02,
       "durationSec": 1362,
       "durationFormatted": "22:42",
-      "efficiency": 130
+      "efficiency": 130,
+      "weatherAtDelivery": {
+        "hour": 16,
+        "time": "16:00",
+        "temperature": 25.5,
+        "apparentTemperature": 24.1,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 6,
+        "humidity": 33,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 18,
@@ -300,7 +857,20 @@
       "distance": 2.48,
       "durationSec": 791,
       "durationFormatted": "13:11",
-      "efficiency": 129
+      "efficiency": 129,
+      "weatherAtDelivery": {
+        "hour": 16,
+        "time": "16:00",
+        "temperature": 25.5,
+        "apparentTemperature": 24.1,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 6,
+        "humidity": 33,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 19,
@@ -316,7 +886,20 @@
       "distance": 2.95,
       "durationSec": 754,
       "durationFormatted": "12:34",
-      "efficiency": 108
+      "efficiency": 108,
+      "weatherAtDelivery": {
+        "hour": 16,
+        "time": "16:00",
+        "temperature": 25.5,
+        "apparentTemperature": 24.1,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 6,
+        "humidity": 33,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 20,
@@ -332,7 +915,20 @@
       "distance": 5.25,
       "durationSec": 1132,
       "durationFormatted": "18:52",
-      "efficiency": 102
+      "efficiency": 102,
+      "weatherAtDelivery": {
+        "hour": 15,
+        "time": "15:00",
+        "temperature": 26,
+        "apparentTemperature": 24.8,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 6.4,
+        "humidity": 27,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 21,
@@ -348,7 +944,20 @@
       "distance": 2.7,
       "durationSec": 1097,
       "durationFormatted": "18:17",
-      "efficiency": 160
+      "efficiency": 160,
+      "weatherAtDelivery": {
+        "hour": 15,
+        "time": "15:00",
+        "temperature": 26,
+        "apparentTemperature": 24.8,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 6.4,
+        "humidity": 27,
+        "conditionCode": 3,
+        "condition": "曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 22,
@@ -364,7 +973,20 @@
       "distance": 1.64,
       "durationSec": 528,
       "durationFormatted": "8:48",
-      "efficiency": 195
+      "efficiency": 195,
+      "weatherAtDelivery": {
+        "hour": 14,
+        "time": "14:00",
+        "temperature": 26.1,
+        "apparentTemperature": 25.7,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 8.5,
+        "humidity": 30,
+        "conditionCode": 1,
+        "condition": "晴れ",
+        "isRainy": false
+      }
     },
     {
       "no": 23,
@@ -380,7 +1002,20 @@
       "distance": 3.48,
       "durationSec": 925,
       "durationFormatted": "15:25",
-      "efficiency": 99
+      "efficiency": 99,
+      "weatherAtDelivery": {
+        "hour": 13,
+        "time": "13:00",
+        "temperature": 26.1,
+        "apparentTemperature": 25.1,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 14.4,
+        "humidity": 29,
+        "conditionCode": 0,
+        "condition": "快晴",
+        "isRainy": false
+      }
     },
     {
       "no": 24,
@@ -396,7 +1031,20 @@
       "distance": 5.79,
       "durationSec": 1616,
       "durationFormatted": "26:56",
-      "efficiency": 151
+      "efficiency": 151,
+      "weatherAtDelivery": {
+        "hour": 13,
+        "time": "13:00",
+        "temperature": 26.1,
+        "apparentTemperature": 25.1,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 14.4,
+        "humidity": 29,
+        "conditionCode": 0,
+        "condition": "快晴",
+        "isRainy": false
+      }
     },
     {
       "no": 25,
@@ -412,7 +1060,20 @@
       "distance": 4.54,
       "durationSec": 1345,
       "durationFormatted": "22:25",
-      "efficiency": 125
+      "efficiency": 125,
+      "weatherAtDelivery": {
+        "hour": 12,
+        "time": "12:00",
+        "temperature": 26,
+        "apparentTemperature": 25.1,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 12.8,
+        "humidity": 27,
+        "conditionCode": 0,
+        "condition": "快晴",
+        "isRainy": false
+      }
     },
     {
       "no": 26,
@@ -428,7 +1089,20 @@
       "distance": 5.99,
       "durationSec": 1346,
       "durationFormatted": "22:26",
-      "efficiency": 131
+      "efficiency": 131,
+      "weatherAtDelivery": {
+        "hour": 12,
+        "time": "12:00",
+        "temperature": 26,
+        "apparentTemperature": 25.1,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 12.8,
+        "humidity": 27,
+        "conditionCode": 0,
+        "condition": "快晴",
+        "isRainy": false
+      }
     },
     {
       "no": 27,
@@ -444,7 +1118,20 @@
       "distance": 2.82,
       "durationSec": 945,
       "durationFormatted": "15:45",
-      "efficiency": 113
+      "efficiency": 113,
+      "weatherAtDelivery": {
+        "hour": 12,
+        "time": "12:00",
+        "temperature": 26,
+        "apparentTemperature": 25.1,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 12.8,
+        "humidity": 27,
+        "conditionCode": 0,
+        "condition": "快晴",
+        "isRainy": false
+      }
     },
     {
       "no": 28,
@@ -460,7 +1147,20 @@
       "distance": 2.2,
       "durationSec": 659,
       "durationFormatted": "10:59",
-      "efficiency": 145
+      "efficiency": 145,
+      "weatherAtDelivery": {
+        "hour": 11,
+        "time": "11:00",
+        "temperature": 24.9,
+        "apparentTemperature": 25.2,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 8.7,
+        "humidity": 35,
+        "conditionCode": 1,
+        "condition": "晴れ",
+        "isRainy": false
+      }
     },
     {
       "no": 29,
@@ -476,7 +1176,20 @@
       "distance": 3.3,
       "durationSec": 1283,
       "durationFormatted": "21:23",
-      "efficiency": 145
+      "efficiency": 145,
+      "weatherAtDelivery": {
+        "hour": 11,
+        "time": "11:00",
+        "temperature": 24.9,
+        "apparentTemperature": 25.2,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 8.7,
+        "humidity": 35,
+        "conditionCode": 1,
+        "condition": "晴れ",
+        "isRainy": false
+      }
     },
     {
       "no": 30,
@@ -492,7 +1205,20 @@
       "distance": 3.19,
       "durationSec": 959,
       "durationFormatted": "15:59",
-      "efficiency": 100
+      "efficiency": 100,
+      "weatherAtDelivery": {
+        "hour": 11,
+        "time": "11:00",
+        "temperature": 24.9,
+        "apparentTemperature": 25.2,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 8.7,
+        "humidity": 35,
+        "conditionCode": 1,
+        "condition": "晴れ",
+        "isRainy": false
+      }
     },
     {
       "no": 31,
@@ -508,7 +1234,20 @@
       "distance": 4.89,
       "durationSec": 1432,
       "durationFormatted": "23:52",
-      "efficiency": 130
+      "efficiency": 130,
+      "weatherAtDelivery": {
+        "hour": 10,
+        "time": "10:00",
+        "temperature": 22.6,
+        "apparentTemperature": 23.5,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 9.8,
+        "humidity": 53,
+        "conditionCode": 2,
+        "condition": "晴れ時々曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 32,
@@ -524,7 +1263,20 @@
       "distance": 2.95,
       "durationSec": 989,
       "durationFormatted": "16:29",
-      "efficiency": 108
+      "efficiency": 108,
+      "weatherAtDelivery": {
+        "hour": 10,
+        "time": "10:00",
+        "temperature": 22.6,
+        "apparentTemperature": 23.5,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 9.8,
+        "humidity": 53,
+        "conditionCode": 2,
+        "condition": "晴れ時々曇り",
+        "isRainy": false
+      }
     },
     {
       "no": 33,
@@ -540,7 +1292,20 @@
       "distance": 2.48,
       "durationSec": 687,
       "durationFormatted": "11:27",
-      "efficiency": 129
+      "efficiency": 129,
+      "weatherAtDelivery": {
+        "hour": 10,
+        "time": "10:00",
+        "temperature": 22.6,
+        "apparentTemperature": 23.5,
+        "precipitationProbability": null,
+        "precipitation": 0,
+        "windspeed": 9.8,
+        "humidity": 53,
+        "conditionCode": 2,
+        "condition": "晴れ時々曇り",
+        "isRainy": false
+      }
     }
   ],
   "byTimeSlot": [
@@ -726,239 +1491,6 @@
       "earnings": 548,
       "distance": 5.05,
       "avgEarnings": 548
-    }
-  ],
-  "efficiencyRanking": [
-    {
-      "no": 12,
-      "storeName": "楊国福マーラータン 後楽園店Yangguofumalatang",
-      "efficiency": 305,
-      "earnings": 320,
-      "distance": 1.05
-    },
-    {
-      "no": 16,
-      "storeName": "マクドナルド 市ヶ谷店　McDonald's Ichigaya",
-      "efficiency": 232,
-      "earnings": 320,
-      "distance": 1.38
-    },
-    {
-      "no": 8,
-      "storeName": "マクドナルド 春日駅前店　McDonald's Kasuga",
-      "efficiency": 204,
-      "earnings": 508,
-      "distance": 2.49
-    },
-    {
-      "no": 22,
-      "storeName": "マクドナルド 春日駅前店　McDonald's Kasuga",
-      "efficiency": 195,
-      "earnings": 320,
-      "distance": 1.64
-    },
-    {
-      "no": 21,
-      "storeName": "ゴンチャ 飯田橋ラムラ店 Gong cha IIDABASHI RAMLA",
-      "efficiency": 160,
-      "earnings": 432,
-      "distance": 2.7
-    },
-    {
-      "no": 10,
-      "storeName": "ローソン 御茶ノ水",
-      "efficiency": 157,
-      "earnings": 320,
-      "distance": 2.04
-    },
-    {
-      "no": 24,
-      "storeName": "麺屋武蔵　神山 menya musashi　kanzan",
-      "efficiency": 151,
-      "earnings": 876,
-      "distance": 5.79
-    },
-    {
-      "no": 13,
-      "storeName": "ローソン MS GARDEN",
-      "efficiency": 148,
-      "earnings": 556,
-      "distance": 3.75
-    },
-    {
-      "no": 14,
-      "storeName": "7-Eleven飯田橋アイガーデンテラス店",
-      "efficiency": 147,
-      "earnings": 342,
-      "distance": 2.32
-    },
-    {
-      "no": 28,
-      "storeName": "ドミノ・ピザ 飯田橋店 Domino's Pizza Iidabashi Store",
-      "efficiency": 145,
-      "earnings": 320,
-      "distance": 2.2
-    },
-    {
-      "no": 29,
-      "storeName": "ウェンディーズ・ファーストキッチン 飯田橋ラムラ店 Wendy's First Kitchen IIDABASHI RAMURA",
-      "efficiency": 145,
-      "earnings": 477,
-      "distance": 3.3
-    },
-    {
-      "no": 9,
-      "storeName": "くすりの福太郎本郷店",
-      "efficiency": 144,
-      "earnings": 320,
-      "distance": 2.22
-    },
-    {
-      "no": 15,
-      "storeName": "【アサイー＆スムージーボウル】シリアルモンスター神楽坂 Serial Monster Kagurazaka",
-      "efficiency": 143,
-      "earnings": 764,
-      "distance": 5.36
-    },
-    {
-      "no": 2,
-      "storeName": "蒙古タンメン中本 高田馬場店 Moukotanmen Nakamoto Takadanobaba",
-      "efficiency": 142,
-      "earnings": 320,
-      "distance": 2.25
-    },
-    {
-      "no": 26,
-      "storeName": "【台湾朝食専門店】 wanna manna 飯田橋サクラテラス店",
-      "efficiency": 131,
-      "earnings": 786,
-      "distance": 5.99
-    },
-    {
-      "no": 17,
-      "storeName": "ガスト 市ヶ谷駅前店 Gusto ICHIGAYAEKIMAE",
-      "efficiency": 130,
-      "earnings": 522,
-      "distance": 4.02
-    },
-    {
-      "no": 31,
-      "storeName": "焼肉亭かぐら YAKINIKUTEI KAGURA",
-      "efficiency": 130,
-      "earnings": 638,
-      "distance": 4.89
-    },
-    {
-      "no": 18,
-      "storeName": "Tanaka's Roti",
-      "efficiency": 129,
-      "earnings": 320,
-      "distance": 2.48
-    },
-    {
-      "no": 33,
-      "storeName": "スターバックス コーヒー 高田馬場早稲田通り店 Starbucks Coffee Takadanobaba Waseda-dori",
-      "efficiency": 129,
-      "earnings": 320,
-      "distance": 2.48
-    },
-    {
-      "no": 25,
-      "storeName": "焼肉ライク 秋葉原中央通り店",
-      "efficiency": 125,
-      "earnings": 568,
-      "distance": 4.54
-    },
-    {
-      "no": 6,
-      "storeName": "絶品スープで味わうハンバーグの店「スープdeバーグ」 Soup de Burg\", Hamburg restaurant with excellent soup",
-      "efficiency": 118,
-      "earnings": 506,
-      "distance": 4.28
-    },
-    {
-      "no": 11,
-      "storeName": "スシロー 後楽園春日店",
-      "efficiency": 117,
-      "earnings": 524,
-      "distance": 4.49
-    },
-    {
-      "no": 27,
-      "storeName": "モスバーガー 飯田橋東店 Mos Burger IIDABASHI-HIGASHI",
-      "efficiency": 113,
-      "earnings": 320,
-      "distance": 2.82
-    },
-    {
-      "no": 3,
-      "storeName": "ガスト 高田馬場駅前店 Gusto Takadanobaba",
-      "efficiency": 111,
-      "earnings": 574,
-      "distance": 5.17
-    },
-    {
-      "no": 5,
-      "storeName": "日本橋海鮮丼　つじ半　神楽坂店",
-      "efficiency": 109,
-      "earnings": 548,
-      "distance": 5.05
-    },
-    {
-      "no": 1,
-      "storeName": "Reis Kebab 高田馬場店",
-      "efficiency": 108,
-      "earnings": 757,
-      "distance": 6.98
-    },
-    {
-      "no": 19,
-      "storeName": "マクドナルド 春日駅前店",
-      "efficiency": 108,
-      "earnings": 320,
-      "distance": 2.95
-    },
-    {
-      "no": 32,
-      "storeName": "フレッシュネスバーガー 新大久保店 Freshness Burger Shin-Okubo",
-      "efficiency": 108,
-      "earnings": 320,
-      "distance": 2.95
-    },
-    {
-      "no": 4,
-      "storeName": "カツ丼屋 八方 高田馬場店",
-      "efficiency": 107,
-      "earnings": 320,
-      "distance": 2.98
-    },
-    {
-      "no": 7,
-      "storeName": "リコス 西片２丁目店",
-      "efficiency": 105,
-      "earnings": 432,
-      "distance": 4.12
-    },
-    {
-      "no": 20,
-      "storeName": "サーティワンアイスクリーム 東京ドームシティラクーア店",
-      "efficiency": 102,
-      "earnings": 537,
-      "distance": 5.25
-    },
-    {
-      "no": 30,
-      "storeName": "スターバックス コーヒー 市ヶ谷駅前店 Starbucks Coffee Ichigaya Eki-mae",
-      "efficiency": 100,
-      "earnings": 320,
-      "distance": 3.19
-    },
-    {
-      "no": 23,
-      "storeName": "マクドナルド 稲荷町駅前店 McDonald's INARI-CHO EKI-MAE",
-      "efficiency": 99,
-      "earnings": 345,
-      "distance": 3.48
     }
   ]
 }
