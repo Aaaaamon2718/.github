@@ -14,7 +14,8 @@
     "playwright": "^1.40.0",
     "date-fns": "^3.0.0",
     "node-cron": "^3.0.3",
-    "simple-git": "^3.21.0"
+    "simple-git": "^3.21.0",
+    "dotenv": "^16.0.0"
   },
   "engines": {
     "node": ">=18.0.0"
