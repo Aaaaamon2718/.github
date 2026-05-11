@@ -88,14 +88,9 @@ function slot(hour) {
 
 function extractArea(fullAddress) {
   if (!fullAddress) return '不明';
-  let addr = fullAddress.replace(/^東京都/, '');
+  const addr = fullAddress.replace(/^東京都/, '');
   const wardMatch = addr.match(/^([^\s区]+区)/);
-  const ward = wardMatch ? wardMatch[1] : '';
-  let area = addr.replace(ward, '')
-    .replace(/[０-９0-9一二三四五六七八九十]+丁目.*/, '')
-    .replace(/[０-９0-9]+番.*/, '')
-    .trim();
-  return (area && area.length > 1) ? area : (ward || '不明');
+  return wardMatch ? wardMatch[1] : '不明';
 }
 
 function yen(n)     { return `¥${Math.round(n).toLocaleString('ja-JP')}`; }
@@ -147,6 +142,7 @@ function getWeatherAtHour(weather, hour) {
 
 function loadWeekdayData(from, to) {
   const result = [];
+  const weatherCoverage = {}; // date → true/false
   for (const date of dateRange(from, to)) {
     if (!isWeekday(date)) continue;
     if (isHoliday(date)) { console.log(`  除外（祝日）: ${date}`); continue; }
@@ -159,8 +155,9 @@ function loadWeekdayData(from, to) {
     const valid   = (raw.deliveries || []).filter(d => !d.error);
     if (valid.length === 0) { console.log(`  0件スキップ: ${date}`); continue; }
 
+    weatherCoverage[date] = !!weather;
     const day = new Date(date + 'T12:00:00+09:00');
-    console.log(`  読み込み: ${date}(${DOW[day.getDay()]}) → ${valid.length}件 ${weather ? '☔天気あり' : ''}`);
+    console.log(`  読み込み: ${date}(${DOW[day.getDay()]}) → ${valid.length}件 ${weather ? '✅天気あり' : '❌天気なし'}`);
 
     for (const d of valid) {
       const hour = parseHour(d.datetime);
@@ -184,7 +181,7 @@ function loadWeekdayData(from, to) {
       });
     }
   }
-  return result;
+  return { deliveries: result, weatherCoverage };
 }
 
 // ── 分析関数 ─────────────────────────────────────
@@ -195,7 +192,7 @@ function groupBy(arr, key) {
 
 // ── レポート生成 ──────────────────────────────────
 
-function generateReport(deliveries, from, to) {
+function generateReport(deliveries, weatherCoverage, from, to) {
   const uniqueDates = [...new Set(deliveries.map(d => d.date))].sort();
   const N = deliveries.length;
 
@@ -386,12 +383,18 @@ ${hasWeather ? `| 雨天プレミアム | **${rainPremium !== null ? (rainPremiu
   md += '\n';
 
   // ── Ⅲ. 天気コントロール分析
+  const missingWeatherDates = Object.entries(weatherCoverage).filter(([, v]) => !v).map(([d]) => d);
+  const coveredDates = Object.entries(weatherCoverage).filter(([, v]) => v).map(([d]) => d);
+  const weatherCoverageNote = missingWeatherDates.length > 0
+    ? `\n> ⚠️ **天気データ欠落**: ${missingWeatherDates.join(', ')} — これらの日の配達は天気分析から除外。欠落日は \`node scripts/weather.js --date DATE\` で補完可能。\n> ✅ **天気あり**: ${coveredDates.join(', ')}（${withWeather.length}件 / 全${deliveries.length}件中 ${pct(withWeather.length, deliveries.length)}）\n`
+    : '';
+
   md += `---
 
 ## Ⅲ. 天気コントロール変数分析
-`;
+${weatherCoverageNote}`;
   if (!hasWeather) {
-    md += '\n> 天気データなし。`node scripts/weather.js --date YYYY-MM-DD` を実行後に再生成してください。\n\n';
+    md += '\n> ❌ 全日付で天気データなし。`node scripts/weather.js --date YYYY-MM-DD` を実行後に再生成してください。\n\n';
   } else {
     md += `
 ### A. 雨天 vs. 晴天 パフォーマンス比較
@@ -605,19 +608,21 @@ ${hasWeather ? `| 雨天プレミアム | **${rainPremium !== null ? (rainPremiu
   console.log(`=== 平日限定精密分析 ===`);
   console.log(`期間: ${from} 〜 ${to}`);
 
-  const deliveries = loadWeekdayData(from, to);
+  const { deliveries, weatherCoverage } = loadWeekdayData(from, to);
   if (deliveries.length === 0) {
     console.error('データなし。日付範囲とファイルを確認してください。');
     process.exit(1);
   }
 
   const uniqueDates = [...new Set(deliveries.map(d => d.date))].sort();
+  const missingW = Object.entries(weatherCoverage).filter(([, v]) => !v).map(([d]) => d);
   console.log(`\n対象平日: ${uniqueDates.join(', ')} (${uniqueDates.length}日)`);
   console.log(`総配達件数: ${deliveries.length}件`);
+  if (missingW.length > 0) console.log(`⚠️ 天気データ欠落日: ${missingW.join(', ')}`);
 
   if (!fs.existsSync(REPORTS_DIR)) fs.mkdirSync(REPORTS_DIR, { recursive: true });
 
-  const md = generateReport(deliveries, from, to);
+  const md = generateReport(deliveries, weatherCoverage, from, to);
   const outPath = path.join(REPORTS_DIR, `weekday-analysis-${from}-${to}.md`);
   fs.writeFileSync(outPath, md, 'utf-8');
 
