@@ -52,11 +52,7 @@ function getTimeSlot(timeStr) {
   const hourMatch = timeStr.match(/(\d{1,2}):/);
   if (!hourMatch) return 'unknown';
   const hour = parseInt(hourMatch[1]);
-  if (hour >= 6 && hour < 10) return '朝（6-10時）';
-  if (hour >= 10 && hour < 14) return '昼（10-14時）';
-  if (hour >= 14 && hour < 18) return '夕（14-18時）';
-  if (hour >= 18 && hour < 22) return '夜（18-22時）';
-  return '深夜（22-6時）';
+  return `${String(hour).padStart(2, '0')}時台`;
 }
 
 function loadEvents(date) {
@@ -121,25 +117,18 @@ function getWeatherAtHour(weather, timeStr) {
 }
 
 function buildTimeSlotTable(deliveries) {
-  const slots = {
-    '朝（6-10時）': { count: 0, earnings: 0 },
-    '昼（10-14時）': { count: 0, earnings: 0 },
-    '夕（14-18時）': { count: 0, earnings: 0 },
-    '夜（18-22時）': { count: 0, earnings: 0 },
-    '深夜（22-6時）': { count: 0, earnings: 0 },
-  };
+  const slots = {};
 
   for (const d of deliveries) {
     if (d.error) continue;
     const slot = getTimeSlot(parseTime(d.datetime));
-    if (slots[slot]) {
-      slots[slot].count++;
-      slots[slot].earnings += d.earnings || 0;
-    }
+    if (!slots[slot]) slots[slot] = { count: 0, earnings: 0 };
+    slots[slot].count++;
+    slots[slot].earnings += d.earnings || 0;
   }
 
   const rows = Object.entries(slots)
-    .filter(([, v]) => v.count > 0)
+    .sort(([a], [b]) => a.localeCompare(b))
     .map(([slot, v]) => `| ${slot} | ${v.count}件 | ${formatYen(v.earnings)} |`)
     .join('\n');
 

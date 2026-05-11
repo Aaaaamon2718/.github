@@ -15,8 +15,8 @@ const REPORTS_DIR  = path.join(__dirname, '../data/reports');
 
 // ── 定数 ─────────────────────────────────────────
 
-const SLOT_ORDER = ['朝 (6-10時)', '昼 (10-14時)', '夕 (14-18時)', '夜 (18-22時)', '深夜 (22-6時)'];
-const SLOT_LABEL = { '朝 (6-10時)': '朝', '昼 (10-14時)': '昼', '夕 (14-18時)': '夕', '夜 (18-22時)': '夜', '深夜 (22-6時)': '深夜' };
+// 時間帯ラベル（SLOT_ORDERはgenerateReport内でデータから動的生成）
+const slotShort = s => s ? s.replace('時台', '時') : '—';
 const DOW = ['日', '月', '火', '水', '木', '金', '土'];
 
 // t分布 95%CI 用の臨界値（自由度 = n-1）
@@ -79,11 +79,7 @@ function parseHour(datetimeStr) {
 
 function slot(hour) {
   if (hour === null) return null;
-  if (hour >= 6  && hour < 10) return '朝 (6-10時)';
-  if (hour >= 10 && hour < 14) return '昼 (10-14時)';
-  if (hour >= 14 && hour < 18) return '夕 (14-18時)';
-  if (hour >= 18 && hour < 22) return '夜 (18-22時)';
-  return '深夜 (22-6時)';
+  return `${String(hour).padStart(2, '0')}時台`;
 }
 
 function extractArea(fullAddress) {
@@ -199,7 +195,8 @@ function generateReport(deliveries, weatherCoverage, from, to) {
   // ─ 基本統計
   const overallStats = stats(deliveries.map(d => d.earnings));
 
-  // ─ 時間帯別
+  // ─ 時間別（1時間粒度）- 実データに存在する時間帯のみを対象にする
+  const SLOT_ORDER = [...new Set(deliveries.filter(d => d.slot).map(d => d.slot))].sort();
   const bySlotGroup = groupBy(deliveries.filter(d => d.slot), 'slot');
   const bySlot = SLOT_ORDER
     .filter(s => bySlotGroup[s])
@@ -211,11 +208,6 @@ function generateReport(deliveries, weatherCoverage, from, to) {
   const sortedSlots = [...bySlot].sort((a, b) => b.mean - a.mean);
   const bestSlot = sortedSlots[0], worstSlot = sortedSlots[sortedSlots.length - 1];
 
-  // ─ 時間別（1h）
-  const byHourGroup = groupBy(deliveries.filter(d => d.hour !== null), 'hour');
-  const byHour = Object.entries(byHourGroup)
-    .map(([h, arr]) => ({ hour: parseInt(h), ...stats(arr.map(d => d.earnings)) }))
-    .sort((a, b) => a.hour - b.hour);
 
   // ─ 曜日別
   const byDowGroup = groupBy(deliveries, 'dow');
@@ -326,14 +318,14 @@ ${hasWeather ? `| 雨天プレミアム | **${rainPremium !== null ? (rainPremiu
 
 `;
 
-  // ── Ⅱ. 時間帯別単価分析
+  // ── Ⅱ. 時間別単価分析（1時間粒度）
   md += `---
 
-## Ⅱ. 時間帯別パフォーマンス分析
+## Ⅱ. 時間別パフォーマンス分析（1時間粒度）
 
-### A. 時間帯別 単価・効率サマリー
+### A. 時間別 単価・効率サマリー
 
-| 時間帯 | N | 平均単価 | 95%CI | 中央値 | Sharpe | ¥/km | ¥/分 | 効率バー |
+| 時間 | N | 平均単価 | 95%CI | 中央値 | Sharpe | ¥/km | ¥/分 | 効率バー |
 |---|---|---|---|---|---|---|---|---|
 `;
   for (const s of bySlot) {
@@ -341,14 +333,9 @@ ${hasWeather ? `| 雨天プレミアム | **${rainPremium !== null ? (rainPremiu
     const min = s.minStats.n > 0 ? yen(s.minStats.mean) : '—';
     md += `| **${s.slot}** | ${s.n} | ${yen(s.mean)} | ±${yen(s.ci95)} | ${yen(s.median)} | ${s.sharpe.toFixed(2)} | ${km} | ${min} | \`${bar(s.mean, maxSlotMean)}\` |\n`;
   }
-  const inactiveSlots = SLOT_ORDER.filter(s => !bySlot.find(b => b.slot === s));
-  if (inactiveSlots.length > 0) {
-    md += `\n> **稼働ゼロ（除外）**: ${inactiveSlots.join(' / ')}\n`;
-  }
-
-  // 時間帯別 日次推移マトリクス
-  md += `\n### B. 時間帯 × 日次 単価推移マトリクス\n\n`;
-  let h2 = '| 時間帯 |', sep2 = '|---|';
+  // 時間 × 日次推移マトリクス
+  md += `\n### B. 時間 × 日次 単価推移マトリクス\n\n`;
+  let h2 = '| 時間 |', sep2 = '|---|';
   for (const d of uniqueDates) {
     const dw = DOW[new Date(d + 'T12:00:00+09:00').getDay()];
     h2  += ` ${d.slice(5)}(${dw}) |`;
@@ -357,7 +344,7 @@ ${hasWeather ? `| 雨天プレミアム | **${rainPremium !== null ? (rainPremiu
   h2 += ' **平均** |'; sep2 += '---|';
   md += h2 + '\n' + sep2 + '\n';
   for (const s of activeSlotsArr) {
-    let row = `| **${SLOT_LABEL[s]}** |`;
+    let row = `| **${slotShort(s)}** |`;
     const allVals = [];
     for (const d of uniqueDates) {
       const arr = slotDateMatrix[s][d];
@@ -371,16 +358,6 @@ ${hasWeather ? `| 雨天プレミアム | **${rainPremium !== null ? (rainPremiu
     row += ` **${avg}** |`;
     md += row + '\n';
   }
-
-  // 1時間別詳細
-  md += `\n### C. 時間別単価詳細（1時間粒度）\n\n`;
-  md += `| 時間 | N | 平均単価 | 最高 | 最低 |\n|---|---|---|---|---|\n`;
-  for (const h of byHour) {
-    const label = `${String(h.hour).padStart(2, '0')}:00`;
-    const slotName = SLOT_LABEL[slot(h.hour)] || '—';
-    md += `| ${label} [${slotName}] | ${h.n} | ${yen(h.mean)} | ${yen(h.max)} | ${yen(h.min)} |\n`;
-  }
-  md += '\n';
 
   // ── Ⅲ. 天気コントロール分析
   const missingWeatherDates = Object.entries(weatherCoverage).filter(([, v]) => !v).map(([d]) => d);
@@ -445,7 +422,7 @@ ${weatherCoverageNote}`;
     const km  = s.kmStats.n  > 0 ? yen(s.kmStats.mean)  : '—';
     const min = s.minStats.n > 0 ? yen(s.minStats.mean) : '—';
     const hourly = s.minStats.n > 0 ? yen(s.minStats.mean * 60) : '—';
-    md += `| **${SLOT_LABEL[s.slot]}** | ${km} | ${min} | **${hourly}** |\n`;
+    md += `| **${slotShort(s.slot)}** | ${km} | ${min} | **${hourly}** |\n`;
   }
   md += '\n';
 
@@ -475,7 +452,7 @@ ${weatherCoverageNote}`;
 
   md += `\n### B. エリア × 時間帯 単価ヒートマップ（上位12エリア）\n\n`;
   let hh = '| エリア |', ss = '|---|';
-  for (const s of activeSlotsArr) { hh += ` ${SLOT_LABEL[s]} |`; ss += '---|'; }
+  for (const s of activeSlotsArr) { hh += ` ${slotShort(s)} |`; ss += '---|'; }
   hh += ' 総平均 |'; ss += '---|';
   md += hh + '\n' + ss + '\n';
   for (const area of topAreas) {
