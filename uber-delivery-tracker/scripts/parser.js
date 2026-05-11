@@ -11,6 +11,7 @@ const RAW_DIR = path.join(__dirname, '../data/raw');
 const REPORTS_DIR = path.join(__dirname, '../data/reports');
 const WEATHER_DIR = path.join(__dirname, '../data/weather');
 const CALENDAR_DIR = path.join(__dirname, '../data/calendar');
+const EVENTS_DIR = path.join(__dirname, '../data/events');
 
 function getTargetDate(args) {
   const dateArg = args.find(a => a.startsWith('--date'));
@@ -56,6 +57,42 @@ function getTimeSlot(timeStr) {
   if (hour >= 14 && hour < 18) return '夕（14-18時）';
   if (hour >= 18 && hour < 22) return '夜（18-22時）';
   return '深夜（22-6時）';
+}
+
+function loadEvents(date) {
+  const year = date.split('-')[0];
+  const p = path.join(EVENTS_DIR, `${year}.json`);
+  if (!fs.existsSync(p)) return [];
+  const data = JSON.parse(fs.readFileSync(p, 'utf-8'));
+  return (data.byDate && data.byDate[date]) || [];
+}
+
+const IMPACT_ICON = { critical: '🚨', high: '⚠️', medium: '📌', low: '📎' };
+const TYPE_LABEL = {
+  home_viewing: 'おうち観戦',
+  stadium: 'スタジアム',
+  festival: 'お祭り/花火',
+  marathon: 'マラソン',
+  mass_event: '大規模イベント',
+  holiday: '祝日',
+  seasonal: '季節イベント',
+};
+
+function buildEventsSection(events) {
+  if (!events || events.length === 0) return '';
+  const rows = events.map(e => {
+    const icon = IMPACT_ICON[e.impact] || '📎';
+    const type = TYPE_LABEL[e.type] || e.type;
+    const time = e.start_time ? ` ${e.start_time}〜` : '';
+    const note = e.note ? `<br>→ ${e.note}` : '';
+    return `| ${icon} | ${e.name}${time} | ${type} | ${e.venue} | ${e.impact} |`;
+  });
+  return `## 本日のイベント
+| | イベント | 種別 | 会場 | 影響度 |
+|---|---|---|---|---|
+${rows.join('\n')}
+
+`;
 }
 
 function loadCalendar(date) {
@@ -199,7 +236,7 @@ function buildRainPremiumSection(deliveries, weather) {
 `;
 }
 
-function generateMarkdown(data, weather, cal) {
+function generateMarkdown(data, weather, cal, events) {
   const valid = data.deliveries.filter(d => !d.error);
   const totalEarnings = valid.reduce((s, d) => s + (d.earnings || 0), 0);
   const totalTips = valid.reduce((s, d) => s + (d.tip || d.tipAmount || 0), 0);
@@ -214,6 +251,7 @@ function generateMarkdown(data, weather, cal) {
   const details = buildDeliveryTable(data.deliveries, weather);
 
   const calendarSection = buildCalendarSection(cal);
+  const eventsSection = buildEventsSection(events);
   const weatherSection = buildWeatherSection(weather);
   const rainPremiumSection = buildRainPremiumSection(valid, weather);
 
@@ -226,7 +264,7 @@ function generateMarkdown(data, weather, cal) {
 - 平均単価: ${formatYen(avgEarnings)}
 - 総チップ: ${formatYen(totalTips)}
 
-${calendarSection}${weatherSection}${rainPremiumSection}## 配達明細
+${calendarSection}${eventsSection}${weatherSection}${rainPremiumSection}## 配達明細
 
 ${details}
 
@@ -258,23 +296,17 @@ ${buildTimeSlotTable(data.deliveries)}
   const data = JSON.parse(fs.readFileSync(rawPath, 'utf-8'));
   const weather = loadWeather(date);
   const cal = loadCalendar(date);
+  const events = loadEvents(date);
 
-  if (weather) {
-    console.log(`天気データ読み込み: ${weather.source}`);
-  } else {
-    console.log('天気データなし（weather.jsを先に実行してください）');
-  }
-  if (cal) {
-    console.log(`カレンダー: ${cal.types.join(' / ')}`);
-  } else {
-    console.log('カレンダーデータなし（calendar.jsを先に実行してください）');
-  }
+  if (weather) console.log(`天気: ${weather.source}`);
+  if (cal) console.log(`カレンダー: ${cal.types.join(' / ')}`);
+  if (events.length > 0) console.log(`イベント: ${events.map(e => e.name).join(' / ')}`);
 
   if (!fs.existsSync(REPORTS_DIR)) {
     fs.mkdirSync(REPORTS_DIR, { recursive: true });
   }
 
-  const markdown = generateMarkdown(data, weather, cal);
+  const markdown = generateMarkdown(data, weather, cal, events);
   const outPath = path.join(REPORTS_DIR, `${date}.md`);
   fs.writeFileSync(outPath, markdown, 'utf-8');
 

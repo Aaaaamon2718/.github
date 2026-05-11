@@ -1,0 +1,383 @@
+{
+  "year": 2026,
+  "generatedAt": "2026-05-11T07:51:12.166Z",
+  "totalEvents": 25,
+  "npbGames": 0,
+  "seedEvents": 25,
+  "byDate": {
+    "2026-03-01": [
+      {
+        "date": "2026-03-01",
+        "name": "東京マラソン 2026",
+        "type": "marathon",
+        "venue": "東京都庁〜東京駅",
+        "area": [
+          "新宿区",
+          "千代田区",
+          "中央区"
+        ],
+        "start_time": "09:10",
+        "end_time": "16:00",
+        "impact": "high",
+        "note": "都心の主要道路が通行規制。配達ルートに大きな影響。",
+        "source": "seed"
+      }
+    ],
+    "2026-03-20": [
+      {
+        "date": "2026-03-20",
+        "name": "春分の日",
+        "type": "holiday",
+        "venue": "全域",
+        "area": [
+          "23区全域"
+        ],
+        "impact": "medium",
+        "note": "祝日のため昼〜夜の需要増。",
+        "source": "seed"
+      }
+    ],
+    "2026-04-01": [
+      {
+        "date": "2026-04-01",
+        "name": "NPBシーズン開幕",
+        "type": "stadium",
+        "venue": "東京ドーム・神宮球場 他",
+        "area": [
+          "文京区",
+          "新宿区"
+        ],
+        "impact": "medium",
+        "note": "巨人・ヤクルトホームゲームは自動取得分を参照。",
+        "source": "seed"
+      }
+    ],
+    "2026-04-04": [
+      {
+        "date": "2026-04-04",
+        "name": "目黒川桜まつり",
+        "type": "festival",
+        "venue": "目黒川（目黒区〜品川区）",
+        "area": [
+          "目黒区",
+          "品川区"
+        ],
+        "start_time": "10:00",
+        "end_time": "22:00",
+        "impact": "medium",
+        "note": "満開時期は混雑。3/28〜4/10頃まで。",
+        "source": "seed"
+      }
+    ],
+    "2026-04-05": [
+      {
+        "date": "2026-04-05",
+        "name": "上野恩賜公園 桜まつり",
+        "type": "festival",
+        "venue": "上野恩賜公園",
+        "area": [
+          "台東区"
+        ],
+        "start_time": "10:00",
+        "end_time": "22:00",
+        "impact": "medium",
+        "note": "上野公園周辺は大混雑。例年3/25〜4/10頃。",
+        "source": "seed"
+      }
+    ],
+    "2026-05-03": [
+      {
+        "date": "2026-05-03",
+        "name": "憲法記念日（GW）",
+        "type": "holiday",
+        "venue": "全域",
+        "area": [
+          "23区全域"
+        ],
+        "impact": "high",
+        "note": "GW連休。外出需要・デリバリー需要ともに増加。",
+        "source": "seed"
+      }
+    ],
+    "2026-05-04": [
+      {
+        "date": "2026-05-04",
+        "name": "みどりの日（GW）",
+        "type": "holiday",
+        "venue": "全域",
+        "area": [
+          "23区全域"
+        ],
+        "impact": "high",
+        "note": "GW連休中日。",
+        "source": "seed"
+      }
+    ],
+    "2026-05-05": [
+      {
+        "date": "2026-05-05",
+        "name": "こどもの日（GW）",
+        "type": "holiday",
+        "venue": "全域",
+        "area": [
+          "23区全域"
+        ],
+        "impact": "high",
+        "note": "GW最終日。外食・デリバリー需要ピーク。",
+        "source": "seed"
+      }
+    ],
+    "2026-06-11": [
+      {
+        "date": "2026-06-11",
+        "name": "FIFA ワールドカップ 2026 開幕",
+        "type": "home_viewing",
+        "venue": "TV・バー・自宅（北米開催）",
+        "area": [
+          "23区全域"
+        ],
+        "start_time": "06:00",
+        "impact": "high",
+        "note": "北米開催のため日本時間は深夜〜朝の試合多い。バー需要増。",
+        "source": "seed"
+      }
+    ],
+    "2026-06-16": [
+      {
+        "date": "2026-06-16",
+        "name": "日本代表 W杯 グループステージ 第1戦（予定）",
+        "type": "home_viewing",
+        "venue": "TV・バー・自宅",
+        "area": [
+          "23区全域"
+        ],
+        "impact": "critical",
+        "note": "試合時間は未定（北米時間により深夜or早朝の可能性）。試合前後1〜2時間はデリバリー需要急増。日程は公式発表で更新すること。",
+        "source": "seed"
+      }
+    ],
+    "2026-06-21": [
+      {
+        "date": "2026-06-21",
+        "name": "日本代表 W杯 グループステージ 第2戦（予定）",
+        "type": "home_viewing",
+        "venue": "TV・バー・自宅",
+        "area": [
+          "23区全域"
+        ],
+        "impact": "critical",
+        "note": "日程は公式発表で更新すること。",
+        "source": "seed"
+      }
+    ],
+    "2026-06-26": [
+      {
+        "date": "2026-06-26",
+        "name": "日本代表 W杯 グループステージ 第3戦（予定）",
+        "type": "home_viewing",
+        "venue": "TV・バー・自宅",
+        "area": [
+          "23区全域"
+        ],
+        "impact": "critical",
+        "note": "グループ突破なら決勝T進出。日程は公式発表で更新すること。",
+        "source": "seed"
+      }
+    ],
+    "2026-07-04": [
+      {
+        "date": "2026-07-04",
+        "name": "日本代表 W杯 決勝トーナメント（予定）",
+        "type": "home_viewing",
+        "venue": "TV・バー・自宅",
+        "area": [
+          "23区全域"
+        ],
+        "impact": "critical",
+        "note": "グループ突破した場合のみ。日程は要更新。",
+        "source": "seed"
+      }
+    ],
+    "2026-07-19": [
+      {
+        "date": "2026-07-19",
+        "name": "FIFA ワールドカップ 2026 決勝",
+        "type": "home_viewing",
+        "venue": "TV・バー・自宅",
+        "area": [
+          "23区全域"
+        ],
+        "impact": "high",
+        "note": "日本が出場していなくても深夜のバー観戦需要あり。",
+        "source": "seed"
+      }
+    ],
+    "2026-07-25": [
+      {
+        "date": "2026-07-25",
+        "name": "隅田川花火大会",
+        "type": "festival",
+        "venue": "隅田川（台東区・墨田区）",
+        "area": [
+          "台東区",
+          "墨田区"
+        ],
+        "start_time": "19:00",
+        "end_time": "20:30",
+        "impact": "high",
+        "note": "例年7月最終土曜。交通規制あり。周辺で100万人規模の人出。",
+        "source": "seed"
+      }
+    ],
+    "2026-08-01": [
+      {
+        "date": "2026-08-01",
+        "name": "神宮外苑花火大会",
+        "type": "festival",
+        "venue": "明治神宮外苑（新宿区）",
+        "area": [
+          "新宿区",
+          "港区"
+        ],
+        "start_time": "19:30",
+        "end_time": "20:30",
+        "impact": "high",
+        "note": "例年8月上旬。会場周辺・渋谷エリアは混雑。",
+        "source": "seed"
+      }
+    ],
+    "2026-08-07": [
+      {
+        "date": "2026-08-07",
+        "name": "コミックマーケット C110（予定）",
+        "type": "mass_event",
+        "venue": "東京ビッグサイト（江東区）",
+        "area": [
+          "江東区"
+        ],
+        "start_time": "10:00",
+        "end_time": "17:00",
+        "impact": "high",
+        "note": "3日間開催（8/7〜9予定）。江東区周辺のデリバリー需要急増。",
+        "source": "seed"
+      }
+    ],
+    "2026-08-08": [
+      {
+        "date": "2026-08-08",
+        "name": "コミックマーケット C110 2日目",
+        "type": "mass_event",
+        "venue": "東京ビッグサイト（江東区）",
+        "area": [
+          "江東区"
+        ],
+        "start_time": "10:00",
+        "end_time": "17:00",
+        "impact": "high",
+        "source": "seed"
+      }
+    ],
+    "2026-08-09": [
+      {
+        "date": "2026-08-09",
+        "name": "コミックマーケット C110 3日目",
+        "type": "mass_event",
+        "venue": "東京ビッグサイト（江東区）",
+        "area": [
+          "江東区"
+        ],
+        "start_time": "10:00",
+        "end_time": "17:00",
+        "impact": "high",
+        "source": "seed"
+      }
+    ],
+    "2026-09-19": [
+      {
+        "date": "2026-09-19",
+        "name": "東京ゲームショウ 2026（予定）",
+        "type": "mass_event",
+        "venue": "幕張メッセ（千葉市）",
+        "area": [
+          "23区外だが影響あり"
+        ],
+        "start_time": "10:00",
+        "end_time": "18:00",
+        "impact": "low",
+        "note": "23区外だが来場者による夜の渋谷・秋葉原の流入あり。",
+        "source": "seed"
+      }
+    ],
+    "2026-10-31": [
+      {
+        "date": "2026-10-31",
+        "name": "渋谷ハロウィン",
+        "type": "festival",
+        "venue": "渋谷区 センター街・スクランブル交差点周辺",
+        "area": [
+          "渋谷区"
+        ],
+        "start_time": "18:00",
+        "end_time": "02:00",
+        "impact": "critical",
+        "note": "配達困難エリア多数。スクランブル交差点周辺は通行規制。最大の配達障害イベント。",
+        "source": "seed"
+      }
+    ],
+    "2026-11-03": [
+      {
+        "date": "2026-11-03",
+        "name": "文化の日",
+        "type": "holiday",
+        "venue": "全域",
+        "area": [
+          "23区全域"
+        ],
+        "impact": "medium",
+        "source": "seed"
+      }
+    ],
+    "2026-11-23": [
+      {
+        "date": "2026-11-23",
+        "name": "勤労感謝の日",
+        "type": "holiday",
+        "venue": "全域",
+        "area": [
+          "23区全域"
+        ],
+        "impact": "medium",
+        "source": "seed"
+      }
+    ],
+    "2026-12-25": [
+      {
+        "date": "2026-12-25",
+        "name": "クリスマス",
+        "type": "seasonal",
+        "venue": "全域",
+        "area": [
+          "23区全域"
+        ],
+        "impact": "high",
+        "note": "外食・デリバリー需要ピーク。カップル外食増で単身世帯のデリバリー増。",
+        "source": "seed"
+      }
+    ],
+    "2026-12-31": [
+      {
+        "date": "2026-12-31",
+        "name": "大晦日",
+        "type": "seasonal",
+        "venue": "全域",
+        "area": [
+          "23区全域"
+        ],
+        "start_time": "18:00",
+        "impact": "high",
+        "note": "年越しそば需要でデリバリー需要高。",
+        "source": "seed"
+      }
+    ]
+  }
+}
