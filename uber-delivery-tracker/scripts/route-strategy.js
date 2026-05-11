@@ -154,40 +154,54 @@ function getDayType(dow, calDay) {
 
 // ── 分析コア ─────────────────────────────────────
 
-// 時間×エリア マトリクス構築
+// 時間×エリア マトリクス構築（単価・所要時間を両方収集）
 function buildHourAreaMatrix(deliveries) {
-  const matrix = {}; // hour → area → earnings[]
+  const matrix = {}; // hour → area → { earnings[], durationSec[] }
   for (const d of deliveries) {
     if (d.hour < 9 || d.hour > 23) continue;
     if (!matrix[d.hour]) matrix[d.hour] = {};
-    if (!matrix[d.hour][d.area]) matrix[d.hour][d.area] = [];
-    matrix[d.hour][d.area].push(d.earnings);
+    if (!matrix[d.hour][d.area]) matrix[d.hour][d.area] = { earnings: [], durationSec: [] };
+    matrix[d.hour][d.area].earnings.push(d.earnings);
+    if (d.durationSec > 0) matrix[d.hour][d.area].durationSec.push(d.durationSec);
   }
   return matrix;
 }
 
-// 各時間の期待時給 = エリア平均単価 × 時間帯の総注文数/日
-// 分母を「時間帯×エリア」ではなく「時間帯全体」にすることでスパースデータでも正確な頻度を算出
-function buildExpectedHourlyEarning(matrix, numDays) {
-  // まず時間帯ごとの総注文数（全エリア合計）を集計
-  const hourTotalOrders = {}; // hour → 全エリア合計の件数
+// 期待時給 = 平均単価 × (60分 ÷ 平均所要時間)
+// データが少ないセルは時間帯全体→全体平均の順にフォールバック
+function buildExpectedHourlyEarning(matrix, deliveries) {
+  // フォールバック用: 時間帯全体の平均所要時間
+  const hourAvgDur = {};
   for (const [h, areas] of Object.entries(matrix)) {
-    hourTotalOrders[h] = Object.values(areas).reduce((s, arr) => s + arr.length, 0);
+    const allDurs = Object.values(areas).flatMap(a => a.durationSec).filter(d => d > 0);
+    if (allDurs.length > 0)
+      hourAvgDur[h] = allDurs.reduce((a, b) => a + b, 0) / allDurs.length;
   }
+  // フォールバック用: 全体平均所要時間
+  const allDurs = deliveries.filter(d => d.durationSec > 0).map(d => d.durationSec);
+  const overallAvgDur = allDurs.length > 0
+    ? allDurs.reduce((a, b) => a + b, 0) / allDurs.length
+    : 1200; // デフォルト20分
 
   const result = {};
   for (const [h, areas] of Object.entries(matrix)) {
-    // 時間帯レベルの注文頻度（どの時間帯が忙しいか）
-    const ordersPerDay = hourTotalOrders[h] / numDays;
     result[h] = {};
-    for (const [area, arr] of Object.entries(areas)) {
-      const s = stats(arr);
-      // 期待時給 = この時間帯の平均注文数/日 × このエリアの平均単価
-      // 「時間帯Hに稼働中、エリアAの注文を受けた場合の期待収益」
+    for (const [area, cell] of Object.entries(areas)) {
+      const s = stats(cell.earnings);
+      // 所要時間: セル内に3件以上あればセル値、なければ時間帯→全体の順でフォールバック
+      const durs = cell.durationSec.filter(d => d > 0);
+      const avgDurSec = durs.length >= 3
+        ? durs.reduce((a, b) => a + b, 0) / durs.length
+        : (hourAvgDur[h] || overallAvgDur);
+      const avgDurMin      = avgDurSec / 60;
+      const delivPerHour   = 60 / avgDurMin; // 1時間に何件こなせるか
+      const expectedHourly = s.mean * delivPerHour;
+
       result[h][area] = {
         ...s,
-        ordersPerDay,
-        expectedHourly: s.mean * ordersPerDay,
+        avgDurMin,
+        delivPerHour,
+        expectedHourly,
       };
     }
   }
@@ -231,23 +245,22 @@ function getBlockBestAreas(eMatrix, block, top = 3) {
   for (const h of block.hours) {
     if (!eMatrix[h]) continue;
     for (const [area, data] of Object.entries(eMatrix[h])) {
-      if (!all[area]) all[area] = { expectedHourlyList: [], meanList: [], ordersPerDayList: [] };
-      // 修正済みeMatrixは時間帯レベルのordersPerDayを使用しているため正確
+      if (!all[area]) all[area] = { expectedHourlyList: [], meanList: [], delivPerHourList: [], durList: [] };
       all[area].expectedHourlyList.push(data.expectedHourly);
       all[area].meanList.push(data.mean);
-      all[area].ordersPerDayList.push(data.ordersPerDay);
+      all[area].delivPerHourList.push(data.delivPerHour);
+      all[area].durList.push(data.avgDurMin);
     }
   }
+  const avg = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
   return Object.entries(all)
-    .map(([area, d]) => {
-      const avg = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
-      return {
-        area,
-        avgEarnings:   avg(d.meanList),
-        avgOrders:     avg(d.ordersPerDayList),
-        expectedHourly: avg(d.expectedHourlyList),
-      };
-    })
+    .map(([area, d]) => ({
+      area,
+      avgEarnings:    avg(d.meanList),
+      avgDelivPerHour: avg(d.delivPerHourList),
+      avgDurMin:      avg(d.durList),
+      expectedHourly: avg(d.expectedHourlyList),
+    }))
     .sort((a, b) => b.expectedHourly - a.expectedHourly)
     .slice(0, top);
 }
@@ -260,8 +273,13 @@ function generateReport(mode, deliveries, days, from, to) {
   if (N === 0) return null;
 
   const matrix   = buildHourAreaMatrix(deliveries);
-  const eMatrix  = buildExpectedHourlyEarning(matrix, numDays);
+  const eMatrix  = buildExpectedHourlyEarning(matrix, deliveries);
   const transMx  = buildTransitionMatrix(deliveries);
+
+  // 全体の平均所要時間・推定件数/時間（ベースライン用）
+  const allDurs = deliveries.filter(d => d.durationSec > 0).map(d => d.durationSec);
+  const overallAvgDurMin  = allDurs.length > 0 ? (allDurs.reduce((a,b) => a+b,0)/allDurs.length)/60 : 20;
+  const overallDelivPerHr = 60 / overallAvgDurMin;
   const allStats = stats(deliveries.map(d => d.earnings));
   const modeLabel = mode === 'weekday' ? '平日' : '土日祝';
 
@@ -291,9 +309,8 @@ function generateReport(mode, deliveries, days, from, to) {
     const best = hourBestArea[h];
     if (best) strategyDailyEarnings += best.expectedHourly;
   }
-  // ベースライン：全エリア平均単価 × 全体平均注文数/時間
-  const baselineOrdersPerHour = N / (numDays * TARGET_HOURS.length);
-  const baselineDailyEarnings = allStats.mean * baselineOrdersPerHour * TARGET_HOURS.length;
+  // ベースライン：全体平均単価 × (60分÷全体平均所要時間) × 稼働時間
+  const baselineDailyEarnings = allStats.mean * overallDelivPerHr * TARGET_HOURS.length;
 
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   // Markdown 生成
@@ -349,9 +366,10 @@ Uber Eats 配達員が操作できる変数は以下の3つのみ。本レポー
   }
 
   // 期待時給マップ（行=エリア、列=時間帯）
-  md += `\n### 期待時給マップ（単価 × 注文数/時間 = 期待稼得額/時間）
+  md += `\n### 期待時給マップ（平均単価 ÷ 平均所要時間 × 60分）
 
-> **期待時給** = その時間帯に該当エリアで稼げると期待される金額。単価が高くても注文が少なければ期待値は低い。
+> **期待時給** = 平均単価 × (60 ÷ 平均所要時間[分]) で算出。所要時間が短いほど1時間に多く回せる。
+> **太字**は期待時給 ¥2,000以上のセル。
 
 `;
   let ehdr = '| エリア |', esep = '|---|';
@@ -364,13 +382,13 @@ Uber Eats 配達員が操作できる変数は以下の3つのみ。本レポー
       const d = eMatrix[h] && eMatrix[h][area];
       if (d && d.n > 0) {
         const eh = d.expectedHourly;
-        row += eh >= 500 ? ` **${yen(eh)}** |` : ` ${yen(eh)} |`;
+        row += eh >= 2000 ? ` **${yen(eh)}** |` : ` ${yen(eh)} |`;
       } else { row += ' — |'; }
     }
     md += row + '\n';
   }
 
-  md += `\n> ¥500以上の期待時給セルを **太字** で強調。最も稼げる時間×エリアの組み合わせ。\n\n`;
+  md += `\n> 例: 平均単価¥800、平均所要時間20分 → 期待時給 ¥800×3件=¥2,400/h\n\n`;
 
   // ── Ⅱ. 時間ブロック別戦略
   md += `---
@@ -385,7 +403,7 @@ Uber Eats 配達員が操作できる変数は以下の3つのみ。本レポー
       md += '> データなし（この時間帯の配達実績がない）\n\n';
       continue;
     }
-    md += `| 順位 | 推奨エリア | 期待時給 | 平均単価 | 推定注文数/時間 | 理由 |\n|---|---|---|---|---|---|\n`;
+    md += `| 順位 | 推奨エリア | **期待時給** | 平均単価 | 平均所要時間 | 推定件数/時間 | 理由 |\n|---|---|---|---|---|---|---|\n`;
     for (const [i, a] of block.topAreas.entries()) {
       const rank = i === 0 ? '🥇 **最優先**' : i === 1 ? '🥈 次善' : '🥉 代替';
       const reason = i === 0
@@ -393,7 +411,7 @@ Uber Eats 配達員が操作できる変数は以下の3つのみ。本レポー
         : i === 1
           ? `1位エリアが混雑・移動コスト高の場合の代替。`
           : `さらなる代替。1・2位エリアにポジションが取れない場合。`;
-      md += `| ${rank} | **${a.area}** | **${yen(a.expectedHourly)}** | ${yen(a.avgEarnings)} | ${fmt1(a.avgOrders)}件 | ${reason} |\n`;
+      md += `| ${rank} | **${a.area}** | **${yen(a.expectedHourly)}** | ${yen(a.avgEarnings)} | ${fmt1(a.avgDurMin)}分 | ${fmt1(a.avgDelivPerHour)}件 | ${reason} |\n`;
     }
     md += '\n';
   }
@@ -406,8 +424,8 @@ Uber Eats 配達員が操作できる変数は以下の3つのみ。本レポー
 > 1時間単位の推奨行動。「推奨エリア」は**期待時給**の高いエリア。
 > 前の時間と同エリアの場合は**キープ**、異なる場合は**移動推奨**を示す。
 
-| 時刻 | 推奨待機エリア | 期待時給 | 平均単価 | 実績N | アクション | 移動判断 |
-|---|---|---|---|---|---|---|
+| 時刻 | 推奨待機エリア | **期待時給** | 平均単価 | 所要時間 | 推定件数/h | アクション | 移動判断 |
+|---|---|---|---|---|---|---|---|
 `;
   let prevArea = null;
   for (const h of TARGET_HOURS) {
@@ -418,7 +436,7 @@ Uber Eats 配達員が操作できる変数は以下の3つのみ。本レポー
     const timeLabel = `${String(h).padStart(2,'0')}:00`;
 
     if (!best) {
-      md += `| ${timeLabel} | — | — | — | 0 | データなし | — |\n`;
+      md += `| ${timeLabel} | — | — | — | — | — | データなし | — |\n`;
       continue;
     }
 
@@ -434,12 +452,12 @@ Uber Eats 配達員が操作できる変数は以下の3つのみ。本レポー
       if (h === 14) return 'ランチ後の閑散期。移動コストを考慮し最高期待値エリアへ。';
       if (h === 17) return 'ディナー前。夕方ラッシュ備えポジション確保。';
       if (h === 18) return '🔥 ディナーラッシュ開始。フル稼働。';
-      if (h === 21) return '需要が落ち着く。高単価注文に絞り接受。';
+      if (h === 21) return '需要が落ち着く。高単価注文に絞り受諾。';
       if (h === 23) return '最終時間帯。遠距離案件は拒否。近距離高単価のみ。';
       return '前時間帯の戦略を継続。';
     })();
 
-    md += `| **${timeLabel}** | **${best.area}** | **${yen(best.expectedHourly)}** | ${yen(best.mean)} | ${best.n} | ${action} | ${move} |\n`;
+    md += `| **${timeLabel}** | **${best.area}** | **${yen(best.expectedHourly)}** | ${yen(best.mean)} | ${fmt1(best.avgDurMin)}分 | ${fmt1(best.delivPerHour)}件 | ${action} | ${move} |\n`;
     prevArea = best.area;
   }
 
@@ -516,11 +534,12 @@ Uber Eats 配達員が操作できる変数は以下の3つのみ。本レポー
 | シナリオ | 想定 | 推定日次収益 | 推定月収（22日稼働）|
 |---|---|---|---|
 | 🏆 **最適戦略** | 各時間の期待時給最高エリアで待機 | **${yen(strategyDailyEarnings)}** | **${yen(strategyDailyEarnings * 22)}** |
-| 📊 **ベースライン** | エリア・時間を最適化しない場合 | ${yen(baselineDailyEarnings)} | ${yen(baselineDailyEarnings * 22)} |
+| 📊 **ベースライン** | エリア最適化なし（全体平均で稼働） | ${yen(baselineDailyEarnings)} | ${yen(baselineDailyEarnings * 22)} |
 | 📈 **戦略プレミアム** | 最適戦略による上乗せ | **+${yen(strategyDailyEarnings - baselineDailyEarnings)}** | **+${yen((strategyDailyEarnings - baselineDailyEarnings) * 22)}** |
 
-> ⚠️ **注意**: 推計は ${numDays}日分・${N}件のデータに基づく。サンプルが少ないほど不確実性が高い。
-> 期待時給 = 平均単価 × 推定注文数/時間 で算出。注文数は実績を平均日数で除した推計値。
+> **計算式**: 期待時給 = 平均単価 × (60分 ÷ 平均所要時間)
+> 全体平均所要時間: ${fmt1(overallAvgDurMin)}分 → 理論最大 ${fmt1(overallDelivPerHr)}件/時間
+> ⚠️ 上記は「待機時間ゼロ・全時間フル稼働」の理論値。実際は待機・移動時間があるため下振れする。
 
 ### 時間ブロック別 収益内訳（最適戦略）
 
