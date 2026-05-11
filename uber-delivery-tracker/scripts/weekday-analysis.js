@@ -269,9 +269,33 @@ function generateReport(deliveries, weatherCoverage, from, to) {
 
   // ─ 店舗別
   const byStoreGroup = groupBy(deliveries, 'storeName');
+
+  function buildStoreEntry(name, arr) {
+    const s = stats(arr.map(d => d.earnings));
+    const mode = (counts) => Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] || '不明';
+    const areaCounts = {}, slotCounts = {};
+    for (const d of arr) {
+      areaCounts[d.area] = (areaCounts[d.area] || 0) + 1;
+      if (d.slot) slotCounts[d.slot] = (slotCounts[d.slot] || 0) + 1;
+    }
+    return {
+      name,
+      ...s,
+      primaryArea: mode(areaCounts),
+      primarySlot: mode(slotCounts),
+      records: arr.slice().sort((a, b) => a.date.localeCompare(b.date) || (a.hour ?? 99) - (b.hour ?? 99)),
+    };
+  }
+
   const byStore = Object.entries(byStoreGroup)
-    .map(([name, arr]) => ({ name, ...stats(arr.map(d => d.earnings)) }))
+    .map(([name, arr]) => buildStoreEntry(name, arr))
     .filter(s => s.n >= 2)
+    .sort((a, b) => b.mean - a.mean);
+
+  // 高単価店舗（全体平均超え、n≥1）- 参考データ用
+  const highValueStores = Object.entries(byStoreGroup)
+    .map(([name, arr]) => buildStoreEntry(name, arr))
+    .filter(s => s.mean > overallStats.mean)
     .sort((a, b) => b.mean - a.mean);
 
   // ─ 日次 × 時間帯マトリクス
@@ -570,6 +594,32 @@ ${weatherCoverageNote}`;
 - **因果性の注意**: 本レポートは相関分析であり因果関係を示すものではない。例：「雨天で高単価」は「雨天が高単価の原因」ではなく、需給バランス・競合行動・時間帯交絡の可能性を排除できない。
 - **外部変数の未制御**: 本分析期間はGW明け直後（5/6-5/8）を含む。通常週との比較には曜日・需要サイクルの補正が必要。
 - **Sharpe Ratio の解釈**: ここでのSharpe比は（平均単価）÷（標準偏差）であり、金融的意味での無リスクレート控除は行っていない。時間帯間の相対比較指標として使用すること。
+
+---
+
+## 📋 参考データ: 高単価店舗リスト（全体平均 ${yen(overallStats.mean)} 超え）
+
+> 全体平均単価を上回る店舗の一覧。「配達先エリア」は顧客住所から取得した最多区（店舗所在地とは異なる場合がある）。
+> 「時間帯」はその店舗からの注文が最も多い時間帯。
+
+| 順位 | 店舗名 | N | 平均単価 | 最高単価 | 配達先エリア | 主な時間帯 | vs 全体平均 |
+|---|---|---|---|---|---|---|---|
+${highValueStores.map((s, i) => {
+  const diff = Math.round((s.mean - overallStats.mean) / overallStats.mean * 100);
+  const sign = diff >= 0 ? '+' : '';
+  return `| ${i + 1} | **${s.name.slice(0, 30)}** | ${s.n} | ${yen(s.mean)} | ${yen(s.max)} | ${s.primaryArea} | ${s.primarySlot} | **${sign}${diff}%** |`;
+}).join('\n') || '| — | 平均超えの店舗なし | — | — | — | — | — | — |'}
+
+### 配達履歴詳細
+
+${highValueStores.map(s => {
+  const rows = s.records.map(r => {
+    const day = new Date(r.date + 'T12:00:00+09:00');
+    const label = `${r.date.slice(5)}(${DOW[day.getDay()]})`;
+    return `| ${label} | ${r.slot || '—'} | ${r.area} | ${yen(r.earnings)} |`;
+  }).join('\n');
+  return `#### ${s.name}\n| 日付 | 時間帯 | 配達先エリア | 単価 |\n|---|---|---|---|\n${rows}`;
+}).join('\n\n') || '> データなし'}
 
 ---
 *平日限定パフォーマンス精密分析レポート — Goldman Sachs Analytics Edition*
