@@ -1,0 +1,258 @@
+{
+  "date": "2026-04-21",
+  "scrapedAt": "2026-04-21T21:35:00.000Z",
+  "totalCount": 25,
+  "successCount": 25,
+  "deliveries": [
+    {
+      "no": 1,
+      "earnings": 365,
+      "distance": "2.85 km",
+      "duration": "12:22",
+      "storeName": "スターバックス 中目黒 蔦屋書店",
+      "destAddress": "目黒区",
+      "datetime": "2026年4月21日 午前8時08分",
+      "tip": 0
+    },
+    {
+      "no": 2,
+      "earnings": 320,
+      "distance": "3.14 km",
+      "duration": "16:08",
+      "storeName": "スターバックス 中目黒山手通り店",
+      "destAddress": "目黒区",
+      "datetime": "2026年4月21日 午前8時29分",
+      "tip": 0
+    },
+    {
+      "no": 3,
+      "earnings": 420,
+      "distance": "5.50 km",
+      "duration": "24:46",
+      "storeName": "スターバックス 恵比寿ガーデンプレイス",
+      "destAddress": "渋谷区",
+      "datetime": "2026年4月21日 午前8時56分",
+      "tip": 0
+    },
+    {
+      "no": 4,
+      "earnings": 721,
+      "distance": "4.86 km",
+      "duration": "21:31",
+      "storeName": "いちょう弁当",
+      "destAddress": "品川区",
+      "datetime": "2026年4月21日 午前9時15分",
+      "tip": 0
+    },
+    {
+      "no": 5,
+      "earnings": 438,
+      "distance": "4.97 km",
+      "duration": "20:29",
+      "storeName": "マクドナルド 目黒駅前店",
+      "destAddress": "港区",
+      "datetime": "2026年4月21日 午前9時40分",
+      "tip": 0
+    },
+    {
+      "no": 6,
+      "earnings": 1484,
+      "distance": "11.67 km",
+      "duration": "56:53",
+      "storeName": "カフェオレトーキョー 五反田店",
+      "destAddress": "目黒区",
+      "datetime": "2026年4月21日 午前9時47分",
+      "tip": 0
+    },
+    {
+      "no": 7,
+      "earnings": 545,
+      "distance": "5.02 km",
+      "duration": "23:41",
+      "storeName": "マクドナルド 目黒駅前店",
+      "destAddress": "渋谷区",
+      "datetime": "2026年4月21日 午前11時17分",
+      "tip": 0
+    },
+    {
+      "no": 8,
+      "earnings": 1070,
+      "distance": "3.43 km",
+      "duration": "16:12",
+      "storeName": "おにぎり維心 恵比寿店",
+      "destAddress": "港区",
+      "datetime": "2026年4月21日 午前11時34分",
+      "tip": 368
+    },
+    {
+      "no": 9,
+      "earnings": 676,
+      "distance": "5.33 km",
+      "duration": "26:32",
+      "storeName": "ローソン 広尾五丁目",
+      "destAddress": "港区",
+      "datetime": "2026年4月21日 午前11時37分",
+      "tip": 0
+    },
+    {
+      "no": 10,
+      "earnings": 608,
+      "distance": "5.21 km",
+      "duration": "23:05",
+      "storeName": "【屋台おでん】 西麻布店",
+      "destAddress": "港区",
+      "datetime": "2026年4月21日 午後0時18分",
+      "tip": 0
+    },
+    {
+      "no": 11,
+      "earnings": 320,
+      "distance": "2.22 km",
+      "duration": "14:32",
+      "storeName": "Nim's Pizza",
+      "destAddress": "港区",
+      "datetime": "2026年4月21日 午後0時43分",
+      "tip": 0
+    },
+    {
+      "no": 12,
+      "earnings": 320,
+      "distance": "1.93 km",
+      "duration": "14:54",
+      "storeName": "バーガーマニア 広尾",
+      "destAddress": "渋谷区",
+      "datetime": "2026年4月21日 午後1時16分",
+      "tip": 0
+    },
+    {
+      "no": 13,
+      "earnings": 320,
+      "distance": "2.12 km",
+      "duration": "13:16",
+      "storeName": "ウエルシア南麻布店",
+      "destAddress": "港区",
+      "datetime": "2026年4月21日 午後1時29分",
+      "tip": 0
+    },
+    {
+      "no": 14,
+      "earnings": 320,
+      "distance": "2.66 km",
+      "duration": "26:10",
+      "storeName": "セガフレード・ザネッティ 広尾店",
+      "destAddress": "港区",
+      "datetime": "2026年4月21日 午後1時36分",
+      "tip": 0
+    },
+    {
+      "no": 15,
+      "earnings": 320,
+      "distance": "3.01 km",
+      "duration": "14:37",
+      "storeName": "佰年食堂 太助",
+      "destAddress": "港区",
+      "datetime": "2026年4月21日 午後5時14分",
+      "tip": 0
+    },
+    {
+      "no": 16,
+      "earnings": 320,
+      "distance": "3.38 km",
+      "duration": "19:42",
+      "storeName": "ジョナサン 白金台店",
+      "destAddress": "港区",
+      "datetime": "2026年4月21日 午後5時33分",
+      "tip": 0
+    },
+    {
+      "no": 17,
+      "earnings": 472,
+      "distance": "4.78 km",
+      "duration": "24:18",
+      "storeName": "うなぎ四代目 菊川 恵比寿GP店",
+      "destAddress": "渋谷区",
+      "datetime": "2026年4月21日 午後5時59分",
+      "tip": 0
+    },
+    {
+      "no": 18,
+      "earnings": 320,
+      "distance": "2.96 km",
+      "duration": "16:00",
+      "storeName": "グルテンフリーな暮らしパン。",
+      "destAddress": "目黒区",
+      "datetime": "2026年4月21日 午後6時20分",
+      "tip": 0
+    },
+    {
+      "no": 19,
+      "earnings": 362,
+      "distance": "5.13 km",
+      "duration": "19:20",
+      "storeName": "スターバックス 中目黒GTタワー店",
+      "destAddress": "目黒区",
+      "datetime": "2026年4月21日 午後6時37分",
+      "tip": 0
+    },
+    {
+      "no": 20,
+      "earnings": 342,
+      "distance": "4.01 km",
+      "duration": "21:13",
+      "storeName": "すき家 目黒三丁目店",
+      "destAddress": "目黒区",
+      "datetime": "2026年4月21日 午後7時07分",
+      "tip": 0
+    },
+    {
+      "no": 21,
+      "earnings": 320,
+      "distance": "2.49 km",
+      "duration": "12:12",
+      "storeName": "うどん もちこし",
+      "destAddress": "目黒区",
+      "datetime": "2026年4月21日 午後7時19分",
+      "tip": 0
+    },
+    {
+      "no": 22,
+      "earnings": 734,
+      "distance": "8.30 km",
+      "duration": "47:35",
+      "storeName": "大戸屋ごはん処 目黒権之助坂店",
+      "destAddress": "渋谷区",
+      "datetime": "2026年4月21日 午後7時46分",
+      "tip": 0
+    },
+    {
+      "no": 23,
+      "earnings": 320,
+      "distance": "1.74 km",
+      "duration": "12:39",
+      "storeName": "蟻月 恵比寿店",
+      "destAddress": "渋谷区",
+      "datetime": "2026年4月21日 午後8時33分",
+      "tip": 0
+    },
+    {
+      "no": 24,
+      "earnings": 483,
+      "distance": "5.21 km",
+      "duration": "22:23",
+      "storeName": "バーガーマニア 恵比寿",
+      "destAddress": "目黒区",
+      "datetime": "2026年4月21日 午後8時57分",
+      "tip": 0
+    },
+    {
+      "no": 25,
+      "earnings": 543,
+      "distance": "4.65 km",
+      "duration": "29:47",
+      "storeName": "マクドナルド 渋谷サクラステージ店",
+      "destAddress": "渋谷区",
+      "datetime": "2026年4月21日 午後9時35分",
+      "tip": 0
+    }
+  ]
+}
