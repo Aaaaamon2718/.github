@@ -166,19 +166,28 @@ function buildHourAreaMatrix(deliveries) {
   return matrix;
 }
 
-// 各時間の期待時給 = 単価 × (1時間あたり注文数)
-// deliveriesPerDay[hour][area] = count / numDays
+// 各時間の期待時給 = エリア平均単価 × 時間帯の総注文数/日
+// 分母を「時間帯×エリア」ではなく「時間帯全体」にすることでスパースデータでも正確な頻度を算出
 function buildExpectedHourlyEarning(matrix, numDays) {
-  const result = {}; // hour → area → { meanEarnings, ordersPerDay, expectedHourly }
+  // まず時間帯ごとの総注文数（全エリア合計）を集計
+  const hourTotalOrders = {}; // hour → 全エリア合計の件数
   for (const [h, areas] of Object.entries(matrix)) {
+    hourTotalOrders[h] = Object.values(areas).reduce((s, arr) => s + arr.length, 0);
+  }
+
+  const result = {};
+  for (const [h, areas] of Object.entries(matrix)) {
+    // 時間帯レベルの注文頻度（どの時間帯が忙しいか）
+    const ordersPerDay = hourTotalOrders[h] / numDays;
     result[h] = {};
     for (const [area, arr] of Object.entries(areas)) {
       const s = stats(arr);
-      const ordersPerDay = arr.length / numDays;
+      // 期待時給 = この時間帯の平均注文数/日 × このエリアの平均単価
+      // 「時間帯Hに稼働中、エリアAの注文を受けた場合の期待収益」
       result[h][area] = {
         ...s,
         ordersPerDay,
-        expectedHourly: s.mean * ordersPerDay, // 期待時給（単価×注文数/時間）
+        expectedHourly: s.mean * ordersPerDay,
       };
     }
   }
@@ -222,16 +231,22 @@ function getBlockBestAreas(eMatrix, block, top = 3) {
   for (const h of block.hours) {
     if (!eMatrix[h]) continue;
     for (const [area, data] of Object.entries(eMatrix[h])) {
-      if (!all[area]) all[area] = { earnings: [], orders: [] };
-      all[area].earnings.push(data.mean);
-      all[area].orders.push(data.ordersPerDay);
+      if (!all[area]) all[area] = { expectedHourlyList: [], meanList: [], ordersPerDayList: [] };
+      // 修正済みeMatrixは時間帯レベルのordersPerDayを使用しているため正確
+      all[area].expectedHourlyList.push(data.expectedHourly);
+      all[area].meanList.push(data.mean);
+      all[area].ordersPerDayList.push(data.ordersPerDay);
     }
   }
   return Object.entries(all)
     .map(([area, d]) => {
-      const avgEarnings = d.earnings.reduce((a, b) => a + b, 0) / d.earnings.length;
-      const avgOrders   = d.orders.reduce((a, b) => a + b, 0) / d.orders.length;
-      return { area, avgEarnings, avgOrders, expectedHourly: avgEarnings * avgOrders };
+      const avg = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
+      return {
+        area,
+        avgEarnings:   avg(d.meanList),
+        avgOrders:     avg(d.ordersPerDayList),
+        expectedHourly: avg(d.expectedHourlyList),
+      };
     })
     .sort((a, b) => b.expectedHourly - a.expectedHourly)
     .slice(0, top);
