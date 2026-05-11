@@ -50,10 +50,7 @@ function getArgs() {
   if (!['weekday', 'weekend'].includes(mode)) {
     console.error('--mode は weekday または weekend を指定してください'); process.exit(1);
   }
-  const today = new Date();
-  const toJST  = d => d.toLocaleDateString('sv-SE', { timeZone: 'Asia/Tokyo' });
-  const daysAgo = n => { const d = new Date(today); d.setDate(d.getDate() - n); return toJST(d); };
-  return { mode, from: get('--from') || daysAgo(90), to: get('--to') || toJST(today) };
+  return { mode, from: get('--from') || '2026-04-21', to: get('--to') || '2026-05-10' };
 }
 
 function dateRange(from, to) {

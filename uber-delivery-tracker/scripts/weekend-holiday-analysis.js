@@ -39,12 +39,9 @@ function getArgs() {
   const args = process.argv.slice(2);
   const fi = args.indexOf('--from');
   const ti = args.indexOf('--to');
-  const today = new Date();
-  const toJST  = d => d.toLocaleDateString('sv-SE', { timeZone: 'Asia/Tokyo' });
-  const daysAgo = n => { const d = new Date(today); d.setDate(d.getDate() - n); return toJST(d); };
   return {
-    from: fi !== -1 ? args[fi + 1] : daysAgo(90),
-    to:   ti !== -1 ? args[ti + 1] : toJST(today),
+    from: fi !== -1 ? args[fi + 1] : '2026-04-21',
+    to:   ti !== -1 ? args[ti + 1] : '2026-05-10',
   };
 }
 
